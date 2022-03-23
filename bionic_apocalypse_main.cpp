@@ -2,6 +2,8 @@
 #include "bionic_apocalypse_player.cpp"
 #include "bionic_apocalypse_enemy.h"
 #include "bionic_apocalypse_enemy.cpp"
+#include "bionic_apocalypse_renderer.h"
+#include "bionic_apocalypse_renderer.cpp"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -27,7 +29,7 @@ int main(int argc, char** argv) {
     bool MOVE_LEFT = false;
     bool INTERACTING = false;
 
-	bool running = false;
+	bool running = true;
     SDL_Event e;
 
     Enemy badGuy;
@@ -36,6 +38,8 @@ int main(int argc, char** argv) {
 
     badGuy.setHealth(50);
     std::cout << badGuy.getHealth();
+
+    window_startup();
 
 	while (running) {
 
@@ -72,15 +76,19 @@ int main(int argc, char** argv) {
             if (e.type == SDL_KEYUP) {
                 if (e.key.keysym.sym == SDLK_w) {
                     MOVE_UP = false;
+                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
                 }
                 if (e.key.keysym.sym == SDLK_s) {
                     MOVE_DOWN = false;
+                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
                 }
                 if (e.key.keysym.sym == SDLK_d) {
                     MOVE_RIGHT = false;
+                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
                 }
                 if (e.key.keysym.sym == SDLK_a) {
                     MOVE_LEFT = false;
+                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
                 }
                 if (e.key.keysym.sym == SDLK_e) {
                     INTERACTING = false;
@@ -101,6 +109,9 @@ int main(int argc, char** argv) {
             playerMoveRight();
         }
 
+        window_update();
+
+        SDL_Delay(17);
 	}
 
     return 0;
