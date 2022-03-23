@@ -1,0 +1,1 @@
+ C:/msys64/mingw64/lib/libSDL2_image.dll.a C:/msys64/mingw64/lib/libSDL2_gfx.dll.a C:/msys64/mingw64/lib/libSDL2_ttf.dll.a C:/msys64/mingw64/lib/libSDL2_mixer.dll.a -lmingw32 -mwindows C:/msys64/mingw64/lib/libSDL2main.a C:/msys64/mingw64/lib/libSDL2.dll.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
