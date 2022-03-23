@@ -1,4 +1,4 @@
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <iostream>
@@ -12,8 +12,8 @@ int screenLocation;
 int playerHealth = 100;
 int playerMovementSpeed = 10;
 
-int* getResource() {
-
+int getResource() {
+	return positionX;
 }
 
 void setResource(int resourceType, int amountToAdd) {

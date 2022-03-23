@@ -1,13 +1,9 @@
-#include "bionic_apocalypse_renderer.cpp"
-//using namespace std;
+#include "bionic_apocalypse_player.h"
 #include "bionic_apocalypse_player.cpp"
-//using namespace std;
-#include "bionic_apocalypse_savesystem.h"
-#include "bionic_apocalypse_battlelogic.cpp"
-//using namespace std;
+#include "bionic_apocalypse_enemy.h"
+#include "bionic_apocalypse_enemy.cpp"
 
-
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <iostream>
@@ -34,11 +30,12 @@ int main(int argc, char** argv) {
 	bool running = false;
     SDL_Event e;
 
-    save_gameState(5);
+    Enemy badGuy;
 
-    read_gameState();
+    std::cout << getResource();
 
-    window_startup();
+    badGuy.setHealth(50);
+    std::cout << badGuy.getHealth();
 
 	while (running) {
 
@@ -52,7 +49,7 @@ int main(int argc, char** argv) {
                     running = false;
                 }
                 if (e.key.keysym.sym == SDLK_1) {
-                    setAttackingTrue();
+                    //setAttackingTrue();
                 }
                 if (e.key.keysym.sym == SDLK_w) {
                     MOVE_UP = true;
@@ -108,33 +105,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-
-
-//void save_gameState(int health) {
-//    ofstream outStream;
-//    outStream.open("save_file.txt");
-//    if (outStream.fail()) {
-//        cout << "File opening failed. \n";
-//        exit(1);
-//    }
-//
-//    cout << health;
-//
-//    outStream << health << endl;
-//    outStream.close();
-//}
-//
-//void read_gameState() {
-//    ifstream inStream;
-//    inStream.open("save_file.txt");
-//    if (inStream.fail()) {
-//        cout << "File opening failed. \n";
-//        exit(1);
-//    }
-//
-//    int health;
-//    inStream >> health;
-//    inStream.close();
-//
-//    cout << health;
-//}
