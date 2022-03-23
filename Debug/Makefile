@@ -56,10 +56,10 @@ RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\duany\Desktop\bionic_apocalypse
+CMAKE_SOURCE_DIR = C:\SCHOOL\Game_Design\bionic_apocalypse
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\duany\Desktop\bionic_apocalypse\Debug
+CMAKE_BINARY_DIR = C:\SCHOOL\Game_Design\bionic_apocalypse\Debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles C:\Users\duany\Desktop\bionic_apocalypse\Debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -164,6 +164,30 @@ bin/bionic_apocalypse_main.s: bin/bionic_apocalypse_main.cpp.s
 bin/bionic_apocalypse_main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\bionic_apocalypse_main.dir\build.make CMakeFiles/bionic_apocalypse_main.dir/bin/bionic_apocalypse_main.cpp.s
 .PHONY : bin/bionic_apocalypse_main.cpp.s
+
+src/bionic_apocalypse_battlelogic.obj: src/bionic_apocalypse_battlelogic.cpp.obj
+.PHONY : src/bionic_apocalypse_battlelogic.obj
+
+# target to build an object file
+src/bionic_apocalypse_battlelogic.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\bionic_apocalypse_core.dir\build.make CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj
+.PHONY : src/bionic_apocalypse_battlelogic.cpp.obj
+
+src/bionic_apocalypse_battlelogic.i: src/bionic_apocalypse_battlelogic.cpp.i
+.PHONY : src/bionic_apocalypse_battlelogic.i
+
+# target to preprocess a source file
+src/bionic_apocalypse_battlelogic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\bionic_apocalypse_core.dir\build.make CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.i
+.PHONY : src/bionic_apocalypse_battlelogic.cpp.i
+
+src/bionic_apocalypse_battlelogic.s: src/bionic_apocalypse_battlelogic.cpp.s
+.PHONY : src/bionic_apocalypse_battlelogic.s
+
+# target to generate assembly for a file
+src/bionic_apocalypse_battlelogic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\bionic_apocalypse_core.dir\build.make CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.s
+.PHONY : src/bionic_apocalypse_battlelogic.cpp.s
 
 src/bionic_apocalypse_enemy.obj: src/bionic_apocalypse_enemy.cpp.obj
 .PHONY : src/bionic_apocalypse_enemy.obj
@@ -274,6 +298,9 @@ help:
 	@echo ... bin/bionic_apocalypse_main.obj
 	@echo ... bin/bionic_apocalypse_main.i
 	@echo ... bin/bionic_apocalypse_main.s
+	@echo ... src/bionic_apocalypse_battlelogic.obj
+	@echo ... src/bionic_apocalypse_battlelogic.i
+	@echo ... src/bionic_apocalypse_battlelogic.s
 	@echo ... src/bionic_apocalypse_enemy.obj
 	@echo ... src/bionic_apocalypse_enemy.i
 	@echo ... src/bionic_apocalypse_enemy.s

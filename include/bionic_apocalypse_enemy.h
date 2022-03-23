@@ -10,7 +10,11 @@ public:
 	void changeHealth(int healthChange);
 	//Chooses a random attack from the enemy's arsenal
 	int randomAttack();
-
+	void setPosX(int newX);
+	void setPosY(int newY);
+	int getX();
+	int getY();
+	void draw();
 };
 
 #endif

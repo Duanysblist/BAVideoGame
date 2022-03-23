@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj"
+  "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj.d"
   "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj"
   "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj.d"
   "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj"

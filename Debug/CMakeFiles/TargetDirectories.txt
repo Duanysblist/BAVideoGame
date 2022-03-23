@@ -1,4 +1,4 @@
-C:/Users/duany/Desktop/bionic_apocalypse/Debug/CMakeFiles/bionic_apocalypse_core.dir
-C:/Users/duany/Desktop/bionic_apocalypse/Debug/CMakeFiles/bionic_apocalypse_main.dir
-C:/Users/duany/Desktop/bionic_apocalypse/Debug/CMakeFiles/edit_cache.dir
-C:/Users/duany/Desktop/bionic_apocalypse/Debug/CMakeFiles/rebuild_cache.dir
+C:/SCHOOL/Game_Design/bionic_apocalypse/Debug/CMakeFiles/bionic_apocalypse_core.dir
+C:/SCHOOL/Game_Design/bionic_apocalypse/Debug/CMakeFiles/bionic_apocalypse_main.dir
+C:/SCHOOL/Game_Design/bionic_apocalypse/Debug/CMakeFiles/edit_cache.dir
+C:/SCHOOL/Game_Design/bionic_apocalypse/Debug/CMakeFiles/rebuild_cache.dir

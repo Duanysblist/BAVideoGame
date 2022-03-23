@@ -1,5 +1,8 @@
-CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj: \
- C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_player.cpp \
+CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj: \
+ C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_battlelogic.cpp \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_enemy.h \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_player.h \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_battlelogic.h \
  C:/msys64/mingw64/include/SDL2/SDL.h \
  C:/msys64/mingw64/include/SDL2/SDL_main.h \
  C:/msys64/mingw64/include/SDL2/SDL_stdinc.h \

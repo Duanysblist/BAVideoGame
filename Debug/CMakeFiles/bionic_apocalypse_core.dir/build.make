@@ -52,10 +52,10 @@ RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\duany\Desktop\bionic_apocalypse
+CMAKE_SOURCE_DIR = C:\SCHOOL\Game_Design\bionic_apocalypse
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\duany\Desktop\bionic_apocalypse\Debug
+CMAKE_BINARY_DIR = C:\SCHOOL\Game_Design\bionic_apocalypse\Debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/bionic_apocalypse_core.dir/depend.make
@@ -68,68 +68,84 @@ include CMakeFiles/bionic_apocalypse_core.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/bionic_apocalypse_core.dir/flags.make
 
+CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/flags.make
+CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/includes_CXX.rsp
+CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj: ../src/bionic_apocalypse_battlelogic.cpp
+CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_battlelogic.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_battlelogic.cpp.obj -c C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_battlelogic.cpp
+
+CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_battlelogic.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_battlelogic.cpp.i
+
+CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_battlelogic.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_battlelogic.cpp.s
+
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/flags.make
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/includes_CXX.rsp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj: ../src/bionic_apocalypse_enemy.cpp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.obj -c C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_enemy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.obj -c C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_enemy.cpp
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_enemy.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_enemy.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.i
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_enemy.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_enemy.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_enemy.cpp.s
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/flags.make
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/includes_CXX.rsp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj: ../src/bionic_apocalypse_player.cpp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.obj -c C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.obj -c C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_player.cpp
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_player.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_player.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.i
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_player.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_player.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_player.cpp.s
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/flags.make
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/includes_CXX.rsp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj: ../src/bionic_apocalypse_renderer.cpp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.obj -c C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_renderer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.obj -c C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_renderer.cpp
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_renderer.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_renderer.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.i
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_renderer.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_renderer.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_renderer.cpp.s
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/flags.make
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/includes_CXX.rsp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj: ../src/bionic_apocalypse_savesystem.cpp
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj: CMakeFiles/bionic_apocalypse_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.obj -c C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_savesystem.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj -MF CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.obj.d -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.obj -c C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_savesystem.cpp
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_savesystem.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_savesystem.cpp > CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.i
 
 CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\duany\Desktop\bionic_apocalypse\src\bionic_apocalypse_savesystem.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\SCHOOL\Game_Design\bionic_apocalypse\src\bionic_apocalypse_savesystem.cpp -o CMakeFiles\bionic_apocalypse_core.dir\src\bionic_apocalypse_savesystem.cpp.s
 
 # Object files for target bionic_apocalypse_core
 bionic_apocalypse_core_OBJECTS = \
+"CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj" \
 "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj" \
 "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj" \
 "CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj" \
@@ -138,13 +154,14 @@ bionic_apocalypse_core_OBJECTS = \
 # External object files for target bionic_apocalypse_core
 bionic_apocalypse_core_EXTERNAL_OBJECTS =
 
+libbionic_apocalypse_core.a: CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj
 libbionic_apocalypse_core.a: CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj
 libbionic_apocalypse_core.a: CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj
 libbionic_apocalypse_core.a: CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj
 libbionic_apocalypse_core.a: CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj
 libbionic_apocalypse_core.a: CMakeFiles/bionic_apocalypse_core.dir/build.make
 libbionic_apocalypse_core.a: CMakeFiles/bionic_apocalypse_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libbionic_apocalypse_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libbionic_apocalypse_core.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\bionic_apocalypse_core.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\bionic_apocalypse_core.dir\link.txt --verbose=$(VERBOSE)
 
@@ -157,6 +174,6 @@ CMakeFiles/bionic_apocalypse_core.dir/clean:
 .PHONY : CMakeFiles/bionic_apocalypse_core.dir/clean
 
 CMakeFiles/bionic_apocalypse_core.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\duany\Desktop\bionic_apocalypse C:\Users\duany\Desktop\bionic_apocalypse C:\Users\duany\Desktop\bionic_apocalypse\Debug C:\Users\duany\Desktop\bionic_apocalypse\Debug C:\Users\duany\Desktop\bionic_apocalypse\Debug\CMakeFiles\bionic_apocalypse_core.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\SCHOOL\Game_Design\bionic_apocalypse C:\SCHOOL\Game_Design\bionic_apocalypse C:\SCHOOL\Game_Design\bionic_apocalypse\Debug C:\SCHOOL\Game_Design\bionic_apocalypse\Debug C:\SCHOOL\Game_Design\bionic_apocalypse\Debug\CMakeFiles\bionic_apocalypse_core.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/bionic_apocalypse_core.dir/depend
 

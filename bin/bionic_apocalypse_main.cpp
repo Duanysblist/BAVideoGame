@@ -4,6 +4,7 @@
 //#include "bionic_apocalypse_enemy.cpp"
 #include "bionic_apocalypse_renderer.h"
 //#include "bionic_apocalypse_renderer.cpp"
+#include "bionic_apocalypse_battlelogic.h"
 
 #include <SDL2/SDL.h>
 #include <SDL_image.h>
@@ -33,15 +34,16 @@ int main(int argc, char *argv[]) {
 	bool running = true;
     SDL_Event e;
 
-    Enemy badGuy;
-
     std::cout << getResource();
-
-    badGuy.setHealth(50);
-    std::cout << badGuy.getHealth();
-
+    
     window_startup();
 
+    Enemy* badGuy;
+    badGuy->setHealth(50);
+    badGuy->setPosX(500);
+    badGuy->setPosY(500);
+    std::cout << badGuy->getHealth();
+      
 	while (running) {
 
         //Check for input
@@ -54,10 +56,12 @@ int main(int argc, char *argv[]) {
                     running = false;
                 }
                 if (e.key.keysym.sym == SDLK_1) {
-                    
+                    //startNewBattle(badGuy);
+                    //drawEnemy(500,500);
+                    //badGuy.draw();
                 }
                 if (e.key.keysym.sym == SDLK_2) {
-                   
+                    setAttackingTrue();
                 }           
                 if (e.key.keysym.sym == SDLK_w) {
                     MOVE_UP = true;
@@ -113,6 +117,9 @@ int main(int argc, char *argv[]) {
             playerMoveRight();
         }
 
+        window_clear();
+        drawPlayer();
+        drawEnemy(badGuy);
         window_update();
 
         SDL_Delay(17);

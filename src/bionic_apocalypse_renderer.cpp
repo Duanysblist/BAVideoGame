@@ -1,4 +1,5 @@
 #include "bionic_apocalypse_player.h"
+#include "bionic_apocalypse_enemy.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -18,7 +19,9 @@ SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Surface* image;
 SDL_Texture* player;
+SDL_Texture* enemy;
 SDL_Rect player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
+SDL_Rect enemy_rect = { 0, 0, 100, 100 };
 
 
 void csci437_error(const std::string& msg)
@@ -66,12 +69,27 @@ void window_startup() {
     if (image == NULL) csci437_img_error("Could not create image!");
     player = SDL_CreateTextureFromSurface(renderer, image);
     if (player == NULL) csci437_error("Could not create texture from surface!");
+    image = IMG_Load("../resource/enemy_texture.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    enemy = SDL_CreateTextureFromSurface(renderer, image);
+    if (player == NULL) csci437_error("Could not create texture from surface!");
+}
+
+void window_clear() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
 }
 
 void window_update() {
-    player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_RenderPresent(renderer);
+}
+
+void drawPlayer() {
+    player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
+    SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+}
+
+void drawEnemy(Enemy* foe) {
+    enemy_rect = { foe->getX(), foe->getY(), 100, 100 };
+    SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 }

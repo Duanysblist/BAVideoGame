@@ -1,8 +1,8 @@
 CMakeFiles/bionic_apocalypse_main.dir/bin/bionic_apocalypse_main.cpp.obj: \
- C:\Users\duany\Desktop\bionic_apocalypse\bin\bionic_apocalypse_main.cpp \
- C:/Users/duany/Desktop/bionic_apocalypse/include/bionic_apocalypse_player.h \
- C:/Users/duany/Desktop/bionic_apocalypse/include/bionic_apocalypse_enemy.h \
- C:/Users/duany/Desktop/bionic_apocalypse/include/bionic_apocalypse_renderer.h \
+ C:\SCHOOL\Game_Design\bionic_apocalypse\bin\bionic_apocalypse_main.cpp \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_player.h \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_enemy.h \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_renderer.h \
  C:/msys64/mingw64/include/c++/11.2.0/string \
  C:/msys64/mingw64/include/c++/11.2.0/x86_64-w64-mingw32/bits/c++config.h \
  C:/msys64/mingw64/include/c++/11.2.0/x86_64-w64-mingw32/bits/os_defines.h \
@@ -107,6 +107,8 @@ CMakeFiles/bionic_apocalypse_main.dir/bin/bionic_apocalypse_main.cpp.obj: \
  C:/msys64/mingw64/include/c++/11.2.0/bits/functional_hash.h \
  C:/msys64/mingw64/include/c++/11.2.0/bits/hash_bytes.h \
  C:/msys64/mingw64/include/c++/11.2.0/bits/basic_string.tcc \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_enemy.h \
+ C:/SCHOOL/Game_Design/bionic_apocalypse/include/bionic_apocalypse_battlelogic.h \
  C:/msys64/mingw64/include/SDL2/SDL.h \
  C:/msys64/mingw64/include/SDL2/SDL_main.h \
  C:/msys64/mingw64/include/SDL2/SDL_stdinc.h \

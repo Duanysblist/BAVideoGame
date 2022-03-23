@@ -1,4 +1,5 @@
 #include "bionic_apocalypse_enemy.h"
+#include "bionic_apocalypse_renderer.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -8,9 +9,11 @@
 #include <string>
 #include <stdlib.h>
 
-
+bool alive = true;
 int enemyHealth = 100;
 int enemyAttacks [3] = { -4,-8,-12 };
+int enemyPosX;
+int enemyPosY;
 
 int Enemy::getHealth() {
 	return enemyHealth;
@@ -30,4 +33,27 @@ int Enemy::randomAttack() {
 	int numOfAttacks = sizeof(enemyAttacks);
 	int result = (rand() % numOfAttacks);
 	return enemyAttacks[result];
+}
+
+void Enemy::setPosX(int newX) {
+	enemyPosX = newX;
+}
+
+void Enemy::setPosY(int newY) {
+	enemyPosY = newY;
+}
+
+int Enemy::getX() {
+	return enemyPosX;
+}
+
+int Enemy::getY() {
+	return enemyPosY;
+}
+
+void Enemy::draw() {
+	while (alive) {
+		drawEnemy(this);
+		SDL_Delay(17);
+	}
 }
