@@ -1,12 +1,13 @@
-//#include "bionic_apocalypse_renderer.h"
+#include "bionic_apocalypse_renderer.cpp"
 //using namespace std;
-//#include "bionic_apocalypse_player.h"
+#include "bionic_apocalypse_player.cpp"
 //using namespace std;
-//#include "bionic_apocalypse_savesystem.h"
+#include "bionic_apocalypse_savesystem.h"
+#include "bionic_apocalypse_battlelogic.cpp"
 //using namespace std;
 
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <iostream>
@@ -37,6 +38,8 @@ int main(int argc, char** argv) {
 
     read_gameState();
 
+    window_startup();
+
 	while (running) {
 
         //Check for input
@@ -49,7 +52,7 @@ int main(int argc, char** argv) {
                     running = false;
                 }
                 if (e.key.keysym.sym == SDLK_1) {
-                    attackHappeningTrue();
+                    setAttackingTrue();
                 }
                 if (e.key.keysym.sym == SDLK_w) {
                     MOVE_UP = true;
@@ -107,31 +110,31 @@ int main(int argc, char** argv) {
 }
 
 
-void save_gameState(int health) {
-    ofstream outStream;
-    outStream.open("save_file.txt");
-    if (outStream.fail()) {
-        cout << "File opening failed. \n";
-        exit(1);
-    }
-
-    cout << health;
-
-    outStream << health << endl;
-    outStream.close();
-}
-
-void read_gameState() {
-    ifstream inStream;
-    inStream.open("save_file.txt");
-    if (inStream.fail()) {
-        cout << "File opening failed. \n";
-        exit(1);
-    }
-
-    int health;
-    inStream >> health;
-    inStream.close();
-
-    cout << health;
-}
+//void save_gameState(int health) {
+//    ofstream outStream;
+//    outStream.open("save_file.txt");
+//    if (outStream.fail()) {
+//        cout << "File opening failed. \n";
+//        exit(1);
+//    }
+//
+//    cout << health;
+//
+//    outStream << health << endl;
+//    outStream.close();
+//}
+//
+//void read_gameState() {
+//    ifstream inStream;
+//    inStream.open("save_file.txt");
+//    if (inStream.fail()) {
+//        cout << "File opening failed. \n";
+//        exit(1);
+//    }
+//
+//    int health;
+//    inStream >> health;
+//    inStream.close();
+//
+//    cout << health;
+//}
