@@ -1,5 +1,6 @@
 #include <string>
 #include "bionic_apocalypse_enemy.h"
+#include "bionic_apocalypse_constants.h"
 
 #ifndef BIONIC_APOCALYPSE_RENDERER_H
 #define BIONIC_APOCALYPSE_RENDERER_H

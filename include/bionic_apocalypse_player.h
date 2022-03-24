@@ -1,6 +1,8 @@
 #ifndef BIONIC_APOCALYPSE_PLAYER_H
 #define BIONIC_APOCALYPSE_PLAYER_H
 
+#include "bionic_apocalypse_constants.h"
+
 int getResource();
 
 void setResource(int resourceType, int amountToAdd);

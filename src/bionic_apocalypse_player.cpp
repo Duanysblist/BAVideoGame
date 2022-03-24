@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string>
 #include <stdlib.h>
+#include "bionic_apocalypse_constants.h"
 
 
 int positionX = 0;
@@ -46,6 +47,18 @@ int getPlayerScreenPositionY() {
 void changePlayerScreenPosition(int changeX, int changeY) {
 	positionX += changeX;
 	positionY += changeY;
+	if (positionX < 0) {
+		positionX = 0;
+	}
+	if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)) {
+		positionX = SCREEN_WIDTH - PLAYER_WIDTH;
+	}
+	if (positionY < 0) {
+		positionY = 0;
+	}
+	if (positionY > (SCREEN_HEIGHT - PLAYER_HEIGHT)) {
+		positionY = SCREEN_HEIGHT - PLAYER_HEIGHT;
+	}
 }
 
 void setPlayerScreenPosition(int newX, int newY) {

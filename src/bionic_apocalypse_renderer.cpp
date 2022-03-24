@@ -9,19 +9,14 @@
 #include <string>
 #include <stdlib.h>
 
-
-//Screen dimension constants
-const int SCREEN_WIDTH = 1920;
-const int SCREEN_HEIGHT = 1080;
-
 //Window and image variables
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Surface* image;
 SDL_Texture* player;
 SDL_Texture* enemy;
-SDL_Rect player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
-SDL_Rect enemy_rect = { 0, 0, 100, 100 };
+SDL_Rect player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), PLAYER_WIDTH, PLAYER_HEIGHT };
+SDL_Rect enemy_rect = { 0, 0, ENEMY_WIDTH, ENEMY_HEIGHT };
 
 
 void csci437_error(const std::string& msg)
