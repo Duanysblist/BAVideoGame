@@ -44,9 +44,7 @@ int getPlayerScreenPositionY() {
 	return positionY;
 }
 
-void changePlayerScreenPosition(int changeX, int changeY) {
-	positionX += changeX;
-	positionY += changeY;
+void limitPlayerScreenPosition() {
 	if (positionX < 0) {
 		positionX = 0;
 	}
@@ -61,9 +59,16 @@ void changePlayerScreenPosition(int changeX, int changeY) {
 	}
 }
 
+void changePlayerScreenPosition(int changeX, int changeY) {
+	positionX += changeX;
+	positionY += changeY;
+	limitPlayerScreenPosition();
+}
+
 void setPlayerScreenPosition(int newX, int newY) {
 	positionX = newX;
 	positionY = newY;
+	limitPlayerScreenPosition();
 }
 
 void playerMoveUp() {
