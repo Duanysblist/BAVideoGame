@@ -1,2 +1,0 @@
-C:\msys64\mingw64\bin\ar.exe qc libbionic_apocalypse_core.a CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_battlelogic.cpp.obj CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_enemy.cpp.obj CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_player.cpp.obj CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_renderer.cpp.obj CMakeFiles/bionic_apocalypse_core.dir/src/bionic_apocalypse_savesystem.cpp.obj
-C:\msys64\mingw64\bin\ranlib.exe libbionic_apocalypse_core.a
