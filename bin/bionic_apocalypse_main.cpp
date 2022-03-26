@@ -5,6 +5,7 @@
 #include "bionic_apocalypse_renderer.h"
 //#include "bionic_apocalypse_renderer.cpp"
 #include "bionic_apocalypse_battlelogic.h"
+//Does this comment appear in the commit?
 
 #include <SDL.h>
 #include <SDL_image.h>
