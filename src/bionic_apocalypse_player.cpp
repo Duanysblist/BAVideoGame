@@ -15,7 +15,7 @@ int playerHealth = 100;
 int playerMovementSpeed = 10;
 
 int getResource() {
-	return positionX;
+	return 0;
 }
 
 void setResource(int resourceType, int amountToAdd) {

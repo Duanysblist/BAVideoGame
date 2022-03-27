@@ -1,11 +1,9 @@
 #include "bionic_apocalypse_player.h"
-//#include "bionic_apocalypse_player.cpp"
 #include "bionic_apocalypse_enemy.h"
-//#include "bionic_apocalypse_enemy.cpp"
 #include "bionic_apocalypse_renderer.h"
-//#include "bionic_apocalypse_renderer.cpp"
 #include "bionic_apocalypse_battlelogic.h"
-//Does this comment appear in the commit?
+#include "bionic_apocalypse_scene.h"
+#include "bionic_apocalypse_constants.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -39,11 +37,13 @@ int main(int argc, char *argv[]) {
     
     window_startup();
 
-    Enemy* badGuy;
-    badGuy->setHealth(50);
-    badGuy->setPosX(500);
-    badGuy->setPosY(500);
-    std::cout << badGuy->getHealth();
+    Enemy badGuy;
+    badGuy.setHealth(50);
+    badGuy.setPosX(500);
+    badGuy.setPosY(500);
+    new Enemy[] enemyList = {badGuy};
+    
+    Scene curScene = new Scene(0, defaultScreenLayout, {{0},{0}}, {{0},{0}}, enemyList);
       
 	while (running) {
 
@@ -120,7 +120,8 @@ int main(int argc, char *argv[]) {
 
         window_clear();
         drawPlayer();
-        drawEnemy(badGuy);
+        curScene.update();
+        curScene.draw();
         window_update();
 
         SDL_Delay(17);

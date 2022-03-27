@@ -14,6 +14,9 @@ public:
 	void setPosY(int newY);
 	int getX();
 	int getY();
+	void setStartLocation(int X, int Y);
+	void setEndLocation(int X, int Y);
+	void update();
 	void draw();
 };
 
