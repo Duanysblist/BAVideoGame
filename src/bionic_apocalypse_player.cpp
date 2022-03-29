@@ -11,7 +11,7 @@
 int positionX = 0;
 int positionY = 0;
 int screenLocation;
-int playerHealth = 100;
+int playerHealth = MAX_HEALTH - 20;
 int playerMovementSpeed = 10;
 
 int getResource() {
@@ -54,8 +54,8 @@ void limitPlayerScreenPosition() {
 	if (positionY < 0) {
 		positionY = 0;
 	}
-	if (positionY > (SCREEN_HEIGHT - PLAYER_HEIGHT)) {
-		positionY = SCREEN_HEIGHT - PLAYER_HEIGHT;
+	if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
+		positionY = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT;
 	}
 }
 

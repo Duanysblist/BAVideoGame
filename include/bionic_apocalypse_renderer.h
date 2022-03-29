@@ -11,6 +11,8 @@ void csci437_img_error(const std::string& msg);
 
 void csci437_ttf_error(const std::string& msg);
 
+void drawHealthBar();
+
 void window_startup();
 
 void window_clear();
@@ -20,5 +22,7 @@ void window_update();
 void drawPlayer();
 
 void drawEnemy(Enemy* foe);
+
+
 
 #endif
