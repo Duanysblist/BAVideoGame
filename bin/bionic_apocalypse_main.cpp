@@ -2,7 +2,6 @@
 #include "bionic_apocalypse_enemy.h"
 #include "bionic_apocalypse_renderer.h"
 #include "bionic_apocalypse_battlelogic.h"
-#include "bionic_apocalypse_scene.h"
 #include "bionic_apocalypse_constants.h"
 
 #include <SDL.h>
