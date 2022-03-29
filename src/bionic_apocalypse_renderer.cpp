@@ -108,20 +108,17 @@ void drawHealthBar() {
     if ( text == NULL ) csci437_ttf_error("Unable to render text!");
     texture = SDL_CreateTextureFromSurface( renderer, text );
     if(texture == NULL) csci437_error("Could not create texture from surface!");
-    bool red=true, green=true, blue=true;
-    float angle = 0;
     SDL_Rect dst = { (BAR_START + 50), (SCREEN_HEIGHT - 30), text->w, text->h};
     SDL_Point rot = {text->w/2, text->h/2};
-    SDL_SetTextureColorMod( texture, red*255, green*255, blue*255 );
-    SDL_RenderCopyEx( renderer, texture, NULL, &dst, angle, &rot, SDL_FLIP_NONE );
+    SDL_SetTextureColorMod( texture, 255, 255, 255 );
+    SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
     int health = trunc(player_health);
     text = TTF_RenderText_Solid( font, (std::to_string(health)).c_str(), color );
     if ( text == NULL ) csci437_ttf_error("Unable to render text!");
     texture = SDL_CreateTextureFromSurface( renderer, text );
     if(texture == NULL) csci437_error("Could not create texture from surface!");
     dst = { (BAR_START + 120), (SCREEN_HEIGHT - 30), text->w, text->h};
-    SDL_SetTextureColorMod( texture, red*255, green*255, blue*255 );
-    SDL_RenderCopyEx( renderer, texture, NULL, &dst, angle, &rot, SDL_FLIP_NONE );
+    SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
 }
 
 void window_update() {
