@@ -18,8 +18,6 @@ using std::ifstream;
 using std::ofstream;
 using std::endl;
 
-
-
 int main(int argc, char *argv[]) {
 
     //Initialize helpful variables to use

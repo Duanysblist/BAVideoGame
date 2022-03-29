@@ -1,6 +1,9 @@
 #ifndef BIONIC_APOCALYPSE_CONSTANTS_H
 #define BIONIC_APOCALYPSE_CONSTANTS_H
 
+// Maximum player health
+const int MAX_HEALTH = 100;
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 700;

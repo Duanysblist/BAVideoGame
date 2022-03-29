@@ -11,7 +11,7 @@
 int positionX = 0;
 int positionY = 0;
 int screenLocation;
-int playerHealth = 100;
+int playerHealth = MAX_HEALTH;
 int playerMovementSpeed = 10;
 
 int getResource() {

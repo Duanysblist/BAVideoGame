@@ -76,13 +76,6 @@ void window_clear() {
     SDL_RenderClear(renderer);
 }
 
-void window_update() {
-    // Draw line for bottom bar
-    thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 50);
-
-    SDL_RenderPresent(renderer);
-}
-
 void drawPlayer() {
     player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
     SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
@@ -91,4 +84,23 @@ void drawPlayer() {
 void drawEnemy(Enemy* foe) {
     enemy_rect = { foe->getX(), foe->getY(), 100, 100 };
     SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
+}
+
+void drawHealthBar() {
+    double player_health = getPlayerHealth();
+    int BAR_START = 30;
+    int BAR_LENGTH = 300;
+    double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
+    // outline of bar
+    rectangleRGBA(renderer, BAR_START, SCREEN_HEIGHT - (2*BOTTOM_BAR_HEIGHT/3), BAR_START + BAR_LENGTH, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
+    // interior bar representing health
+    boxRGBA(renderer, BAR_START, SCREEN_HEIGHT - (2*BOTTOM_BAR_HEIGHT/3), BAR_START + health_length, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
+}
+
+void window_update() {
+    // Draw line for bottom bar
+    thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
+    // Update health bar
+    drawHealthBar();
+    SDL_RenderPresent(renderer);
 }
