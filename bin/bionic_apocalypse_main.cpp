@@ -40,9 +40,6 @@ int main(int argc, char *argv[]) {
     badGuy.setHealth(50);
     badGuy.setPosX(500);
     badGuy.setPosY(500);
-    new Enemy[] enemyList = {badGuy};
-    
-    Scene curScene = new Scene(0, defaultScreenLayout, {{0},{0}}, {{0},{0}}, enemyList);
       
 	while (running) {
 
@@ -119,8 +116,6 @@ int main(int argc, char *argv[]) {
 
         window_clear();
         drawPlayer();
-        curScene.update();
-        curScene.draw();
         window_update();
 
         SDL_Delay(17);
