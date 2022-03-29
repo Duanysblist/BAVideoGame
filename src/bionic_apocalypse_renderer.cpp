@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string>
 #include <stdlib.h>
+#include <SDL2_gfxPrimitives.h>
 
 //Window and image variables
 SDL_Window* window;
@@ -76,6 +77,9 @@ void window_clear() {
 }
 
 void window_update() {
+    // Draw line for bottom bar
+    thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 50);
+
     SDL_RenderPresent(renderer);
 }
 

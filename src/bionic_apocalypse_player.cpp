@@ -54,8 +54,8 @@ void limitPlayerScreenPosition() {
 	if (positionY < 0) {
 		positionY = 0;
 	}
-	if (positionY > (SCREEN_HEIGHT - PLAYER_HEIGHT)) {
-		positionY = SCREEN_HEIGHT - PLAYER_HEIGHT;
+	if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
+		positionY = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT;
 	}
 }
 
