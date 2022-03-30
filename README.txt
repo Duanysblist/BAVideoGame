@@ -15,9 +15,9 @@ everything should work out of the box.  Only resort to compiling from source
 if no suitable package exists.  Also, do not forget to install the 'devel'
 package for SDL2.
 
-Download the pong.zip skeleton code.  Unpack, make a subdir 'Debug', and in
+Download the repository code.  Make a subdir 'Debug', and in
 'Debug' type: 'cmake ..'.  This should generate the makefiles.  Once
-succesfully generated, you can now compile the code with 'make'.
+succesfully generated, you can now compile the code with 'make'. You can then run the game by running the main executable.
 
 **Windows**
 
@@ -38,11 +38,11 @@ We will use the msys2 terminal for all steps. To access your c:\ drive use:
 
 cd /c/
 
-Next, unpack pong.zip to your location of choice, and use cd /c/<path> to
+Next, download the repo to your location of choice, and use cd /c/<path> to
 enter the location in msys2.
 
-1) Make the directory in which we will compile the pong skeleton code.  Inside
-your pong source directory make a directory 'Debug'
+1) Make the directory in which you will compile the project code.  Inside
+your source directory make a directory 'Debug'.
 
 mkdir Debug
 
@@ -58,29 +58,13 @@ mingw32-make.exe
 
 4) We can now test the code:
 
-./helloworld.exe
+./bionic_apocalypse_main.exe
 
 
 
-***helloworld***
+***bionic_apocalypse_main***
 
-If the above worked without error, it should  produce a 'helloworld' executable that will open a blue
-window.  You can change the color of pressing 'r', 'g', or 'b'.  You can quit
-by pressing 'q'.
-
-***bitmap***
-
-The bitmap program, loads a bitmap (resource/bitmap.png).  You can module its
-color with 'r', 'g', and 'b', and rotate it with 'z' and 'x'.
-
-***text***
-
-Loads a font (resource/Arial.ttf).  Same keys are 'bitmap'.
-
-***geom***
-
-Draws a box, a circle, and draws lines.  You can enable/disable each with 'b',
-'c', and 'l' respectively.
+If the above worked without error, it should  produce a 'bionic_apocalypse_main' executable that will open a window.  You can quit by pressing 'q'.
 
 
 **ADDING FILES**
