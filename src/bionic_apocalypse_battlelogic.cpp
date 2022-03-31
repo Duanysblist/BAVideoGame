@@ -14,10 +14,13 @@
 
 Enemy mainEnemy;
 bool attackHappening = false;
+bool active = false;
 
 void startNewBattle(const Enemy enemy) {
 	mainEnemy = enemy;
+	active = true;
 	mainBattleLoop();
+	active = false;
 }
 
 void mainBattleLoop() {
@@ -26,11 +29,16 @@ void mainBattleLoop() {
 			mainEnemy.changeHealth(-9);
 			changePlayerHealth(mainEnemy.randomAttack());
 			attackHappening = false;
+			std::cout << getPlayerHealth() << ", Enemy HP: " << mainEnemy.getHealth() << "\n";
 		}
 	}
 }
 
 void setAttackingTrue() {
 	attackHappening = true;
-	std::cout << "True";
+	std::cout << "Attacking" << "\n";
+}
+
+bool getStatus() {
+	return active;
 }

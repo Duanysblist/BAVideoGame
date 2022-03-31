@@ -17,9 +17,9 @@ void window_startup();
 
 void window_clear();
 
-void window_update();
+void window_update(const bool world);
 
-void drawPlayer();
+void drawPlayer(const bool world);
 
 void drawEnemy(Enemy* foe);
 
