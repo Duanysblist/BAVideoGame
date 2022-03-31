@@ -61,6 +61,30 @@ mingw32-make.exe
 ./bionic_apocalypse_main.exe
 
 
+**Mac**
+
+Use homebrew to install prerequisites (listed at the top of this file).
+
+Next, download the repo to your location of choice, and use cd to
+enter the location in your terminal.
+
+1) Make the directory in which you will compile the project code:  Inside
+your source directory make a directory 'Debug'.
+
+2) Next, generate make files:
+
+cd Debug
+cmake ..
+
+3) The above step should find a C++ compiler and the SDL2 libraries.  Next we
+can compile the code:
+
+make
+
+4) We can now test the code:
+
+./bionic_apocalypse_main
+
 
 ***bionic_apocalypse_main***
 
