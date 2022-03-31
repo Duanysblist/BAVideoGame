@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
     bool INTERACTING = false;
 
 	bool running = true;
+    bool battling = false;
     SDL_Event e;
 
     std::cout << getResource();
@@ -37,7 +38,7 @@ int main(int argc, char *argv[]) {
     Enemy badGuy;
     badGuy.setHealth(50);
     badGuy.setPosX(500);
-    badGuy.setPosY(500);
+    badGuy.setPosY(0);
 
     bool worldState = true; //true is world, false is battle
       
@@ -54,8 +55,8 @@ int main(int argc, char *argv[]) {
                         running = false;
                     }
                     if (e.key.keysym.sym == SDLK_1) {
-                        worldState = false;
-                        std::cout << "battle is pressed \n"; 
+                        std::cout << "battle is pressed" << std::endl;; 
+                        worldState = false;   
                     }
                     if (e.key.keysym.sym == SDLK_2) {
                         setAttackingTrue();
@@ -115,8 +116,10 @@ int main(int argc, char *argv[]) {
             }
         }
         else {
-            std::cout << "starting battle \n"; 
-            startNewBattle(badGuy);
+            if(battling == false) {
+                startNewBattle(badGuy);
+                battling = true;
+            }
             badGuy.draw();
             while (SDL_PollEvent(&e) != 0)
             {
@@ -137,6 +140,7 @@ int main(int argc, char *argv[]) {
             }
             if(getStatus() == false) {
                 worldState = true;
+                battling = false;
             }
         }
 

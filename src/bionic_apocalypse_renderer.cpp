@@ -135,4 +135,10 @@ void window_update(const bool world) {
         drawHealthBar();
         SDL_RenderPresent(renderer);
     }
+    else {
+        thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
+        // Update health bar
+        drawHealthBar();
+        SDL_RenderPresent(renderer);
+    }
 }

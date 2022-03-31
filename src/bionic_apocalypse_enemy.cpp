@@ -52,7 +52,7 @@ int Enemy::getY() {
 }
 
 void Enemy::draw() {
-	while (alive) {
+	if (alive) {
 		drawEnemy(this);
 		SDL_Delay(17);
 	}

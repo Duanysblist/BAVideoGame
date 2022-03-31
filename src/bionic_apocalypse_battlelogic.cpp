@@ -13,30 +13,24 @@
 #include <stdlib.h>
 
 Enemy mainEnemy;
-bool attackHappening = false;
 bool active = false;
 
-void startNewBattle(const Enemy enemy) {
+void startNewBattle(Enemy enemy) {
+	std::cout << "battle and bad guy initiated" << std::endl; 
 	mainEnemy = enemy;
 	active = true;
-	mainBattleLoop();
-	active = false;
-}
-
-void mainBattleLoop() {
-	while (getPlayerHealth() > 0 || mainEnemy.getHealth() > 0) {
-		if (attackHappening) {
-			mainEnemy.changeHealth(-9);
-			changePlayerHealth(mainEnemy.randomAttack());
-			attackHappening = false;
-			std::cout << getPlayerHealth() << ", Enemy HP: " << mainEnemy.getHealth() << "\n";
-		}
-	}
 }
 
 void setAttackingTrue() {
-	attackHappening = true;
-	std::cout << "Attacking" << "\n";
+	if (getPlayerHealth() > 0 && mainEnemy.getHealth() > 0) {
+		mainEnemy.changeHealth(-9);
+		changePlayerHealth(mainEnemy.randomAttack());
+		std::cout << "Player HP: " << getPlayerHealth() << ", Enemy HP: " << mainEnemy.getHealth() << std::endl;
+		std::cout << "Attacking" << "\n";
+	}
+	else {
+		active = false;
+	}
 }
 
 bool getStatus() {
