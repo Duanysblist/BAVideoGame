@@ -38,83 +38,111 @@ int main(int argc, char *argv[]) {
     badGuy.setHealth(50);
     badGuy.setPosX(500);
     badGuy.setPosY(500);
+
+    bool worldState = true; //true is world, false is battle
       
 	while (running) {
-
-        //Check for input
-        while (SDL_PollEvent(&e) != 0)
-        {
-            // User presses a key
-            if (e.type == SDL_KEYDOWN)
+        //check if gamestate is in world
+        if(worldState) { 
+            //Check for input
+            while (SDL_PollEvent(&e) != 0)
             {
-                if (e.key.keysym.sym == SDLK_q) {
-                    running = false;
+                // User presses a key
+                if (e.type == SDL_KEYDOWN)
+                {
+                    if (e.key.keysym.sym == SDLK_q) {
+                        running = false;
+                    }
+                    if (e.key.keysym.sym == SDLK_1) {
+                        worldState = false;
+                        std::cout << "battle is pressed \n"; 
+                    }
+                    if (e.key.keysym.sym == SDLK_2) {
+                        setAttackingTrue();
+                    }           
+                    if (e.key.keysym.sym == SDLK_w) {
+                        MOVE_UP = true;
+                    }
+                    if (e.key.keysym.sym == SDLK_s) {
+                        MOVE_DOWN = true;
+                    }
+                    if (e.key.keysym.sym == SDLK_d) {
+                        MOVE_RIGHT = true;
+                    }
+                    if (e.key.keysym.sym == SDLK_a) {
+                        MOVE_LEFT = true;
+                    }
+                    if (e.key.keysym.sym == SDLK_e) {
+                        INTERACTING = true;
+                    }
                 }
-                if (e.key.keysym.sym == SDLK_1) {
-                    //startNewBattle(badGuy);
-                    //drawEnemy(500,500);
-                    //badGuy.draw();
-                }
-                if (e.key.keysym.sym == SDLK_2) {
-                    setAttackingTrue();
-                }           
-                if (e.key.keysym.sym == SDLK_w) {
-                    MOVE_UP = true;
-                }
-                if (e.key.keysym.sym == SDLK_s) {
-                    MOVE_DOWN = true;
-                }
-                if (e.key.keysym.sym == SDLK_d) {
-                    MOVE_RIGHT = true;
-                }
-                if (e.key.keysym.sym == SDLK_a) {
-                    MOVE_LEFT = true;
-                }
-                if (e.key.keysym.sym == SDLK_e) {
-                    INTERACTING = true;
+
+                // User releases a key
+                if (e.type == SDL_KEYUP) {
+                    if (e.key.keysym.sym == SDLK_w) {
+                        MOVE_UP = false;
+                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                    }
+                    if (e.key.keysym.sym == SDLK_s) {
+                        MOVE_DOWN = false;
+                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                    }
+                    if (e.key.keysym.sym == SDLK_d) {
+                        MOVE_RIGHT = false;
+                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                    }
+                    if (e.key.keysym.sym == SDLK_a) {
+                        MOVE_LEFT = false;
+                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                    }
+                    if (e.key.keysym.sym == SDLK_e) {
+                        INTERACTING = false;
+                    }
                 }
             }
 
-            // User releases a key
-            if (e.type == SDL_KEYUP) {
-                if (e.key.keysym.sym == SDLK_w) {
-                    MOVE_UP = false;
-                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
-                }
-                if (e.key.keysym.sym == SDLK_s) {
-                    MOVE_DOWN = false;
-                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
-                }
-                if (e.key.keysym.sym == SDLK_d) {
-                    MOVE_RIGHT = false;
-                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
-                }
-                if (e.key.keysym.sym == SDLK_a) {
-                    MOVE_LEFT = false;
-                    std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
-                }
-                if (e.key.keysym.sym == SDLK_e) {
-                    INTERACTING = false;
-                }
+            if (MOVE_UP) {
+                playerMoveUp();
+            }
+            if (MOVE_DOWN) {
+                playerMoveDown();
+            }
+            if (MOVE_LEFT) {
+                playerMoveLeft();
+            }
+            if (MOVE_RIGHT) {
+                playerMoveRight();
             }
         }
+        else {
+            std::cout << "starting battle \n"; 
+            startNewBattle(badGuy);
+            badGuy.draw();
+            while (SDL_PollEvent(&e) != 0)
+            {
+                // User presses a key
+                if (e.type == SDL_KEYDOWN)
+                {
+                    if (e.key.keysym.sym == SDLK_1) {
+                        setAttackingTrue();
+                    }
+                }
 
-        if (MOVE_UP) {
-            playerMoveUp();
-        }
-        if (MOVE_DOWN) {
-            playerMoveDown();
-        }
-        if (MOVE_LEFT) {
-            playerMoveLeft();
-        }
-        if (MOVE_RIGHT) {
-            playerMoveRight();
+                // User releases a key
+                if (e.type == SDL_KEYUP) {
+                    if (e.key.keysym.sym == SDLK_1) {
+                        
+                    }
+                }
+            }
+            if(getStatus() == false) {
+                worldState = true;
+            }
         }
 
         window_clear();
-        drawPlayer();
-        window_update();
+        drawPlayer(worldState);
+        window_update(worldState);
 
         SDL_Delay(17);
 	}

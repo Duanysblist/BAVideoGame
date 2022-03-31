@@ -7,4 +7,6 @@ void mainBattleLoop();
 
 void setAttackingTrue();
 
+bool getStatus();
+
 #endif

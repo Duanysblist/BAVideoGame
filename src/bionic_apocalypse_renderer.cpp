@@ -84,9 +84,15 @@ void window_clear() {
     SDL_RenderClear(renderer);
 }
 
-void drawPlayer() {
-    player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
-    SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+void drawPlayer(const bool world) {
+    if (world) {
+        player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
+        SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+    }
+    else {
+        player_rect = {0, 500, 100, 100};
+        SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+    }
 }
 
 void drawEnemy(Enemy* foe) {
@@ -121,10 +127,12 @@ void drawHealthBar() {
     SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
 }
 
-void window_update() {
-    // Draw line for bottom bar
-    thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
-    // Update health bar
-    drawHealthBar();
-    SDL_RenderPresent(renderer);
+void window_update(const bool world) {
+    if (world) {
+        // Draw line for bottom bar
+        thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
+        // Update health bar
+        drawHealthBar();
+        SDL_RenderPresent(renderer);
+    }
 }
