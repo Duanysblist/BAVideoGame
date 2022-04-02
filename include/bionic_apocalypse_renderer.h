@@ -17,6 +17,8 @@ void drawBattleUI();
 
 void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b);
 
+void drawInventory();
+
 void window_startup();
 
 void window_clear();
