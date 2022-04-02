@@ -1,3 +1,5 @@
+// #include "bionic_apocalypse_renderer.h"
+
 #ifndef BIONIC_APOCALYPSE_ENEMY_H
 #define BIONIC_APOCALYPSE_ENEMY_H
 
@@ -17,7 +19,7 @@ public:
 	void setStartLocation(int X, int Y);
 	void setEndLocation(int X, int Y);
 	void update();
-	void draw();
+	// void draw(Renderer renderer);
 };
 
 #endif
