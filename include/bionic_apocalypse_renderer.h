@@ -13,6 +13,10 @@ void csci437_ttf_error(const std::string& msg);
 
 void drawHealthBar();
 
+void drawBattleUI();
+
+void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b);
+
 void window_startup();
 
 void window_clear();

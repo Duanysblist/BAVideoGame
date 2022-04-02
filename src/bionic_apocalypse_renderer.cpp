@@ -100,6 +100,17 @@ void drawEnemy(Enemy* foe) {
     SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 }
 
+void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b) {
+    SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
+    if ( text == NULL ) csci437_ttf_error("Unable to render text!");
+    texture = SDL_CreateTextureFromSurface( renderer, text );
+    if(texture == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Rect dst = { dst_x, dst_y, text->w, text->h};
+    SDL_Point rot = {text->w/2, text->h/2};
+    SDL_SetTextureColorMod( texture, r, g, b );
+    SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
+}
+
 void drawHealthBar() {
     double player_health = getPlayerHealth();
     int BAR_START = 30;
@@ -110,21 +121,40 @@ void drawHealthBar() {
     // interior bar representing health
     boxRGBA(renderer, BAR_START, SCREEN_HEIGHT - (2*BOTTOM_BAR_HEIGHT/3), BAR_START + health_length, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
     // write health under bar
-    SDL_Surface* text = TTF_RenderText_Solid( font, "Health: ", color );
-    if ( text == NULL ) csci437_ttf_error("Unable to render text!");
-    texture = SDL_CreateTextureFromSurface( renderer, text );
-    if(texture == NULL) csci437_error("Could not create texture from surface!");
-    SDL_Rect dst = { (BAR_START + 50), (SCREEN_HEIGHT - 30), text->w, text->h};
-    SDL_Point rot = {text->w/2, text->h/2};
-    SDL_SetTextureColorMod( texture, 255, 255, 255 );
-    SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
+    drawText("Health: ", BAR_START + 50, SCREEN_HEIGHT - 30, 255, 255, 255);
     int health = trunc(player_health);
-    text = TTF_RenderText_Solid( font, (std::to_string(health)).c_str(), color );
-    if ( text == NULL ) csci437_ttf_error("Unable to render text!");
-    texture = SDL_CreateTextureFromSurface( renderer, text );
-    if(texture == NULL) csci437_error("Could not create texture from surface!");
-    dst = { (BAR_START + 120), (SCREEN_HEIGHT - 30), text->w, text->h};
-    SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
+    drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
+}
+
+void drawBattleUI(std::string action1, std::string action2, std::string action3, std::string action4) {
+    int RELATIVE_X0 = 100;
+    int RELATIVE_Y0 = 100;
+    int BACKGROUND_WIDTH = 300;
+    int BACKGROUND_HEIGHT = 400;
+    int ACTION_BOX_WIDTH = 250;
+    int ACTION_BOX_HEIGHT = 30;
+    int LEFT_BORDER = 25;
+    int VERTICAL_SPACING = 20;
+    int PREV_BOX_HEIGHT = ACTION_BOX_HEIGHT + VERTICAL_SPACING;
+    // CURRENT COLORS ARE JUST PLACEHOLDERS -- CAN BE CHANGED
+    // background rectangle
+    boxRGBA(renderer, RELATIVE_X0, RELATIVE_Y0, RELATIVE_X0 + BACKGROUND_WIDTH, RELATIVE_Y0 + BACKGROUND_HEIGHT, 255, 210, 210, 255);
+    // action 1 background
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    // action 2 background
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING + PREV_BOX_HEIGHT, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    // action 3 background
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING + 2*PREV_BOX_HEIGHT, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 2*PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    // action 4 background
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING + 3*PREV_BOX_HEIGHT, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 3*PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    // action 1 label
+    // action 2 label
+    // action 3 label
+    // action 4 label
+    // action 1 text
+    // action 2 text
+    // action 3 text
+    // action 4 text
 }
 
 void window_update(const bool world) {
@@ -139,6 +169,8 @@ void window_update(const bool world) {
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
         drawHealthBar();
+        // draw battle UI
+        drawBattleUI("1", "2", "3", "4");
         SDL_RenderPresent(renderer);
     }
 }
