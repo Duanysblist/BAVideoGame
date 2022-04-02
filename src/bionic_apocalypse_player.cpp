@@ -30,6 +30,13 @@ void setResource(int resourceType, int amountToAdd) {
 	inventory[resourceType] += amountToAdd;
 }
 
+int getKeyResource(int resourceType) {
+	return key_inventory[resourceType];
+}
+
+void setKeyResource(int resourceType) {
+	key_inventory[resourceType] = 1;
+}
 
 int getPlayerHealth() {
 	return playerHealth;

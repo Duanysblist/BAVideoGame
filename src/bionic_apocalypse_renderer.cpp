@@ -201,6 +201,45 @@ void Renderer::drawInventory() {
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
+void Renderer::drawKeyInventory() {
+    // image of resource will appear if owned by the player. otherwise, will be empty box
+    // draw outlines of three boxes
+    int END_X = SCREEN_WIDTH - 60;
+    int BOX_HEIGHT = 50;
+    int BOX_WIDTH = BOX_HEIGHT;
+    int RELATIVE_Y0 = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT + ((BOTTOM_BAR_HEIGHT-BOX_HEIGHT)/2) + 10;
+    rectangleRGBA(renderer, END_X - 3*BOX_WIDTH, RELATIVE_Y0, END_X - 2*BOX_WIDTH, RELATIVE_Y0 + BOX_HEIGHT, 255, 255, 255, 255);
+    rectangleRGBA(renderer, END_X - 2*BOX_WIDTH, RELATIVE_Y0, END_X - BOX_WIDTH, RELATIVE_Y0 + BOX_HEIGHT, 255, 255, 255, 255);
+    rectangleRGBA(renderer, END_X - BOX_WIDTH, RELATIVE_Y0, END_X, RELATIVE_Y0 + BOX_HEIGHT, 255, 255, 255, 255);
+    // write header text
+    drawText("KEY RESOURCES", END_X - 150, RELATIVE_Y0 - 25, 255, 255, 255);
+    // draw resources if owned by player
+    if (getKeyResource(0) == 1) {
+        SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+        SDL_Texture* key1 = SDL_CreateTextureFromSurface(renderer, image);
+        if (key1 == NULL) csci437_error("Could not create texture from surface!");
+        SDL_Rect key1_rect = { END_X - 3*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
+        SDL_RenderCopyEx(renderer, key1, NULL, &key1_rect, 0, NULL, SDL_FLIP_NONE);
+    }
+    if (getKeyResource(1) == 1) {
+        SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+        SDL_Texture* key2 = SDL_CreateTextureFromSurface(renderer, image);
+        if (key2 == NULL) csci437_error("Could not create texture from surface!");
+        SDL_Rect key2_rect = { END_X - 2*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
+        SDL_RenderCopyEx(renderer, key2, NULL, &key2_rect, 0, NULL, SDL_FLIP_NONE);
+    }
+    if (getKeyResource(2) == 1) {
+        SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+        SDL_Texture* key3 = SDL_CreateTextureFromSurface(renderer, image);
+        if (key3 == NULL) csci437_error("Could not create texture from surface!");
+        SDL_Rect key3_rect = { END_X - BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
+        SDL_RenderCopyEx(renderer, key3, NULL, &key3_rect, 0, NULL, SDL_FLIP_NONE);
+    }
+}
+
 void Renderer::drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4) {
     int RELATIVE_X0 = 100;
     int RELATIVE_Y0 = 100;
@@ -239,6 +278,7 @@ void Renderer::window_update(const bool world) {
         // Update health bar
         drawHealthBar();
         drawInventory();
+        drawKeyInventory();
         SDL_RenderPresent(renderer);
     }
     else {
@@ -246,6 +286,7 @@ void Renderer::window_update(const bool world) {
         // Update health bar
         drawHealthBar();
         drawInventory();
+        drawKeyInventory();
         /** draw battle UI -- currently commented out since this is likely not where it would be called
         // you can un-comment it just to see what it will look like (it shows up in battle mode when called here)
         drawBattleUI("Action one", "Action two", "Action three", "Action four");

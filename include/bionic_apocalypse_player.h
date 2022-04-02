@@ -7,6 +7,9 @@ int getResource(int resourceType);
 
 void setResource(int resourceType, int amountToAdd);
 
+int getKeyResource(int resourceType);
+
+void setKeyResource(int resourceType);
 
 int getPlayerHealth();
 
