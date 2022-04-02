@@ -6,6 +6,8 @@
 #include <string>
 #include <stdlib.h>
 #include "bionic_apocalypse_constants.h"
+#include "bionic_apocalypse_player.h"
+
 
 
 int positionX = 0;
@@ -13,13 +15,14 @@ int positionY = 0;
 int screenLocation;
 int playerHealth = MAX_HEALTH - 20;
 int playerMovementSpeed = 10;
+int inventory [6] = { 0,0,0,0,0,0 };
 
-int getResource() {
-	return 0;
+int getResource(int resourceType) {
+	return inventory[resourceType];
 }
 
 void setResource(int resourceType, int amountToAdd) {
-
+	inventory[resourceType] += amountToAdd;
 }
 
 

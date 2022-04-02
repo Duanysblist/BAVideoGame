@@ -30,8 +30,6 @@ int main(int argc, char *argv[]) {
 	bool running = true;
     bool battling = false;
     SDL_Event e;
-
-    std::cout << getResource();
     
     window_startup();
 

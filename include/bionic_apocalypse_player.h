@@ -3,7 +3,7 @@
 
 #include "bionic_apocalypse_constants.h"
 
-int getResource();
+int getResource(int resourceType);
 
 void setResource(int resourceType, int amountToAdd);
 

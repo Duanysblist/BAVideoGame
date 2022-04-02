@@ -22,8 +22,8 @@ SDL_Rect enemy_rect = { 0, 0, ENEMY_WIDTH, ENEMY_HEIGHT };
 TTF_Font* font;
 SDL_Texture* texture;
 SDL_Color color = { 255, 255, 255 };
-
-
+int BAR_LENGTH = 200;
+int BAR_START = 30;
 
 void csci437_error(const std::string& msg)
 {
@@ -113,8 +113,6 @@ void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b) {
 
 void drawHealthBar() {
     double player_health = getPlayerHealth();
-    int BAR_START = 30;
-    int BAR_LENGTH = 300;
     double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
     // outline of bar
     rectangleRGBA(renderer, BAR_START, SCREEN_HEIGHT - (2*BOTTOM_BAR_HEIGHT/3), BAR_START + BAR_LENGTH, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
@@ -124,6 +122,82 @@ void drawHealthBar() {
     drawText("Health: ", BAR_START + 50, SCREEN_HEIGHT - 30, 255, 255, 255);
     int health = trunc(player_health);
     drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
+}
+
+void drawInventory() {
+    int IMAGE_WIDTH = 40;
+    int IMAGE_HEIGHT = 40;
+    int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
+    int RELATIVE_Y0 = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT + ((BOTTOM_BAR_HEIGHT-IMAGE_HEIGHT)/2);
+    int GAP_BTW_IMAGES = 120;
+    // draw resource pics
+    // scrap metal
+    SDL_Surface* image = IMG_Load("../resource/generic_resource.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* scrap_metal = SDL_CreateTextureFromSurface(renderer, image);
+    if (scrap_metal == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Rect scrap_metal_rect = { RELATIVE_X0, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_RenderCopyEx(renderer, scrap_metal, NULL, &scrap_metal_rect, 0, NULL, SDL_FLIP_NONE);
+    // rags
+    image = IMG_Load("../resource/generic_resource.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* rags = SDL_CreateTextureFromSurface(renderer, image);
+    if (rags == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Rect rags_rect = { RELATIVE_X0 + GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_RenderCopyEx(renderer, rags, NULL, &rags_rect, 0, NULL, SDL_FLIP_NONE);
+    // oil
+    image = IMG_Load("../resource/generic_resource.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* oil = SDL_CreateTextureFromSurface(renderer, image);
+    if (oil == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Rect oil_rect = { RELATIVE_X0 + 2*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_RenderCopyEx(renderer, oil, NULL, &oil_rect, 0, NULL, SDL_FLIP_NONE);
+    // power sources
+    image = IMG_Load("../resource/generic_resource.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* power_source = SDL_CreateTextureFromSurface(renderer, image);
+    if (power_source == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Rect power_source_rect = { RELATIVE_X0 + 3*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_RenderCopyEx(renderer, power_source, NULL, &power_source_rect, 0, NULL, SDL_FLIP_NONE);
+    // wire
+    image = IMG_Load("../resource/generic_resource.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* wire = SDL_CreateTextureFromSurface(renderer, image);
+    if (wire == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Rect wire_rect = { RELATIVE_X0 + 4*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_RenderCopyEx(renderer, wire, NULL, &wire_rect, 0, NULL, SDL_FLIP_NONE);
+    // nuclear waste
+    image = IMG_Load("../resource/generic_resource.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* nuclear_waste = SDL_CreateTextureFromSurface(renderer, image);
+    if (nuclear_waste == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Rect nuclear_waste_rect = { RELATIVE_X0 + 5*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_RenderCopyEx(renderer, nuclear_waste, NULL, &nuclear_waste_rect, 0, NULL, SDL_FLIP_NONE);
+    // write quantity
+    // scrap metal
+    drawText(":", RELATIVE_X0 + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    int quantity = getResource(0);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    // rags
+    drawText(":", RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(1);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    // oil
+    drawText(":", RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(2);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    // power sources
+    drawText(":", RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(3);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    // wire
+    drawText(":", RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(4);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    // nuclear waste
+    drawText(":", RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(5);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
 void drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4) {
@@ -163,12 +237,14 @@ void window_update(const bool world) {
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
         drawHealthBar();
+        drawInventory();
         SDL_RenderPresent(renderer);
     }
     else {
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
         drawHealthBar();
+        drawInventory();
         /** draw battle UI -- currently commented out since this is likely not where it would be called
         // you can un-comment it just to see what it will look like (it shows up in battle mode when called here)
         drawBattleUI("Action one", "Action two", "Action three", "Action four");
