@@ -13,13 +13,14 @@ int positionY = 0;
 int screenLocation;
 int playerHealth = MAX_HEALTH - 20;
 int playerMovementSpeed = 10;
+int inventory [6] = { 0,0,0,0,0,0 };
 
 int getResource() {
 	return 0;
 }
 
 void setResource(int resourceType, int amountToAdd) {
-
+	inventory[resourceType] += amountToAdd;
 }
 
 
