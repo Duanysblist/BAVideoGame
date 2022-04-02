@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include <stdlib.h>
+#include "bionic_apocalypse_savesystem.h"
 
 #include <fstream>
 using std::ifstream;
