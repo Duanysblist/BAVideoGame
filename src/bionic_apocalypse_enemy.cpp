@@ -51,9 +51,9 @@ int Enemy::getY() {
 	return enemyPosY;
 }
 
-void Enemy::draw() {
-	if (alive) {
-		drawEnemy(this);
-		SDL_Delay(17);
-	}
-}
+// void Enemy::draw(Renderer renderer) {
+// 	if (alive) {
+// 		renderer.drawEnemy(this);
+// 		SDL_Delay(17);
+// 	}
+// }

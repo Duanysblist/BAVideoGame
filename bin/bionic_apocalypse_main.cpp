@@ -31,7 +31,9 @@ int main(int argc, char *argv[]) {
     bool battling = false;
     SDL_Event e;
     
-    window_startup();
+    Renderer renderer;
+
+    renderer.window_startup();
 
     Enemy badGuy;
     badGuy.setHealth(50);
@@ -118,7 +120,7 @@ int main(int argc, char *argv[]) {
                 startNewBattle(badGuy);
                 battling = true;
             }
-            badGuy.draw();
+            renderer.drawEnemy(badGuy);
             while (SDL_PollEvent(&e) != 0)
             {
                 // User presses a key
@@ -142,9 +144,9 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        window_clear();
-        drawPlayer(worldState);
-        window_update(worldState);
+        renderer.window_clear();
+        renderer.drawPlayer(worldState);
+        renderer.window_update(worldState);
 
         SDL_Delay(17);
 	}

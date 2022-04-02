@@ -1,5 +1,6 @@
 #include "bionic_apocalypse_player.h"
 #include "bionic_apocalypse_enemy.h"
+#include "bionic_apocalypse_renderer.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -25,25 +26,25 @@ SDL_Color color = { 255, 255, 255 };
 int BAR_LENGTH = 200;
 int BAR_START = 30;
 
-void csci437_error(const std::string& msg)
+void Renderer::csci437_error(const std::string& msg)
 {
     std::cerr << msg << " (" << SDL_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void csci437_img_error(const std::string& msg)
+void Renderer::csci437_img_error(const std::string& msg)
 {
     std::cerr << msg << " (" << IMG_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void csci437_ttf_error(const std::string& msg)
+void Renderer::csci437_ttf_error(const std::string& msg)
 {
     std::cerr << msg << " (" << TTF_GetError() << ")" << std::endl;
     exit(0);
 }
  
-void window_startup() {
+void Renderer::window_startup() {
 	/*** Initialization ***/
 
     // Initialize SDL
@@ -79,12 +80,12 @@ void window_startup() {
     if (font == NULL) csci437_error("Unable to open font!");
 }
 
-void window_clear() {
+void Renderer::window_clear() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 }
 
-void drawPlayer(const bool world) {
+void Renderer::drawPlayer(const bool world) {
     if (world) {
         player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
         SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
@@ -95,12 +96,12 @@ void drawPlayer(const bool world) {
     }
 }
 
-void drawEnemy(Enemy* foe) {
-    enemy_rect = { foe->getX(), foe->getY(), 100, 100 };
+void Renderer::drawEnemy(Enemy foe) {
+    enemy_rect = { foe.getX(), foe.getY(), 100, 100 };
     SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 }
 
-void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b) {
+void Renderer::drawText(const char* words, int dst_x, int dst_y, int r, int g, int b) {
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
     if ( text == NULL ) csci437_ttf_error("Unable to render text!");
     texture = SDL_CreateTextureFromSurface( renderer, text );
@@ -111,7 +112,7 @@ void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b) {
     SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
 }
 
-void drawHealthBar() {
+void Renderer::drawHealthBar() {
     double player_health = getPlayerHealth();
     double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
     // outline of bar
@@ -124,7 +125,7 @@ void drawHealthBar() {
     drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
 }
 
-void drawInventory() {
+void Renderer::drawInventory() {
     int IMAGE_WIDTH = 40;
     int IMAGE_HEIGHT = 40;
     int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
@@ -200,7 +201,7 @@ void drawInventory() {
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
-void drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4) {
+void Renderer::drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4) {
     int RELATIVE_X0 = 100;
     int RELATIVE_Y0 = 100;
     int ACTION_BOX_WIDTH = 250;
@@ -231,7 +232,7 @@ void drawBattleUI(const char* action1, const char* action2, const char* action3,
     drawText(action4, RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + 3*PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
 }
 
-void window_update(const bool world) {
+void Renderer::window_update(const bool world) {
     if (world) {
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
