@@ -175,17 +175,29 @@ void drawInventory() {
     SDL_RenderCopyEx(renderer, nuclear_waste, NULL, &nuclear_waste_rect, 0, NULL, SDL_FLIP_NONE);
     // write quantity
     // scrap metal
-
+    drawText(":", RELATIVE_X0 + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    int quantity = getResource(0);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // rags
-
+    drawText(":", RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(1);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // oil
-
+    drawText(":", RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(2);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // power sources
-
+    drawText(":", RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(3);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // wire
-
+    drawText(":", RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(4);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // nuclear waste
-
+    drawText(":", RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    quantity = getResource(5);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
 void drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4) {
