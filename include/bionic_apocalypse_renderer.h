@@ -21,6 +21,8 @@ class Renderer {
 
         void drawInventory();
 
+        void drawKeyInventory();
+
         void window_startup();
 
         void window_clear();
