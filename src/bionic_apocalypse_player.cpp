@@ -15,7 +15,12 @@ int positionY = 0;
 int screenLocation;
 int playerHealth = MAX_HEALTH - 20;
 int playerMovementSpeed = 10;
+
+// inventories
+// regular inventory: { sheet metal, rags, oil, power source, wire, nuclear waste }
 int inventory [6] = { 0,0,0,0,0,0 };
+// key inventory: { large power source, long wire, large nuclear waste }
+int key_inventory [3] = { 0,0,0 };
 
 int getResource(int resourceType) {
 	return inventory[resourceType];
