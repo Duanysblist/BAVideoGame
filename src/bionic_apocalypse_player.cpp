@@ -8,8 +8,6 @@
 #include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
 
-
-
 int positionX = 0;
 int positionY = 0;
 int screenLocation;
@@ -22,44 +20,44 @@ int inventory [6] = { 0,0,0,0,0,0 };
 // key inventory: { large power source, long wire, large nuclear waste }
 int key_inventory [3] = { 0,0,0 };
 
-int getResource(int resourceType) {
+int Player::getResource(int resourceType) {
 	return inventory[resourceType];
 }
 
-void setResource(int resourceType, int amountToAdd) {
+void Player::setResource(int resourceType, int amountToAdd) {
 	inventory[resourceType] += amountToAdd;
 }
 
-int getKeyResource(int resourceType) {
+int Player::getKeyResource(int resourceType) {
 	return key_inventory[resourceType];
 }
 
-void setKeyResource(int resourceType) {
+void Player::setKeyResource(int resourceType) {
 	key_inventory[resourceType] = 1;
 }
 
-int getPlayerHealth() {
+int Player::getPlayerHealth() {
 	return playerHealth;
 }
 
-void setPlayerHealth(int newHealth) {
+void Player::setPlayerHealth(int newHealth) {
 	playerHealth = newHealth;
 }
 
-void changePlayerHealth(int healthAddition) {
+void Player::changePlayerHealth(int healthAddition) {
 	playerHealth += healthAddition;
 }
 
 
-int getPlayerScreenPositionX() {
+int Player::getPlayerScreenPositionX() {
 	return positionX;
 }
 
-int getPlayerScreenPositionY() {
+int Player::getPlayerScreenPositionY() {
 	return positionY;
 }
 
-void limitPlayerScreenPosition() {
+void Player::limitPlayerScreenPosition() {
 	if (positionX < 0) {
 		positionX = 0;
 	}
@@ -74,47 +72,47 @@ void limitPlayerScreenPosition() {
 	}
 }
 
-void changePlayerScreenPosition(int changeX, int changeY) {
+void Player::changePlayerScreenPosition(int changeX, int changeY) {
 	positionX += changeX;
 	positionY += changeY;
 	limitPlayerScreenPosition();
 }
 
-void setPlayerScreenPosition(int newX, int newY) {
+void Player::setPlayerScreenPosition(int newX, int newY) {
 	positionX = newX;
 	positionY = newY;
 	limitPlayerScreenPosition();
 }
 
-void playerMoveUp() {
+void Player::playerMoveUp() {
 	changePlayerScreenPosition(0, -playerMovementSpeed);
 }
 
-void playerMoveDown() {
+void Player::playerMoveDown() {
 	changePlayerScreenPosition(0, playerMovementSpeed);
 }
 
-void playerMoveLeft() {
+void Player::playerMoveLeft() {
 	changePlayerScreenPosition(-playerMovementSpeed, 0);
 }
 
-void playerMoveRight() {
+void Player::playerMoveRight() {
 	changePlayerScreenPosition(playerMovementSpeed, 0);
 }
 
 
-void setRelationalPositionY(int newRelationalPositionY) {
+void Player::setRelationalPositionY(int newRelationalPositionY) {
 
 }
 
-void setRelationalPositionX(int newRelationalPositionY) {
+void Player::setRelationalPositionX(int newRelationalPositionY) {
 
 }
 
-void changeRelationalPositionX(int relPosAddition) {
+void Player::changeRelationalPositionX(int relPosAddition) {
 
 }
 
-void changeRelationalPositionY(int relPosAddition) {
+void Player::changeRelationalPositionY(int relPosAddition) {
 
 }
