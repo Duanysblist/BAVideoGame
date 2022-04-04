@@ -20,7 +20,7 @@ int startLocation [2] = {500,500};
 int endLocation [2] = {900,250};
 bool goingToStart = false;
 
-int Enemy::getHealth() {
+int Enemy::getHealth() const {
 	return enemyHealth;
 }
 
@@ -34,7 +34,7 @@ void Enemy::changeHealth(int healthChange) {
 }
 
 //Chooses a random attack from the enemy's arsenal
-int Enemy::randomAttack() {
+int Enemy::randomAttack() const {
 	int numOfAttacks = sizeof(enemyAttacks);
 	int result = (rand() % numOfAttacks);
 	return enemyAttacks[result];
@@ -50,11 +50,11 @@ void Enemy::setPosY(int newY) {
 	std::cout << "Getting called Y" << newY << "\n";
 }
 
-int Enemy::getX() {
+int Enemy::getX() const {
 	return enemyPosX;
 }
 
-int Enemy::getY() {
+int Enemy::getY() const {
 	return enemyPosY;
 }
 
@@ -68,7 +68,7 @@ void Enemy::setEndLocation(int X, int Y) {
 	endLocation[1] = Y;
 }
 
-bool Enemy::playerCollisionCheck(Player player) {
+bool Enemy::playerCollisionCheck(Player player) const {
 	int playerX = player.getPlayerScreenPositionX();
 	int playerY = player.getPlayerScreenPositionY();
 	if ((playerX <= enemyPosX && playerX+PLAYER_WIDTH >= enemyPosX)||(playerX <= enemyPosX+ENEMY_WIDTH && playerX+PLAYER_WIDTH >= enemyPosX+ENEMY_WIDTH)&&
