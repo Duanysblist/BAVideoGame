@@ -132,6 +132,7 @@ void Player::changePlayerScreenPosition(int changeX, int changeY) {
 			// setPlayerScreenPosition(newX, sameY)
 			break;
 	}
+	limitPlayerScreenPosition();
 
 }
 
