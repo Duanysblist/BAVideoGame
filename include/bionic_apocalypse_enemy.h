@@ -1,4 +1,5 @@
-// #include "bionic_apocalypse_renderer.h"
+#include "bionic_apocalypse_renderer.h"
+#include "bionic_apocalypse_player.h"
 
 #ifndef BIONIC_APOCALYPSE_ENEMY_H
 #define BIONIC_APOCALYPSE_ENEMY_H
@@ -18,7 +19,8 @@ public:
 	int getY();
 	void setStartLocation(int X, int Y);
 	void setEndLocation(int X, int Y);
-	void update();
+	bool playerCollisionCheck(Player player);
+	void update(Renderer* renderer);
 	// void draw(Renderer renderer);
 };
 

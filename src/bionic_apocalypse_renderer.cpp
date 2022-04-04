@@ -16,9 +16,9 @@
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Surface* image;
-SDL_Texture* player;
+SDL_Texture* player_texture;
 SDL_Texture* enemy;
-SDL_Rect player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), PLAYER_WIDTH, PLAYER_HEIGHT };
+SDL_Rect player_rect; //= { getPlayerScreenPositionX(), getPlayerScreenPositionY(), PLAYER_WIDTH, PLAYER_HEIGHT };
 SDL_Rect enemy_rect = { 0, 0, ENEMY_WIDTH, ENEMY_HEIGHT };
 TTF_Font* font;
 SDL_Texture* texture;
@@ -69,12 +69,12 @@ void Renderer::window_startup() {
     
     SDL_Surface* image = IMG_Load("../resource/player_texture.png");
     if (image == NULL) csci437_img_error("Could not create image!");
-    player = SDL_CreateTextureFromSurface(renderer, image);
-    if (player == NULL) csci437_error("Could not create texture from surface!");
+    player_texture = SDL_CreateTextureFromSurface(renderer, image);
+    if (player_texture == NULL) csci437_error("Could not create texture from surface!");
     image = IMG_Load("../resource/enemy_texture.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     enemy = SDL_CreateTextureFromSurface(renderer, image);
-    if (player == NULL) csci437_error("Could not create texture from surface!");
+    if (enemy == NULL) csci437_error("Could not create texture from surface!");
 
     font = TTF_OpenFont("../resource/Arial.ttf", 18);
     if (font == NULL) csci437_error("Unable to open font!");
@@ -85,19 +85,19 @@ void Renderer::window_clear() {
     SDL_RenderClear(renderer);
 }
 
-void Renderer::drawPlayer(const bool world) {
+void Renderer::drawPlayer(Player player, const bool world) {
     if (world) {
-        player_rect = { getPlayerScreenPositionX(), getPlayerScreenPositionY(), 100, 100 };
-        SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+        player_rect = { player.getPlayerScreenPositionX(), player.getPlayerScreenPositionY(), 100, 100 };
+        SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
     else {
         player_rect = {0, 500, 100, 100};
-        SDL_RenderCopyEx(renderer, player, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+        SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
 }
 
-void Renderer::drawEnemy(Enemy foe) {
-    enemy_rect = { foe.getX(), foe.getY(), 100, 100 };
+void Renderer::drawEnemy(int posX, int posY) {
+    enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
     SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 }
 
@@ -112,8 +112,8 @@ void Renderer::drawText(const char* words, int dst_x, int dst_y, int r, int g, i
     SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
 }
 
-void Renderer::drawHealthBar() {
-    double player_health = getPlayerHealth();
+void Renderer::drawHealthBar(Player player) {
+    double player_health = player.getPlayerHealth();
     double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
     // outline of bar
     rectangleRGBA(renderer, BAR_START, SCREEN_HEIGHT - (2*BOTTOM_BAR_HEIGHT/3), BAR_START + BAR_LENGTH, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
@@ -125,7 +125,7 @@ void Renderer::drawHealthBar() {
     drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
 }
 
-void Renderer::drawInventory() {
+void Renderer::drawInventory(Player player) {
     int IMAGE_WIDTH = 40;
     int IMAGE_HEIGHT = 40;
     int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
@@ -177,31 +177,31 @@ void Renderer::drawInventory() {
     // write quantity
     // scrap metal
     drawText(":", RELATIVE_X0 + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
-    int quantity = getResource(0);
+    int quantity = player.getResource(0);
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // rags
     drawText(":", RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
-    quantity = getResource(1);
+    quantity = player.getResource(1);
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // oil
     drawText(":", RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
-    quantity = getResource(2);
+    quantity = player.getResource(2);
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // power sources
     drawText(":", RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
-    quantity = getResource(3);
+    quantity = player.getResource(3);
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // wire
     drawText(":", RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
-    quantity = getResource(4);
+    quantity = player.getResource(4);
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // nuclear waste
     drawText(":", RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
-    quantity = getResource(5);
+    quantity = player.getResource(5);
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
-void Renderer::drawKeyInventory() {
+void Renderer::drawKeyInventory(Player player) {
     // image of resource will appear if owned by the player. otherwise, will be empty box
     // draw outlines of three boxes
     int END_X = SCREEN_WIDTH - 60;
@@ -214,7 +214,7 @@ void Renderer::drawKeyInventory() {
     // write header text
     drawText("KEY RESOURCES", END_X - 150, RELATIVE_Y0 - 25, 255, 255, 255);
     // draw resources if owned by player
-    if (getKeyResource(0) == 1) {
+    if (player.getKeyResource(0) == 1) {
         SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* key1 = SDL_CreateTextureFromSurface(renderer, image);
@@ -222,7 +222,7 @@ void Renderer::drawKeyInventory() {
         SDL_Rect key1_rect = { END_X - 3*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key1, NULL, &key1_rect, 0, NULL, SDL_FLIP_NONE);
     }
-    if (getKeyResource(1) == 1) {
+    if (player.getKeyResource(1) == 1) {
         SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* key2 = SDL_CreateTextureFromSurface(renderer, image);
@@ -230,7 +230,7 @@ void Renderer::drawKeyInventory() {
         SDL_Rect key2_rect = { END_X - 2*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key2, NULL, &key2_rect, 0, NULL, SDL_FLIP_NONE);
     }
-    if (getKeyResource(2) == 1) {
+    if (player.getKeyResource(2) == 1) {
         SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* key3 = SDL_CreateTextureFromSurface(renderer, image);
@@ -271,22 +271,22 @@ void Renderer::drawBattleUI(const char* action1, const char* action2, const char
     drawText(action4, RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + 3*PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
 }
 
-void Renderer::window_update(const bool world) {
+void Renderer::window_update(Player player, const bool world) {
     if (world) {
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
-        drawHealthBar();
-        drawInventory();
-        drawKeyInventory();
+        drawHealthBar(player);
+        drawInventory(player);
+        drawKeyInventory(player);
         SDL_RenderPresent(renderer);
     }
     else {
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
-        drawHealthBar();
-        drawInventory();
-        drawKeyInventory();
+        drawHealthBar(player);
+        drawInventory(player);
+        drawKeyInventory(player);
         /** draw battle UI -- currently commented out since this is likely not where it would be called
         // you can un-comment it just to see what it will look like (it shows up in battle mode when called here)
         drawBattleUI("Action one", "Action two", "Action three", "Action four");

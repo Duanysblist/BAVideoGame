@@ -38,7 +38,9 @@ int main(int argc, char *argv[]) {
     Enemy badGuy;
     badGuy.setHealth(50);
     badGuy.setPosX(500);
-    badGuy.setPosY(0);
+    badGuy.setPosY(500);
+
+    Player player;
 
     bool worldState = true; //true is world, false is battle
       
@@ -59,7 +61,7 @@ int main(int argc, char *argv[]) {
                         worldState = false;   
                     }
                     if (e.key.keysym.sym == SDLK_2) {
-                        setAttackingTrue();
+                        setAttackingTrue(player);
                     }           
                     if (e.key.keysym.sym == SDLK_w) {
                         MOVE_UP = true;
@@ -82,19 +84,23 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_w) {
                         MOVE_UP = false;
-                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_s) {
                         MOVE_DOWN = false;
-                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_d) {
                         MOVE_RIGHT = false;
-                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_a) {
                         MOVE_LEFT = false;
-                        std::cout << getPlayerScreenPositionX() << ", " << getPlayerScreenPositionY() << "\n";
+                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_e) {
                         INTERACTING = false;
@@ -103,31 +109,32 @@ int main(int argc, char *argv[]) {
             }
 
             if (MOVE_UP) {
-                playerMoveUp();
+                player.playerMoveUp();
             }
             if (MOVE_DOWN) {
-                playerMoveDown();
+                player.playerMoveDown();
             }
             if (MOVE_LEFT) {
-                playerMoveLeft();
+                player.playerMoveLeft();
             }
             if (MOVE_RIGHT) {
-                playerMoveRight();
+                player.playerMoveRight();
             }
+            
         }
         else {
             if(battling == false) {
                 startNewBattle(badGuy);
                 battling = true;
             }
-            renderer.drawEnemy(badGuy);
+            //renderer.drawEnemy(badGuy);
             while (SDL_PollEvent(&e) != 0)
             {
                 // User presses a key
                 if (e.type == SDL_KEYDOWN)
                 {
                     if (e.key.keysym.sym == SDLK_1) {
-                        setAttackingTrue();
+                        setAttackingTrue(player);
                     }
                 }
 
@@ -145,8 +152,9 @@ int main(int argc, char *argv[]) {
         }
 
         renderer.window_clear();
-        renderer.drawPlayer(worldState);
-        renderer.window_update(worldState);
+        renderer.drawPlayer(player, worldState);
+        badGuy.update(&renderer);
+        renderer.window_update(player, worldState);
 
         SDL_Delay(17);
 	}
