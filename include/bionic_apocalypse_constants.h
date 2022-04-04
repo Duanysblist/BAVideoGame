@@ -16,6 +16,13 @@ const int PLAYER_HEIGHT = 100;
 //Enemy dimension constants
 const int ENEMY_WIDTH = 100;
 const int ENEMY_HEIGHT = 100;
+const int ENEMY_SPEED = 5;
+
+// Screen Directions
+const int UP = 1;
+const int RIGHT = 2;
+const int DOWN = 3;
+const int LEFT = 4;
 
 const int defaultScreenLayout[9][16] = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},

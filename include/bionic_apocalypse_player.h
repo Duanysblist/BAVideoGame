@@ -19,6 +19,7 @@ class Player {
         void changePlayerScreenPosition(int changeX, int changeY);
         void setPlayerScreenPosition(int newX, int newY);
         void limitPlayerScreenPosition();
+        int checkIfPlayerIsAtScreenBoundary();
 
         void playerMoveUp();
         void playerMoveDown();
