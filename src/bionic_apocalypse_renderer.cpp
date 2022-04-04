@@ -26,19 +26,19 @@ SDL_Color color = { 255, 255, 255 };
 int BAR_LENGTH = 200;
 int BAR_START = 30;
 
-void Renderer::csci437_error(const std::string& msg)
+void Renderer::csci437_error(const std::string& msg) const
 {
     std::cerr << msg << " (" << SDL_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_img_error(const std::string& msg)
+void Renderer::csci437_img_error(const std::string& msg) const
 {
     std::cerr << msg << " (" << IMG_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_ttf_error(const std::string& msg)
+void Renderer::csci437_ttf_error(const std::string& msg) const
 {
     std::cerr << msg << " (" << TTF_GetError() << ")" << std::endl;
     exit(0);

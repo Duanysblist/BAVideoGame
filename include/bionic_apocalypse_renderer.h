@@ -9,11 +9,11 @@
 
 class Renderer {
     public:
-        void csci437_error(const std::string& msg);
+        void csci437_error(const std::string& msg) const;
 
-        void csci437_img_error(const std::string& msg);
+        void csci437_img_error(const std::string& msg) const;
 
-        void csci437_ttf_error(const std::string& msg);
+        void csci437_ttf_error(const std::string& msg) const;
 
         void drawHealthBar(Player player);
 
