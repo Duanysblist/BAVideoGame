@@ -42,6 +42,8 @@ int main(int argc, char *argv[]) {
 
     Player player;
 
+    Player player;
+
     bool worldState = true; //true is world, false is battle
       
 	while (running) {

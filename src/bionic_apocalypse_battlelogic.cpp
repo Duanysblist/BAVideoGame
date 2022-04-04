@@ -21,11 +21,11 @@ void startNewBattle(Enemy enemy) {
 	active = true;
 }
 
-void setAttackingTrue() {
-	if (getPlayerHealth() > 0 && mainEnemy.getHealth() > 0) {
+void setAttackingTrue(Player player) {
+	if (player.getPlayerHealth() > 0 && mainEnemy.getHealth() > 0) {
 		mainEnemy.changeHealth(-9);
-		changePlayerHealth(mainEnemy.randomAttack());
-		std::cout << "Player HP: " << getPlayerHealth() << ", Enemy HP: " << mainEnemy.getHealth() << std::endl;
+		player.changePlayerHealth(mainEnemy.randomAttack());
+		std::cout << "Player HP: " << player.getPlayerHealth() << ", Enemy HP: " << mainEnemy.getHealth() << std::endl;
 		std::cout << "Attacking" << "\n";
 	}
 	else {

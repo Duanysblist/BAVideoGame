@@ -3,44 +3,32 @@
 
 #include "bionic_apocalypse_constants.h"
 
-int getResource(int resourceType);
+class Player {
+    public:
+        int getResource(int resourceType);
+        void setResource(int resourceType, int amountToAdd);
+        int getKeyResource(int resourceType);
+        void setKeyResource(int resourceType);
 
-void setResource(int resourceType, int amountToAdd);
+        int getPlayerHealth();
+        void setPlayerHealth(int newHealth);
+        void changePlayerHealth(int healthAddition);
 
-int getKeyResource(int resourceType);
+        int getPlayerScreenPositionX();
+        int getPlayerScreenPositionY();
+        void changePlayerScreenPosition(int changeX, int changeY);
+        void setPlayerScreenPosition(int newX, int newY);
+        void limitPlayerScreenPosition();
 
-void setKeyResource(int resourceType);
+        void playerMoveUp();
+        void playerMoveDown();
+        void playerMoveLeft();
+        void playerMoveRight();
 
-int getPlayerHealth();
-
-void setPlayerHealth(int newHealth);
-
-void changePlayerHealth(int healthAddition);
-
-
-int getPlayerScreenPositionX();
-
-int getPlayerScreenPositionY();
-
-void changePlayerScreenPosition(int changeX, int changeY);
-
-void setPlayerScreenPosition(int newX, int newY);
-
-void playerMoveUp();
-
-void playerMoveDown();
-
-void playerMoveLeft();
-
-void playerMoveRight();
-
-
-void setRelationalPositionY(int newRelationalPositionY);
-
-void setRelationalPositionX(int newRelationalPositionY);
-
-void changeRelationalPositionX(int relPosAddition);
-
-void changeRelationalPositionY(int relPosAddition);
+        void setRelationalPositionY(int newRelationalPositionY);
+        void setRelationalPositionX(int newRelationalPositionY);
+        void changeRelationalPositionY(int relPosAddition);
+        void changeRelationalPositionX(int relPosAddition);
+};
 
 #endif
