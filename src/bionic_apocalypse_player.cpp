@@ -1,18 +1,6 @@
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <stdlib.h>
-#include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
 
-int positionX = 0;
-int positionY = 0;
-int screenLocation;
-int playerHealth = MAX_HEALTH - 20;
-int playerMovementSpeed = 10;
+int playerHealth = MAX_HEALTH;
 
 // inventories
 // regular inventory: { sheet metal, rags, oil, power source, wire, nuclear waste }
