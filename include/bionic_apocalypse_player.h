@@ -2,6 +2,7 @@
 #define BIONIC_APOCALYPSE_PLAYER_H
 
 #include "bionic_apocalypse_constants.h"
+#include <vector>
 
 class Player {
     public:
@@ -30,6 +31,9 @@ class Player {
         void setRelationalPositionX(int newRelationalPositionY);
         void changeRelationalPositionY(int relPosAddition);
         void changeRelationalPositionX(int relPosAddition);
+
+        std::vector<int> getPlayerMapPosition();
+        void setPlayerMapPosition(std::vector<int> position);
 };
 
 #endif

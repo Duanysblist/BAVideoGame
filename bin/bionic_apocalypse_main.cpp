@@ -3,6 +3,7 @@
 #include "bionic_apocalypse_renderer.h"
 #include "bionic_apocalypse_battlelogic.h"
 #include "bionic_apocalypse_constants.h"
+#include "Scene.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -43,6 +44,17 @@ int main(int argc, char *argv[]) {
     Player player;
 
     bool worldState = true; //true is world, false is battle
+
+    // Setting up a 4x4 matrix for the map system
+    int counter = 0;
+    Scene map[4][4];
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4; j++){
+            map[i][j].setSceneID(counter);
+            map[i][j].setSceneCategoryID(j);
+            counter++;
+        }
+    }
       
 	while (running) {
         //check if gamestate is in world
@@ -109,7 +121,7 @@ int main(int argc, char *argv[]) {
             }
 
             if (MOVE_UP) {
-                player.playerMoveUp();
+                player.playerMoveUp(); 
             }
             if (MOVE_DOWN) {
                 player.playerMoveDown();
@@ -120,6 +132,37 @@ int main(int argc, char *argv[]) {
             if (MOVE_RIGHT) {
                 player.playerMoveRight();
             }
+
+            switch(player.checkIfPlayerIsAtScreenBoundary()) {
+                case 0:
+                    // The player is not at the edge of the screen
+                    break;
+                case 1:
+                    // Move to above screen
+                    // Don't change x value; y value turns from 0 to SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT
+                    // setPlayerScreenPosition(sameX, newY)
+                    // player.setPlayerMapPosition()
+                    break;
+                case 2:
+                    // Move to right screen
+                    // Don't change y value; x value goes from SCREEN_WIDTH - PLAYER_WIDTH to 0
+                    // setPlayerScreenPosition(newX, sameY)
+                    // player.setPlayerMapPosition()
+                    break;
+                case 3:
+                    // Move to below screen
+                    // Don't change x value; y value turns from SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT to 0
+                    // setPlayerScreenPosition(sameX, newY)
+                    // player.setPlayerMapPosition()
+                    break;
+                case 4:
+                    // Move to left screen
+                    // Don't change y value; x value goes fromo 0 to SCREEN_WIDTH - PLAYER_WIDTH
+                    // setPlayerScreenPosition(newX, sameY)
+                    // player.setPlayerMapPosition()
+                    break;
+            }
+            
             
         }
         else {

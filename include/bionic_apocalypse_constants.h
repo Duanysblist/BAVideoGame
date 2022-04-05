@@ -8,6 +8,8 @@ const int MAX_HEALTH = 100;
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 700;
 const int BOTTOM_BAR_HEIGHT = 100;
+// Added by Daniel
+const int SCREEN_BPP = 32;
 
 //Player dimension constants
 const int PLAYER_WIDTH = 100;
@@ -23,6 +25,18 @@ const int UP = 1;
 const int RIGHT = 2;
 const int DOWN = 3;
 const int LEFT = 4;
+
+enum GameStates {
+    STATE_NULL,
+    STATE_INTRO,
+    STATE_TITLE,
+    STATE_CITY_BLOCK_1,
+    STATE_CITY_BLOCK_2,
+    STATE_CITY_BLOCK_3,
+    STATE_CITY_BLOCK_4,
+    STATE_BOSS_TOWER,
+    STATE_EXIT,
+};
 
 const int defaultScreenLayout[9][16] = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},

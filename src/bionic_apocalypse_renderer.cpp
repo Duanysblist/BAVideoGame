@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <vector>
 #include <stdlib.h>
 #include <SDL2_gfxPrimitives.h>
 #include <cmath>
@@ -279,6 +280,14 @@ void Renderer::window_update(Player player, const bool world) {
         drawHealthBar(player);
         drawInventory(player);
         drawKeyInventory(player);
+        std::vector<int> a = player.getPlayerMapPosition();
+        int int_positionx = a.at(0);
+        int int_positiony = a.at(1);
+        std::string positionx = std::to_string(int_positionx);
+        std::string positiony = std::to_string(int_positiony);
+        std::string position = positionx + positiony;
+        char const *p_char = position.c_str();
+        drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
         SDL_RenderPresent(renderer);
     }
     else {
@@ -294,3 +303,6 @@ void Renderer::window_update(Player player, const bool world) {
         SDL_RenderPresent(renderer);
     }
 }
+
+
+

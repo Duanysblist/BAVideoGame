@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <vector>
 #include <stdlib.h>
 #include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
@@ -13,6 +14,9 @@ int positionY = 0;
 int screenLocation;
 int playerHealth = MAX_HEALTH - 20;
 int playerMovementSpeed = 10;
+
+// For map position
+std::vector<int> playerMapPosition(2, 0);
 
 // inventories
 // regular inventory: { sheet metal, rags, oil, power source, wire, nuclear waste }
@@ -73,18 +77,21 @@ void Player::limitPlayerScreenPosition() {
 	}
 }
 
-// Need a method that cna check if the player is at the edges of the screen
+// Need a method that can check if the player is at the edges of the screen
 // If they are at the edge, need to check if there is a screen in that direction
 // If there is, render that screen, if not do nothing
 int Player::checkIfPlayerIsAtScreenBoundary() {
 	// if their x position is at 0
 	if (positionX <= 0) {
 		// Check if there is screen to the left
-			// TODO: Find a way to check existence of another screen
+			// Get current player map position
+				// if vector.at(1) is 0, they cannot move left
+					//break;
+				// otherwise, return 4 
 		return 4;
 	}
 	// if their x position is at the right side of the screen
-	if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)){
+	if (positionX >= (SCREEN_WIDTH - PLAYER_WIDTH)){
 		// Check if there is a right screen
 		return 2;
 	}
@@ -94,7 +101,7 @@ int Player::checkIfPlayerIsAtScreenBoundary() {
 		return 1;
 	}
 	// if their y position is on the bottom of the screen
-	if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)){
+	if (positionY >= (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)){
 		// Check if there is a screen below
 		return 3;
 	}
@@ -107,33 +114,40 @@ int Player::checkIfPlayerIsAtScreenBoundary() {
 void Player::changePlayerScreenPosition(int changeX, int changeY) {
 	positionX += changeX;
 	positionY += changeY;
-	switch(checkIfPlayerIsAtScreenBoundary()) {
-		case 0:
-			// The player is not at the edge of the screen
-			break;
-		case 1:
-			// Move to above screen
-			// Don't change x value; y value turns from 0 to SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT
-			// setPlayerScreenPosition(sameX, newY)
-			break;
-		case 2:
-			// Move to right screen
-			// Don't change y value; x value goes from SCREEN_WIDTH - PLAYER_WIDTH to 0
-			// setPlayerScreenPosition(newX, sameY)
-			break;
-		case 3:
-			// Move to below screen
-			// Don't change x value; y value turns from SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT to 0
-			// setPlayerScreenPosition(sameX, newY)
-			break;
-		case 4:
-			// Move to left screen
-			// Don't change y value; x value goes fromo 0 to SCREEN_WIDTH - PLAYER_WIDTH
-			// setPlayerScreenPosition(newX, sameY)
-			break;
-	}
 	limitPlayerScreenPosition();
 
+}
+
+/*
+The map should look like this:
+
+[[1 0 0 0]
+[0 0 0 0]
+[0 0 0 0]
+[0 0 0 0]]
+
+We can have the player start in the top left hand corner scene 
+map[0][0]
+
+A right movement from here would go to map[0][1]
+
+A downward movement would go to map[1][0]
+
+Need to constantly check constriants to make sure player is at map >= 0 and <= 3
+
+If the user is at these points, need to determine possible directions they can go
+	If user is at map[min][x], the user cannot go up
+	If user is at map[x][min], the user cannot go left
+	If user is at map[max][x], the useer cannot go down
+	If user is at map[x][max], the user cannot go right
+*/
+
+std::vector<int> Player::getPlayerMapPosition() {
+	return playerMapPosition;
+}
+
+void Player::setPlayerMapPosition(std::vector<int> pos) {
+	playerMapPosition = pos;
 }
 
 void Player::setPlayerScreenPosition(int newX, int newY) {
