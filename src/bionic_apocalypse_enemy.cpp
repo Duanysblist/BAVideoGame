@@ -1,24 +1,5 @@
 #include "bionic_apocalypse_enemy.h"
-#include "bionic_apocalypse_player.h"
-#include "bionic_apocalypse_renderer.h"
-#include "bionic_apocalypse_constants.h"
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <stdlib.h>
-
-bool alive = true;
-int enemyHealth = 100;
-int enemyAttacks [3] = { -4,-8,-12 };
-int enemyPosX;
-int enemyPosY;
-int startLocation [2] = {500,500};
-int endLocation [2] = {900,250};
-bool goingToStart = false;
 
 int Enemy::getHealth() const {
 	return enemyHealth;
