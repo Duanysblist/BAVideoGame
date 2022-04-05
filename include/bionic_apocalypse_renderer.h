@@ -27,32 +27,30 @@ class Renderer {
         TTF_Font* font;
         SDL_Texture* texture;
         SDL_Color color = { 255, 255, 255 };
+
+        // health bar attributes
         int BAR_LENGTH = 200;
         int BAR_START = 30;
 
-    public:
+        // error message methods
         void csci437_error(const std::string& msg) const;
-
         void csci437_img_error(const std::string& msg) const;
-
         void csci437_ttf_error(const std::string& msg) const;
 
-        void drawHealthBar(Player player);
-
+        // helper method
         void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b);
 
+    public:
+        void drawHealthBar(Player player);
         void drawInventory(Player player);
-
         void drawKeyInventory(Player player);
 
+        // window methods
         void window_startup();
-
         void window_clear();
-
         void window_update(Player player, const bool world);
 
         void drawPlayer(Player player, const bool world);
-
         void drawEnemy(int posX, int posY);
 
         void drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4);
