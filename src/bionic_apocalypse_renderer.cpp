@@ -280,6 +280,8 @@ void Renderer::window_update(Player player, const bool world) {
         drawHealthBar(player);
         drawInventory(player);
         drawKeyInventory(player);
+        // Used to show the two dimensional array indexes on the screen
+        // @TODO: Need to 
         std::vector<int> a = player.getPlayerMapPosition();
         int int_positionx = a.at(0);
         int int_positiony = a.at(1);
@@ -288,6 +290,7 @@ void Renderer::window_update(Player player, const bool world) {
         std::string position = positionx + positiony;
         char const *p_char = position.c_str();
         drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
+
         SDL_RenderPresent(renderer);
     }
     else {

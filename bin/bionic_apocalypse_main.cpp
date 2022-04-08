@@ -133,33 +133,54 @@ int main(int argc, char *argv[]) {
                 player.playerMoveRight();
             }
 
+            std::vector<int> currentVec = player.getPlayerMapPosition();
+            int x = currentVec.at(0);
+            int y = currentVec.at(1);
+            Scene currentScene = map[x][y];
+
             switch(player.checkIfPlayerIsAtScreenBoundary()) {
                 case 0:
-                    // The player is not at the edge of the screen
+                    // The player is not at the edge of the screen or there is no screen to move to in that direction
                     break;
                 case 1:
                     // Move to above screen
                     // Don't change x value; y value turns from 0 to SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT
                     // setPlayerScreenPosition(sameX, newY)
                     // player.setPlayerMapPosition()
+                    currentScene = map[x-1][y];
+                    currentVec.at(0) = x - 1;
+                    player.setPlayerMapPosition(currentVec);
+                    player.setPlayerScreenPosition(player.getPlayerScreenPositionX(), SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT);
                     break;
                 case 2:
                     // Move to right screen
                     // Don't change y value; x value goes from SCREEN_WIDTH - PLAYER_WIDTH to 0
                     // setPlayerScreenPosition(newX, sameY)
                     // player.setPlayerMapPosition()
+                    currentScene = map[x][y + 1];
+                    currentVec.at(1) = y + 1;
+                    player.setPlayerMapPosition(currentVec);
+                    player.setPlayerScreenPosition(0, player.getPlayerScreenPositionY());
                     break;
                 case 3:
                     // Move to below screen
                     // Don't change x value; y value turns from SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT to 0
                     // setPlayerScreenPosition(sameX, newY)
                     // player.setPlayerMapPosition()
+                    currentScene = map[x + 1][y];
+                    currentVec.at(0) = x + 1;
+                    player.setPlayerMapPosition(currentVec);
+                    player.setPlayerScreenPosition(player.getPlayerScreenPositionX(), 0);
                     break;
                 case 4:
                     // Move to left screen
                     // Don't change y value; x value goes fromo 0 to SCREEN_WIDTH - PLAYER_WIDTH
                     // setPlayerScreenPosition(newX, sameY)
                     // player.setPlayerMapPosition()
+                    currentScene = map[x][y - 1];
+                    currentVec.at(1) = y - 1;
+                    player.setPlayerMapPosition(currentVec);
+                    player.setPlayerScreenPosition(SCREEN_WIDTH - PLAYER_WIDTH, player.getPlayerScreenPositionY());
                     break;
             }
             

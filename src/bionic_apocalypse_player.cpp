@@ -86,6 +86,9 @@ int Player::checkIfPlayerIsAtScreenBoundary() {
 		// Check if there is screen to the left
 			// Get current player map position
 				// if vector.at(1) is 0, they cannot move left
+				if(playerMapPosition.at(1) == 0) {
+					return 0;
+				}
 					//break;
 				// otherwise, return 4 
 		return 4;
@@ -93,16 +96,34 @@ int Player::checkIfPlayerIsAtScreenBoundary() {
 	// if their x position is at the right side of the screen
 	if (positionX >= (SCREEN_WIDTH - PLAYER_WIDTH)){
 		// Check if there is a right screen
+			// Get current player map position
+				// If the player is all the way to the right of the screen ([0][3], [1][3], [2][3], [3][3])
+				if(playerMapPosition.at(1) == 3) {
+					// Can't move right
+					return 0;
+				}
 		return 2;
 	}
 	// if their y position is at 0
 	if (positionY <= 0) {
 		// Check if there is a screen above
+			// Get current player map position
+				// If the player is in the top level of the map matrix ([0][0], [0][1], [0][2], [0][3])
+				if(playerMapPosition.at(0) == 0){
+					// Can't move up
+					return 0;
+				}
 		return 1;
 	}
 	// if their y position is on the bottom of the screen
 	if (positionY >= (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)){
 		// Check if there is a screen below
+			// Get current player map position
+				// If the player is at the bottom level of the matrix ([3][0] [3][1] [3][2] [3][3])
+				if(playerMapPosition.at(0) == 3){
+					// Can't move down
+					return 0;
+				}
 		return 3;
 	}
 
@@ -125,6 +146,11 @@ The map should look like this:
 [0 0 0 0]
 [0 0 0 0]
 [0 0 0 0]]
+
+0 [0][0] [0][1] [0][2] [0][3]
+1 [1][0] [1][1] [1][2] [1][3]
+2 [2][0] [2][1] [2][2] [2][3]
+3 [3][0] [3][1] [3][2] [3][3]
 
 We can have the player start in the top left hand corner scene 
 map[0][0]
