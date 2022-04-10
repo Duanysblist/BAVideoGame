@@ -9,11 +9,7 @@
 #include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
 
-int positionX = 0;
-int positionY = 0;
-int screenLocation;
-int playerHealth = MAX_HEALTH - 20;
-int playerMovementSpeed = 10;
+int playerHealth = MAX_HEALTH;
 
 // For map position
 std::vector<int> playerMapPosition(2, 0);
@@ -24,7 +20,7 @@ int inventory [6] = { 0,0,0,0,0,0 };
 // key inventory: { large power source, long wire, large nuclear waste }
 int key_inventory [3] = { 0,0,0 };
 
-int Player::getResource(int resourceType) {
+int Player::getResource(int resourceType) const {
 	return inventory[resourceType];
 }
 
@@ -32,7 +28,7 @@ void Player::setResource(int resourceType, int amountToAdd) {
 	inventory[resourceType] += amountToAdd;
 }
 
-int Player::getKeyResource(int resourceType) {
+int Player::getKeyResource(int resourceType) const {
 	return key_inventory[resourceType];
 }
 
@@ -40,7 +36,7 @@ void Player::setKeyResource(int resourceType) {
 	key_inventory[resourceType] = 1;
 }
 
-int Player::getPlayerHealth() {
+int Player::getPlayerHealth() const {
 	return playerHealth;
 }
 
@@ -53,11 +49,11 @@ void Player::changePlayerHealth(int healthAddition) {
 }
 
 
-int Player::getPlayerScreenPositionX() {
+int Player::getPlayerScreenPositionX() const {
 	return positionX;
 }
 
-int Player::getPlayerScreenPositionY() {
+int Player::getPlayerScreenPositionY() const {
 	return positionY;
 }
 
@@ -80,7 +76,7 @@ void Player::limitPlayerScreenPosition() {
 // Need a method that can check if the player is at the edges of the screen
 // If they are at the edge, need to check if there is a screen in that direction
 // If there is, render that screen, if not do nothing
-int Player::checkIfPlayerIsAtScreenBoundary() {
+int Player::checkIfPlayerIsAtScreenBoundary() const {
 	// if their x position is at 0
 	if (positionX <= 0) {
 		// Check if there is screen to the left

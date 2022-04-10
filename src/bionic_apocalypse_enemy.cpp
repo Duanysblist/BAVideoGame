@@ -1,26 +1,7 @@
 #include "bionic_apocalypse_enemy.h"
-#include "bionic_apocalypse_player.h"
-#include "bionic_apocalypse_renderer.h"
-#include "bionic_apocalypse_constants.h"
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <stdlib.h>
 
-bool alive = true;
-int enemyHealth = 100;
-int enemyAttacks [3] = { -4,-8,-12 };
-int enemyPosX;
-int enemyPosY;
-int startLocation [2] = {500,500};
-int endLocation [2] = {900,250};
-bool goingToStart = false;
-
-int Enemy::getHealth() {
+int Enemy::getHealth() const {
 	return enemyHealth;
 }
 
@@ -34,7 +15,7 @@ void Enemy::changeHealth(int healthChange) {
 }
 
 //Chooses a random attack from the enemy's arsenal
-int Enemy::randomAttack() {
+int Enemy::randomAttack() const {
 	int numOfAttacks = sizeof(enemyAttacks);
 	int result = (rand() % numOfAttacks);
 	return enemyAttacks[result];
@@ -50,11 +31,11 @@ void Enemy::setPosY(int newY) {
 	std::cout << "Getting called Y" << newY << "\n";
 }
 
-int Enemy::getX() {
+int Enemy::getX() const {
 	return enemyPosX;
 }
 
-int Enemy::getY() {
+int Enemy::getY() const {
 	return enemyPosY;
 }
 
@@ -68,7 +49,7 @@ void Enemy::setEndLocation(int X, int Y) {
 	endLocation[1] = Y;
 }
 
-bool Enemy::playerCollisionCheck(Player player) {
+bool Enemy::playerCollisionCheck(Player player) const {
 	int playerX = player.getPlayerScreenPositionX();
 	int playerY = player.getPlayerScreenPositionY();
 	if ((playerX <= enemyPosX && playerX+PLAYER_WIDTH >= enemyPosX)||(playerX <= enemyPosX+ENEMY_WIDTH && playerX+PLAYER_WIDTH >= enemyPosX+ENEMY_WIDTH)&&

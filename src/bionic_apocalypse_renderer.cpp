@@ -1,45 +1,18 @@
-#include "bionic_apocalypse_player.h"
-#include "bionic_apocalypse_enemy.h"
 #include "bionic_apocalypse_renderer.h"
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <vector>
-#include <stdlib.h>
-#include <SDL2_gfxPrimitives.h>
-#include <cmath>
-
-//Window and image variables
-SDL_Window* window;
-SDL_Renderer* renderer;
-SDL_Surface* image;
-SDL_Texture* player_texture;
-SDL_Texture* enemy;
-SDL_Rect player_rect; //= { getPlayerScreenPositionX(), getPlayerScreenPositionY(), PLAYER_WIDTH, PLAYER_HEIGHT };
-SDL_Rect enemy_rect = { 0, 0, ENEMY_WIDTH, ENEMY_HEIGHT };
-TTF_Font* font;
-SDL_Texture* texture;
-SDL_Color color = { 255, 255, 255 };
-int BAR_LENGTH = 200;
-int BAR_START = 30;
-
-void Renderer::csci437_error(const std::string& msg)
+void Renderer::csci437_error(const std::string& msg) const
 {
     std::cerr << msg << " (" << SDL_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_img_error(const std::string& msg)
+void Renderer::csci437_img_error(const std::string& msg) const
 {
     std::cerr << msg << " (" << IMG_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_ttf_error(const std::string& msg)
+void Renderer::csci437_ttf_error(const std::string& msg) const
 {
     std::cerr << msg << " (" << TTF_GetError() << ")" << std::endl;
     exit(0);
