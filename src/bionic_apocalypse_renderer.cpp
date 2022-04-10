@@ -281,7 +281,7 @@ void Renderer::window_update(Player player, const bool world) {
         drawInventory(player);
         drawKeyInventory(player);
         // Used to show the two dimensional array indexes on the screen
-        // @TODO: Need to 
+        // @TODO: Need to change this to create a different background
         std::vector<int> a = player.getPlayerMapPosition();
         int int_positionx = a.at(0);
         int int_positiony = a.at(1);
