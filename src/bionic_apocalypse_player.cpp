@@ -164,7 +164,7 @@ If the user is at these points, need to determine possible directions they can g
 	If user is at map[x][max], the user cannot go right
 */
 
-std::vector<int> Player::getPlayerMapPosition() {
+std::vector<int> Player::getPlayerMapPosition() const {
 	return playerMapPosition;
 }
 

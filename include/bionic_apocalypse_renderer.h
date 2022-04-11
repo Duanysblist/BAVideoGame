@@ -29,8 +29,8 @@ class Renderer {
         SDL_Color color = { 255, 255, 255 };
 
         // health bar attributes
-        int BAR_LENGTH = 200;
-        int BAR_START = 30;
+        const int BAR_LENGTH = 200;
+        const int BAR_START = 30;
 
         // error message methods
         void csci437_error(const std::string& msg) const;
@@ -38,20 +38,20 @@ class Renderer {
         void csci437_ttf_error(const std::string& msg) const;
 
         // helper method
-        void drawText(const char* words, int dst_x, int dst_y, int r, int g, int b);
+        void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
 
     public:
-        void drawHealthBar(Player player);
-        void drawInventory(Player player);
-        void drawKeyInventory(Player player);
+        void drawHealthBar(const Player player);
+        void drawInventory(const Player player);
+        void drawKeyInventory(const Player player);
 
         // window methods
         void window_startup();
         void window_clear();
-        void window_update(Player player, const bool world);
+        void window_update(const Player player, const bool world);
 
-        void drawPlayer(Player player, const bool world);
-        void drawEnemy(int posX, int posY);
+        void drawPlayer(const Player player, const bool world);
+        void drawEnemy(const int posX, const int posY);
 
         void drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4);
 };

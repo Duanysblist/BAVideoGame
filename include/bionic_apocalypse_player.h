@@ -46,7 +46,7 @@ class Player {
         void changeRelationalPositionY(int relPosAddition);
         void changeRelationalPositionX(int relPosAddition);
 
-        std::vector<int> getPlayerMapPosition();
+        std::vector<int> getPlayerMapPosition() const;
         void setPlayerMapPosition(std::vector<int> position);
 };
 

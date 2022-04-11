@@ -59,7 +59,7 @@ void Renderer::window_clear() {
     SDL_RenderClear(renderer);
 }
 
-void Renderer::drawPlayer(Player player, const bool world) {
+void Renderer::drawPlayer(const Player player, const bool world) {
     if (world) {
         player_rect = { player.getPlayerScreenPositionX(), player.getPlayerScreenPositionY(), 100, 100 };
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
@@ -70,12 +70,12 @@ void Renderer::drawPlayer(Player player, const bool world) {
     }
 }
 
-void Renderer::drawEnemy(int posX, int posY) {
+void Renderer::drawEnemy(const int posX, const int posY) {
     enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
     SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 }
 
-void Renderer::drawText(const char* words, int dst_x, int dst_y, int r, int g, int b) {
+void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
     if ( text == NULL ) csci437_ttf_error("Unable to render text!");
     texture = SDL_CreateTextureFromSurface( renderer, text );
@@ -86,7 +86,7 @@ void Renderer::drawText(const char* words, int dst_x, int dst_y, int r, int g, i
     SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
 }
 
-void Renderer::drawHealthBar(Player player) {
+void Renderer::drawHealthBar(const Player player) {
     double player_health = player.getPlayerHealth();
     double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
     // outline of bar
@@ -99,7 +99,7 @@ void Renderer::drawHealthBar(Player player) {
     drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
 }
 
-void Renderer::drawInventory(Player player) {
+void Renderer::drawInventory(const Player player) {
     int IMAGE_WIDTH = 40;
     int IMAGE_HEIGHT = 40;
     int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
@@ -175,7 +175,7 @@ void Renderer::drawInventory(Player player) {
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
-void Renderer::drawKeyInventory(Player player) {
+void Renderer::drawKeyInventory(const Player player) {
     // image of resource will appear if owned by the player. otherwise, will be empty box
     // draw outlines of three boxes
     int END_X = SCREEN_WIDTH - 60;
@@ -245,7 +245,7 @@ void Renderer::drawBattleUI(const char* action1, const char* action2, const char
     drawText(action4, RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + 3*PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
 }
 
-void Renderer::window_update(Player player, const bool world) {
+void Renderer::window_update(const Player player, const bool world) {
     if (world) {
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
