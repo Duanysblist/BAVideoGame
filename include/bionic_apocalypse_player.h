@@ -16,14 +16,14 @@ class Player {
         int positionX = 0;
         int positionY = 0;
         int screenLocation;
-        int playerMovementSpeed = 10;
+        const int playerMovementSpeed = 10;
 
     public:
 
-        int getResource(int resourceType) const;
-        void setResource(int resourceType, int amountToAdd);
-        int getKeyResource(int resourceType) const;
-        void setKeyResource(int resourceType);
+        int getResource(const int resourceType) const;
+        void setResource(const int resourceType, const int amountToAdd);
+        int getKeyResource(const int resourceType) const;
+        void setKeyResource(const int resourceType);
 
         int getPlayerHealth() const;
         void setPlayerHealth(int newHealth);
@@ -31,8 +31,8 @@ class Player {
 
         int getPlayerScreenPositionX() const;
         int getPlayerScreenPositionY() const;
-        void changePlayerScreenPosition(int changeX, int changeY);
-        void setPlayerScreenPosition(int newX, int newY);
+        void changePlayerScreenPosition(const int changeX, const int changeY);
+        void setPlayerScreenPosition(const int newX, const int newY);
         void limitPlayerScreenPosition();
         int checkIfPlayerIsAtScreenBoundary() const;
 
@@ -41,10 +41,10 @@ class Player {
         void playerMoveLeft();
         void playerMoveRight();
 
-        void setRelationalPositionY(int newRelationalPositionY);
-        void setRelationalPositionX(int newRelationalPositionY);
-        void changeRelationalPositionY(int relPosAddition);
-        void changeRelationalPositionX(int relPosAddition);
+        void setRelationalPositionY(const int newRelationalPositionY);
+        void setRelationalPositionX(const int newRelationalPositionY);
+        void changeRelationalPositionY(const int relPosAddition);
+        void changeRelationalPositionX(const int relPosAddition);
 
         std::vector<int> getPlayerMapPosition() const;
         void setPlayerMapPosition(std::vector<int> position);

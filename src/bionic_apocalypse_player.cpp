@@ -20,19 +20,19 @@ int inventory [6] = { 0,0,0,0,0,0 };
 // key inventory: { large power source, long wire, large nuclear waste }
 int key_inventory [3] = { 0,0,0 };
 
-int Player::getResource(int resourceType) const {
+int Player::getResource(const int resourceType) const {
 	return inventory[resourceType];
 }
 
-void Player::setResource(int resourceType, int amountToAdd) {
+void Player::setResource(const int resourceType, const int amountToAdd) {
 	inventory[resourceType] += amountToAdd;
 }
 
-int Player::getKeyResource(int resourceType) const {
+int Player::getKeyResource(const int resourceType) const {
 	return key_inventory[resourceType];
 }
 
-void Player::setKeyResource(int resourceType) {
+void Player::setKeyResource(const int resourceType) {
 	key_inventory[resourceType] = 1;
 }
 
@@ -40,11 +40,11 @@ int Player::getPlayerHealth() const {
 	return playerHealth;
 }
 
-void Player::setPlayerHealth(int newHealth) {
+void Player::setPlayerHealth(const int newHealth) {
 	playerHealth = newHealth;
 }
 
-void Player::changePlayerHealth(int healthAddition) {
+void Player::changePlayerHealth(const int healthAddition) {
 	playerHealth += healthAddition;
 }
 
@@ -128,7 +128,7 @@ int Player::checkIfPlayerIsAtScreenBoundary() const {
 	
 }
 
-void Player::changePlayerScreenPosition(int changeX, int changeY) {
+void Player::changePlayerScreenPosition(const int changeX, const int changeY) {
 	positionX += changeX;
 	positionY += changeY;
 	limitPlayerScreenPosition();
@@ -168,11 +168,11 @@ std::vector<int> Player::getPlayerMapPosition() const {
 	return playerMapPosition;
 }
 
-void Player::setPlayerMapPosition(std::vector<int> pos) {
+void Player::setPlayerMapPosition(const std::vector<int> pos) {
 	playerMapPosition = pos;
 }
 
-void Player::setPlayerScreenPosition(int newX, int newY) {
+void Player::setPlayerScreenPosition(const int newX, const int newY) {
 	positionX = newX;
 	positionY = newY;
 	limitPlayerScreenPosition();
@@ -195,18 +195,18 @@ void Player::playerMoveRight() {
 }
 
 
-void Player::setRelationalPositionY(int newRelationalPositionY) {
+void Player::setRelationalPositionY(const int newRelationalPositionY) {
 
 }
 
-void Player::setRelationalPositionX(int newRelationalPositionY) {
+void Player::setRelationalPositionX(const int newRelationalPositionY) {
 
 }
 
-void Player::changeRelationalPositionX(int relPosAddition) {
+void Player::changeRelationalPositionX(const int relPosAddition) {
 
 }
 
-void Player::changeRelationalPositionY(int relPosAddition) {
+void Player::changeRelationalPositionY(const int relPosAddition) {
 
 }
