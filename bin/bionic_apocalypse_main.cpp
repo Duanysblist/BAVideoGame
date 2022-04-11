@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
                         worldState = false;   
                     }
                     if (e.key.keysym.sym == SDLK_2) {
-                        setAttackingTrue(&player);
+                        setAttackingTrue(player);
                     }           
                     if (e.key.keysym.sym == SDLK_w) {
                         MOVE_UP = true;
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_w) {
                         MOVE_UP = false;
-                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        //std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
                         // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_s) {
@@ -188,16 +188,17 @@ int main(int argc, char *argv[]) {
         }
         else {
             if(battling == false) {
-                startNewBattle(&badGuy);
+                startNewBattle(badGuy);
                 battling = true;
             }
+            //renderer.drawEnemy(badGuy);
             while (SDL_PollEvent(&e) != 0)
             {
                 // User presses a key
                 if (e.type == SDL_KEYDOWN)
                 {
                     if (e.key.keysym.sym == SDLK_1) {
-                        setAttackingTrue(&player);
+                        setAttackingTrue(player);
                     }
                 }
 
