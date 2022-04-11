@@ -1,14 +1,4 @@
-#include "bionic_apocalypse_enemy.h"
-#include "bionic_apocalypse_player.h"
 #include "bionic_apocalypse_battlelogic.h"
-
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <stdlib.h>
 
 Enemy mainEnemy;
 bool active = false;
