@@ -20,8 +20,6 @@ class Renderer {
         SDL_Window* window;
         SDL_Renderer* renderer;
         SDL_Surface* image;
-        SDL_Texture* player_texture;
-        SDL_Texture* enemy;
         SDL_Rect player_rect; 
         SDL_Rect enemy_rect = { 0, 0, ENEMY_WIDTH, ENEMY_HEIGHT };
         TTF_Font* font;
