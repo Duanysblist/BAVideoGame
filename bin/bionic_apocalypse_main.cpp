@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_w) {
                         MOVE_UP = false;
-                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        //std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
                         // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_s) {

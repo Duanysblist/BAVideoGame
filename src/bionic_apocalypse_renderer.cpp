@@ -1,19 +1,16 @@
 #include "bionic_apocalypse_renderer.h"
 
-void Renderer::csci437_error(const std::string& msg) const
-{
+void Renderer::csci437_error(const std::string& msg) const {
     std::cerr << msg << " (" << SDL_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_img_error(const std::string& msg) const
-{
+void Renderer::csci437_img_error(const std::string& msg) const {
     std::cerr << msg << " (" << IMG_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_ttf_error(const std::string& msg) const
-{
+void Renderer::csci437_ttf_error(const std::string& msg) const {
     std::cerr << msg << " (" << TTF_GetError() << ")" << std::endl;
     exit(0);
 }
@@ -51,7 +48,7 @@ void Renderer::window_clear() {
     SDL_RenderClear(renderer);
 }
 
-void Renderer::drawPlayer(const Player player, const bool world) {
+void Renderer::drawPlayer(const Player &player, const bool &world) {
     SDL_Surface* image = IMG_Load("../resource/player_texture.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* player_texture = SDL_CreateTextureFromSurface(renderer, image);
@@ -72,7 +69,7 @@ void Renderer::drawPlayer(const Player player, const bool world) {
     image = NULL;
 }
 
-void Renderer::drawEnemy(const int posX, const int posY) {
+void Renderer::drawEnemy(const int &posX, const int &posY) {
     image = IMG_Load("../resource/enemy_texture.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
@@ -84,7 +81,7 @@ void Renderer::drawEnemy(const int posX, const int posY) {
     SDL_DestroyTexture(enemy_texture);
 }
 
-void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
+void Renderer::drawText(const char* words, const int &dst_x, const int &dst_y, const int &r, const int &g, const int &b) {
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
     if ( text == NULL ) csci437_ttf_error("Unable to render text!");
     texture = SDL_CreateTextureFromSurface( renderer, text );
@@ -99,7 +96,7 @@ void Renderer::drawText(const char* words, const int dst_x, const int dst_y, con
     text = NULL;
 }
 
-void Renderer::drawHealthBar(const Player player) {
+void Renderer::drawHealthBar(const Player &player) {
     double player_health = player.getPlayerHealth();
     double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
     // outline of bar
@@ -112,7 +109,7 @@ void Renderer::drawHealthBar(const Player player) {
     drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
 }
 
-void Renderer::drawInventory(const Player player) {
+void Renderer::drawInventory(const Player &player) {
     int IMAGE_WIDTH = 40;
     int IMAGE_HEIGHT = 40;
     int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
@@ -213,7 +210,7 @@ void Renderer::drawInventory(const Player player) {
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
-void Renderer::drawKeyInventory(const Player player) {
+void Renderer::drawKeyInventory(const Player &player) {
     // image of resource will appear if owned by the player. otherwise, will be empty box
     // draw outlines of three boxes
     int END_X = SCREEN_WIDTH - 60;
@@ -295,7 +292,7 @@ void Renderer::drawBattleUI(const char* action1, const char* action2, const char
     drawText(action4, RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + 3*PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
 }
 
-void Renderer::window_update(const Player player, const bool world) {
+void Renderer::window_update(const Player &player, const bool &world) {
     if (world) {
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
