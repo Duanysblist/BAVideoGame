@@ -1,24 +1,7 @@
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <vector>
-#include <stdlib.h>
-#include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
 
-int playerHealth = MAX_HEALTH;
-
-// For map position
-std::vector<int> playerMapPosition(2, 0);
-
-// inventories
-// regular inventory: { sheet metal, rags, oil, power source, wire, nuclear waste }
-int inventory [6] = { 0,0,0,0,0,0 };
-// key inventory: { large power source, long wire, large nuclear waste }
-int key_inventory [3] = { 0,0,0 };
+// // For map position
+// std::vector<int> playerMapPosition(2, 0);
 
 int Player::getResource(const int resourceType) const {
 	return inventory[resourceType];
