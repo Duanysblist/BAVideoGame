@@ -50,5 +50,7 @@ const int defaultScreenLayout[9][16] = {
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 };
 
+const int OBSTACLE_WIDTH = 80;
+const int OBSTACLE_HEIGHT = 70;
 
 #endif

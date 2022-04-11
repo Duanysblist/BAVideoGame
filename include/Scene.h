@@ -15,14 +15,18 @@ class Scene {
    int sceneID;
    int sceneCategoryID;
    int** layout;
+   int rows = 10;
+   int columns = 16;
 
    public:
    int getSceneID();
    void setSceneID(int num);
    int getsceneCategoryID();
    void setSceneCategoryID(int num);
+   int** createSceneLayout(int rows, int columns);
    int** getSceneLayout();
    void setSceneLayout(int**);
+   void freeSceneLayout(int** layout, int rows);
    Scene() {
        sceneID = -1;
        sceneCategoryID = -1;

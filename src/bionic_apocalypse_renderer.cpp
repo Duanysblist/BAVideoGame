@@ -52,6 +52,11 @@ void Renderer::window_startup() {
 
     font = TTF_OpenFont("../resource/Arial.ttf", 18);
     if (font == NULL) csci437_error("Unable to open font!");
+
+
+    drawObstacles();
+
+
 }
 
 void Renderer::window_clear() {
@@ -74,6 +79,104 @@ void Renderer::drawEnemy(const int posX, const int posY) {
     enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
     SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 }
+
+bool Renderer::checkCollision(SDL_Rect a, SDL_Rect b){
+        //The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+
+    //Calculate the sides of rect A
+    leftA = a.x;
+    rightA = a.x + a.w;
+    topA = a.y;
+    bottomA = a.y + a.h;
+
+    //Calculate the sides of rect B
+    leftB = b.x;
+    rightB = b.x + b.w;
+    topB = b.y;
+    bottomB = b.y + b.h;
+
+    //If any of the sides from A are outside of B
+    if( bottomA <= topB )
+    {
+        return false;
+    }
+
+    if( topA >= bottomB )
+    {
+        return false;
+    }
+
+    if( rightA <= leftB )
+    {
+        return false;
+    }
+
+    if( leftA >= rightB )
+    {
+        return false;
+    }
+
+    //If none of the sides from A are outside B
+    return true;
+}
+
+bool Renderer::checkPlayerEnemyCollision() {
+    return checkCollision(player_rect, enemy_rect);
+}
+
+// Need a drawObstacles function
+// Can use the player_rect and enemy_rect from this class to check collision detection
+// Should randomly generate rects on the screen
+void Renderer::drawObstacles() {
+    // First step: draw a single rect in a random position on screen that the enemy and player cannot cross
+    // Get coordinates to place obstacle at
+
+    //TODO: This should go in a collectObstacles function
+    // Need to draw an obstacle for each 1 in the 10x16 matrix
+    // Create a for loop and check for obstacles in the scene
+        // If a value of 1 is found in the matrix
+            // obstacle_x_coord = 80 * j
+            // obstacle_y_coord = 70 * i
+            // Create a rect for that obstacle
+                // obstacle_rect = {obstacle_x_coord, obstacle_y_coord, OBSTACLE_WIDTH, OBSTACLE_HEIGHT};
+            // Add that obstacle to an arrayto draw once finished
+            // obstacle_arr[counter] = obstacle_rect
+    
+    // TODO: This should go in the drawObstacles(SDL_Rect [] obstacles) function
+    // Once the loop is finished and all obstacle rects have been made
+        // Render the obstacle rects to the screen
+        // SDL_RenderCopyEx(renderer, obstacle_texture, NULL, &obstacle_arr[i], 0, NULL, SDL_FLIP_NONE);
+
+
+
+    // Random coordinates on the screen
+    // const int obstacle_x_coord = 500;
+    // const int obstacle_y_coord = 500;
+    // Need to check these coordinates against the range that the player and enemy take up
+    // Create a rect out of the parts of the obstacle
+    // SDL_Rect obstacle_rect = {obstacle_x_coord, obstacle_y_coord, OBSTACLE_WIDTH, OBSTACLE_HEIGHT};
+    
+
+    // Check for collisions between the obstacle and the player/enemy
+    // If there is a collision, recalculate the coordinates of the obstacle until there is no collision
+    // while(checkCollision(player_rect, obstacle_rect) || checkCollision(enemy_rect, obstacle_rect)){
+    //     obstacle_x_coord = (rand() % SCREEN_WIDTH) + OBSTACLE_WIDTH;
+    //     obstacle_y_coord = (rand() % (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT)) + OBSTACLE_HEIGHT;
+    // }
+    // If there are no collisions, draw the obstacle to the screen
+    // SDL_Surface* obstacle_image = IMG_Load("../resource/generic_key_resource.png");
+    // if (obstacle_image == NULL) csci437_img_error("Could not create image!");
+    // SDL_Texture* obstacle_texture = SDL_CreateTextureFromSurface(renderer, obstacle_image);
+    // if (obstacle_texture == NULL) csci437_error("Could not create texture from surface!");
+    // SDL_RenderCopyEx(renderer, obstacle_texture, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
+
+}
+
+
 
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
@@ -255,14 +358,7 @@ void Renderer::window_update(const Player player, const bool world) {
         drawKeyInventory(player);
         // Used to show the two dimensional array indexes on the screen
         // @TODO: Need to change this to create a different background
-        std::vector<int> a = player.getPlayerMapPosition();
-        int int_positionx = a.at(0);
-        int int_positiony = a.at(1);
-        std::string positionx = std::to_string(int_positionx);
-        std::string positiony = std::to_string(int_positiony);
-        std::string position = positionx + positiony;
-        char const *p_char = position.c_str();
-        drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
+
 
         SDL_RenderPresent(renderer);
     }

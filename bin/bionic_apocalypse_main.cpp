@@ -45,6 +45,8 @@ int main(int argc, char *argv[]) {
 
     bool worldState = true; //true is world, false is battle
 
+
+
     // Setting up a 4x4 matrix for the map system
     int counter = 0;
     Scene map[4][4];
@@ -52,6 +54,7 @@ int main(int argc, char *argv[]) {
         for(int j = 0; j < 4; j++){
             map[i][j].setSceneID(counter);
             map[i][j].setSceneCategoryID(j);
+            map[i][j].createSceneLayout(10, 16);
             counter++;
         }
     }
@@ -200,6 +203,10 @@ int main(int argc, char *argv[]) {
                     if (e.key.keysym.sym == SDLK_1) {
                         setAttackingTrue(player);
                     }
+                    if (e.key.keysym.sym == SDLK_q) {
+                        running = false;
+                        break;
+                    }
                 }
 
                 // User releases a key
@@ -217,7 +224,22 @@ int main(int argc, char *argv[]) {
 
         renderer.window_clear();
         renderer.drawPlayer(player, worldState);
+
+        std::vector<int> a = player.getPlayerMapPosition();
+        int int_positionx = a.at(0);
+        int int_positiony = a.at(1);
+        std::string positionx = std::to_string(int_positionx);
+        std::string positiony = std::to_string(int_positiony);
+        std::string position = positionx + positiony;
+        char const *p_char = position.c_str();
+        renderer.drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
+
+        renderer.drawObstacles();
+
         badGuy.update(&renderer);
+        if(renderer.checkPlayerEnemyCollision()) {
+            worldState = false;
+        }
         renderer.window_update(player, worldState);
 
         SDL_Delay(17);

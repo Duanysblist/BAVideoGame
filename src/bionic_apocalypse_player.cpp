@@ -62,14 +62,18 @@ void Player::limitPlayerScreenPosition() {
 	if (positionX < 0) {
 		positionX = 0;
 	}
-	if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)) {
+	else if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)) {
 		positionX = SCREEN_WIDTH - PLAYER_WIDTH;
 	}
-	if (positionY < 0) {
+	else if (positionY < 0) {
 		positionY = 0;
 	}
-	if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
+	else if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
 		positionY = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT;
+	}
+	else {
+		positionX = positionX;
+		positionY = positionY;
 	}
 }
 
