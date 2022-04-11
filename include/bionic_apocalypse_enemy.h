@@ -27,18 +27,18 @@ class Enemy {
 
 	public: 
 		int getHealth() const;
-		void setHealth(int newHealth);
+		void setHealth(const int newHealth);
 		//Adds or Subtracts from the health of the enemy
-		void changeHealth(int healthChange);
+		void changeHealth(const int healthChange);
 		//Chooses a random attack from the enemy's arsenal
 		int randomAttack() const;
-		void setPosX(int newX);
-		void setPosY(int newY);
+		void setPosX(const int newX);
+		void setPosY(const int newY);
 		int getX() const;
 		int getY() const;
-		void setStartLocation(int X, int Y);
-		void setEndLocation(int X, int Y);
-		bool playerCollisionCheck(Player player) const;
+		void setStartLocation(const int X, const int Y);
+		void setEndLocation(const int X, const int Y);
+		bool playerCollisionCheck(const Player player) const;
 		void update(Renderer* renderer);
 		// void draw(Renderer renderer);
 };

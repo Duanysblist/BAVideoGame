@@ -5,12 +5,12 @@ int Enemy::getHealth() const {
 	return enemyHealth;
 }
 
-void Enemy::setHealth(int newHealth) {
+void Enemy::setHealth(const int newHealth) {
 	enemyHealth = newHealth;
 }
 
 //Adds or Subtracts from the health of the enemy
-void Enemy::changeHealth(int healthChange) {
+void Enemy::changeHealth(const int healthChange) {
 	enemyHealth += healthChange;
 }
 
@@ -21,12 +21,12 @@ int Enemy::randomAttack() const {
 	return enemyAttacks[result];
 }
 
-void Enemy::setPosX(int newX) {
+void Enemy::setPosX(const int newX) {
 	enemyPosX = newX;
 	std::cout << "Getting called X" << newX << "\n";
 }
 
-void Enemy::setPosY(int newY) {
+void Enemy::setPosY(const int newY) {
 	enemyPosY = newY;
 	std::cout << "Getting called Y" << newY << "\n";
 }
@@ -39,17 +39,17 @@ int Enemy::getY() const {
 	return enemyPosY;
 }
 
-void Enemy::setStartLocation(int X, int Y) {
+void Enemy::setStartLocation(const int X, const int Y) {
 	startLocation[0] = X;
 	startLocation[1] = Y;
 }
 
-void Enemy::setEndLocation(int X, int Y) {
+void Enemy::setEndLocation(const int X, const int Y) {
 	endLocation[0] = X;
 	endLocation[1] = Y;
 }
 
-bool Enemy::playerCollisionCheck(Player player) const {
+bool Enemy::playerCollisionCheck(const Player player) const {
 	int playerX = player.getPlayerScreenPositionX();
 	int playerY = player.getPlayerScreenPositionY();
 	if ((playerX <= enemyPosX && playerX+PLAYER_WIDTH >= enemyPosX)||(playerX <= enemyPosX+ENEMY_WIDTH && playerX+PLAYER_WIDTH >= enemyPosX+ENEMY_WIDTH)&&
@@ -94,13 +94,5 @@ void Enemy::update(Renderer* renderer) {
 	//Render Enemy
 	renderer->drawEnemy(enemyPosX, enemyPosY);
 
-	//Check Player Collision
-	//playerCollisionCheck();
 }
 
-// void Enemy::draw(Renderer renderer) {
-// 	if (alive) {
-// 		renderer.drawEnemy(this);
-// 		SDL_Delay(17);
-// 	}
-// }
