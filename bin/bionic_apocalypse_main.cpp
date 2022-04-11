@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
                         running = false;
                     }
                     if (e.key.keysym.sym == SDLK_1) {
-                        std::cout << "battle is pressed" << std::endl;; 
+                        // std::cout << "battle is pressed" << std::endl;; 
                         worldState = false;   
                     }
                     if (e.key.keysym.sym == SDLK_2) {
@@ -99,23 +99,23 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_w) {
                         MOVE_UP = false;
-                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
+                        //std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_s) {
                         MOVE_DOWN = false;
-                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
+                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_d) {
                         MOVE_RIGHT = false;
-                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
+                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_a) {
                         MOVE_LEFT = false;
-                        std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
+                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
+                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_e) {
                         INTERACTING = false;

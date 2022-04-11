@@ -1,13 +1,7 @@
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <stdlib.h>
+
 #include "bionic_apocalypse_savesystem.h"
 
-#include <fstream>
-using std::ifstream;
-using std::ofstream;
-using std::endl;
+
 
 void save_gameState(int health) {
 	ofstream outStream;

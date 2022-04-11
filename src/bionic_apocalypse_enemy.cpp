@@ -23,12 +23,12 @@ int Enemy::randomAttack() const {
 
 void Enemy::setPosX(const int newX) {
 	enemyPosX = newX;
-	std::cout << "Getting called X" << newX << "\n";
+	// std::cout << "Getting called X" << newX << "\n";
 }
 
 void Enemy::setPosY(const int newY) {
 	enemyPosY = newY;
-	std::cout << "Getting called Y" << newY << "\n";
+	// std::cout << "Getting called Y" << newY << "\n";
 }
 
 int Enemy::getX() const {
@@ -61,7 +61,7 @@ bool Enemy::playerCollisionCheck(const Player player) const {
 
 void Enemy::update(Renderer* renderer) {
 	//Update Location
-	std::cout << "Update";
+	// std::cout << "Update";
 	int distanceX;
 	int distanceY;
 	if (goingToStart) {
@@ -73,7 +73,7 @@ void Enemy::update(Renderer* renderer) {
 		distanceY = endLocation[1] - enemyPosY;
 	}
 
-	std::cout << ", X Distance: " << distanceX << ", Y Distance: " << distanceY;
+	// std::cout << ", X Distance: " << distanceX << ", Y Distance: " << distanceY;
 	
 	if (distanceX > 0) {
 		setPosX(enemyPosX+ENEMY_SPEED);

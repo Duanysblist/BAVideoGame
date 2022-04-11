@@ -1,19 +1,16 @@
 #include "bionic_apocalypse_renderer.h"
 
-void Renderer::csci437_error(const std::string& msg) const
-{
+void Renderer::csci437_error(const std::string& msg) const {
     std::cerr << msg << " (" << SDL_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_img_error(const std::string& msg) const
-{
+void Renderer::csci437_img_error(const std::string& msg) const {
     std::cerr << msg << " (" << IMG_GetError() << ")" << std::endl;
     exit(0);
 }
 
-void Renderer::csci437_ttf_error(const std::string& msg) const
-{
+void Renderer::csci437_ttf_error(const std::string& msg) const {
     std::cerr << msg << " (" << TTF_GetError() << ")" << std::endl;
     exit(0);
 }
@@ -40,15 +37,7 @@ void Renderer::window_startup() {
     // Create renderer
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (renderer == NULL) csci437_error("Unable to create renderer!");
-    
-    SDL_Surface* image = IMG_Load("../resource/player_texture.png");
-    if (image == NULL) csci437_img_error("Could not create image!");
-    player_texture = SDL_CreateTextureFromSurface(renderer, image);
-    if (player_texture == NULL) csci437_error("Could not create texture from surface!");
-    image = IMG_Load("../resource/enemy_texture.png");
-    if (image == NULL) csci437_img_error("Could not create image!");
-    enemy = SDL_CreateTextureFromSurface(renderer, image);
-    if (enemy == NULL) csci437_error("Could not create texture from surface!");
+
 
     font = TTF_OpenFont("../resource/Arial.ttf", 18);
     if (font == NULL) csci437_error("Unable to open font!");
@@ -64,7 +53,12 @@ void Renderer::window_clear() {
     SDL_RenderClear(renderer);
 }
 
-void Renderer::drawPlayer(const Player player, const bool world) {
+void Renderer::drawPlayer(const Player &player, const bool &world) {
+    SDL_Surface* image = IMG_Load("../resource/player_texture.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* player_texture = SDL_CreateTextureFromSurface(renderer, image);
+    if (player_texture == NULL) csci437_error("Could not create texture from surface!");
+
     if (world) {
         player_rect = { player.getPlayerScreenPositionX(), player.getPlayerScreenPositionY(), 100, 100 };
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
@@ -73,11 +67,23 @@ void Renderer::drawPlayer(const Player player, const bool world) {
         player_rect = {0, 500, 100, 100};
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
+
+    SDL_DestroyTexture(player_texture);
+    // delete image
+    SDL_FreeSurface( image );
+    image = NULL;
 }
 
-void Renderer::drawEnemy(const int posX, const int posY) {
+void Renderer::drawEnemy(const int &posX, const int &posY) {
+    image = IMG_Load("../resource/enemy_texture.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
+    if (enemy_texture == NULL) csci437_error("Could not create texture from surface!");
+
     enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
-    SDL_RenderCopyEx(renderer, enemy, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
+
+    SDL_DestroyTexture(enemy_texture);
 }
 
 bool Renderer::checkCollision(SDL_Rect a, SDL_Rect b){
@@ -187,9 +193,13 @@ void Renderer::drawText(const char* words, const int dst_x, const int dst_y, con
     SDL_Point rot = {text->w/2, text->h/2};
     SDL_SetTextureColorMod( texture, r, g, b );
     SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
+    SDL_DestroyTexture(texture);
+    // free surface
+    SDL_FreeSurface( text );
+    text = NULL;
 }
 
-void Renderer::drawHealthBar(const Player player) {
+void Renderer::drawHealthBar(const Player &player) {
     double player_health = player.getPlayerHealth();
     double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
     // outline of bar
@@ -202,7 +212,7 @@ void Renderer::drawHealthBar(const Player player) {
     drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
 }
 
-void Renderer::drawInventory(const Player player) {
+void Renderer::drawInventory(const Player &player) {
     int IMAGE_WIDTH = 40;
     int IMAGE_HEIGHT = 40;
     int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
@@ -216,6 +226,11 @@ void Renderer::drawInventory(const Player player) {
     if (scrap_metal == NULL) csci437_error("Could not create texture from surface!");
     SDL_Rect scrap_metal_rect = { RELATIVE_X0, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, scrap_metal, NULL, &scrap_metal_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(scrap_metal);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
+    //SDL_Destroy 
     // rags
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -223,6 +238,10 @@ void Renderer::drawInventory(const Player player) {
     if (rags == NULL) csci437_error("Could not create texture from surface!");
     SDL_Rect rags_rect = { RELATIVE_X0 + GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, rags, NULL, &rags_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(rags);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // oil
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -230,6 +249,10 @@ void Renderer::drawInventory(const Player player) {
     if (oil == NULL) csci437_error("Could not create texture from surface!");
     SDL_Rect oil_rect = { RELATIVE_X0 + 2*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, oil, NULL, &oil_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(oil);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // power sources
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -237,6 +260,10 @@ void Renderer::drawInventory(const Player player) {
     if (power_source == NULL) csci437_error("Could not create texture from surface!");
     SDL_Rect power_source_rect = { RELATIVE_X0 + 3*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, power_source, NULL, &power_source_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(power_source);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // wire
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -244,6 +271,10 @@ void Renderer::drawInventory(const Player player) {
     if (wire == NULL) csci437_error("Could not create texture from surface!");
     SDL_Rect wire_rect = { RELATIVE_X0 + 4*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, wire, NULL, &wire_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(wire);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // nuclear waste
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -251,6 +282,10 @@ void Renderer::drawInventory(const Player player) {
     if (nuclear_waste == NULL) csci437_error("Could not create texture from surface!");
     SDL_Rect nuclear_waste_rect = { RELATIVE_X0 + 5*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, nuclear_waste, NULL, &nuclear_waste_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(nuclear_waste);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // write quantity
     // scrap metal
     drawText(":", RELATIVE_X0 + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
@@ -278,7 +313,7 @@ void Renderer::drawInventory(const Player player) {
     drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
-void Renderer::drawKeyInventory(const Player player) {
+void Renderer::drawKeyInventory(const Player &player) {
     // image of resource will appear if owned by the player. otherwise, will be empty box
     // draw outlines of three boxes
     int END_X = SCREEN_WIDTH - 60;
@@ -298,6 +333,10 @@ void Renderer::drawKeyInventory(const Player player) {
         if (key1 == NULL) csci437_error("Could not create texture from surface!");
         SDL_Rect key1_rect = { END_X - 3*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key1, NULL, &key1_rect, 0, NULL, SDL_FLIP_NONE);
+        SDL_DestroyTexture(key1);
+        // free surface
+        SDL_FreeSurface( image );
+        image = NULL;
     }
     if (player.getKeyResource(1) == 1) {
         SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
@@ -306,6 +345,10 @@ void Renderer::drawKeyInventory(const Player player) {
         if (key2 == NULL) csci437_error("Could not create texture from surface!");
         SDL_Rect key2_rect = { END_X - 2*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key2, NULL, &key2_rect, 0, NULL, SDL_FLIP_NONE);
+        SDL_DestroyTexture(key2);
+        // free surface
+        SDL_FreeSurface( image );
+        image = NULL;
     }
     if (player.getKeyResource(2) == 1) {
         SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
@@ -314,6 +357,10 @@ void Renderer::drawKeyInventory(const Player player) {
         if (key3 == NULL) csci437_error("Could not create texture from surface!");
         SDL_Rect key3_rect = { END_X - BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key3, NULL, &key3_rect, 0, NULL, SDL_FLIP_NONE);
+        SDL_DestroyTexture(key3);
+        // free surface
+        SDL_FreeSurface( image );
+        image = NULL;
     }
 }
 
@@ -348,7 +395,7 @@ void Renderer::drawBattleUI(const char* action1, const char* action2, const char
     drawText(action4, RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + 3*PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
 }
 
-void Renderer::window_update(const Player player, const bool world) {
+void Renderer::window_update(const Player &player, const bool &world) {
     if (world) {
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
