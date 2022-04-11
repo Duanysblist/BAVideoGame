@@ -3,11 +3,11 @@
 
 #include "bionic_apocalypse_player.h"
 
-void startNewBattle(const Enemy enemy);
+void startNewBattle(Enemy* enemy);
 
 void mainBattleLoop();
 
-void setAttackingTrue(Player player);
+void setAttackingTrue(Player* player);
 
 bool getStatus();
 
