@@ -36,20 +36,20 @@ class Renderer {
         void csci437_ttf_error(const std::string& msg) const;
 
         // helper method
-        void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
+        void drawText(const char* words, const int &dst_x, const int &dst_y, const int &r, const int &g, const int &b);
 
     public:
-        void drawHealthBar(const Player player);
-        void drawInventory(const Player player);
-        void drawKeyInventory(const Player player);
+        void drawHealthBar(const Player &player);
+        void drawInventory(const Player &player);
+        void drawKeyInventory(const Player &player);
 
         // window methods
         void window_startup();
         void window_clear();
-        void window_update(const Player player, const bool world);
+        void window_update(const Player &player, const bool &world);
 
-        void drawPlayer(const Player player, const bool world);
-        void drawEnemy(const int posX, const int posY);
+        void drawPlayer(const Player &player, const bool &world);
+        void drawEnemy(const int &posX, const int &posY);
 
         void drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4);
 };
