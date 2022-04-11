@@ -17,6 +17,16 @@ class Player {
         int positionY = 0;
         int screenLocation;
         const int playerMovementSpeed = 10;
+        int playerHealth = MAX_HEALTH;
+
+        // For map position
+        std::vector<int> playerMapPosition = std::vector<int>(2, 0);
+
+        // inventories
+        // regular inventory: { sheet metal, rags, oil, power source, wire, nuclear waste }
+        int inventory [6] = { 0,0,0,0,0,0 };
+        // key inventory: { large power source, long wire, large nuclear waste }
+        int key_inventory [3] = { 0,0,0 };
 
     public:
 
