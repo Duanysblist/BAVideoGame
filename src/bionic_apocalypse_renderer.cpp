@@ -67,6 +67,9 @@ void Renderer::drawPlayer(const Player player, const bool world) {
     }
 
     SDL_DestroyTexture(player_texture);
+    // delete image
+    SDL_FreeSurface( image );
+    image = NULL;
 }
 
 void Renderer::drawEnemy(const int posX, const int posY) {
@@ -91,6 +94,9 @@ void Renderer::drawText(const char* words, const int dst_x, const int dst_y, con
     SDL_SetTextureColorMod( texture, r, g, b );
     SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
     SDL_DestroyTexture(texture);
+    // free surface
+    SDL_FreeSurface( text );
+    text = NULL;
 }
 
 void Renderer::drawHealthBar(const Player player) {
@@ -121,6 +127,9 @@ void Renderer::drawInventory(const Player player) {
     SDL_Rect scrap_metal_rect = { RELATIVE_X0, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, scrap_metal, NULL, &scrap_metal_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(scrap_metal);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     //SDL_Destroy 
     // rags
     image = IMG_Load("../resource/generic_resource.png");
@@ -130,6 +139,9 @@ void Renderer::drawInventory(const Player player) {
     SDL_Rect rags_rect = { RELATIVE_X0 + GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, rags, NULL, &rags_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(rags);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // oil
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -138,6 +150,9 @@ void Renderer::drawInventory(const Player player) {
     SDL_Rect oil_rect = { RELATIVE_X0 + 2*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, oil, NULL, &oil_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(oil);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // power sources
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -146,6 +161,9 @@ void Renderer::drawInventory(const Player player) {
     SDL_Rect power_source_rect = { RELATIVE_X0 + 3*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, power_source, NULL, &power_source_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(power_source);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // wire
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -154,6 +172,9 @@ void Renderer::drawInventory(const Player player) {
     SDL_Rect wire_rect = { RELATIVE_X0 + 4*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, wire, NULL, &wire_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(wire);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // nuclear waste
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -162,6 +183,9 @@ void Renderer::drawInventory(const Player player) {
     SDL_Rect nuclear_waste_rect = { RELATIVE_X0 + 5*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
     SDL_RenderCopyEx(renderer, nuclear_waste, NULL, &nuclear_waste_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(nuclear_waste);
+    // free surface
+    SDL_FreeSurface( image );
+    image = NULL;
     // write quantity
     // scrap metal
     drawText(":", RELATIVE_X0 + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
@@ -210,6 +234,9 @@ void Renderer::drawKeyInventory(const Player player) {
         SDL_Rect key1_rect = { END_X - 3*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key1, NULL, &key1_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_DestroyTexture(key1);
+        // free surface
+        SDL_FreeSurface( image );
+        image = NULL;
     }
     if (player.getKeyResource(1) == 1) {
         SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
@@ -219,6 +246,9 @@ void Renderer::drawKeyInventory(const Player player) {
         SDL_Rect key2_rect = { END_X - 2*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key2, NULL, &key2_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_DestroyTexture(key2);
+        // free surface
+        SDL_FreeSurface( image );
+        image = NULL;
     }
     if (player.getKeyResource(2) == 1) {
         SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
@@ -228,6 +258,9 @@ void Renderer::drawKeyInventory(const Player player) {
         SDL_Rect key3_rect = { END_X - BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
         SDL_RenderCopyEx(renderer, key3, NULL, &key3_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_DestroyTexture(key3);
+        // free surface
+        SDL_FreeSurface( image );
+        image = NULL;
     }
 }
 
