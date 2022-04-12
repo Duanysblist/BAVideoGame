@@ -1,5 +1,6 @@
 
 #include "bionic_apocalypse_constants.h"
+#include <cstdlib>
 class Scene {
 
     /*

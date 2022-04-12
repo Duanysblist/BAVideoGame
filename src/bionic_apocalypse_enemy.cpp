@@ -16,8 +16,11 @@ void Enemy::changeHealth(const int healthChange) {
 
 //Chooses a random attack from the enemy's arsenal
 int Enemy::randomAttack() const {
-	int numOfAttacks = sizeof(enemyAttacks);
+	int numOfAttacks = sizeof(enemyAttacks)/sizeof(enemyAttacks[0]);
+	std::cout << numOfAttacks << std::endl;
 	int result = (rand() % numOfAttacks);
+	std::cout << result << std::endl;
+	std::cout << enemyAttacks[result] << std::endl;
 	return enemyAttacks[result];
 }
 
