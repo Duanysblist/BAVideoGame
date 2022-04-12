@@ -40,25 +40,25 @@ int Player::getPlayerScreenPositionY() const {
 	return positionY;
 }
 
-// This needs to either be changed or gotten rid of for screen to screen movement
-void Player::limitPlayerScreenPosition() {
-	if (positionX < 0) {
-		positionX = 0;
-	}
-	else if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)) {
-		positionX = SCREEN_WIDTH - PLAYER_WIDTH;
-	}
-	else if (positionY < 0) {
-		positionY = 0;
-	}
-	else if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
-		positionY = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT;
-	}
-	else {
-		positionX = positionX;
-		positionY = positionY;
-	}
-}
+// // This needs to either be changed or gotten rid of for screen to screen movement
+// void Player::limitPlayerScreenPosition() {
+// 	if (positionX < 0) {
+// 		positionX = 0;
+// 	}
+// 	else if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)) {
+// 		positionX = SCREEN_WIDTH - PLAYER_WIDTH;
+// 	}
+// 	else if (positionY < 0) {
+// 		positionY = 0;
+// 	}
+// 	else if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
+// 		positionY = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT;
+// 	}
+// 	else {
+// 		positionX = positionX;
+// 		positionY = positionY;
+// 	}
+// }
 
 // Need a method that can check if the player is at the edges of the screen
 // If they are at the edge, need to check if there is a screen in that direction
