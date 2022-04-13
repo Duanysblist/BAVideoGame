@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string>
 #include <stdlib.h>
+#include <array>
 
 class Player {
     private:
@@ -34,6 +35,7 @@ class Player {
         void setResource(const int resourceType, const int amountToAdd);
         int getKeyResource(const int resourceType) const;
         void setKeyResource(const int resourceType);
+        std::array<bool, 12> getPossibleBattleMoves() const;
 
         int getPlayerHealth() const;
         void setPlayerHealth(int newHealth);

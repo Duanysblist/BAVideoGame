@@ -13,6 +13,7 @@
 #include <string>
 #include <stdlib.h>
 #include <SDL2_gfxPrimitives.h>
+#include <array>
 
 class Renderer {
     private:
@@ -33,12 +34,9 @@ class Renderer {
         // error message methods
         void csci437_error(const std::string& msg) const;
         void csci437_img_error(const std::string& msg) const;
-        void csci437_ttf_error(const std::string& msg) const;
-
-        
+        void csci437_ttf_error(const std::string& msg) const;      
 
     public:
-    // helper method
         void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
         void drawHealthBar(const Player &player);
         void drawInventory(const Player &player);
@@ -53,7 +51,7 @@ class Renderer {
         void drawEnemy(const int &posX, const int &posY);
         void drawObstacles();
 
-        void drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4);
+        void drawBattleUI(const Player &player);
         bool checkCollision(SDL_Rect a, SDL_Rect b);
         bool checkPlayerEnemyCollision();
 };
