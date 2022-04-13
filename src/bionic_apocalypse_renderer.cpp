@@ -364,6 +364,50 @@ void Renderer::drawKeyInventory(const Player &player) {
     }
 }
 
+void Renderer::drawBattleUI(const Player &player) {
+    std::array<bool, 12> moves = player.getPossibleBattleMoves();
+
+    std::cout << moves[0] << std::endl;
+    
+    int RELATIVE_X0 = 100;
+    int RELATIVE_Y0 = 100;
+    int ACTION_BOX_WIDTH = 250;
+    int ACTION_BOX_HEIGHT = 30;
+    int LEFT_BORDER = 25;
+    int VERTICAL_SPACING = 20;
+    int PREV_BOX_HEIGHT = ACTION_BOX_HEIGHT + VERTICAL_SPACING;
+    int BACKGROUND_WIDTH = 2*LEFT_BORDER + ACTION_BOX_WIDTH;
+    int BACKGROUND_HEIGHT = VERTICAL_SPACING + 4*PREV_BOX_HEIGHT;
+
+    // CURRENT COLORS ARE JUST PLACEHOLDERS -- CAN BE CHANGED
+    // background rectangle
+    boxRGBA(renderer, RELATIVE_X0, RELATIVE_Y0, RELATIVE_X0 + BACKGROUND_WIDTH, RELATIVE_Y0 + BACKGROUND_HEIGHT, 255, 210, 210, 255);
+    // action backgrounds
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING + PREV_BOX_HEIGHT, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING + 2*PREV_BOX_HEIGHT, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 2*PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    boxRGBA(renderer, RELATIVE_X0 + LEFT_BORDER, RELATIVE_Y0 + VERTICAL_SPACING + 3*PREV_BOX_HEIGHT, RELATIVE_X0 + LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 3*PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 255, 240, 240, 255);
+    
+    if (moves[0]) {
+        drawText("1", RELATIVE_X0 + LEFT_BORDER + 10, RELATIVE_Y0 + VERTICAL_SPACING + 5, 0, 0, 0);
+        drawText("Heal Player", RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + VERTICAL_SPACING + 5, 0, 0, 0);
+    }
+    else {
+        drawText("1", RELATIVE_X0 + LEFT_BORDER + 10, RELATIVE_Y0 + VERTICAL_SPACING + 5, 133, 125, 125);
+        drawText("Heal Player", RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + VERTICAL_SPACING + 5, 133, 125, 125);
+    }
+    // action labels
+    
+    drawText("2", RELATIVE_X0 + LEFT_BORDER + 10, RELATIVE_Y0 + VERTICAL_SPACING + PREV_BOX_HEIGHT + 5, 0, 0, 0);
+    drawText("3", RELATIVE_X0 + LEFT_BORDER + 10, RELATIVE_Y0 + VERTICAL_SPACING + 2*PREV_BOX_HEIGHT + 5, 0, 0, 0);
+    drawText("4", RELATIVE_X0 + LEFT_BORDER + 10, RELATIVE_Y0 + VERTICAL_SPACING + 3*PREV_BOX_HEIGHT + 5, 0, 0, 0);
+    // action text
+    
+    drawText("Molotov", RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
+    drawText("Throwing Knives", RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + 2*PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
+    drawText("Armor Plate", RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + 3*PREV_BOX_HEIGHT + VERTICAL_SPACING + 5, 0, 0, 0);
+}
+
 void Renderer::drawBattleUI(const char* action1, const char* action2, const char* action3, const char* action4) {
     int RELATIVE_X0 = 100;
     int RELATIVE_Y0 = 100;
@@ -415,10 +459,9 @@ void Renderer::window_update(const Player &player, const bool &world) {
         drawHealthBar(player);
         drawInventory(player);
         drawKeyInventory(player);
-        /** draw battle UI -- currently commented out since this is likely not where it would be called
+        // draw battle UI -- currently commented out since this is likely not where it would be called
         // you can un-comment it just to see what it will look like (it shows up in battle mode when called here)
-        drawBattleUI("Action one", "Action two", "Action three", "Action four");
-        **/
+        drawBattleUI(player);
         SDL_RenderPresent(renderer);
     }
 }
