@@ -1,4 +1,7 @@
 
+#ifndef SCENE_H
+#define SCENE_H
+
 #include "bionic_apocalypse_constants.h"
 #include <cstdlib>
 class Scene {
@@ -24,8 +27,10 @@ class Scene {
    void setSceneID(int num);
    int getsceneCategoryID();
    void setSceneCategoryID(int num);
+   int getSceneRows() const;
+   int getSceneColumns() const;
    int** createSceneLayout(int rows, int columns);
-   int** getSceneLayout();
+   int** getSceneLayout() const;
    void setSceneLayout(int**);
    void freeSceneLayout(int** layout, int rows);
    Scene() {
@@ -37,3 +42,5 @@ class Scene {
        sceneCategoryID = catID;
    }
 };
+
+#endif

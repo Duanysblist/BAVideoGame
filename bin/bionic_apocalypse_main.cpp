@@ -60,6 +60,13 @@ int main(int argc, char *argv[]) {
     }
       
 	while (running) {
+
+        // get player world position
+        std::vector<int> currentVec = player.getPlayerMapPosition();
+        int x = currentVec.at(0);
+        int y = currentVec.at(1);
+        Scene currentScene = map[x][y];
+
         //check if gamestate is in world
         if(worldState) { 
             //Check for input
@@ -135,11 +142,6 @@ int main(int argc, char *argv[]) {
             if (MOVE_RIGHT) {
                 player.playerMoveRight();
             }
-
-            std::vector<int> currentVec = player.getPlayerMapPosition();
-            int x = currentVec.at(0);
-            int y = currentVec.at(1);
-            Scene currentScene = map[x][y];
 
             switch(player.checkIfPlayerIsAtScreenBoundary()) {
                 case 0:
@@ -240,7 +242,7 @@ int main(int argc, char *argv[]) {
         if(renderer.checkPlayerEnemyCollision()) {
             worldState = false;
         }
-        renderer.window_update(player, worldState);
+        renderer.window_update(player, worldState, currentScene);
 
         SDL_Delay(17);
 	}

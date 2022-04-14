@@ -87,7 +87,7 @@ void Renderer::drawEnemy(const int &posX, const int &posY) {
 }
 
 bool Renderer::checkCollision(SDL_Rect a, SDL_Rect b){
-        //The sides of the rectangles
+    //The sides of the rectangles
     int leftA, leftB;
     int rightA, rightB;
     int topA, topB;
@@ -181,8 +181,6 @@ void Renderer::drawObstacles() {
     // SDL_RenderCopyEx(renderer, obstacle_texture, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
 
 }
-
-
 
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
@@ -504,7 +502,40 @@ void Renderer::drawBattleUI(const Player &player) {
 
 }
 
-void Renderer::window_update(const Player &player, const bool &world) {
+void Renderer::drawResources(const Scene &scene) {
+    int** layout = scene.getSceneLayout();
+    const int numRows = scene.getSceneRows();
+    const int numColumns = scene.getSceneColumns();
+
+    const int screenBlockWidth = SCREEN_WIDTH/numColumns;
+    const int screenBlockHeight = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/numRows;
+
+    for(int i = 0; i < numRows; i++) {
+        for(int j = 0; j < numColumns; j++) {
+        // 2 - space in scene has scrap metal
+        // 3 - space in scene has rags
+        // 4 - space in scene has oil
+        // 5 - space in scene has power source
+        // 6 - space in scene has wire
+        // 7 - space in scene has nuclear waste
+            if (layout[i][j] == 2) {
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+            } else if (layout[i][j] == 3) {
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+            } else if (layout[i][j] == 4) {
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+            } else if (layout[i][j] == 5) {
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+            } else if (layout[i][j] == 6) {
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+            } else if (layout[i][j] == 7) {
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+            }
+        }
+    }
+}
+
+void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
     if (world) {
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
@@ -512,9 +543,8 @@ void Renderer::window_update(const Player &player, const bool &world) {
         drawHealthBar(player);
         drawInventory(player);
         drawKeyInventory(player);
-        // Used to show the two dimensional array indexes on the screen
-        // @TODO: Need to change this to create a different background
 
+        drawResources(scene);
 
         SDL_RenderPresent(renderer);
     }
@@ -524,8 +554,7 @@ void Renderer::window_update(const Player &player, const bool &world) {
         drawHealthBar(player);
         drawInventory(player);
         drawKeyInventory(player);
-        // draw battle UI -- currently commented out since this is likely not where it would be called
-        // you can un-comment it just to see what it will look like (it shows up in battle mode when called here)
+
         drawBattleUI(player);
         SDL_RenderPresent(renderer);
     }
