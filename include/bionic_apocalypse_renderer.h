@@ -5,6 +5,7 @@
 #include <string>
 #include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
+#include "Scene.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -42,10 +43,13 @@ class Renderer {
         void drawInventory(const Player &player);
         void drawKeyInventory(const Player &player);
 
+        // temporary method to work on resource collection
+        void drawResources(const Scene &scene);
+
         // window methods
         void window_startup();
         void window_clear();
-        void window_update(const Player &player, const bool &world);
+        void window_update(const Player &player, const bool &world, Scene &scene);
 
         void drawPlayer(const Player &player, const bool &world);
         void drawEnemy(const int &posX, const int &posY);

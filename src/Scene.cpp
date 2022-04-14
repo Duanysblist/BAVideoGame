@@ -16,6 +16,14 @@ void Scene::setSceneCategoryID(int catID) {
     this->sceneCategoryID = catID;
 }
 
+int Scene::getSceneRows() const {
+    return rows;
+}
+
+int Scene::getSceneColumns() const {
+    return columns;
+}
+
 int** Scene::createSceneLayout(int numRows, int numColumns){
     /**
         0 - space in scene is unoccupied
@@ -70,7 +78,7 @@ int** Scene::createSceneLayout(int numRows, int numColumns){
 }
 
 // For map of obstacles in a scene
-int** Scene::getSceneLayout() {
+int** Scene::getSceneLayout() const {
     return layout;
 }
 
