@@ -46,29 +46,29 @@ int** Scene::createSceneLayout(const int numRows, const int numColumns){
         layout[i] = new int[numColumns];
         for(int j = 0; j < numColumns; j++) {
             // for now just randomly choosing if a space has an obstacle or resource
-            /** 1-5 obstacle
-                6-14 nothing
-                15 scrap metal
-                16 rags
-                17 oil
-                18 power source
-                19 wire
-                20 nuclear waste
+            /** 1-8 obstacle
+                9-34 nothing
+                55 scrap metal
+                36 rags
+                37 oil
+                38 power source
+                39 wire
+                40 nuclear waste
             **/
-            int random = rand() % 20 + 1;
-            if(random <= 5){
+            int random = rand() % 40 + 1;
+            if(random <= 8){
                 layout[i][j] = 1; // obstacle
-            } else if (6 <= random && random <= 14) {
+            } else if (9 <= random && random <= 34) {
                 layout[i][j] = 0; // nothing
-            } else if (random == 15) {
+            } else if (random == 35) {
                 layout[i][j] = 2; // scrap metal
-            } else if (random == 16) {
+            } else if (random == 36) {
                 layout[i][j] = 3; // rags
-            } else if (random == 17) {
+            } else if (random == 37) {
                 layout[i][j] = 4; // oil
-            } else if (random == 18) {
+            } else if (random == 38) {
                 layout[i][j] = 5; // power source
-            } else if (random == 19) {
+            } else if (random == 39) {
                 layout[i][j] = 6; // wire
             }
             else {layout[i][j] = 7;} // nuclear waste
