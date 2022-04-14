@@ -23,21 +23,21 @@ class Scene {
    int columns = 16;
 
    public:
-   int getSceneID();
-   void setSceneID(int num);
-   int getsceneCategoryID();
-   void setSceneCategoryID(int num);
+   int getSceneID() const;
+   void setSceneID(const int num);
+   int getsceneCategoryID() const;
+   void setSceneCategoryID(const int num);
    int getSceneRows() const;
    int getSceneColumns() const;
-   int** createSceneLayout(int rows, int columns);
+   int** createSceneLayout(const int rows, const int columns);
    int** getSceneLayout() const;
    void setSceneLayout(int**);
-   void freeSceneLayout(int** layout, int rows);
+   void freeSceneLayout(int** layout, const int rows);
    Scene() {
        sceneID = -1;
        sceneCategoryID = -1;
    }
-   Scene(int id, int catID) {
+   Scene(const int id, const int catID) {
        sceneID = id;
        sceneCategoryID = catID;
    }

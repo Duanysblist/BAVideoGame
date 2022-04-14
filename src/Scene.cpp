@@ -1,18 +1,18 @@
 #include "Scene.h"
 
-int Scene::getSceneID(){
+int Scene::getSceneID() const {
     return sceneID;
 }
 
-void Scene::setSceneID(int ID) {
+void Scene::setSceneID(const int ID) {
     this->sceneID = ID;
 }
 
-int Scene::getsceneCategoryID() {
+int Scene::getsceneCategoryID() const {
     return sceneCategoryID;
 }
 
-void Scene::setSceneCategoryID(int catID) {
+void Scene::setSceneCategoryID(const int catID) {
     this->sceneCategoryID = catID;
 }
 
@@ -24,7 +24,7 @@ int Scene::getSceneColumns() const {
     return columns;
 }
 
-int** Scene::createSceneLayout(int numRows, int numColumns){
+int** Scene::createSceneLayout(const int numRows, const int numColumns){
     /**
         0 - space in scene is unoccupied
 
@@ -82,7 +82,7 @@ int** Scene::getSceneLayout() const {
     return layout;
 }
 
-void Scene::freeSceneLayout(int** matrix, int numRows){
+void Scene::freeSceneLayout(int** matrix, const int numRows){
     if(matrix){
         for(int i = 0; i < numRows; i++) { if(matrix[i]){ delete[] matrix[i]; } }
         delete[] matrix;
