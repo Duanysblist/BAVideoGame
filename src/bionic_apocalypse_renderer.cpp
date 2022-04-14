@@ -230,7 +230,6 @@ void Renderer::drawInventory(const Player &player) {
     // free surface
     SDL_FreeSurface( image );
     image = NULL;
-    //SDL_Destroy 
     // rags
     image = IMG_Load("../resource/generic_resource.png");
     if (image == NULL) csci437_img_error("Could not create image!");

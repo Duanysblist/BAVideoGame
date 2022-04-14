@@ -1,8 +1,5 @@
 #include "bionic_apocalypse_player.h"
 
-// // For map position
-// std::vector<int> playerMapPosition(2, 0);
-
 int Player::getResource(const int resourceType) const {
 	return inventory[resourceType];
 }
@@ -37,7 +34,7 @@ std::array<bool, 12> Player::getPossibleBattleMoves() const {
 	std::array<bool, 12> moves = {false,false,false,false,false,false,false,false,false,false,false,false};
 
 	// check if each battle move is possible
-	// regular inventory: { sheet metal, rags, oil, power source, wire, nuclear waste }
+	// regular inventory: { scrap metal, rags, oil, power source, wire, nuclear waste }
 
 	if (inventory[1] >= 1) {
 		moves[0] = true;
@@ -100,7 +97,6 @@ int Player::getPlayerScreenPositionY() const {
 	return positionY;
 }
 
-// This needs to either be changed or gotten rid of for screen to screen movement
 void Player::limitPlayerScreenPosition() {
 	if (positionX < 0) {
 		positionX = 0;
@@ -114,14 +110,10 @@ void Player::limitPlayerScreenPosition() {
 	else if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
 		positionY = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT;
 	}
-	// else {
-	// 	positionX = positionX;
-	// 	positionY = positionY;
-	// }
 }
 
-// Need a method that can check if the player is at the edges of the screen
-// If they are at the edge, need to check if there is a screen in that direction
+// check if the player is at the edges of the screen
+// If they are at the edge, check if there is a screen in that direction
 // If there is, render that screen, if not do nothing
 int Player::checkIfPlayerIsAtScreenBoundary() const {
 	// if their x position is at 0
