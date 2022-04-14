@@ -87,7 +87,7 @@ void Renderer::drawEnemy(const int &posX, const int &posY) {
 }
 
 bool Renderer::checkCollision(SDL_Rect a, SDL_Rect b){
-        //The sides of the rectangles
+    //The sides of the rectangles
     int leftA, leftB;
     int rightA, rightB;
     int topA, topB;
@@ -181,8 +181,6 @@ void Renderer::drawObstacles() {
     // SDL_RenderCopyEx(renderer, obstacle_texture, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
 
 }
-
-
 
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
