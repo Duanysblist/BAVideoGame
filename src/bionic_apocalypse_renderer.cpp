@@ -519,17 +519,17 @@ void Renderer::drawResources(const Scene &scene) {
         // 6 - space in scene has wire
         // 7 - space in scene has nuclear waste
             if (layout[i][j] == 2) {
-                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 0, 249, 255, 128);
             } else if (layout[i][j] == 3) {
-                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 249, 0, 128);
             } else if (layout[i][j] == 4) {
-                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 66, 255, 32, 128);
             } else if (layout[i][j] == 5) {
-                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 0, 0, 128);
             } else if (layout[i][j] == 6) {
-                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 77, 123, 255, 128);
             } else if (layout[i][j] == 7) {
-                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 255, 200, 0, 128);
+                boxRGBA(renderer, j*screenBlockWidth, i*screenBlockHeight, j*screenBlockWidth + screenBlockWidth, i*screenBlockHeight + screenBlockHeight, 242, 79, 251, 128);
             }
         }
     }
@@ -546,6 +546,8 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
 
         drawResources(scene);
 
+        drawPlayer(player, world);
+
         SDL_RenderPresent(renderer);
     }
     else {
@@ -556,6 +558,9 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawKeyInventory(player);
 
         drawBattleUI(player);
+
+        drawPlayer(player, world);
+
         SDL_RenderPresent(renderer);
     }
 }

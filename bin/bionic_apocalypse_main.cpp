@@ -225,7 +225,6 @@ int main(int argc, char *argv[]) {
         }
 
         renderer.window_clear();
-        renderer.drawPlayer(player, worldState);
 
         std::vector<int> a = player.getPlayerMapPosition();
         int int_positionx = a.at(0);
