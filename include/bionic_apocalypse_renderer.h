@@ -53,7 +53,7 @@ class Renderer {
 
         void drawPlayer(const Player &player, const bool &world);
         void drawEnemy(const int &posX, const int &posY);
-        void drawObstacles();
+        void drawObstacles(const Scene &scene);
 
         void drawBattleUI(const Player &player);
         bool checkCollision(SDL_Rect a, SDL_Rect b);

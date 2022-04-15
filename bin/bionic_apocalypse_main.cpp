@@ -235,8 +235,6 @@ int main(int argc, char *argv[]) {
         char const *p_char = position.c_str();
         renderer.drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
 
-        renderer.drawObstacles();
-
         badGuy.update(&renderer);
         if(renderer.checkPlayerEnemyCollision()) {
             worldState = false;

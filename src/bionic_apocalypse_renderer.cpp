@@ -43,9 +43,6 @@ void Renderer::window_startup() {
     if (font == NULL) csci437_error("Unable to open font!");
 
 
-    drawObstacles();
-
-
 }
 
 void Renderer::window_clear() {
@@ -137,7 +134,36 @@ bool Renderer::checkPlayerEnemyCollision() {
 // Need a drawObstacles function
 // Can use the player_rect and enemy_rect from this class to check collision detection
 // Should randomly generate rects on the screen
-void Renderer::drawObstacles() {
+void Renderer::drawObstacles(const Scene &scene) {
+    int** layout = scene.getSceneLayout();
+    const int numRows = scene.getSceneRows();
+    const int numColumns = scene.getSceneColumns();
+
+    const int screenBlockWidth = SCREEN_WIDTH/numColumns;
+    const int screenBlockHeight = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/numRows;
+
+    SDL_Surface* image = IMG_Load("../resource/generic_obstacle.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* obstacle = SDL_CreateTextureFromSurface(renderer, image);
+    if (obstacle == NULL) csci437_error("Could not create texture from surface!");
+
+    SDL_FreeSurface( image );
+    image = NULL;
+
+
+    for(int i = 0; i < numRows; i++) {
+        for(int j = 0; j < numColumns; j++) {
+        // 1 - scene has obstacle
+            if (layout[i][j] == 1) {
+                SDL_Rect obstacle_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, obstacle, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
+            }
+        }
+    }
+
+    SDL_DestroyTexture(obstacle);
+
+
     // First step: draw a single rect in a random position on screen that the enemy and player cannot cross
     // Get coordinates to place obstacle at
 
@@ -601,6 +627,7 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawKeyInventory(player);
 
         drawResources(scene);
+        drawObstacles(scene);
 
         drawPlayer(player, world);
 
