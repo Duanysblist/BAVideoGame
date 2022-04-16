@@ -57,11 +57,11 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
     if (player_texture == NULL) csci437_error("Could not create texture from surface!");
 
     if (world) {
-        player_rect = { player.getPlayerScreenPositionX(), player.getPlayerScreenPositionY(), 100, 100 };
+        player_rect = { player.getPlayerScreenPositionX(), player.getPlayerScreenPositionY(), PLAYER_WIDTH, PLAYER_HEIGHT };
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
     else {
-        player_rect = {0, 500, 100, 100};
+        player_rect = {0, 500, PLAYER_WIDTH, PLAYER_HEIGHT};
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
 

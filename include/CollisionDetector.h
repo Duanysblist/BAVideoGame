@@ -25,11 +25,16 @@ private:
     int blockHeight;
     int blockWidth;
 
+    int numRows;
+    int numCols;
 
     void playerUpperLeftResourceCollision(Player &player, Scene &scene) const;
     void playerUpperRightResourceCollision(Player &player, Scene &scene) const;
     void playerBottomLeftResourceCollision(Player &player, Scene &scene) const;
     void playerBottomRightResourceCollision(Player &player, Scene &scene) const;
+    void playerCenterResourceCollision(Player &player, Scene &scene) const;
+
+    void fixLimits(int &row, int &col) const;
 
 public:
     void playerResourceCollision(Player &player, Scene &scene);
