@@ -4,6 +4,7 @@
 #include "bionic_apocalypse_battlelogic.h"
 #include "bionic_apocalypse_constants.h"
 #include "Scene.h"
+#include "CollisionDetector.h"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -31,6 +32,8 @@ int main(int argc, char *argv[]) {
 	bool running = true;
     bool battling = false;
     SDL_Event e;
+
+    CollisionDetector collisionDetector;
     
     Renderer renderer;
 
@@ -234,6 +237,8 @@ int main(int argc, char *argv[]) {
         std::string position = positionx + positiony;
         char const *p_char = position.c_str();
         renderer.drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
+
+        collisionDetector.playerResourceCollision(player, currentScene);
 
         badGuy.update(&renderer);
         if(renderer.checkPlayerEnemyCollision()) {

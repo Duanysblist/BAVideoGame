@@ -82,6 +82,14 @@ int** Scene::getSceneLayout() const {
     return layout;
 }
 
+int Scene::getSceneBlockInfo(int row, int col) const {
+    return layout[row][col];
+}
+
+void Scene::setSceneBlockInfo(int row, int col, int val) {
+    layout[row][col] = val;
+}
+
 void Scene::freeSceneLayout(int** matrix, const int numRows){
     if(matrix){
         for(int i = 0; i < numRows; i++) { if(matrix[i]){ delete[] matrix[i]; } }

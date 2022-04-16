@@ -33,6 +33,8 @@ class Scene {
    int** getSceneLayout() const;
    void setSceneLayout(int**);
    void freeSceneLayout(int** layout, const int rows);
+   int getSceneBlockInfo(int row, int col) const;
+   void setSceneBlockInfo(int row, int col, int val);
    Scene() {
        sceneID = -1;
        sceneCategoryID = -1;
