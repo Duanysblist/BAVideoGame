@@ -81,6 +81,7 @@ void Renderer::drawEnemy(const int &posX, const int &posY) {
     SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 
     SDL_DestroyTexture(enemy_texture);
+    SDL_FreeSurface(image);
 }
 
 bool Renderer::checkCollision(SDL_Rect a, SDL_Rect b){
@@ -548,32 +549,41 @@ void Renderer::drawResources(const Scene &scene) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* scrap_metal = SDL_CreateTextureFromSurface(renderer, image);
     if (scrap_metal == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // rags
     image = IMG_Load("../resource/rags.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* rags = SDL_CreateTextureFromSurface(renderer, image);
     if (rags == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // oil
     image = IMG_Load("../resource/oil.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* oil = SDL_CreateTextureFromSurface(renderer, image);
     if (oil == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // power source
     image = IMG_Load("../resource/power.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* power = SDL_CreateTextureFromSurface(renderer, image);
     if (power == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // wires
     image = IMG_Load("../resource/wire.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* wire = SDL_CreateTextureFromSurface(renderer, image);
     if (wire == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // nuclear waste
     image = IMG_Load("../resource/nuclear.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* nuclear = SDL_CreateTextureFromSurface(renderer, image);
     if (nuclear == NULL) csci437_error("Could not create texture from surface!");
-
     // free surface
     SDL_FreeSurface( image );
     image = NULL;

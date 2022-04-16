@@ -45,7 +45,7 @@ void CollisionDetector::playerUpperLeftResourceCollision(Player &player, Scene &
 
     fixLimits(upperLeftRow, upperLeftColumn);
 
-    std::cout << "Upper Left: " << upperLeftRow << " " << upperLeftColumn << std::endl;
+    // std::cout << "Upper Left: " << upperLeftRow << " " << upperLeftColumn << std::endl;
 
     // check if resource is there
     int blockInfo = scene.getSceneBlockInfo(upperLeftRow, upperLeftColumn);
@@ -103,7 +103,7 @@ void CollisionDetector::playerUpperRightResourceCollision(Player &player, Scene 
 
     fixLimits(upperRightRow, upperRightColumn);
 
-    std::cout << "Upper Right: " << upperRightRow << " " << upperRightColumn << std::endl;
+    // std::cout << "Upper Right: " << upperRightRow << " " << upperRightColumn << std::endl;
 
     // check if resource is there
     int blockInfo = scene.getSceneBlockInfo(upperRightRow, upperRightColumn);
@@ -159,7 +159,7 @@ void CollisionDetector::playerBottomLeftResourceCollision(Player &player, Scene 
     int bottomLeftRow = playerBottom/blockHeight;
     int bottomLeftColumn = playerX/blockWidth;
 
-    std::cout << "Bottom Left: " << bottomLeftRow << " " << bottomLeftColumn << std::endl;
+    // std::cout << "Bottom Left: " << bottomLeftRow << " " << bottomLeftColumn << std::endl;
 
     fixLimits(bottomLeftRow, bottomLeftColumn);
 
@@ -219,7 +219,7 @@ void CollisionDetector::playerBottomRightResourceCollision(Player &player, Scene
 
     fixLimits(bottomRightRow, bottomRightColumn);
 
-    std::cout << "Bottom Right: " << bottomRightRow << " " << bottomRightColumn << std::endl;
+    // std::cout << "Bottom Right: " << bottomRightRow << " " << bottomRightColumn << std::endl;
 
     // check if resource is there
     int blockInfo = scene.getSceneBlockInfo(bottomRightRow, bottomRightColumn);
@@ -278,7 +278,7 @@ void CollisionDetector::playerCenterResourceCollision(Player &player, Scene &sce
 
     fixLimits(centerRow, centerColumn);
 
-    std::cout << "Center: " << centerRow << " " << centerColumn << std::endl;
+    // std::cout << "Center: " << centerRow << " " << centerColumn << std::endl;
 
     // check if resource is there
     int blockInfo = scene.getSceneBlockInfo(centerRow, centerColumn);
