@@ -29,7 +29,7 @@ class Scene {
    void setSceneCategoryID(const int num);
    int getSceneRows() const;
    int getSceneColumns() const;
-   int** createSceneLayout(const int rows, const int columns);
+   void createSceneLayout(const int rows, const int columns);
    int** getSceneLayout() const;
    void setSceneLayout(int**);
    void freeSceneLayout(int** layout, const int rows);

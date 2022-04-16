@@ -81,6 +81,7 @@ void Renderer::drawEnemy(const int &posX, const int &posY) {
     SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 
     SDL_DestroyTexture(enemy_texture);
+    SDL_FreeSurface(image);
 }
 
 bool Renderer::checkCollision(SDL_Rect a, SDL_Rect b){
@@ -622,12 +623,12 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
-        drawHealthBar(player);
-        drawInventory(player);
-        drawKeyInventory(player);
+        // drawHealthBar(player);
+        // drawInventory(player);
+        // drawKeyInventory(player);
 
-        drawResources(scene);
-        drawObstacles(scene);
+        // drawResources(scene);
+        // drawObstacles(scene);
 
         drawPlayer(player, world);
 
@@ -636,11 +637,11 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
     else {
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
-        drawHealthBar(player);
-        drawInventory(player);
-        drawKeyInventory(player);
+        // drawHealthBar(player);
+        // drawInventory(player);
+        // drawKeyInventory(player);
 
-        drawBattleUI(player);
+        // drawBattleUI(player);
 
         drawPlayer(player, world);
 

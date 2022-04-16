@@ -24,7 +24,7 @@ int Scene::getSceneColumns() const {
     return columns;
 }
 
-int** Scene::createSceneLayout(const int numRows, const int numColumns){
+void Scene::createSceneLayout(const int numRows, const int numColumns){
     /**
         0 - space in scene is unoccupied
 
@@ -74,7 +74,6 @@ int** Scene::createSceneLayout(const int numRows, const int numColumns){
             else {layout[i][j] = 7;} // nuclear waste
         }
     }
-    return layout;
 }
 
 // For map of obstacles in a scene
