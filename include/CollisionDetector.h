@@ -26,13 +26,13 @@ private:
     int blockWidth;
 
 
-    void playerUpperLeftResourceCollision(const Player &player, const Scene &scene) const;
-    void playerUpperRightResourceCollision(const Player &player, const Scene &scene) const;
-    void playerBottomLeftResourceCollision(const Player &player, const Scene &scene) const;
-    void playerBottomRightResourceCollision(const Player &player, const Scene &scene) const;
+    void playerUpperLeftResourceCollision(Player &player, Scene &scene) const;
+    void playerUpperRightResourceCollision(Player &player, Scene &scene) const;
+    void playerBottomLeftResourceCollision(Player &player, Scene &scene) const;
+    void playerBottomRightResourceCollision(Player &player, Scene &scene) const;
 
 public:
-    void playerResourceCollision(const Player &player, const Scene &scene);
+    void playerResourceCollision(Player &player, Scene &scene);
 
 };
 
