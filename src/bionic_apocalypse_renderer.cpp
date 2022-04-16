@@ -549,32 +549,41 @@ void Renderer::drawResources(const Scene &scene) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* scrap_metal = SDL_CreateTextureFromSurface(renderer, image);
     if (scrap_metal == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // rags
     image = IMG_Load("../resource/rags.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* rags = SDL_CreateTextureFromSurface(renderer, image);
     if (rags == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // oil
     image = IMG_Load("../resource/oil.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* oil = SDL_CreateTextureFromSurface(renderer, image);
     if (oil == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // power source
     image = IMG_Load("../resource/power.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* power = SDL_CreateTextureFromSurface(renderer, image);
     if (power == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // wires
     image = IMG_Load("../resource/wire.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* wire = SDL_CreateTextureFromSurface(renderer, image);
     if (wire == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // nuclear waste
     image = IMG_Load("../resource/nuclear.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* nuclear = SDL_CreateTextureFromSurface(renderer, image);
     if (nuclear == NULL) csci437_error("Could not create texture from surface!");
-
     // free surface
     SDL_FreeSurface( image );
     image = NULL;
@@ -623,12 +632,12 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         // Draw line for bottom bar
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
-        // drawHealthBar(player);
-        // drawInventory(player);
-        // drawKeyInventory(player);
+        drawHealthBar(player);
+        drawInventory(player);
+        drawKeyInventory(player);
 
-        // drawResources(scene);
-        // drawObstacles(scene);
+        drawResources(scene);
+        drawObstacles(scene);
 
         drawPlayer(player, world);
 
@@ -637,11 +646,11 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
     else {
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
         // Update health bar
-        // drawHealthBar(player);
-        // drawInventory(player);
-        // drawKeyInventory(player);
+        drawHealthBar(player);
+        drawInventory(player);
+        drawKeyInventory(player);
 
-        // drawBattleUI(player);
+        drawBattleUI(player);
 
         drawPlayer(player, world);
 
