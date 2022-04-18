@@ -12,12 +12,12 @@ const int BOTTOM_BAR_HEIGHT = 100;
 const int SCREEN_BPP = 32;
 
 //Player dimension constants
-const int PLAYER_WIDTH = 100;
-const int PLAYER_HEIGHT = 100;
+const int PLAYER_WIDTH = 80;
+const int PLAYER_HEIGHT = 80;
 
 //Enemy dimension constants
-const int ENEMY_WIDTH = 100;
-const int ENEMY_HEIGHT = 100;
+const int ENEMY_WIDTH = 80;
+const int ENEMY_HEIGHT = 80;
 const int ENEMY_SPEED = 5;
 
 // Screen Directions

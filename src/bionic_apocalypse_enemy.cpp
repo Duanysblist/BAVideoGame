@@ -95,7 +95,7 @@ void Enemy::update(Renderer* renderer) {
 	}
 
 	//Render Enemy
-	renderer->drawEnemy(enemyPosX, enemyPosY);
+	//renderer->drawEnemy(enemyPosX, enemyPosY);
 
 }
 

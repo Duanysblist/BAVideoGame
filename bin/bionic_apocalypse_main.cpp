@@ -241,10 +241,14 @@ int main(int argc, char *argv[]) {
         collisionDetector.playerResourceCollision(player, currentScene);
 
         badGuy.update(&renderer);
+        
         if(renderer.checkPlayerEnemyCollision()) {
             worldState = false;
         }
         renderer.window_update(player, worldState, currentScene);
+        renderer.drawEnemy(badGuy.getX(), badGuy.getY());
+
+        renderer.renderer_present();
 
         SDL_Delay(17);
 	}

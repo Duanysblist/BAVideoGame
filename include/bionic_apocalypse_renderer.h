@@ -58,6 +58,8 @@ class Renderer {
         void drawBattleUI(const Player &player);
         bool checkCollision(SDL_Rect a, SDL_Rect b);
         bool checkPlayerEnemyCollision();
+
+        void renderer_present();
 };
 
 #endif

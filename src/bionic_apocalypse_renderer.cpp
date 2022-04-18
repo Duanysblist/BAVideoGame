@@ -61,7 +61,7 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
     else {
-        player_rect = {0, 500, PLAYER_WIDTH, PLAYER_HEIGHT};
+        player_rect = {0, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT+PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT};
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
 
@@ -641,7 +641,7 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
 
         drawPlayer(player, world);
 
-        SDL_RenderPresent(renderer);
+        //SDL_RenderPresent(renderer);
     }
     else {
         thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
@@ -654,8 +654,12 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
 
         drawPlayer(player, world);
 
-        SDL_RenderPresent(renderer);
+        //SDL_RenderPresent(renderer);
     }
+}
+
+void Renderer::renderer_present() {
+    SDL_RenderPresent(renderer);
 }
 
 
