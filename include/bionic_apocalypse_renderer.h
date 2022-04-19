@@ -43,8 +43,8 @@ class Renderer {
         void drawInventory(const Player &player);
         void drawKeyInventory(const Player &player);
 
-        // temporary method to work on resource collection
-        void drawResources(const Scene &scene);
+        // draw resources and obstacles
+        void drawScene(const Scene &scene);
 
         // window methods
         void window_startup();
@@ -53,7 +53,6 @@ class Renderer {
 
         void drawPlayer(const Player &player, const bool &world);
         void drawEnemy(const int &posX, const int &posY);
-        void drawObstacles(const Scene &scene);
 
         void drawBattleUI(const Player &player);
         bool checkCollision(SDL_Rect a, SDL_Rect b);

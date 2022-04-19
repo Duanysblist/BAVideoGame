@@ -132,83 +132,6 @@ bool Renderer::checkPlayerEnemyCollision() {
     return checkCollision(player_rect, enemy_rect);
 }
 
-// Need a drawObstacles function
-// Can use the player_rect and enemy_rect from this class to check collision detection
-// Should randomly generate rects on the screen
-void Renderer::drawObstacles(const Scene &scene) {
-    int** layout = scene.getSceneLayout();
-    const int numRows = scene.getSceneRows();
-    const int numColumns = scene.getSceneColumns();
-
-    const int screenBlockWidth = SCREEN_WIDTH/numColumns;
-    const int screenBlockHeight = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/numRows;
-
-    SDL_Surface* image = IMG_Load("../resource/generic_obstacle.png");
-    if (image == NULL) csci437_img_error("Could not create image!");
-    SDL_Texture* obstacle = SDL_CreateTextureFromSurface(renderer, image);
-    if (obstacle == NULL) csci437_error("Could not create texture from surface!");
-
-    SDL_FreeSurface( image );
-    image = NULL;
-
-
-    for(int i = 0; i < numRows; i++) {
-        for(int j = 0; j < numColumns; j++) {
-        // 1 - scene has obstacle
-            if (layout[i][j] == 1) {
-                SDL_Rect obstacle_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, obstacle, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
-            }
-        }
-    }
-
-    SDL_DestroyTexture(obstacle);
-
-
-    // First step: draw a single rect in a random position on screen that the enemy and player cannot cross
-    // Get coordinates to place obstacle at
-
-    //TODO: This should go in a collectObstacles function
-    // Need to draw an obstacle for each 1 in the 10x16 matrix
-    // Create a for loop and check for obstacles in the scene
-        // If a value of 1 is found in the matrix
-            // obstacle_x_coord = 80 * j
-            // obstacle_y_coord = 70 * i
-            // Create a rect for that obstacle
-                // obstacle_rect = {obstacle_x_coord, obstacle_y_coord, OBSTACLE_WIDTH, OBSTACLE_HEIGHT};
-            // Add that obstacle to an arrayto draw once finished
-            // obstacle_arr[counter] = obstacle_rect
-    
-    // TODO: This should go in the drawObstacles(SDL_Rect [] obstacles) function
-    // Once the loop is finished and all obstacle rects have been made
-        // Render the obstacle rects to the screen
-        // SDL_RenderCopyEx(renderer, obstacle_texture, NULL, &obstacle_arr[i], 0, NULL, SDL_FLIP_NONE);
-
-
-
-    // Random coordinates on the screen
-    // const int obstacle_x_coord = 500;
-    // const int obstacle_y_coord = 500;
-    // Need to check these coordinates against the range that the player and enemy take up
-    // Create a rect out of the parts of the obstacle
-    // SDL_Rect obstacle_rect = {obstacle_x_coord, obstacle_y_coord, OBSTACLE_WIDTH, OBSTACLE_HEIGHT};
-    
-
-    // Check for collisions between the obstacle and the player/enemy
-    // If there is a collision, recalculate the coordinates of the obstacle until there is no collision
-    // while(checkCollision(player_rect, obstacle_rect) || checkCollision(enemy_rect, obstacle_rect)){
-    //     obstacle_x_coord = (rand() % SCREEN_WIDTH) + OBSTACLE_WIDTH;
-    //     obstacle_y_coord = (rand() % (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT)) + OBSTACLE_HEIGHT;
-    // }
-    // If there are no collisions, draw the obstacle to the screen
-    // SDL_Surface* obstacle_image = IMG_Load("../resource/generic_key_resource.png");
-    // if (obstacle_image == NULL) csci437_img_error("Could not create image!");
-    // SDL_Texture* obstacle_texture = SDL_CreateTextureFromSurface(renderer, obstacle_image);
-    // if (obstacle_texture == NULL) csci437_error("Could not create texture from surface!");
-    // SDL_RenderCopyEx(renderer, obstacle_texture, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
-
-}
-
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
     if ( text == NULL ) csci437_ttf_error("Unable to render text!");
@@ -529,7 +452,7 @@ void Renderer::drawBattleUI(const Player &player) {
 
 }
 
-void Renderer::drawResources(const Scene &scene) {
+void Renderer::drawScene(const Scene &scene) {
     int** layout = scene.getSceneLayout();
     const int numRows = scene.getSceneRows();
     const int numColumns = scene.getSceneColumns();
@@ -587,6 +510,13 @@ void Renderer::drawResources(const Scene &scene) {
     // free surface
     SDL_FreeSurface( image );
     image = NULL;
+    // obstacles
+    image = IMG_Load("../resource/generic_obstacle.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* obstacle = SDL_CreateTextureFromSurface(renderer, image);
+    if (obstacle == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
@@ -614,6 +544,9 @@ void Renderer::drawResources(const Scene &scene) {
             } else if (layout[i][j] == 7) {
                 SDL_Rect nuclear_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, IMAGE_WIDTH, IMAGE_HEIGHT };
                 SDL_RenderCopyEx(renderer, nuclear, NULL, &nuclear_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 1) {
+                SDL_Rect obstacle_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, obstacle, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
             }
         }
     }
@@ -625,6 +558,7 @@ void Renderer::drawResources(const Scene &scene) {
     SDL_DestroyTexture(power);
     SDL_DestroyTexture(wire);
     SDL_DestroyTexture(nuclear);
+    SDL_DestroyTexture(obstacle);
 }
 
 void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
@@ -636,8 +570,7 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawInventory(player);
         drawKeyInventory(player);
 
-        drawResources(scene);
-        drawObstacles(scene);
+        drawScene(scene);
 
         drawPlayer(player, world);
 
