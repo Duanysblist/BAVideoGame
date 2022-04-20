@@ -39,6 +39,8 @@ class Renderer {
 
     public:
         void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
+
+        void drawBottomBar(const Player &player);
         void drawHealthBar(const Player &player);
         void drawInventory(const Player &player);
         void drawKeyInventory(const Player &player);

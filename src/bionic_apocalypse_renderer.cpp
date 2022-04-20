@@ -584,33 +584,25 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(scene_background);
 }
 
+void Renderer::drawBottomBar(const Player &player) {
+    // Draw line for bottom bar
+    thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
+    // Update health bar
+    drawHealthBar(player);
+    drawInventory(player);
+    drawKeyInventory(player);
+}
+
 void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
     if (world) {
-        // Draw line for bottom bar
-        thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
-        // Update health bar
-        drawHealthBar(player);
-        drawInventory(player);
-        drawKeyInventory(player);
-
+        drawBottomBar(player);
         drawScene(scene);
-
         drawPlayer(player, world);
-
-        //SDL_RenderPresent(renderer);
     }
     else {
-        thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
-        // Update health bar
-        drawHealthBar(player);
-        drawInventory(player);
-        drawKeyInventory(player);
-
+        drawBottomBar(player);
         drawBattleUI(player);
-
         drawPlayer(player, world);
-
-        //SDL_RenderPresent(renderer);
     }
 }
 
