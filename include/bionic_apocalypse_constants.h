@@ -19,7 +19,7 @@ const double PLAYER_SPEED = 0.35;
 //Enemy dimension constants
 const int ENEMY_WIDTH = 80;
 const int ENEMY_HEIGHT = 80;
-const int ENEMY_SPEED = 5;
+const double ENEMY_SPEED = 0.15;
 
 // Screen Directions
 const int UP = 1;

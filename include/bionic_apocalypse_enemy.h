@@ -39,8 +39,7 @@ class Enemy {
 		void setStartLocation(const int X, const int Y);
 		void setEndLocation(const int X, const int Y);
 		bool playerCollisionCheck(const Player player) const;
-		void update(Renderer* renderer);
-		// void draw(Renderer renderer);
+		void update(const int dt);
 };
 
 #endif

@@ -237,7 +237,7 @@ int main(int argc, char *argv[]) {
 
         collisionDetector.playerResourceCollision(player, currentScene);
 
-        badGuy.update(&renderer);
+        badGuy.update(dt);
         
         if(renderer.checkPlayerEnemyCollision()) {
             worldState = false;

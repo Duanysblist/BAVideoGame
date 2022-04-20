@@ -62,7 +62,7 @@ bool Enemy::playerCollisionCheck(const Player player) const {
 	return false;
 }
 
-void Enemy::update(Renderer* renderer) {
+void Enemy::update(const int dt) {
 	//Update Location
 	// std::cout << "Update";
 	int distanceX;
@@ -79,16 +79,16 @@ void Enemy::update(Renderer* renderer) {
 	// std::cout << ", X Distance: " << distanceX << ", Y Distance: " << distanceY;
 	
 	if (distanceX > 0) {
-		setPosX(enemyPosX+ENEMY_SPEED);
+		setPosX(enemyPosX+(ENEMY_SPEED*dt));
 	}
 	else if (distanceX < 0) {
-		setPosX(enemyPosX-ENEMY_SPEED);
+		setPosX(enemyPosX-(ENEMY_SPEED*dt));
 	} 
 	if (distanceY > 0) {
-		setPosY(enemyPosY+ENEMY_SPEED);
+		setPosY(enemyPosY+(ENEMY_SPEED*dt));
 	}
 	else if (distanceY < 0) {
-		setPosY(enemyPosY-ENEMY_SPEED);
+		setPosY(enemyPosY-(ENEMY_SPEED*dt));
 	}
 	if (distanceY == 0 && distanceX == 0) {
 		goingToStart = !goingToStart;
