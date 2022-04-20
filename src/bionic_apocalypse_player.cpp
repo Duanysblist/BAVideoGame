@@ -217,20 +217,24 @@ void Player::setPlayerScreenPosition(const int newX, const int newY) {
 	limitPlayerScreenPosition();
 }
 
-void Player::playerMoveUp() {
-	changePlayerScreenPosition(0, -playerMovementSpeed);
+void Player::playerMoveUp(const int dt) {
+	int change = -PLAYER_SPEED * dt; 
+	changePlayerScreenPosition(0, change);
 }
 
-void Player::playerMoveDown() {
-	changePlayerScreenPosition(0, playerMovementSpeed);
+void Player::playerMoveDown(const int dt) {
+	int change = PLAYER_SPEED * dt; 
+	changePlayerScreenPosition(0, change);
 }
 
-void Player::playerMoveLeft() {
-	changePlayerScreenPosition(-playerMovementSpeed, 0);
+void Player::playerMoveLeft(const int dt) {
+	int change = -PLAYER_SPEED * dt; 
+	changePlayerScreenPosition(change, 0);
 }
 
-void Player::playerMoveRight() {
-	changePlayerScreenPosition(playerMovementSpeed, 0);
+void Player::playerMoveRight(const int dt) {
+	int change = PLAYER_SPEED * dt; 
+	changePlayerScreenPosition(change, 0);
 }
 
 

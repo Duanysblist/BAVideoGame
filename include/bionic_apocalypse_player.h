@@ -17,7 +17,6 @@ class Player {
         int positionX = 0;
         int positionY = 0;
         int screenLocation;
-        const int playerMovementSpeed = 10;
         int playerHealth = MAX_HEALTH;
 
         // For map position
@@ -48,10 +47,10 @@ class Player {
         void limitPlayerScreenPosition();
         int checkIfPlayerIsAtScreenBoundary() const;
 
-        void playerMoveUp();
-        void playerMoveDown();
-        void playerMoveLeft();
-        void playerMoveRight();
+        void playerMoveUp(const int dt);
+        void playerMoveDown(const int dt);
+        void playerMoveLeft(const int dt);
+        void playerMoveRight(const int dt);
 
         void setRelationalPositionY(const int newRelationalPositionY);
         void setRelationalPositionX(const int newRelationalPositionY);

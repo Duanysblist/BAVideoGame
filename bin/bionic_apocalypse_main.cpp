@@ -61,8 +61,14 @@ int main(int argc, char *argv[]) {
             counter++;
         }
     }
+
+    int cur_time = SDL_GetTicks();
       
 	while (running) {
+
+        // get delta t
+        unsigned int dt = SDL_GetTicks() - cur_time;
+        cur_time = SDL_GetTicks();
 
         // get player world position
         std::vector<int> currentVec = player.getPlayerMapPosition();
@@ -134,16 +140,16 @@ int main(int argc, char *argv[]) {
             }
 
             if (MOVE_UP) {
-                player.playerMoveUp(); 
+                player.playerMoveUp(dt); 
             }
             if (MOVE_DOWN) {
-                player.playerMoveDown();
+                player.playerMoveDown(dt);
             }
             if (MOVE_LEFT) {
-                player.playerMoveLeft();
+                player.playerMoveLeft(dt);
             }
             if (MOVE_RIGHT) {
-                player.playerMoveRight();
+                player.playerMoveRight(dt);
             }
 
             switch(player.checkIfPlayerIsAtScreenBoundary()) {
@@ -249,8 +255,6 @@ int main(int argc, char *argv[]) {
         renderer.drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
 
         renderer.renderer_present();
-
-        SDL_Delay(9);
 	}
 
     return 0;

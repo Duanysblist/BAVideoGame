@@ -14,6 +14,7 @@ const int SCREEN_BPP = 32;
 //Player dimension constants
 const int PLAYER_WIDTH = 80;
 const int PLAYER_HEIGHT = 80;
+const double PLAYER_SPEED = 0.35;
 
 //Enemy dimension constants
 const int ENEMY_WIDTH = 80;
