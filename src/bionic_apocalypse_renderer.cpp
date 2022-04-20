@@ -567,7 +567,7 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_Rect obstacle_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, obstacle, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
             } else {
-                SDL_Rect scene_rect = { j*screenBlockWidth - 1, i*screenBlockHeight - 1, screenBlockWidth + 2, screenBlockHeight +2};
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
                 SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);    
             }
         }
