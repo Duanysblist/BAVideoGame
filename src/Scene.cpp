@@ -8,6 +8,14 @@ void Scene::setSceneID(const int ID) {
     this->sceneID = ID;
 }
 
+int Scene::getSceneZone() const {
+    return sceneID;
+}
+
+void Scene::setSceneZone(const int zone) {
+    this->sceneZone = zone;
+}
+
 int Scene::getsceneCategoryID() const {
     return sceneCategoryID;
 }
@@ -81,10 +89,12 @@ int** Scene::getSceneLayout() const {
     return layout;
 }
 
+// get info about what is in a subsection of the scene
 int Scene::getSceneBlockInfo(int row, int col) const {
     return layout[row][col];
 }
 
+// set info about what is in a subsection of the scene
 void Scene::setSceneBlockInfo(int row, int col, int val) {
     layout[row][col] = val;
 }
