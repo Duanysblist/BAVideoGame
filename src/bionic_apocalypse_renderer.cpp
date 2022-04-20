@@ -161,10 +161,10 @@ void Renderer::drawHealthBar(const Player &player) {
 }
 
 void Renderer::drawInventory(const Player &player) {
-    int IMAGE_WIDTH = 40;
-    int IMAGE_HEIGHT = 40;
+    int RESOURCE_WIDTH = 40;
+    int RESOURCE_HEIGHT = 40;
     int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
-    int RELATIVE_Y0 = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT + ((BOTTOM_BAR_HEIGHT-IMAGE_HEIGHT)/2);
+    int RELATIVE_Y0 = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT + ((BOTTOM_BAR_HEIGHT-RESOURCE_HEIGHT)/2);
     int GAP_BTW_IMAGES = 120;
     // draw resource pics
     // scrap metal
@@ -172,7 +172,7 @@ void Renderer::drawInventory(const Player &player) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* scrap_metal = SDL_CreateTextureFromSurface(renderer, image);
     if (scrap_metal == NULL) csci437_error("Could not create texture from surface!");
-    SDL_Rect scrap_metal_rect = { RELATIVE_X0, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_Rect scrap_metal_rect = { RELATIVE_X0, RELATIVE_Y0, RESOURCE_WIDTH, RESOURCE_HEIGHT };
     SDL_RenderCopyEx(renderer, scrap_metal, NULL, &scrap_metal_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(scrap_metal);
     // free surface
@@ -183,7 +183,7 @@ void Renderer::drawInventory(const Player &player) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* rags = SDL_CreateTextureFromSurface(renderer, image);
     if (rags == NULL) csci437_error("Could not create texture from surface!");
-    SDL_Rect rags_rect = { RELATIVE_X0 + GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_Rect rags_rect = { RELATIVE_X0 + GAP_BTW_IMAGES, RELATIVE_Y0, RESOURCE_WIDTH, RESOURCE_HEIGHT };
     SDL_RenderCopyEx(renderer, rags, NULL, &rags_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(rags);
     // free surface
@@ -194,7 +194,7 @@ void Renderer::drawInventory(const Player &player) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* oil = SDL_CreateTextureFromSurface(renderer, image);
     if (oil == NULL) csci437_error("Could not create texture from surface!");
-    SDL_Rect oil_rect = { RELATIVE_X0 + 2*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_Rect oil_rect = { RELATIVE_X0 + 2*GAP_BTW_IMAGES, RELATIVE_Y0, RESOURCE_WIDTH, RESOURCE_HEIGHT };
     SDL_RenderCopyEx(renderer, oil, NULL, &oil_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(oil);
     // free surface
@@ -205,7 +205,7 @@ void Renderer::drawInventory(const Player &player) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* power_source = SDL_CreateTextureFromSurface(renderer, image);
     if (power_source == NULL) csci437_error("Could not create texture from surface!");
-    SDL_Rect power_source_rect = { RELATIVE_X0 + 3*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_Rect power_source_rect = { RELATIVE_X0 + 3*GAP_BTW_IMAGES, RELATIVE_Y0, RESOURCE_WIDTH, RESOURCE_HEIGHT };
     SDL_RenderCopyEx(renderer, power_source, NULL, &power_source_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(power_source);
     // free surface
@@ -216,7 +216,7 @@ void Renderer::drawInventory(const Player &player) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* wire = SDL_CreateTextureFromSurface(renderer, image);
     if (wire == NULL) csci437_error("Could not create texture from surface!");
-    SDL_Rect wire_rect = { RELATIVE_X0 + 4*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_Rect wire_rect = { RELATIVE_X0 + 4*GAP_BTW_IMAGES, RELATIVE_Y0, RESOURCE_WIDTH, RESOURCE_HEIGHT };
     SDL_RenderCopyEx(renderer, wire, NULL, &wire_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(wire);
     // free surface
@@ -227,7 +227,7 @@ void Renderer::drawInventory(const Player &player) {
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* nuclear_waste = SDL_CreateTextureFromSurface(renderer, image);
     if (nuclear_waste == NULL) csci437_error("Could not create texture from surface!");
-    SDL_Rect nuclear_waste_rect = { RELATIVE_X0 + 5*GAP_BTW_IMAGES, RELATIVE_Y0, IMAGE_WIDTH, IMAGE_HEIGHT };
+    SDL_Rect nuclear_waste_rect = { RELATIVE_X0 + 5*GAP_BTW_IMAGES, RELATIVE_Y0, RESOURCE_WIDTH, RESOURCE_HEIGHT };
     SDL_RenderCopyEx(renderer, nuclear_waste, NULL, &nuclear_waste_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(nuclear_waste);
     // free surface
@@ -235,29 +235,29 @@ void Renderer::drawInventory(const Player &player) {
     image = NULL;
     // write quantity
     // scrap metal
-    drawText(":", RELATIVE_X0 + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText(":", RELATIVE_X0 + RESOURCE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
     int quantity = player.getResource(0);
-    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + RESOURCE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // rags
-    drawText(":", RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText(":", RELATIVE_X0 + (GAP_BTW_IMAGES) + RESOURCE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
     quantity = player.getResource(1);
-    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + (GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + (GAP_BTW_IMAGES) + RESOURCE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // oil
-    drawText(":", RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText(":", RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
     quantity = player.getResource(2);
-    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 2*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // power sources
-    drawText(":", RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText(":", RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
     quantity = player.getResource(3);
-    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 3*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // wire
-    drawText(":", RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText(":", RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
     quantity = player.getResource(4);
-    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 4*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
     // nuclear waste
-    drawText(":", RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText(":", RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
     quantity = player.getResource(5);
-    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + IMAGE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
+    drawText((std::to_string(quantity)).c_str(), RELATIVE_X0 + 5*(GAP_BTW_IMAGES) + RESOURCE_WIDTH + 18, RELATIVE_Y0 + 10, 255, 255, 255);
 }
 
 void Renderer::drawKeyInventory(const Player &player) {
@@ -460,11 +460,11 @@ void Renderer::drawScene(const Scene &scene) {
     const int screenBlockWidth = SCREEN_WIDTH/numColumns;
     const int screenBlockHeight = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/numRows;
 
-    const int IMAGE_HEIGHT = screenBlockHeight - 5;
-    const int IMAGE_WIDTH = IMAGE_HEIGHT;
+    const int RESOURCE_HEIGHT = screenBlockHeight - 5;
+    const int RESOURCE_WIDTH = RESOURCE_HEIGHT;
 
-    const int LEFT_BORDER = (screenBlockWidth - IMAGE_WIDTH)/2;
-    const int VERTICAL_BORDER = (screenBlockHeight - IMAGE_HEIGHT)/2;
+    const int LEFT_BORDER = (screenBlockWidth - RESOURCE_WIDTH)/2;
+    const int VERTICAL_BORDER = (screenBlockHeight - RESOURCE_HEIGHT)/2;
 
     // create textures
     // scrap metal
@@ -517,6 +517,13 @@ void Renderer::drawScene(const Scene &scene) {
     if (obstacle == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
+    // scene background
+    image = IMG_Load("../resource/scene_background.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* scene_background = SDL_CreateTextureFromSurface(renderer, image);
+    if (scene_background == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
@@ -527,26 +534,41 @@ void Renderer::drawScene(const Scene &scene) {
         // 6 - space in scene has wire
         // 7 - space in scene has nuclear waste
             if (layout[i][j] == 2) {
-                SDL_Rect scrap_metal_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, IMAGE_WIDTH, IMAGE_HEIGHT };
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect scrap_metal_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, scrap_metal, NULL, &scrap_metal_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 3) {
-                SDL_Rect rags_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, IMAGE_WIDTH, IMAGE_HEIGHT };
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect rags_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, rags, NULL, &rags_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 4) {
-                SDL_Rect oil_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, IMAGE_WIDTH, IMAGE_HEIGHT };
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect oil_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, oil, NULL, &oil_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 5) {
-                SDL_Rect power_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, IMAGE_WIDTH, IMAGE_HEIGHT };
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect power_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, power, NULL, &power_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 6) {
-                SDL_Rect wire_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, IMAGE_WIDTH, IMAGE_HEIGHT };
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect wire_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, wire, NULL, &wire_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 7) {
-                SDL_Rect nuclear_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, IMAGE_WIDTH, IMAGE_HEIGHT };
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect nuclear_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, nuclear, NULL, &nuclear_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 1) {
                 SDL_Rect obstacle_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, obstacle, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
+            } else {
+                SDL_Rect scene_rect = { j*screenBlockWidth - 1, i*screenBlockHeight - 1, screenBlockWidth + 2, screenBlockHeight +2};
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);    
             }
         }
     }
@@ -559,6 +581,7 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(wire);
     SDL_DestroyTexture(nuclear);
     SDL_DestroyTexture(obstacle);
+    SDL_DestroyTexture(scene_background);
 }
 
 void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
