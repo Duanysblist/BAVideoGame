@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
         for(int j = 0; j < 4; j++){
             map[i][j].setSceneID(counter);
             map[i][j].setSceneCategoryID(j);
-            map[i][j].createSceneLayout(10, 16);
+            map[i][j].createSceneLayout(10, 18);
             counter++;
         }
     }

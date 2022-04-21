@@ -19,8 +19,8 @@ class Scene {
         int sceneID;
         int sceneCategoryID;
         int** layout;
-        int rows = 10;
-        int columns = 16;
+        int rows;
+        int columns;
         
         // scene zone information
         // 0 - in the tutorial zone
@@ -49,11 +49,15 @@ class Scene {
             sceneID = -1;
             sceneCategoryID = -1;
             sceneZone = 0;
+            rows = 10;
+            columns = 18;
         }
-        Scene(const int id, const int catID, const int zone) {
+        Scene(const int id, const int catID, const int zone, const int r, const int c) {
             sceneID = id;
             sceneCategoryID = catID;
             sceneZone = zone;
+            rows = r;
+            columns = c;
         }
 };
 

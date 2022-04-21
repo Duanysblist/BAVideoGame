@@ -163,7 +163,7 @@ void Renderer::drawHealthBar(const Player &player) {
 void Renderer::drawInventory(const Player &player) {
     int RESOURCE_WIDTH = 40;
     int RESOURCE_HEIGHT = 40;
-    int RELATIVE_X0 = BAR_START + BAR_LENGTH + 60;
+    int RELATIVE_X0 = BAR_START + BAR_LENGTH + 50;
     int RELATIVE_Y0 = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT + ((BOTTOM_BAR_HEIGHT-RESOURCE_HEIGHT)/2);
     int GAP_BTW_IMAGES = 120;
     // draw resource pics
@@ -263,7 +263,7 @@ void Renderer::drawInventory(const Player &player) {
 void Renderer::drawKeyInventory(const Player &player) {
     // image of resource will appear if owned by the player. otherwise, will be empty box
     // draw outlines of three boxes
-    int END_X = SCREEN_WIDTH - 60;
+    int END_X = SCREEN_WIDTH - 50;
     int BOX_HEIGHT = 50;
     int BOX_WIDTH = BOX_HEIGHT;
     int RELATIVE_Y0 = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT + ((BOTTOM_BAR_HEIGHT-BOX_HEIGHT)/2) + 10;

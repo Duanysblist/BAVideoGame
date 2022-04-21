@@ -29,7 +29,7 @@ class Renderer {
         SDL_Color color = { 255, 255, 255 };
 
         // health bar attributes
-        const int BAR_LENGTH = 200;
+        const int BAR_LENGTH = 180;
         const int BAR_START = 30;
 
         // error message methods

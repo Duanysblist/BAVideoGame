@@ -5,20 +5,20 @@
 const int MAX_HEALTH = 100;
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 700;
+const int SCREEN_WIDTH = 1170;
+const int SCREEN_HEIGHT = 750;
 const int BOTTOM_BAR_HEIGHT = 100;
 // Added by Daniel
 const int SCREEN_BPP = 32;
 
 //Player dimension constants
-const int PLAYER_WIDTH = 80;
-const int PLAYER_HEIGHT = 80;
+const int PLAYER_WIDTH = 60;
+const int PLAYER_HEIGHT = 60;
 const double PLAYER_SPEED = 0.35;
 
 //Enemy dimension constants
-const int ENEMY_WIDTH = 80;
-const int ENEMY_HEIGHT = 80;
+const int ENEMY_WIDTH = 60;
+const int ENEMY_HEIGHT = 60;
 const double ENEMY_SPEED = 0.15;
 
 // Screen Directions
@@ -39,19 +39,5 @@ enum GameStates {
     STATE_EXIT,
 };
 
-const int defaultScreenLayout[9][16] = {
-    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-};
-
-const int OBSTACLE_WIDTH = 80;
-const int OBSTACLE_HEIGHT = 70;
 
 #endif
