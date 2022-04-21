@@ -52,9 +52,9 @@ int main(int argc, char *argv[]) {
 
     // Setting up a 4x4 matrix for the map system
     int counter = 0;
-    Scene map[4][4];
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j < 4; j++){
+    Scene map[MAP_ROWS][MAP_COLUMNS];
+    for(int i = 0; i < MAP_ROWS; i++){
+        for(int j = 0; j < MAP_COLUMNS; j++){
             map[i][j].setSceneID(counter);
             map[i][j].setSceneCategoryID(j);
             map[i][j].createSceneLayout(10, 18);

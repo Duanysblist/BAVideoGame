@@ -133,7 +133,7 @@ int Player::checkIfPlayerIsAtScreenBoundary() const {
 		// Check if there is a right screen
 			// Get current player map position
 				// If the player is all the way to the right of the screen ([0][3], [1][3], [2][3], [3][3])
-				if(playerMapPosition.at(1) == 3) {
+				if(playerMapPosition.at(1) == MAP_COLUMNS - 1) {
 					// Can't move right
 					return 0;
 				}
@@ -155,7 +155,7 @@ int Player::checkIfPlayerIsAtScreenBoundary() const {
 		// Check if there is a screen below
 			// Get current player map position
 				// If the player is at the bottom level of the matrix ([3][0] [3][1] [3][2] [3][3])
-				if(playerMapPosition.at(0) == 3){
+				if(playerMapPosition.at(0) == MAP_ROWS - 1){
 					// Can't move down
 					return 0;
 				}

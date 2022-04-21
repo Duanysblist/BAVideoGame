@@ -11,6 +11,10 @@ const int BOTTOM_BAR_HEIGHT = 100;
 // Added by Daniel
 const int SCREEN_BPP = 32;
 
+// constants for map grid of scenes
+const int MAP_COLUMNS = 6;
+const int MAP_ROWS = 8;
+
 //Player dimension constants
 const int PLAYER_WIDTH = 60;
 const int PLAYER_HEIGHT = 60;
