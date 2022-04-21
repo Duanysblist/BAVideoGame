@@ -62,16 +62,61 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    int** array = new int*[18];
-    for (int i = 0; i < 18; i++) {
-        array[i] = new int[10];
-    }
+    // set scene zone information
+    // 0 - in the tutorial zone
+    // 1 - in the power source zone (blue)
+    // 2 - in the wires zone (red)
+    // 3 - in the nuclear waste zone (pink)
+    // 4 - outside the lab
+    map[0][0].setSceneZone(1);
+    map[0][1].setSceneZone(1);
+    map[0][2].setSceneZone(1);
+    map[0][3].setSceneZone(1);
+    map[0][4].setSceneZone(1);
+    map[0][5].setSceneZone(2);
+    map[1][0].setSceneZone(1);
+    map[1][1].setSceneZone(1);
+    map[1][2].setSceneZone(1);
+    map[1][3].setSceneZone(1);
+    map[1][4].setSceneZone(2);
+    map[1][5].setSceneZone(2);
+    map[2][0].setSceneZone(1);
+    map[2][1].setSceneZone(1);
+    map[2][2].setSceneZone(1);
+    map[2][3].setSceneZone(2);
+    map[2][4].setSceneZone(2);
+    map[2][5].setSceneZone(2);
+    map[3][0].setSceneZone(0);
+    map[3][1].setSceneZone(1);
+    map[3][2].setSceneZone(1);
+    map[3][3].setSceneZone(2);
+    map[3][4].setSceneZone(2);
+    map[3][5].setSceneZone(2);
+    map[4][0].setSceneZone(0);
+    map[4][1].setSceneZone(0);
+    map[4][2].setSceneZone(4);
+    map[4][3].setSceneZone(2);
+    map[4][4].setSceneZone(2);
+    map[4][5].setSceneZone(2);
+    map[5][0].setSceneZone(0);
+    map[5][1].setSceneZone(0);
+    map[5][2].setSceneZone(3);
+    map[5][3].setSceneZone(3);
+    map[5][4].setSceneZone(2);
+    map[5][5].setSceneZone(3);
+    map[6][0].setSceneZone(0);
+    map[6][1].setSceneZone(0);
+    map[6][2].setSceneZone(3);
+    map[6][3].setSceneZone(3);
+    map[6][4].setSceneZone(3);
+    map[6][5].setSceneZone(3);
+    map[7][0].setSceneZone(3);
+    map[7][1].setSceneZone(3);
+    map[7][2].setSceneZone(3);
+    map[7][3].setSceneZone(3);
+    map[7][4].setSceneZone(3);
+    map[7][5].setSceneZone(3);
 
-    for( int i = 0; i < 18; ++i ) {
-        for( int j = 0; j < 10; ++j ) {
-          array[ i ][ j ] = 0;
-        }
-    }   
 
     int curLayout [10][18]= 
       { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
