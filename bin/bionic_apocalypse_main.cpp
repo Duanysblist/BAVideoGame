@@ -201,6 +201,7 @@ int main(int argc, char *argv[]) {
             
         }
         else {
+            MOVE_UP = MOVE_DOWN = MOVE_LEFT = MOVE_RIGHT = false;
             if(battling == false) {
                 startNewBattle(badGuy);
                 battling = true;
