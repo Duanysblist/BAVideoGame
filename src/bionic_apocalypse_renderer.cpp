@@ -510,11 +510,11 @@ void Renderer::drawScene(const Scene &scene) {
     // free surface
     SDL_FreeSurface( image );
     image = NULL;
-    // obstacles
-    image = IMG_Load("../resource/generic_obstacle.png");
+    // rocks
+    image = IMG_Load("../resource/Wall.png");
     if (image == NULL) csci437_img_error("Could not create image!");
-    SDL_Texture* obstacle = SDL_CreateTextureFromSurface(renderer, image);
-    if (obstacle == NULL) csci437_error("Could not create texture from surface!");
+    SDL_Texture* rock = SDL_CreateTextureFromSurface(renderer, image);
+    if (rock == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
     // scene background
@@ -524,6 +524,61 @@ void Renderer::drawScene(const Scene &scene) {
     if (scene_background == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
+    // left facing wall
+    // right facing wall
+    // up facing wall
+    // down facing wall
+    image = IMG_Load("../resource/Gray_Building_Side.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* wall = SDL_CreateTextureFromSurface(renderer, image);
+    if (wall == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
+    // two sided vertical wall
+    // two sided horizontal wall
+    image = IMG_Load("../resource/double_sided_wall.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* dsw = SDL_CreateTextureFromSurface(renderer, image);
+    if (dsw == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;    
+    // plain grey wall
+    image = IMG_Load("../resource/plain_wall.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* plain_wall = SDL_CreateTextureFromSurface(renderer, image);
+    if (plain_wall == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;       
+    // inner corner top right
+    // inner corner top left
+    // inner corner bottom left
+    // inner corner bottom right
+    image = IMG_Load("../resource/Gray_Building_Inner_Corner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* inner_corner = SDL_CreateTextureFromSurface(renderer, image);
+    if (inner_corner == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;      
+    // outer corner top right
+    // outer corner top left
+    // outer corner bottom left
+    // outer corner bottom right
+    image = IMG_Load("../resource/Gray_Building_Outer_Corner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* outer_corner = SDL_CreateTextureFromSurface(renderer, image);
+    if (outer_corner == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL; 
+    // inner corner double bottom
+    // inner corner double top
+    // inner corner double left
+    // inner corner double right
+    image = IMG_Load("../resource/inner_corner_double.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* double_inner_corner = SDL_CreateTextureFromSurface(renderer, image);
+    if (double_inner_corner == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL; 
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
@@ -564,8 +619,67 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_Rect nuclear_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, nuclear, NULL, &nuclear_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 1) {
-                SDL_Rect obstacle_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, obstacle, NULL, &obstacle_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_Rect rock_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, rock, NULL, &rock_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 11) {
+                SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 12) {
+                SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 13) {
+                SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 14) {
+                SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 180, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 15) {
+                SDL_Rect dsw_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, dsw, NULL, &dsw_rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 16) {
+                SDL_Rect dsw_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, dsw, NULL, &dsw_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 17) {
+                SDL_Rect plain_wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, plain_wall, NULL, &plain_wall_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 18) {
+                SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 19) {
+                SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 20) {
+                SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
+            } else if (layout[i][j] == 21) {
+                SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 22) {
+                SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 23) {
+                SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_VERTICAL);
+            } else if (layout[i][j] == 24) {
+                SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+            } else if (layout[i][j] == 25) {
+                SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 180, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 26) {
+                SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 27) {
+                SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 180, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 28) {
+                SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == 28) {
+                SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
             } else {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
                 SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);    
@@ -580,8 +694,9 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(power);
     SDL_DestroyTexture(wire);
     SDL_DestroyTexture(nuclear);
-    SDL_DestroyTexture(obstacle);
+    SDL_DestroyTexture(rock);
     SDL_DestroyTexture(scene_background);
+    SDL_DestroyTexture(wall);
 }
 
 void Renderer::drawBottomBar(const Player &player) {
