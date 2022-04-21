@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 
 
 
-    // Setting up a 4x4 matrix for the map system
+    // Setting up a MAP_ROWSxMAP_COLUMNS matrix for the map system
     int counter = 0;
     Scene map[MAP_ROWS][MAP_COLUMNS];
     for(int i = 0; i < MAP_ROWS; i++){
@@ -61,6 +61,24 @@ int main(int argc, char *argv[]) {
             counter++;
         }
     }
+
+    // int curLayout[10][18] = 
+    //   { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
+    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
+    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, ICDL},
+    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+    //     {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICDT, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+    // };
+
+    // int * curLayoutptr = &curLayout;
+    // int ** curLayoutptrptr = &curLayoutptr;
+
+    // map[6][0].setSceneLayout(curLayoutptrptr);
 
     int cur_time = SDL_GetTicks();
       

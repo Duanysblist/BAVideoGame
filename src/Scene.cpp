@@ -36,7 +36,7 @@ void Scene::createSceneLayout(const int numRows, const int numColumns){
     /**
         0 - space in scene is unoccupied
 
-        1 - space in scene has obstacle
+        1 - space in scene has rock obstacle
 
         2 - space in scene has scrap metal
         3 - space in scene has rags
@@ -48,6 +48,8 @@ void Scene::createSceneLayout(const int numRows, const int numColumns){
         8 - space in scene has key resource power source
         9 - space in scene has key resource wire
         10 - space in scene has key resource nuclear waste
+
+        rest are continued in constants file
     **/
     layout = new int*[numRows];
     for(int i = 0; i < numRows; i++) {
