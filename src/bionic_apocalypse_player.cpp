@@ -236,20 +236,3 @@ void Player::playerMoveRight(const int dt) {
 	int change = PLAYER_SPEED * dt; 
 	changePlayerScreenPosition(change, 0);
 }
-
-
-void Player::setRelationalPositionY(const int newRelationalPositionY) {
-
-}
-
-void Player::setRelationalPositionX(const int newRelationalPositionY) {
-
-}
-
-void Player::changeRelationalPositionX(const int relPosAddition) {
-
-}
-
-void Player::changeRelationalPositionY(const int relPosAddition) {
-
-}
