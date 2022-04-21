@@ -108,6 +108,14 @@ void Scene::freeSceneLayout(int** matrix, const int numRows){
     }
 } 
 
-void Scene::setSceneLayout(int** prefLayout) {
-    this->layout = prefLayout;
+// void Scene::setSceneLayout(int** prefLayout) {
+//     this->layout = prefLayout;
+// }
+
+void Scene::setSceneLayout(int a[][18]) {
+    for(int i = 0; i < rows; i++) {
+        for(int j = 0; j < columns; j++) {
+            this->layout[i][j] = a[i][j];
+        }
+    }
 }

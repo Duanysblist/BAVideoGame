@@ -62,23 +62,31 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // int curLayout[10][18] = 
-    //   { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
-    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
-    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
-    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
-    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
-    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, ICDL},
-    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
-    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    //     {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICDT, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
-    // };
+    int** array = new int*[18];
+    for (int i = 0; i < 18; i++) {
+        array[i] = new int[10];
+    }
 
-    // int * curLayoutptr = &curLayout;
-    // int ** curLayoutptrptr = &curLayoutptr;
+    for( int i = 0; i < 18; ++i ) {
+        for( int j = 0; j < 10; ++j ) {
+          array[ i ][ j ] = 0;
+        }
+    }   
 
-    // map[6][0].setSceneLayout(curLayoutptrptr);
+    int curLayout [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, ICDL},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICDT, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    map[6][0].setSceneLayout(curLayout);
 
     int cur_time = SDL_GetTicks();
       

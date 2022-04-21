@@ -41,7 +41,8 @@ class Scene {
         int getSceneColumns() const;
         void createSceneLayout(const int rows, const int columns);
         int** getSceneLayout() const;
-        void setSceneLayout(int**);
+        // void setSceneLayout(int**);
+        void setSceneLayout(int[][18]);
         void freeSceneLayout(int** layout, const int rows);
         int getSceneBlockInfo(int row, int col) const;
         void setSceneBlockInfo(int row, int col, int val);
