@@ -51,37 +51,129 @@ void Scene::createSceneLayout(const int numRows, const int numColumns){
 
         rest are continued in constants file
     **/
-    layout = new int*[numRows];
-    for(int i = 0; i < numRows; i++) {
-        layout[i] = new int[numColumns];
-        for(int j = 0; j < numColumns; j++) {
-            // for now just randomly choosing if a space has an obstacle or resource
-            /** 1-4 obstacle
-                9-34, 41-60 nothing
-                35 scrap metal
-                36 rags
-                37 oil
-                38 power source
-                39 wire
-                40 nuclear waste
-            **/
-            int random = rand() % 60 + 1;
-            if(random <= 4){
-                layout[i][j] = 1; // obstacle
-            } else if (5 <= random && random <= 34 || random > 40) {
-                layout[i][j] = 0; // nothing
-            } else if (random == 35) {
-                layout[i][j] = 2; // scrap metal
-            } else if (random == 36) {
-                layout[i][j] = 3; // rags
-            } else if (random == 37) {
-                layout[i][j] = 4; // oil
-            } else if (random == 38) {
-                layout[i][j] = 5; // power source
-            } else if (random == 39) {
-                layout[i][j] = 6; // wire
+    if (sceneZone == 3) {
+        layout = new int*[numRows];
+        for(int i = 0; i < numRows; i++) {
+            layout[i] = new int[numColumns];
+            for(int j = 0; j < numColumns; j++) {
+                // for now just randomly choosing if a space has an obstacle or resource
+                /** 1-4 obstacle
+                    9-34, 41-60 nothing
+                    35 scrap metal
+                    36 rags
+                    37 oil
+                    38 power source
+                    39 wire
+                    40 nuclear waste
+                **/
+                int random = rand() % 60 + 1;
+                if(random <= 4){
+                    layout[i][j] = 1; // obstacle
+                } else if (5 <= random && random <= 34 || random > 40) {
+                    layout[i][j] = 0; // nothing
+                } else if (random == 35) {
+                    layout[i][j] = 2; // scrap metal
+                } else if (random == 36) {
+                    layout[i][j] = 3; // rags
+                } else if (random == 37) {
+                    layout[i][j] = 4; // oil
+                } else if (random == 38) {
+                    layout[i][j] = 5; // power source
+                } else if (random == 39) {
+                    layout[i][j] = 6; // wire
+                }
+                else {layout[i][j] = 7;} // nuclear waste
             }
-            else {layout[i][j] = 7;} // nuclear waste
+        }
+    }
+    else if (sceneZone == 2) {
+        layout = new int*[numRows];
+        for(int i = 0; i < numRows; i++) {
+            layout[i] = new int[numColumns];
+            for(int j = 0; j < numColumns; j++) {
+                // for now just randomly choosing if a space has an obstacle or resource
+                /** 1-4 obstacle
+                    9-34, 40-60 nothing
+                    35 scrap metal
+                    36 rags
+                    37 oil
+                    38 power source
+                    39 wire
+                **/
+                int random = rand() % 60 + 1;
+                if(random <= 4){
+                    layout[i][j] = 1; // obstacle
+                } else if (5 <= random && random <= 34 || random >= 40) {
+                    layout[i][j] = 0; // nothing
+                } else if (random == 35) {
+                    layout[i][j] = 2; // scrap metal
+                } else if (random == 36) {
+                    layout[i][j] = 3; // rags
+                } else if (random == 37) {
+                    layout[i][j] = 4; // oil
+                } else if (random == 38) {
+                    layout[i][j] = 5; // power source
+                } else if (random == 39) {
+                    layout[i][j] = 6; // wire
+                }
+            }
+        }
+    }
+    else if (sceneZone == 1) {
+        layout = new int*[numRows];
+        for(int i = 0; i < numRows; i++) {
+            layout[i] = new int[numColumns];
+            for(int j = 0; j < numColumns; j++) {
+                // for now just randomly choosing if a space has an obstacle or resource
+                /** 1-4 obstacle
+                    9-34, 39-60 nothing
+                    35 scrap metal
+                    36 rags
+                    37 oil
+                    38 power source
+                **/
+                int random = rand() % 60 + 1;
+                if(random <= 4){
+                    layout[i][j] = 1; // obstacle
+                } else if (5 <= random && random <= 34 || random >= 39) {
+                    layout[i][j] = 0; // nothing
+                } else if (random == 35) {
+                    layout[i][j] = 2; // scrap metal
+                } else if (random == 36) {
+                    layout[i][j] = 3; // rags
+                } else if (random == 37) {
+                    layout[i][j] = 4; // oil
+                } else if (random == 38) {
+                    layout[i][j] = 5; // power source
+                }
+            }
+        }
+    }
+    else { // sceneZone == 0
+        layout = new int*[numRows];
+        for(int i = 0; i < numRows; i++) {
+            layout[i] = new int[numColumns];
+            for(int j = 0; j < numColumns; j++) {
+                // for now just randomly choosing if a space has an obstacle or resource
+                /** 1-4 obstacle
+                    9-34, 38-60 nothing
+                    35 scrap metal
+                    36 rags
+                    37 oil
+                **/
+                int random = rand() % 60 + 1;
+                if(random <= 4){
+                    layout[i][j] = 1; // obstacle
+                } else if (5 <= random && random <= 34 || random >= 38) {
+                    layout[i][j] = 0; // nothing
+                } else if (random == 35) {
+                    layout[i][j] = 2; // scrap metal
+                } else if (random == 36) {
+                    layout[i][j] = 3; // rags
+                } else if (random == 37) {
+                    layout[i][j] = 4; // oil
+                }
+            }
         }
     }
 }

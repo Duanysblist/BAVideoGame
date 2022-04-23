@@ -53,14 +53,6 @@ int main(int argc, char *argv[]) {
     // Setting up a MAP_ROWSxMAP_COLUMNS matrix for the map system
     int counter = 0;
     Scene map[MAP_ROWS][MAP_COLUMNS];
-    for(int i = 0; i < MAP_ROWS; i++){
-        for(int j = 0; j < MAP_COLUMNS; j++){
-            map[i][j].setSceneID(counter);
-            map[i][j].setSceneCategoryID(j);
-            map[i][j].createSceneLayout(10, 18);
-            counter++;
-        }
-    }
 
     // set scene zone information
     // 0 - in the tutorial zone
@@ -117,6 +109,15 @@ int main(int argc, char *argv[]) {
     map[7][4].setSceneZone(3);
     map[7][5].setSceneZone(3);
 
+    for(int i = 0; i < MAP_ROWS; i++){
+        for(int j = 0; j < MAP_COLUMNS; j++){
+            map[i][j].setSceneID(counter);
+            map[i][j].setSceneCategoryID(j);
+            map[i][j].createSceneLayout(10, 18);
+            counter++;
+        }
+    }
+    
     int layout_6_0 [10][18]= 
       { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
