@@ -64,5 +64,27 @@ const int ICDT = 27; // inner corner double top
 const int ICDL = 28; // inner corner double left
 const int ICDR = 29; // inner corner double right
 
+// 1 - space in scene has rock obstacle
+const int ROCK = 1;
+// 2 - space in scene has scrap metal
+const int METAL = 2;
+// 3 - space in scene has rags
+const int RAGS = 3;
+// 4 - space in scene has oil
+const int OIL = 4;
+// 5 - space in scene has power source
+const int POWER = 5;
+// 6 - space in scene has wire
+const int WIRE = 6;
+// 7 - space in scene has nuclear waste
+const int NUCLEAR = 7;
+
+// 8 - space in scene has key resource power source
+const int KEY_POWER = 8;
+// 9 - space in scene has key resource wire
+const int KEY_WIRE = 9;
+// 10 - space in scene has key resource nuclear waste
+const int KEY_NUCLEAR = 10;
+
 
 #endif

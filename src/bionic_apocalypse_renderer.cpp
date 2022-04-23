@@ -661,13 +661,13 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 23) {
                 SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_VERTICAL);
+                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 180, NULL, SDL_FLIP_VERTICAL);
             } else if (layout[i][j] == 24) {
                 SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 180, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 25) {
                 SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 180, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 90, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 26) {
                 SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 0, NULL, SDL_FLIP_NONE);
