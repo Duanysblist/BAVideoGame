@@ -186,7 +186,7 @@ int main(int argc, char *argv[]) {
         {RFW, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW},
         {RFW, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, LFW, PW, PW},
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
-        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
+        {RFW, POWER, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
         {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW} 
     };
 
