@@ -517,11 +517,23 @@ void Renderer::drawScene(const Scene &scene) {
     if (rock == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
-    // scene background
+    // scene backgrounds
     image = IMG_Load("../resource/scene_background.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* scene_background = SDL_CreateTextureFromSurface(renderer, image);
     if (scene_background == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
+    image = IMG_Load("../resource/scene_background_2.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* scene_background_2 = SDL_CreateTextureFromSurface(renderer, image);
+    if (scene_background_2 == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
+    image = IMG_Load("../resource/scene_background_3.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* scene_background_3 = SDL_CreateTextureFromSurface(renderer, image);
+    if (scene_background_3 == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
     // left facing wall
@@ -682,7 +694,15 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
             } else {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);    
+                if (i%3 == 0 && i%2 == 0 && j%2 == 0 && scene.getSceneID()%2 == 0) {
+                    SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
+                }
+                else if (i%2 == 0 && j%3 == 0) {
+                    SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
+                }
+                else {
+                    SDL_RenderCopyEx(renderer, scene_background_3, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
+                }
             }
         }
     }
@@ -696,6 +716,8 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(nuclear);
     SDL_DestroyTexture(rock);
     SDL_DestroyTexture(scene_background);
+    SDL_DestroyTexture(scene_background_2);
+    SDL_DestroyTexture(scene_background_3);
     SDL_DestroyTexture(wall);
 }
 
