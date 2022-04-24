@@ -698,14 +698,20 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
             } else {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
-                if (i%3 == 0 && i%2 == 0 && j%2 == 0 && scene.getSceneID()%2 == 0) {
+                if (i%3 == 0 && i%2 == 0 && j%2 == 0 && j%7 == 0 && scene.getSceneID()%2 == 0 && scene.getsceneCategoryID()%2 == 0) {
                     SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
                 }
                 else if (i%2 == 0 && j%3 == 0) {
-                    SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
+                    SDL_RenderCopyEx(renderer, scene_background_3, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
+                }
+                else if (i%4 == 0 && scene.getSceneID()%2 == 1) {
+                    SDL_RenderCopyEx(renderer, scene_background_3, NULL, &scene_rect, 0, NULL, SDL_FLIP_VERTICAL);   
+                }
+                else if (j%5 == 0) {
+                    SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_HORIZONTAL);   
                 }
                 else {
-                    SDL_RenderCopyEx(renderer, scene_background_3, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
+                    SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
                 }
             }
         }
