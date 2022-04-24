@@ -86,5 +86,8 @@ const int KEY_WIRE = 9;
 // 10 - space in scene has key resource nuclear waste
 const int KEY_NUCLEAR = 10;
 
+// 30 - scene has crowbar
+const int CROWBAR = 30;
+
 
 #endif

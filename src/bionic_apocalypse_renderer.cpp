@@ -591,6 +591,13 @@ void Renderer::drawScene(const Scene &scene) {
     if (double_inner_corner == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL; 
+    // crowbar
+    image = IMG_Load("../resource/crowbar.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* crowbar = SDL_CreateTextureFromSurface(renderer, image);
+    if (crowbar == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;     
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
@@ -696,6 +703,13 @@ void Renderer::drawScene(const Scene &scene) {
             } else if (layout[i][j] == 28) {
                 SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
+            } else if (layout[i][j] == 29) {
+                SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
+            } else if (layout[i][j] == 30) {
+                SDL_Rect crowbar_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, crowbar, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
             } else {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
                 if (i%3 == 0 && i%2 == 0 && j%2 == 0 && j%7 == 0 && scene.getSceneID()%2 == 0 && scene.getsceneCategoryID()%2 == 0) {
@@ -729,6 +743,12 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(scene_background_2);
     SDL_DestroyTexture(scene_background_3);
     SDL_DestroyTexture(wall);
+    SDL_DestroyTexture(dsw);
+    SDL_DestroyTexture(plain_wall);
+    SDL_DestroyTexture(inner_corner);
+    SDL_DestroyTexture(outer_corner);
+    SDL_DestroyTexture(double_inner_corner);
+    SDL_DestroyTexture(crowbar);
 }
 
 void Renderer::drawBottomBar(const Player &player) {
