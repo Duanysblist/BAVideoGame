@@ -16,19 +16,27 @@ void Player::setKeyResource(const int resourceType) {
 	key_inventory[resourceType] = 1;
 }
 
+bool Player::getCrowbar() const {
+	return crowbar;
+}
+
+void Player::setCrowbar(const bool crowbarPossessed) {
+	crowbar = crowbarPossessed;
+}
+
 std::array<bool, 12> Player::getPossibleBattleMoves() const {
 	/**
-		0 (Rags) Bandages - Heal Player
-		1 (Oil, Rags) Molotov - Does no damage to enemy but inflicts fire effect, which does recurring damage
+		0 (crowbar) crowbar strike - does a varying amount of damage to the enemy 
+		1 (Rags) Bandages - Heal Player 
 		2 (Scrap Metal) Throwing Knives - Player throws 3 knives; deals large damage but each has a chance of missing
-		3 (3x Scrap Metal) Armor Plate - Player gains increased temporary health (loses it after battle ends and can stack)
-		4 (Power Source, Wire, Scrap Metal) Time Bomb - Takes 2 turns to activate but deals massive damage to enemy and some damage to player when it does
-		5 (wire, rags) some sort of whip or trips enemy or something - deals minor damage to enemy
-		6 (nuclear waste, wires, power source) small nuclear bomb - deals damage to enemy but also to player
-		7 (3x nuclear waste, wires, power source) large nuclear bomb - kills enemy but deals large amount of damage to player 
-		8 (scrap metal) - defends player against half of the damage from the enemy's next attack, small chance of enemy's attack rebounding onto the enemy
-		9 (Wire, Power Source, Rags) Electric net - Deals small damage to enemy, chance to shock them and have them miss their next turn
-		10 (power source) electric crowbar strike - deals damage to enemy, small chance of player getting electrocuted and damaged as well
+		3 (scrap metal) - defends player against half of the damage from the enemy's next attack, small chance of enemy's attack rebounding onto the enemy
+		4 (Oil, Rags) Molotov - Does no damage to enemy but inflicts fire effect, which does recurring damage
+		5 (power source, crowbar) electric crowbar strike - deals damage to enemy, small chance of player getting electrocuted and damaged as well
+		6 (Power Source, Wire, Scrap Metal) Time Bomb - Takes 2 turns to activate but deals massive damage to enemy and some damage to player when it does
+		7 (Wire, Power Source, Rags) Electric net - Deals small damage to enemy, chance to shock them and have them miss their next turn
+		8 (wire, rags) some sort of whip or trips enemy or something - deals minor damage to enemy
+		9 (nuclear waste, wires, power source) small nuclear bomb - deals damage to enemy but also to player
+		10 (3x nuclear waste, wires, power source) large nuclear bomb - kills enemy but deals large amount of damage to player 
 		11 (oil, nuclear waste, rags) Nuclear projectile - deals small amount of damage to enemy, chance of recurring damage to enemy
 	**/
 	std::array<bool, 12> moves = {false,false,false,false,false,false,false,false,false,false,false,false};
@@ -36,37 +44,37 @@ std::array<bool, 12> Player::getPossibleBattleMoves() const {
 	// check if each battle move is possible
 	// regular inventory: { scrap metal, rags, oil, power source, wire, nuclear waste }
 
-	if (inventory[1] >= 1) {
+	if (crowbar) {
 		moves[0] = true;
 	}
-	if (inventory[1] >= 1 && inventory[2] >= 1) {
+	if (inventory[1] >= 1) {
 		moves[1] = true;
 	}
 	if (inventory[0] >= 1) {
 		moves[2] = true;
 	}
-	if (inventory[0] >= 3) {
+	if (inventory[0] >= 1) {
 		moves[3] = true;
 	}
-	if (inventory[3] >= 1 && inventory[4] >= 1 && inventory[0] >= 1) {
+	if (inventory[1] >= 1 && inventory[2] >= 1) {
 		moves[4] = true;
 	}
-	if (inventory[4] >= 1 && inventory[1] >= 1) {
+	if (inventory[3] >= 1 && crowbar) {
 		moves[5] = true;
 	}
-	if (inventory[5] >= 1 && inventory[4] >= 1 && inventory[3] >= 1) {
+	if (inventory[3] >= 1 && inventory[4] >= 1 && inventory[0] >= 1) {
 		moves[6] = true;
 	}
-	if (inventory[5] >= 3 && inventory[4] >= 1 && inventory[3] >= 1) {
+	if (inventory[4] >= 1 && inventory[3] >= 1 && inventory[1] >= 1) {
 		moves[7] = true;
 	}
-	if (inventory[0] >= 1) {
+	if (inventory[4] >= 1 && inventory[1] >= 1) {
 		moves[8] = true;
 	}
-	if (inventory[4] >= 1 && inventory[3] >= 1 && inventory[1] >= 1) {
+	if (inventory[5] >= 1 && inventory[4] >= 1 && inventory[3] >= 1) {
 		moves[9] = true;
 	}
-	if (inventory[3] >= 1) {
+	if (inventory[5] >= 3 && inventory[4] >= 1 && inventory[3] >= 1) {
 		moves[10] = true;
 	}
 	if (inventory[2] >= 1 && inventory[5] >= 1 && inventory[1] >= 1) {

@@ -28,12 +28,16 @@ class Player {
         // key inventory: { large power source, long wire, large nuclear waste }
         int key_inventory [3] = { 0,0,0 };
 
+        bool crowbar = false;
+
     public:
 
         int getResource(const int resourceType) const;
         void setResource(const int resourceType, const int amountToAdd);
         int getKeyResource(const int resourceType) const;
         void setKeyResource(const int resourceType);
+        bool getCrowbar() const;
+        void setCrowbar(const bool crowbarPossessed);
         std::array<bool, 12> getPossibleBattleMoves() const;
 
         int getPlayerHealth() const;
