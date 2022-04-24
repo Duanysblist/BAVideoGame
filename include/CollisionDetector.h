@@ -2,6 +2,7 @@
 #define COLLISION_DETECTOR_H
 
 #include "bionic_apocalypse_player.h"
+#include "bionic_apocalypse_enemy.h"
 #include "Scene.h"
 #include "bionic_apocalypse_constants.h"
 
@@ -38,6 +39,7 @@ private:
 
 public:
     void playerResourceCollision(Player &player, Scene &scene);
+    bool playerEnemyCollision(Player &player, Enemy &enemy) const;
 
 };
 

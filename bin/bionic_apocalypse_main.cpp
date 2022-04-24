@@ -371,7 +371,7 @@ int main(int argc, char *argv[]) {
 
         badGuy.update(dt);
         
-        if(renderer.checkPlayerEnemyCollision()) {
+        if(collisionDetector.playerEnemyCollision(player, badGuy)) {
             worldState = false;
         }
         renderer.window_update(player, worldState, currentScene);

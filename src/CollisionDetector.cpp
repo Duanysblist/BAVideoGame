@@ -31,7 +31,7 @@ void CollisionDetector::playerResourceCollision(Player &player, Scene &scene) {
     playerUpperRightResourceCollision(player, scene);
     playerBottomLeftResourceCollision(player, scene);
     playerBottomRightResourceCollision(player, scene);
-    playerCenterResourceCollision(player, scene);
+    //playerCenterResourceCollision(player, scene);
 }
 
 void CollisionDetector::playerUpperLeftResourceCollision(Player &player, Scene &scene) const {
@@ -326,3 +326,47 @@ void CollisionDetector::playerCenterResourceCollision(Player &player, Scene &sce
 
 }
 
+bool CollisionDetector::playerEnemyCollision(Player &player, Enemy &enemy) const {
+
+    //The sides of the entities
+    int leftPlayer, leftEnemy;
+    int rightPlayer, rightEnemy;
+    int topPlayer, topEnemy;
+    int bottomPlayer, bottomEnemy;
+
+    //Calculate the sides of rect A
+    leftPlayer = player.getPlayerScreenPositionX();
+    rightPlayer = leftPlayer + PLAYER_WIDTH;
+    topPlayer = player.getPlayerScreenPositionY();
+    bottomPlayer = topPlayer + PLAYER_HEIGHT;
+
+    //Calculate the sides of rect B
+    leftEnemy = enemy.getX();
+    rightEnemy = leftEnemy + ENEMY_WIDTH;
+    topEnemy = enemy.getY();
+    bottomEnemy = topEnemy + ENEMY_HEIGHT;
+
+    //If any of the sides from A are outside of B
+    if( bottomPlayer <= topEnemy )
+    {
+        return false;
+    }
+
+    if( topPlayer >= bottomEnemy )
+    {
+        return false;
+    }
+
+    if( rightPlayer <= leftEnemy )
+    {
+        return false;
+    }
+
+    if( leftPlayer >= rightEnemy )
+    {
+        return false;
+    }
+
+    //If none of the sides from A are outside B
+    return true;
+}
