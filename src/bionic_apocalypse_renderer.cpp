@@ -226,7 +226,7 @@ void Renderer::drawKeyInventory(const Player &player) {
     drawText("KEY RESOURCES", END_X - 150, RELATIVE_Y0 - 25, 255, 255, 255);
     // draw resources if owned by player
     if (player.getKeyResource(0) == 1) {
-        SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
+        SDL_Surface* image = IMG_Load("../resource/key_power.png");
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* key1 = SDL_CreateTextureFromSurface(renderer, image);
         if (key1 == NULL) csci437_error("Could not create texture from surface!");
