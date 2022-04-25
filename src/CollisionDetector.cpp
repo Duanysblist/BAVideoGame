@@ -87,6 +87,10 @@ void CollisionDetector::playerUpperLeftResourceCollision(Player &player, Scene &
             player.setResource(5,1);
             scene.setSceneBlockInfo(upperLeftRow, upperLeftColumn, 0);
             break;
+        case CROWBAR:
+            player.setCrowbar(true);
+            scene.setSceneBlockInfo(upperLeftRow, upperLeftColumn, 0);
+            break;
         default:
             break;
     }
@@ -143,6 +147,10 @@ void CollisionDetector::playerUpperRightResourceCollision(Player &player, Scene 
             break;
         case 7:
             player.setResource(5,1);
+            scene.setSceneBlockInfo(upperRightRow, upperRightColumn, 0);
+            break;
+        case CROWBAR:
+            player.setCrowbar(true);
             scene.setSceneBlockInfo(upperRightRow, upperRightColumn, 0);
             break;
         default:
@@ -203,6 +211,10 @@ void CollisionDetector::playerBottomLeftResourceCollision(Player &player, Scene 
             player.setResource(5,1);
             scene.setSceneBlockInfo(bottomLeftRow, bottomLeftColumn, 0);
             break;
+        case CROWBAR:
+            player.setCrowbar(true);
+            scene.setSceneBlockInfo(bottomLeftRow, bottomLeftColumn, 0);
+            break;
         default:
             break;
     }
@@ -259,6 +271,10 @@ void CollisionDetector::playerBottomRightResourceCollision(Player &player, Scene
             break;
         case 7:
             player.setResource(5,1);
+            scene.setSceneBlockInfo(bottomRightRow, bottomRightColumn, 0);
+            break;
+        case CROWBAR:
+            player.setCrowbar(true);
             scene.setSceneBlockInfo(bottomRightRow, bottomRightColumn, 0);
             break;
         default:
@@ -318,6 +334,10 @@ void CollisionDetector::playerCenterResourceCollision(Player &player, Scene &sce
             break;
         case 7:
             player.setResource(5,1);
+            scene.setSceneBlockInfo(centerRow, centerColumn, 0);
+            break;
+        case CROWBAR:
+            player.setCrowbar(true);
             scene.setSceneBlockInfo(centerRow, centerColumn, 0);
             break;
         default:
