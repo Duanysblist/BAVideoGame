@@ -250,7 +250,7 @@ void Renderer::drawKeyInventory(const Player &player) {
         image = NULL;
     }
     if (player.getKeyResource(2) == 1) {
-        SDL_Surface* image = IMG_Load("../resource/generic_key_resource.png");
+        SDL_Surface* image = IMG_Load("../resource/key_nuclear.png");
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* key3 = SDL_CreateTextureFromSurface(renderer, image);
         if (key3 == NULL) csci437_error("Could not create texture from surface!");
