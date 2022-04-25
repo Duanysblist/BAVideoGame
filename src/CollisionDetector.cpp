@@ -91,6 +91,18 @@ void CollisionDetector::playerUpperLeftResourceCollision(Player &player, Scene &
             player.setCrowbar(true);
             scene.setSceneBlockInfo(upperLeftRow, upperLeftColumn, 0);
             break;
+        case KEY_POWER:
+            player.setKeyResource(0);
+            scene.setSceneBlockInfo(upperLeftRow, upperLeftColumn, 0);
+            break;
+        case KEY_WIRE:
+            player.setKeyResource(1);
+            scene.setSceneBlockInfo(upperLeftRow, upperLeftColumn, 0);
+            break;
+        case KEY_NUCLEAR:
+            player.setKeyResource(2);
+            scene.setSceneBlockInfo(upperLeftRow, upperLeftColumn, 0);
+            break;
         default:
             break;
     }
@@ -151,6 +163,18 @@ void CollisionDetector::playerUpperRightResourceCollision(Player &player, Scene 
             break;
         case CROWBAR:
             player.setCrowbar(true);
+            scene.setSceneBlockInfo(upperRightRow, upperRightColumn, 0);
+            break;
+        case KEY_POWER:
+            player.setKeyResource(0);
+            scene.setSceneBlockInfo(upperRightRow, upperRightColumn, 0);
+            break;
+        case KEY_WIRE:
+            player.setKeyResource(1);
+            scene.setSceneBlockInfo(upperRightRow, upperRightColumn, 0);
+            break;
+        case KEY_NUCLEAR:
+            player.setKeyResource(2);
             scene.setSceneBlockInfo(upperRightRow, upperRightColumn, 0);
             break;
         default:
@@ -215,6 +239,18 @@ void CollisionDetector::playerBottomLeftResourceCollision(Player &player, Scene 
             player.setCrowbar(true);
             scene.setSceneBlockInfo(bottomLeftRow, bottomLeftColumn, 0);
             break;
+        case KEY_POWER:
+            player.setKeyResource(0);
+            scene.setSceneBlockInfo(bottomLeftRow, bottomLeftColumn, 0);
+            break;
+        case KEY_WIRE:
+            player.setKeyResource(1);
+            scene.setSceneBlockInfo(bottomLeftRow, bottomLeftColumn, 0);
+            break;
+        case KEY_NUCLEAR:
+            player.setKeyResource(2);
+            scene.setSceneBlockInfo(bottomLeftRow, bottomLeftColumn, 0);
+            break;
         default:
             break;
     }
@@ -275,6 +311,18 @@ void CollisionDetector::playerBottomRightResourceCollision(Player &player, Scene
             break;
         case CROWBAR:
             player.setCrowbar(true);
+            scene.setSceneBlockInfo(bottomRightRow, bottomRightColumn, 0);
+            break;
+        case KEY_POWER:
+            player.setKeyResource(0);
+            scene.setSceneBlockInfo(bottomRightRow, bottomRightColumn, 0);
+            break;
+        case KEY_WIRE:
+            player.setKeyResource(1);
+            scene.setSceneBlockInfo(bottomRightRow, bottomRightColumn, 0);
+            break;
+        case KEY_NUCLEAR:
+            player.setKeyResource(2);
             scene.setSceneBlockInfo(bottomRightRow, bottomRightColumn, 0);
             break;
         default:
