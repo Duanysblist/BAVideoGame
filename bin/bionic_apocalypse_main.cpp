@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
     Player player;
 
     bool worldState = true; //true is world, false is battle
-
+    Battle curBattle;
 
 
     // Setting up a MAP_ROWSxMAP_COLUMNS matrix for the map system
@@ -220,10 +220,10 @@ int main(int argc, char *argv[]) {
                     }
                     if (e.key.keysym.sym == SDLK_1) {
                         // std::cout << "battle is pressed" << std::endl;; 
-                        worldState = false;   
+                        //removed  
                     }
                     if (e.key.keysym.sym == SDLK_2) {
-                        setAttackingTrue(player);
+                        //removed
                     }           
                     if (e.key.keysym.sym == SDLK_w) {
                         MOVE_UP = true;
@@ -334,7 +334,7 @@ int main(int argc, char *argv[]) {
         else {
             MOVE_UP = MOVE_DOWN = MOVE_LEFT = MOVE_RIGHT = false;
             if(battling == false) {
-                startNewBattle(badGuy);
+                curBattle.startNewBattle(badGuy);
                 battling = true;
             }
             //renderer.drawEnemy(badGuy);
@@ -344,22 +344,23 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYDOWN)
                 {
                     if (e.key.keysym.sym == SDLK_1) {
-                        setAttackingTrue(player);
+                        curBattle.setAttackingTrue(player, 1);
                     }
+                    
                     if (e.key.keysym.sym == SDLK_q) {
                         running = false;
                         break;
                     }
                 }
-
+                /**
                 // User releases a key
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_1) {
                         
                     }
-                }
+                }**/
             }
-            if(getStatus() == false) {
+            if(curBattle.getStatus() == false) {
                 worldState = true;
                 battling = false;
             }
