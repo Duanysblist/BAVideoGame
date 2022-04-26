@@ -118,6 +118,21 @@ int main(int argc, char *argv[]) {
             counter++;
         }
     }
+
+    int layout_0_0 [10][18]= 
+      { {ICBR, DFW, DFW, ICBL, PW, PW, ICBR, DFW, DFW, ICBL, PW, ICBR, DFW, DFW, ICBL, PW, PW, PW}, 
+        {RFW, KEY_POWER, 0, LFW, PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, OCBL, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, OCTL, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, ICTR, UFW, UFW, ICTL, PW, PW, PW} 
+    };
+
+    map[0][0].setSceneLayout(layout_0_0);
     
     int layout_6_0 [10][18]= 
       { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
