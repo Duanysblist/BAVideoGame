@@ -11,12 +11,14 @@
 #include <string>
 #include <stdlib.h>
 
-void startNewBattle(Enemy &enemy);
-
-void mainBattleLoop();
-
-void setAttackingTrue(Player &player);
-
-bool getStatus();
+class Battle {
+    private:
+        Enemy myEnemy;
+        bool active = false;
+    public:
+        void startNewBattle(Enemy &enemy);
+        void setAttackingTrue(Player &player, int move);
+        bool getStatus();
+};
 
 #endif
