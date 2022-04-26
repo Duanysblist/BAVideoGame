@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 
 	bool running = true;
     bool battling = false;
-    bool help;
+    bool help = false;
     SDL_Event e;
 
     CollisionDetector collisionDetector;
@@ -379,8 +379,11 @@ int main(int argc, char *argv[]) {
         if(collisionDetector.playerEnemyCollision(player, badGuy)) {
             worldState = false;
         }
-        renderer.window_update(player, worldState, currentScene, help);
+        renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy.getX(), badGuy.getY());
+        if (help) {
+            renderer.drawHelpScreen();
+        }
 
         std::vector<int> a = player.getPlayerMapPosition();
         int int_positionx = a.at(0);

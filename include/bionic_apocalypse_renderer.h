@@ -53,7 +53,7 @@ class Renderer {
         // window methods
         void window_startup();
         void window_clear();
-        void window_update(const Player &player, const bool &world, Scene &scene, const bool &help);
+        void window_update(const Player &player, const bool &world, Scene &scene);
 
         void drawPlayer(const Player &player, const bool &world);
         void drawEnemy(const int &posX, const int &posY);

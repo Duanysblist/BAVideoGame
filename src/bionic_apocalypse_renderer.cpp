@@ -735,7 +735,7 @@ void Renderer::drawHelpScreen() {
     SDL_DestroyTexture(help_screen);
 }
 
-void Renderer::window_update(const Player &player, const bool &world, Scene &scene, const bool &help) {
+void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
     if (world) {
         drawBottomBar(player);
         drawScene(scene);
@@ -745,9 +745,6 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawBottomBar(player);
         drawBattleUI(player);
         drawPlayer(player, world);
-    }
-    if (help) {
-        drawHelpScreen();
     }
 }
 
