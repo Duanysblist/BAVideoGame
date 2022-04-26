@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
 
 	bool running = true;
     bool battling = false;
+    bool help = false;
     SDL_Event e;
 
     CollisionDetector collisionDetector;
@@ -117,6 +118,51 @@ int main(int argc, char *argv[]) {
             counter++;
         }
     }
+
+    int layout_0_0 [10][18]= 
+      { {ICBR, DFW, DFW, ICBL, PW, PW, ICBR, DFW, DFW, ICBL, PW, ICBR, DFW, DFW, ICBL, PW, PW, PW}, 
+        {RFW, KEY_POWER, 0, LFW, PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, OCBL, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, OCTL, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, ICTR, UFW, UFW, ICTL, PW, PW, PW} 
+    };
+
+    map[0][0].setSceneLayout(layout_0_0);
+
+    int layout_1_0 [10][18]= 
+      { {ICBR, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL},
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, OCTL},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    map[1][0].setSceneLayout(layout_1_0);
+
+    int layout_2_0 [10][18]= 
+      { {PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW}, 
+        {PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {ICBR, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW, ICTL, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, OCTL, UFW, OCTR, 0, 0, 0, LFW, PW, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, OCBL, DFW, OCBR, 0, 0, 0, LFW, PW, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW} 
+    };
+
+    map[2][0].setSceneLayout(layout_2_0);
     
     int layout_6_0 [10][18]= 
       { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
@@ -239,6 +285,9 @@ int main(int argc, char *argv[]) {
                     }
                     if (e.key.keysym.sym == SDLK_e) {
                         INTERACTING = true;
+                    }
+                    if (e.key.keysym.sym == SDLK_h) {
+                        help = !help;
                     }
                 }
 
@@ -402,6 +451,9 @@ int main(int argc, char *argv[]) {
         }
         renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy.getX(), badGuy.getY());
+        if (help) {
+            renderer.drawHelpScreen();
+        }
 
         std::vector<int> a = player.getPlayerMapPosition();
         int int_positionx = a.at(0);

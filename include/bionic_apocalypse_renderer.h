@@ -35,18 +35,20 @@ class Renderer {
         // error message methods
         void csci437_error(const std::string& msg) const;
         void csci437_img_error(const std::string& msg) const;
-        void csci437_ttf_error(const std::string& msg) const;      
-
-    public:
-        void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
+        void csci437_ttf_error(const std::string& msg) const;  
 
         void drawBottomBar(const Player &player);
         void drawHealthBar(const Player &player);
         void drawInventory(const Player &player);
-        void drawKeyInventory(const Player &player);
+        void drawKeyInventory(const Player &player); 
 
         // draw resources and obstacles
-        void drawScene(const Scene &scene);
+        void drawScene(const Scene &scene);   
+
+    public:
+        void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
+
+        void drawHelpScreen();
 
         // window methods
         void window_startup();
