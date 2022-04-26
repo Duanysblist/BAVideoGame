@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
 
 	bool running = true;
     bool battling = false;
+    bool help;
     SDL_Event e;
 
     CollisionDetector collisionDetector;
@@ -240,6 +241,9 @@ int main(int argc, char *argv[]) {
                     if (e.key.keysym.sym == SDLK_e) {
                         INTERACTING = true;
                     }
+                    if (e.key.keysym.sym == SDLK_h) {
+                        help = !help;
+                    }
                 }
 
                 // User releases a key
@@ -375,7 +379,7 @@ int main(int argc, char *argv[]) {
         if(collisionDetector.playerEnemyCollision(player, badGuy)) {
             worldState = false;
         }
-        renderer.window_update(player, worldState, currentScene);
+        renderer.window_update(player, worldState, currentScene, help);
         renderer.drawEnemy(badGuy.getX(), badGuy.getY());
 
         std::vector<int> a = player.getPlayerMapPosition();

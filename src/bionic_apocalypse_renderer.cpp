@@ -723,7 +723,19 @@ void Renderer::drawBottomBar(const Player &player) {
     drawKeyInventory(player);
 }
 
-void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
+void Renderer::drawHelpScreen() {
+    SDL_Surface* image = IMG_Load("../resource/help_screen.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* help_screen = SDL_CreateTextureFromSurface(renderer, image);
+    if (help_screen == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
+    SDL_Rect help_screen_rect = { (SCREEN_WIDTH-HELP_SCREEN_WIDTH)/2, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT-HELP_SCREEN_HEIGHT)/2, HELP_SCREEN_WIDTH, HELP_SCREEN_HEIGHT };
+    SDL_RenderCopyEx(renderer, help_screen, NULL, &help_screen_rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(help_screen);
+}
+
+void Renderer::window_update(const Player &player, const bool &world, Scene &scene, const bool &help) {
     if (world) {
         drawBottomBar(player);
         drawScene(scene);
@@ -733,6 +745,9 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawBottomBar(player);
         drawBattleUI(player);
         drawPlayer(player, world);
+    }
+    if (help) {
+        drawHelpScreen();
     }
 }
 

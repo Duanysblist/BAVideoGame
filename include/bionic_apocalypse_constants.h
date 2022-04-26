@@ -11,6 +11,9 @@ const int BOTTOM_BAR_HEIGHT = 100;
 // Added by Daniel
 const int SCREEN_BPP = 32;
 
+const int HELP_SCREEN_WIDTH = 960;
+const int HELP_SCREEN_HEIGHT = 540;
+
 // constants for map grid of scenes
 const int MAP_COLUMNS = 6;
 const int MAP_ROWS = 8;
