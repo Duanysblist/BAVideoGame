@@ -224,6 +224,13 @@ void Renderer::drawKeyInventory(const Player &player) {
     rectangleRGBA(renderer, END_X - BOX_WIDTH, RELATIVE_Y0, END_X, RELATIVE_Y0 + BOX_HEIGHT, 255, 255, 255, 255);
     // write header text
     drawText("KEY RESOURCES", END_X - 150, RELATIVE_Y0 - 25, 255, 255, 255);
+    // create background texture
+    SDL_Surface* image = IMG_Load("../resource/plain_wall.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* background = SDL_CreateTextureFromSurface(renderer, image);
+    if (background == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
     // draw resources if owned by player
     if (player.getKeyResource(0) == 1) {
         SDL_Surface* image = IMG_Load("../resource/key_power.png");
@@ -231,6 +238,7 @@ void Renderer::drawKeyInventory(const Player &player) {
         SDL_Texture* key1 = SDL_CreateTextureFromSurface(renderer, image);
         if (key1 == NULL) csci437_error("Could not create texture from surface!");
         SDL_Rect key1_rect = { END_X - 3*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
+        SDL_RenderCopyEx(renderer, background, NULL, &key1_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_RenderCopyEx(renderer, key1, NULL, &key1_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_DestroyTexture(key1);
         // free surface
@@ -243,6 +251,7 @@ void Renderer::drawKeyInventory(const Player &player) {
         SDL_Texture* key2 = SDL_CreateTextureFromSurface(renderer, image);
         if (key2 == NULL) csci437_error("Could not create texture from surface!");
         SDL_Rect key2_rect = { END_X - 2*BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
+        SDL_RenderCopyEx(renderer, background, NULL, &key2_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_RenderCopyEx(renderer, key2, NULL, &key2_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_DestroyTexture(key2);
         // free surface
@@ -255,12 +264,14 @@ void Renderer::drawKeyInventory(const Player &player) {
         SDL_Texture* key3 = SDL_CreateTextureFromSurface(renderer, image);
         if (key3 == NULL) csci437_error("Could not create texture from surface!");
         SDL_Rect key3_rect = { END_X - BOX_WIDTH, RELATIVE_Y0, BOX_WIDTH, BOX_HEIGHT };
+        SDL_RenderCopyEx(renderer, background, NULL, &key3_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_RenderCopyEx(renderer, key3, NULL, &key3_rect, 0, NULL, SDL_FLIP_NONE);
         SDL_DestroyTexture(key3);
         // free surface
         SDL_FreeSurface( image );
         image = NULL;
     }
+    SDL_DestroyTexture(background);
 }
 
 void Renderer::drawBattleUI(const Player &player) {
@@ -561,37 +572,37 @@ void Renderer::drawScene(const Scene &scene) {
         // 7 - space in scene has nuclear waste
             if (layout[i][j] == 2) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect scrap_metal_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, scrap_metal, NULL, &scrap_metal_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 3) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect rags_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, rags, NULL, &rags_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 4) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect oil_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, oil, NULL, &oil_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 5) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect power_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, power, NULL, &power_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 6) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect wire_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, wire, NULL, &wire_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 7) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect nuclear_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, nuclear, NULL, &nuclear_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 1) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect rock_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, rock, NULL, &rock_rect, 0, NULL, SDL_FLIP_NONE);
             } else if (layout[i][j] == 11) {
@@ -660,7 +671,7 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
             } else if (layout[i][j] == 30) {
                 SDL_Rect crowbar_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, scene_background, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, crowbar, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
             } else {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
