@@ -1,4 +1,6 @@
 #include "bionic_apocalypse_player.h"
+#include <random>
+#include <time.h>
 
 int Player::getResource(const int resourceType) const {
 	return inventory[resourceType];
@@ -24,17 +26,82 @@ void Player::setCrowbar(const bool crowbarPossessed) {
 	crowbar = crowbarPossessed;
 }
 
+int Player::useMove(const int move){
+	std::array<bool, 12> moves = getPossibleBattleMoves();
+	if (moves[move]) {
+		switch (move) {
+			case 1: {
+				setResource(1, -1);
+				int heal = (rand() % 5 + 20);
+				changePlayerHealth(heal);
+			}break;
+			case 2: {
+				setResource(0, -1);
+			}break;
+			case 3: {
+				setResource(0, -1);
+			}break;
+			case 4: {
+				setResource(1, -1);
+				setResource(2, -1);
+			}break;
+			case 5: {
+				setResource(3, -1);
+				int chance = (rand() % 20);
+				if (chance == 1) {
+					changePlayerHealth(-10);
+				}
+			}break;
+			case 6: {
+				setResource(0, -1);
+				setResource(3, -1);
+				setResource(4, -1);
+			}break;
+			case 7: {
+				setResource(1, -1);
+				setResource(3, -1);
+				setResource(4, -1);
+			}break;
+			case 8: {
+				setResource(1, -1);
+				setResource(4, -1);
+				int heal = (rand() % 5 + 10);
+				changePlayerHealth(heal);
+			}break;
+			case 9: {
+				setResource(5, -1);
+				setResource(3, -1);
+				setResource(4, -1);
+				changePlayerHealth(-25);
+			}break;
+			case 10: {
+				setResource(5, -3);
+				setResource(3, -1);
+				setResource(4, -1);
+				changePlayerHealth(-50);
+			}break;
+			case 11: {
+				setResource(2, -1);
+				setResource(1, -1);
+				setResource(5, -1);
+			}break;
+		}
+		return move;
+	}
+	return -1;
+}
+
 std::array<bool, 12> Player::getPossibleBattleMoves() const {
 	/**
 		0 (crowbar) crowbar strike - does a varying amount of damage to the enemy 
 		1 (Rags) Bandages - Heal Player 
-		2 (Scrap Metal) Throwing Knives - Player throws 3 knives; deals large damage but each has a chance of missing
+		2 (Scrap Metal) Throwing Knives - Player throws 3 knives; deals large damage but each has a 20% chance of missing
 		3 (scrap metal) - defends player against half of the damage from the enemy's next attack, small chance of enemy's attack rebounding onto the enemy
 		4 (Oil, Rags) Molotov - Does no damage to enemy but inflicts fire effect, which does recurring damage
 		5 (power source, crowbar) electric crowbar strike - deals damage to enemy, small chance of player getting electrocuted and damaged as well
-		6 (Power Source, Wire, Scrap Metal) Time Bomb - Takes 2 turns to activate but deals massive damage to enemy and some damage to player when it does
+		6 (Power Source, Wire, Scrap Metal) Time Bomb - Takes 2 turns to activate but deals massive damage to enemy and some damage to player. consecutive bombs will blow on the earliest fuse timer.
 		7 (Wire, Power Source, Rags) Electric net - Deals small damage to enemy, chance to shock them and have them miss their next turn
-		8 (wire, rags) some sort of whip or trips enemy or something - deals minor damage to enemy
+		8 (wire, rags) some sort of whip or trips enemy or something - deals minor damage to enemy and heals player
 		9 (nuclear waste, wires, power source) small nuclear bomb - deals damage to enemy but also to player
 		10 (3x nuclear waste, wires, power source) large nuclear bomb - kills enemy but deals large amount of damage to player 
 		11 (oil, nuclear waste, rags) Nuclear projectile - deals small amount of damage to enemy, chance of recurring damage to enemy

@@ -11,6 +11,8 @@
 #include <string>
 #include <stdlib.h>
 #include <array>
+#include <random>
+#include <time.h>
 
 class Player {
     private:
@@ -38,6 +40,7 @@ class Player {
         void setKeyResource(const int resourceType);
         bool getCrowbar() const;
         void setCrowbar(const bool crowbarPossessed);
+        int useMove(const int move);
         std::array<bool, 12> getPossibleBattleMoves() const;
 
         int getPlayerHealth() const;

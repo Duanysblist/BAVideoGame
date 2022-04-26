@@ -343,22 +343,47 @@ int main(int argc, char *argv[]) {
                 // User presses a key
                 if (e.type == SDL_KEYDOWN)
                 {
-                    if (e.key.keysym.sym == SDLK_1) {
-                        curBattle.setAttackingTrue(player, 1);
-                    }
-                    
                     if (e.key.keysym.sym == SDLK_q) {
                         running = false;
                         break;
                     }
                 }
-                /**
                 // User releases a key
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_1) {
-                        
+                        curBattle.setAttackingTrue(player, 1);
                     }
-                }**/
+                    if (e.key.keysym.sym == SDLK_2) {
+                        curBattle.setAttackingTrue(player, 2);
+                    }
+                    if (e.key.keysym.sym == SDLK_3) {
+                        curBattle.setAttackingTrue(player, 3);
+                    }
+                    if (e.key.keysym.sym == SDLK_4) {
+                        curBattle.setAttackingTrue(player, 4);
+                    }
+                    if (e.key.keysym.sym == SDLK_5) {
+                        curBattle.setAttackingTrue(player, 5);
+                    }
+                    if (e.key.keysym.sym == SDLK_6) {
+                        curBattle.setAttackingTrue(player, 6);
+                    }
+                    if (e.key.keysym.sym == SDLK_7) {
+                        curBattle.setAttackingTrue(player, 7);
+                    }
+                    if (e.key.keysym.sym == SDLK_8) {
+                        curBattle.setAttackingTrue(player, 8);
+                    }
+                    if (e.key.keysym.sym == SDLK_9) {
+                        curBattle.setAttackingTrue(player, 9);
+                    }
+                    if (e.key.keysym.sym == SDLK_MINUS) {
+                        curBattle.setAttackingTrue(player, 10);
+                    }
+                    if (e.key.keysym.sym == SDLK_PLUS) {
+                        curBattle.setAttackingTrue(player, 11);
+                    }
+                }
             }
             if(curBattle.getStatus() == false) {
                 worldState = true;

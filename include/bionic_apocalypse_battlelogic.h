@@ -15,10 +15,16 @@ class Battle {
     private:
         Enemy myEnemy;
         bool active = false;
+        bool armored = false;
+        bool enemyDOT = false;
+        int bombSet = 0;
+        int numBombs = 0;
+        bool enemyDebuff = false;
     public:
         void startNewBattle(Enemy &enemy);
         void setAttackingTrue(Player &player, int move);
         bool getStatus();
+        int bombHandler();
 };
 
 #endif
