@@ -133,6 +133,21 @@ int main(int argc, char *argv[]) {
     };
 
     map[0][0].setSceneLayout(layout_0_0);
+
+    int layout_1_0 [10][18]= 
+      { {ICBR, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL},
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, OCTL},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    map[1][0].setSceneLayout(layout_1_0);
     
     int layout_6_0 [10][18]= 
       { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
