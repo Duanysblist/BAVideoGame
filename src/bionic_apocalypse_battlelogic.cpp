@@ -57,9 +57,6 @@ void Battle::setAttackingTrue(Player &player, int move) {
 					myEnemy.changeHealth(-5);
 					enemyDebuff = true;
 				}break;
-				case 8: {
-					myEnemy.changeHealth(-5);
-				}break;
 				case 9: {
 					myEnemy.changeHealth(-50);
 				}break;

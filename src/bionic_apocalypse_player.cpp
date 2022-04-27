@@ -32,7 +32,7 @@ int Player::useMove(const int move){
 		switch (move) {
 			case 1: {
 				setResource(1, -1);
-				int heal = (rand() % 5 + 20);
+				int heal = (rand() % 5 + 10);
 				changePlayerHealth(heal);
 			}break;
 			case 2: {
@@ -65,7 +65,7 @@ int Player::useMove(const int move){
 			case 8: {
 				setResource(1, -1);
 				setResource(4, -1);
-				int heal = (rand() % 5 + 10);
+				int heal = (rand() % 5 + 20);
 				changePlayerHealth(heal);
 			}break;
 			case 9: {
