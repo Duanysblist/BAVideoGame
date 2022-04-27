@@ -328,7 +328,21 @@ int main(int argc, char *argv[]) {
         {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
         {PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
     };
-    map[6][1].setSceneLayout(layout_6_1);    
+    map[6][1].setSceneLayout(layout_6_1);
+
+    int layout_7_1 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {RFW, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, OCTL, UFW, UFW},
+        {0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, LFW, PW, PW},
+        {0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, LFW, PW, PW},
+        {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW},
+        {RFW, ROCK, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, ROCK, ROCK, ROCK, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW} 
+    };
+    map[7][1].setSceneLayout(layout_7_1);      
 
     int cur_time = SDL_GetTicks();
       
