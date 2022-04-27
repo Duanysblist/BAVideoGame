@@ -438,3 +438,152 @@ bool CollisionDetector::playerEnemyCollision(Player &player, Enemy &enemy) const
     //If none of the sides from A are outside B
     return true;
 }
+
+int CollisionDetector::playerWallCollision(Player &player, Scene &scene) {
+
+    playerX = player.getPlayerScreenPositionX();
+    playerY = player.getPlayerScreenPositionY();
+
+    playerRight = playerX + PLAYER_WIDTH;
+    playerBottom = playerY + PLAYER_HEIGHT;
+
+    numRows = scene.getSceneRows();
+    numCols = scene.getSceneColumns();
+
+    blockHeight = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/numRows;
+    blockWidth = SCREEN_WIDTH/numCols;
+
+    if(playerUpperLeftWallCollision(player, scene)){
+        return 1;
+    }
+    if(playerUpperRightWallCollision(player, scene)){
+        return 2;
+    }
+    if(playerBottomLeftWallCollision(player, scene)){
+        return 3;
+    }
+    if(playerBottomRightWallCollision(player, scene)){
+        return 4;
+    }
+
+    return 0;
+
+
+    // int leftPlayer, rightPlayer, topPlayer, bottomPlayer;
+    // int playerPosY = player.getPlayerScreenPositionX();
+    // int playerPosX = player.getPlayerScreenPositionY();
+
+    // leftPlayer = player.getPlayerScreenPositionX();
+    // rightPlayer = leftPlayer + PLAYER_WIDTH;
+    // topPlayer = player.getPlayerScreenPositionY();
+    // bottomPlayer = topPlayer + PLAYER_HEIGHT;
+    // Using 65x65 sub squares in the scene
+    // int resultX = playerPosX / 65;
+    // int resultY = playerPosY / 65;
+    // int resultLeft = leftPlayer / 65;
+    // int resultRight = rightPlayer / 65;
+    // int resultTop = topPlayer / 65;
+    // int resultBottom = bottomPlayer / 65;
+
+    // if(scene.getSceneBlockInfo(resultX, resultY) > 10 && scene.getSceneBlockInfo(resultX, resultY) < 30){
+    //     return true;
+    // }
+
+    // if(scene.getSceneBlockInfo(resultLeft, resultTop) > 10 && scene.getSceneBlockInfo(resultLeft, resultTop) < 30){
+    //     return true;
+    // }
+    // if(scene.getSceneBlockInfo(resultLeft, resultBottom) > 10 && scene.getSceneBlockInfo(resultLeft, resultBottom) < 30){
+    //     return true;
+    // }
+    // if(scene.getSceneBlockInfo(resultRight, resultTop) > 10 && scene.getSceneBlockInfo(resultRight, resultTop) < 30){
+    //     return true;
+    // }
+    // if(scene.getSceneBlockInfo(resultRight, resultBottom) > 10 && scene.getSceneBlockInfo(resultRight, resultBottom) < 30){
+    //     return true;
+    // }
+
+    // return false;
+}
+
+bool CollisionDetector::playerUpperLeftWallCollision(Player &player, Scene &scene){
+    int upperLeftRow = playerY/blockHeight;
+    int upperLeftColumn = playerX/blockWidth;
+
+    fixLimits(upperLeftRow, upperLeftColumn);
+
+    // std::cout << "Upper Left: " << upperLeftRow << " " << upperLeftColumn << std::endl;
+
+    // check if resource is there
+    int blockInfo = scene.getSceneBlockInfo(upperLeftRow, upperLeftColumn);
+    if(blockInfo == 1){
+        return true;
+    }
+    if(blockInfo > 10 && blockInfo < 30){
+        return true;
+    }
+    return false;
+
+}
+bool CollisionDetector::playerUpperRightWallCollision(Player &player, Scene &scene){
+    int upperRightRow = playerY/blockHeight;
+    int upperRightColumn = playerRight/blockWidth;
+
+    fixLimits(upperRightRow, upperRightColumn);
+
+    // std::cout << "Upper Right: " << upperRightRow << " " << upperRightColumn << std::endl;
+
+    // check if resource is there
+    int blockInfo = scene.getSceneBlockInfo(upperRightRow, upperRightColumn);
+    if(blockInfo == 1){
+        return true;
+    }
+    if(blockInfo > 10 && blockInfo < 30){
+        return true;
+    }
+    return false;
+}
+bool CollisionDetector::playerBottomLeftWallCollision(Player &player, Scene &scene){
+    // bottom left coordinates are playerX, playerBottom
+
+    // find out which block the player's bottom left corner is in
+    // int division truncates towards zero so this should work
+    int bottomLeftRow = playerBottom/blockHeight;
+    int bottomLeftColumn = playerX/blockWidth;
+
+    // std::cout << "Bottom Left: " << bottomLeftRow << " " << bottomLeftColumn << std::endl;
+
+    fixLimits(bottomLeftRow, bottomLeftColumn);
+
+    // check if resource is there
+    int blockInfo = scene.getSceneBlockInfo(bottomLeftRow, bottomLeftColumn);
+    if(blockInfo == 1){
+        return true;
+    }
+    if(blockInfo > 10 && blockInfo < 30){
+        return true;
+    }
+    return false;
+
+}
+bool CollisionDetector::playerBottomRightWallCollision(Player &player, Scene &scene){
+        // bottom right coordinates are playerRight, playerBottom
+
+    // find out which block the player's bottom right corner is in
+    // int division truncates towards zero so this should work
+    int bottomRightRow = playerBottom/blockHeight;
+    int bottomRightColumn = playerRight/blockWidth;
+
+    fixLimits(bottomRightRow, bottomRightColumn);
+
+    // std::cout << "Bottom Right: " << bottomRightRow << " " << bottomRightColumn << std::endl;
+
+    // check if resource is there
+    int blockInfo = scene.getSceneBlockInfo(bottomRightRow, bottomRightColumn);
+    if(blockInfo == 1){
+        return true;
+    }
+    if(blockInfo > 10 && blockInfo < 30){
+        return true;
+    }
+    return false;
+}

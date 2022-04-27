@@ -34,13 +34,17 @@ private:
     void playerBottomLeftResourceCollision(Player &player, Scene &scene) const;
     void playerBottomRightResourceCollision(Player &player, Scene &scene) const;
     void playerCenterResourceCollision(Player &player, Scene &scene) const;
+    bool playerUpperLeftWallCollision(Player &player, Scene &scene);
+    bool playerUpperRightWallCollision(Player &player, Scene &scene);
+    bool playerBottomLeftWallCollision(Player &player, Scene &scene);
+    bool playerBottomRightWallCollision(Player &player, Scene &scene);
 
     void fixLimits(int &row, int &col) const;
 
 public:
     void playerResourceCollision(Player &player, Scene &scene);
     bool playerEnemyCollision(Player &player, Enemy &enemy) const;
-
+    int playerWallCollision(Player &player, Scene &scene);
 };
 
 #endif

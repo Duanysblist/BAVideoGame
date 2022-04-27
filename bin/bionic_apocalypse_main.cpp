@@ -46,6 +46,7 @@ int main(int argc, char *argv[]) {
     badGuy.setPosY(500);
 
     Player player;
+    player.setPlayerScreenPosition(100, 300);
 
     bool worldState = true; //true is world, false is battle
     Battle curBattle;
@@ -335,6 +336,9 @@ int main(int argc, char *argv[]) {
                 }
             }
 
+            int prevPlayerXPos = player.getPlayerScreenPositionX();
+            int prevPlayerYPos = player.getPlayerScreenPositionY();
+
             if (MOVE_UP) {
                 player.playerMoveUp(dt); 
             }
@@ -346,6 +350,32 @@ int main(int argc, char *argv[]) {
             }
             if (MOVE_RIGHT) {
                 player.playerMoveRight(dt);
+            }
+
+            switch(collisionDetector.playerWallCollision(player, currentScene)) {
+                case 0:
+                    // Player is not colliding with a wall or rock
+                    break;
+                case 1:
+                    // Upper Left Wall Collision
+                    // Send player down and to the right
+                    player.setPlayerScreenPosition(prevPlayerXPos, prevPlayerYPos);
+                    break;
+                case 2:
+                    // Upper Right Wall Collision
+                    // Send player down and to the left
+                    player.setPlayerScreenPosition(prevPlayerXPos, prevPlayerYPos);
+                    break;
+                case 3:
+                    // Lower Left Wall Collision
+                    // Send player up and to the right
+                    player.setPlayerScreenPosition(prevPlayerXPos, prevPlayerYPos);
+                    break;
+                case 4:
+                    // Lower Right Wall Collision
+                    // Send player up and to the left
+                    player.setPlayerScreenPosition(prevPlayerXPos, prevPlayerYPos);
+                    break;
             }
 
             switch(player.checkIfPlayerIsAtScreenBoundary()) {
