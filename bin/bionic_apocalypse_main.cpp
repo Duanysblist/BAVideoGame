@@ -274,19 +274,19 @@ int main(int argc, char *argv[]) {
     };
     map[2][1].setSceneLayout(layout_2_1);
 
-    int layout_6_1 [10][18]= 
-      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW}, 
-        {DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {UFW, OCTR, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {PW, RFW, 0, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
-        {PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
+    int layout_3_1 [10][18]= 
+      { {PW, ICBR, DFW, DFW, OCBR, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, ICBR, DFW, DFW, ICBL}, 
+        {ICBR, OCBR, 0, 0, 0, 0, 0, OCBL, DFW, OCBR, 0, 0, LFW, PW, RFW, 0, 0, OCBL},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, OCTL, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, ICTL, PW, RFW, 0, 0, OCTL},
+        {RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, LFW},
+        {RFW, 0, 0, OCBL, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, OCBR, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
     };
-    map[6][1].setSceneLayout(layout_6_1);    
+    map[3][1].setSceneLayout(layout_3_1);
 
     int layout_5_1 [10][18]= 
       { {PW, PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
@@ -301,6 +301,20 @@ int main(int argc, char *argv[]) {
         {PW, PW, PW, PW, PW, PW, PW, ICTR, UFW, UFW, 0, 0, UFW, UFW, UFW, UFW, UFW, ICTL} 
     };
     map[5][1].setSceneLayout(layout_5_1);
+
+    int layout_6_1 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW}, 
+        {DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {UFW, OCTR, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
+    };
+    map[6][1].setSceneLayout(layout_6_1);    
 
     int cur_time = SDL_GetTicks();
       
