@@ -231,6 +231,20 @@ int main(int argc, char *argv[]) {
     };
     map[7][0].setSceneLayout(layout_7_0);
 
+    int layout_0_1 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW},
+        {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}
+    };
+    map[0][1].setSceneLayout(layout_0_1);
+
     int layout_6_1 [10][18]= 
       { {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW}, 
         {DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
