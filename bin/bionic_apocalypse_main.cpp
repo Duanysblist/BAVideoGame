@@ -246,6 +246,20 @@ int main(int argc, char *argv[]) {
     };
     map[0][1].setSceneLayout(layout_0_1);
 
+    int layout_1_1 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+    map[1][1].setSceneLayout(layout_1_1);
+
     int layout_6_1 [10][18]= 
       { {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW}, 
         {DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
