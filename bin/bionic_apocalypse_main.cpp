@@ -260,6 +260,20 @@ int main(int argc, char *argv[]) {
     };
     map[1][1].setSceneLayout(layout_1_1);
 
+    int layout_2_1 [10][18]= 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {OCTR, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, OCBL, ICBL, PW, PW, PW, RFW, 0, 0, 0, 0, 0, OCBL},
+        {ICTR, OCTR, 0, 0, 0, 0, 0, LFW, PW, ICBR, DFW, OCBR, 0, 0, 0, 0, 0, 0},
+        {PW, ICTR, OCTR, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {PW, PW, ICTR, OCTR, 0, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, OCTL},
+        {PW, PW, PW, ICTR, OCTR, 0, 0, LFW, PW, RFW, 0, 0, OCTL, UFW, UFW, UFW, UFW, ICTL} 
+    };
+    map[2][1].setSceneLayout(layout_2_1);
+
     int layout_6_1 [10][18]= 
       { {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW}, 
         {DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
@@ -272,7 +286,7 @@ int main(int argc, char *argv[]) {
         {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
         {PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
     };
-    map[6][1].setSceneLayout(layout_6_1);
+    map[6][1].setSceneLayout(layout_6_1);    
 
     int layout_5_1 [10][18]= 
       { {PW, PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
