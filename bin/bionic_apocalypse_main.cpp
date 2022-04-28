@@ -656,6 +656,9 @@ int main(int argc, char *argv[]) {
                         running = false;
                         break;
                     }
+                    if (e.key.keysym.sym == SDLK_h) {
+                        help = !help;
+                    }
                 }
                 // User releases a key
                 if (e.type == SDL_KEYUP) {
