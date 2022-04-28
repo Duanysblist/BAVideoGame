@@ -560,7 +560,26 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_Texture* crowbar = SDL_CreateTextureFromSurface(renderer, image);
     if (crowbar == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
-    image = NULL;     
+    image = NULL; 
+    // key resources
+    image = IMG_Load("../resource/key_power.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* key_power = SDL_CreateTextureFromSurface(renderer, image);
+    if (key_power == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL; 
+    image = IMG_Load("../resource/key_wire.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* key_wire = SDL_CreateTextureFromSurface(renderer, image);
+    if (key_wire == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL; 
+    image = IMG_Load("../resource/key_nuclear.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* key_nuclear = SDL_CreateTextureFromSurface(renderer, image);
+    if (key_nuclear == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL; 
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
@@ -673,6 +692,18 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_Rect crowbar_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, crowbar, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == KEY_POWER) {
+                SDL_Rect key_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, key_power, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == KEY_WIRE) {
+                SDL_Rect key_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, key_wire, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == KEY_NUCLEAR) {
+                SDL_Rect key_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, scene_background_2, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
+                SDL_RenderCopyEx(renderer, key_nuclear, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
             } else {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
                 if (i%3 == 0 && i%2 == 0 && j%2 == 0 && j%7 == 0 && scene.getSceneID()%2 == 0 && scene.getsceneCategoryID()%2 == 0) {
@@ -712,6 +743,9 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(outer_corner);
     SDL_DestroyTexture(double_inner_corner);
     SDL_DestroyTexture(crowbar);
+    SDL_DestroyTexture(key_power);
+    SDL_DestroyTexture(key_wire);
+    SDL_DestroyTexture(key_nuclear);
 }
 
 void Renderer::drawBottomBar(const Player &player) {
