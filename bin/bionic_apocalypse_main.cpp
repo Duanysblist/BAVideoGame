@@ -23,11 +23,11 @@ using std::endl;
 int main(int argc, char *argv[]) {
 
     //Initialize helpful variables to use
-    bool MOVE_UP = false;
-    bool MOVE_DOWN = false;
-    bool MOVE_RIGHT = false;
-    bool MOVE_LEFT = false;
-    bool INTERACTING = false;
+    bool moveUp = false;
+    bool moveDown = false;
+    bool moveRight = false;
+    bool moveLeft = false;
+    bool interacting = false;
 
 	bool running = true;
     bool battling = false;
@@ -386,6 +386,20 @@ int main(int argc, char *argv[]) {
     };
     map[2][2].setSceneLayout(layout_2_2);    
 
+    int layout_3_2 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, LFW},
+        {OCTR, 0, 0, 0, 0, OCBL, ICBL, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, OCTL, UFW, UFW, ICTL},
+        {RFW, 0, 0, 0, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, ICTL, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, OCTL, UFW, ICTL, PW, PW, PW, PW}
+    };
+    map[3][2].setSceneLayout(layout_3_2);    
+
     int cur_time = SDL_GetTicks();
       
 	while (running) {
@@ -419,19 +433,19 @@ int main(int argc, char *argv[]) {
                         //removed
                     }           
                     if (e.key.keysym.sym == SDLK_w) {
-                        MOVE_UP = true;
+                        moveUp = true;
                     }
                     if (e.key.keysym.sym == SDLK_s) {
-                        MOVE_DOWN = true;
+                        moveDown = true;
                     }
                     if (e.key.keysym.sym == SDLK_d) {
-                        MOVE_RIGHT = true;
+                        moveRight = true;
                     }
                     if (e.key.keysym.sym == SDLK_a) {
-                        MOVE_LEFT = true;
+                        moveLeft = true;
                     }
                     if (e.key.keysym.sym == SDLK_e) {
-                        INTERACTING = true;
+                        interacting = true;
                     }
                     if (e.key.keysym.sym == SDLK_h) {
                         help = !help;
@@ -441,27 +455,27 @@ int main(int argc, char *argv[]) {
                 // User releases a key
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_w) {
-                        MOVE_UP = false;
+                        moveUp = false;
                         //std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
                         // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_s) {
-                        MOVE_DOWN = false;
+                        moveDown = false;
                         // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
                         // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_d) {
-                        MOVE_RIGHT = false;
+                        moveRight = false;
                         // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
                         // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_a) {
-                        MOVE_LEFT = false;
+                        moveLeft = false;
                         // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
                         // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_e) {
-                        INTERACTING = false;
+                        interacting = false;
                     }
                 }
             }
@@ -469,16 +483,16 @@ int main(int argc, char *argv[]) {
             int prevPlayerXPos = player.getPlayerScreenPositionX();
             int prevPlayerYPos = player.getPlayerScreenPositionY();
 
-            if (MOVE_UP) {
+            if (moveUp) {
                 player.playerMoveUp(dt); 
             }
-            if (MOVE_DOWN) {
+            if (moveDown) {
                 player.playerMoveDown(dt);
             }
-            if (MOVE_LEFT) {
+            if (moveLeft) {
                 player.playerMoveLeft(dt);
             }
-            if (MOVE_RIGHT) {
+            if (moveRight) {
                 player.playerMoveRight(dt);
             }
 
@@ -557,7 +571,7 @@ int main(int argc, char *argv[]) {
             
         }
         else {
-            MOVE_UP = MOVE_DOWN = MOVE_LEFT = MOVE_RIGHT = false;
+            moveUp = moveDown = moveLeft = moveRight = false;
             if(battling == false) {
                 curBattle.startNewBattle(badGuy);
                 battling = true;
