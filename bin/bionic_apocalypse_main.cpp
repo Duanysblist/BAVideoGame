@@ -610,6 +610,20 @@ int main(int argc, char *argv[]) {
     };
     map[3][4].setSceneLayout(layout_3_4);    
 
+    int layout_4_4 [10][18]= 
+      { {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, OCBL, DFW, DFW, DFW, DFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, ICBL, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, RFW, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, ICTR, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+    };
+    map[4][4].setSceneLayout(layout_4_4);    
+
     int cur_time = SDL_GetTicks();
       
 	while (running) {
