@@ -19,7 +19,7 @@ const int MAP_COLUMNS = 6;
 const int MAP_ROWS = 8;
 
 //Player dimension constants
-const int PLAYER_WIDTH = 60;
+const int PLAYER_WIDTH = 40;
 const int PLAYER_HEIGHT = 60;
 const double PLAYER_SPEED = 0.35;
 

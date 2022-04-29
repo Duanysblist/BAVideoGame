@@ -51,7 +51,7 @@ void Renderer::window_clear() {
 }
 
 void Renderer::drawPlayer(const Player &player, const bool &world) {
-    SDL_Surface* image = IMG_Load("../resource/player_texture.png");
+    SDL_Surface* image = IMG_Load("../resource/Player.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* player_texture = SDL_CreateTextureFromSurface(renderer, image);
     if (player_texture == NULL) csci437_error("Could not create texture from surface!");
