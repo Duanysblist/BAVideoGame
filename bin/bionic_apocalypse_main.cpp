@@ -568,6 +568,20 @@ int main(int argc, char *argv[]) {
     };
     map[0][4].setSceneLayout(layout_0_4);    
 
+    int layout_1_4 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
+        {ICTR, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}
+    };
+    map[1][4].setSceneLayout(layout_1_4);    
+
     int cur_time = SDL_GetTicks();
       
 	while (running) {
