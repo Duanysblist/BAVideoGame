@@ -32,6 +32,12 @@ class Player {
 
         bool crowbar = false;
 
+        //directional bools
+        bool upDir = false;
+        bool leftDir = false;
+        bool rightDir = true;
+        bool downDir = false;
+
     public:
 
         int getResource(const int resourceType) const;
@@ -58,6 +64,8 @@ class Player {
         void playerMoveDown(const int dt);
         void playerMoveLeft(const int dt);
         void playerMoveRight(const int dt);
+
+        std::array<bool, 2> getDirections() const;
 
         std::vector<int> getPlayerMapPosition() const;
         void setPlayerMapPosition(std::vector<int> position);

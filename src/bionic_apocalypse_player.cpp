@@ -294,20 +294,29 @@ void Player::setPlayerScreenPosition(const int newX, const int newY) {
 
 void Player::playerMoveUp(const int dt) {
 	int change = -PLAYER_SPEED * dt; 
+	upDir = true;
 	changePlayerScreenPosition(0, change);
 }
 
 void Player::playerMoveDown(const int dt) {
 	int change = PLAYER_SPEED * dt; 
+	upDir = false;
 	changePlayerScreenPosition(0, change);
 }
 
 void Player::playerMoveLeft(const int dt) {
 	int change = -PLAYER_SPEED * dt; 
+	leftDir = true;
 	changePlayerScreenPosition(change, 0);
 }
 
 void Player::playerMoveRight(const int dt) {
 	int change = PLAYER_SPEED * dt; 
+	leftDir = false;
 	changePlayerScreenPosition(change, 0);
+}
+
+std::array<bool, 2> Player::getDirections() const {
+	std::array<bool, 2> directions = {upDir, leftDir};
+	return directions;
 }

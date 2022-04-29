@@ -58,7 +58,13 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
 
     if (world) {
         player_rect = { player.getPlayerScreenPositionX(), player.getPlayerScreenPositionY(), PLAYER_WIDTH, PLAYER_HEIGHT };
-        SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+        if (player.getDirections()[1] == false) {
+            SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
+        }
+        else {
+            SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+        }
+        
     }
     else {
         player_rect = {0, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT+PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT};
