@@ -191,7 +191,7 @@ int main(int argc, char *argv[]) {
     map[4][0].setSceneLayout(layout_4_0);
 
     int layout_5_0 [10][18]= 
-      { {PW, PW, PW, PW, PW, PW, RFW, 0, 0, DFW, ICBL, PW, PW, PW, PW, PW, PW, PW}, 
+      { {PW, PW, PW, PW, PW, PW, RFW, 0, 0, OCBL, ICBL, PW, PW, PW, PW, PW, PW, PW}, 
         {PW, PW, PW, ICBR, DFW, DFW, OCBR, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW},
         {PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW},
         {PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -312,7 +312,7 @@ int main(int argc, char *argv[]) {
         {PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
         {PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
         {PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
-        {PW, PW, PW, PW, PW, PW, PW, ICTR, UFW, UFW, 0, 0, UFW, UFW, UFW, UFW, UFW, ICTL} 
+        {PW, PW, PW, PW, PW, PW, PW, ICTR, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, ICTL} 
     };
     map[5][1].setSceneLayout(layout_5_1);
 
@@ -334,7 +334,7 @@ int main(int argc, char *argv[]) {
       { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
         {RFW, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {RFW, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, OCTL, UFW, UFW},
+        {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, OCTL, UFW, UFW},
         {0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, LFW, PW, PW},
         {0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, LFW, PW, PW},
         {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW},
@@ -351,7 +351,7 @@ int main(int argc, char *argv[]) {
         {DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
-        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, OCBL},
         {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0}, 
         {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0}, 
         {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW}
@@ -368,7 +368,7 @@ int main(int argc, char *argv[]) {
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {ICTR, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
-        {PW, PW, PW, PW, ICTL, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL}
+        {PW, PW, PW, PW, ICTR, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL}
     };
     map[1][2].setSceneLayout(layout_1_2);    
 
@@ -405,11 +405,11 @@ int main(int argc, char *argv[]) {
         {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
         {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
         {PW, PW, PW, ICBR, DFW, DFW, OCBR, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
-        {PW, PW, PW, LFW, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
-        {PW, PW, PW, LFW, 0, 0, 0, 0, 0, ROCK, ROCK, OCBL, DFW, DFW, DFW, DFW, DFW, DFW}, 
-        {PW, PW, PW, LFW, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
-        {PW, PW, PW, LFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
-        {PW, PW, PW, LFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, ROCK, ROCK, OCBL, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {PW, PW, PW, RFW, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
         {PW, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}
     };
     map[5][2].setSceneLayout(layout_5_2);    
@@ -508,7 +508,7 @@ int main(int argc, char *argv[]) {
         {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, OCBR, 0, 0, LFW}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, ICTL}
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
     };
     map[4][3].setSceneLayout(layout_4_3);    
 
@@ -516,7 +516,7 @@ int main(int argc, char *argv[]) {
       { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
         {RFW, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, LFW}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-        {RFW, 0, 0, ROCK, ROCK, 0, 0, 0, OCTL, DFW, DFW, DFW, OCTR, 0, 0, 0, ROCK, LFW}, 
+        {RFW, 0, 0, ROCK, ROCK, 0, 0, OCTL, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, ROCK, LFW}, 
         {RFW, 0, 0, ROCK, 0, 0, 0, LFW, PW, PW, PW, RFW, ROCK, ROCK, 0, 0, ROCK, LFW}, 
         {OCBR, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW}, 
         {0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, LFW}, 
@@ -533,7 +533,7 @@ int main(int argc, char *argv[]) {
         {RFW, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-        {OCBR, 0, 0, 0, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+        {OCBR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
         {0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
         {0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
         {UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}
@@ -588,16 +588,16 @@ int main(int argc, char *argv[]) {
         {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
         {DFW, DFW, OCBR, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW}, 
         {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
-        {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {0, 0, 0, 0, 0, LFW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
         {UFW, UFW, OCTR, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
         {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
-        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTR}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
         {PW, PW, RFW, 0, 0, LFW, PW, ICTR, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, ICTL}, 
     };
     map[2][4].setSceneLayout(layout_2_4);    
 
     int layout_3_4 [10][18]= 
-      { {PW, PW, RFW, 0, 0, LFW, PW, RFW, ICBR, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW, ICBL}, 
+      { {PW, PW, RFW, 0, 0, LFW, PW, ICBR, DFW, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW, ICBL}, 
         {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL}, 
@@ -614,7 +614,7 @@ int main(int argc, char *argv[]) {
       { {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, OCBL, DFW, DFW, DFW, DFW}, 
         {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0}, 
         {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0}, 
-        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, ICBL, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
         {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
         {PW, PW, RFW, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
         {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
@@ -625,7 +625,7 @@ int main(int argc, char *argv[]) {
     map[4][4].setSceneLayout(layout_4_4);    
 
     int layout_5_4 [10][18]= 
-      { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+      { {ICBR, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {RFW, 0, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, LFW}, 
@@ -751,10 +751,10 @@ int main(int argc, char *argv[]) {
     map[5][5].setSceneLayout(layout_5_5); 
 
     int layout_6_5 [10][18]= 
-      { {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-        {0, 0, ROCK, ROCK, ROCK, OCTL, UFW, UFW, OCTR, 0, 0, 0, 0, ROCK, ROCK, 0, 0, LFW}, 
+        {0, 0, ROCK, ROCK, ROCK, OCTL, UFW, UFW, UFW, OCTR, 0, 0, 0, ROCK, ROCK, 0, 0, LFW}, 
         {0, 0, ROCK, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, 0, ROCK, 0, 0, LFW}, 
         {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
         {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, ROCK, ROCK, 0, 0, 0, 0, 0, LFW}, 
@@ -1017,9 +1017,9 @@ int main(int argc, char *argv[]) {
 
         badGuy.update(dt);
         
-        if(collisionDetector.playerEnemyCollision(player, badGuy)) {
-            worldState = false;
-        }
+        // if(collisionDetector.playerEnemyCollision(player, badGuy)) {
+        //     worldState = false;
+        // }
         renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy.getX(), badGuy.getY());
         if (help) {
