@@ -169,7 +169,7 @@ int main(int argc, char *argv[]) {
     //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     //     {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
     // };
-    
+
     map[5][4].setSceneLayout(layout_5_4);    
     map[6][4].setSceneLayout(layout_6_4);    
     map[7][4].setSceneLayout(layout_7_4);    
@@ -424,9 +424,9 @@ int main(int argc, char *argv[]) {
 
         badGuy.update(dt);
         
-        // if(collisionDetector.playerEnemyCollision(player, badGuy)) {
-        //     worldState = false;
-        // }
+        if(collisionDetector.playerEnemyCollision(player, badGuy)) {
+            worldState = false;
+        }
         renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy.getX(), badGuy.getY());
         if (help) {
