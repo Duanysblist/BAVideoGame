@@ -21,7 +21,7 @@ class Player {
         int screenLocation;
         int playerHealth = MAX_HEALTH;
 
-        // For map position
+        // For map position - starts with 2 values, both of which are zero
         std::vector<int> playerMapPosition = std::vector<int>(2, 0);
 
         // inventories

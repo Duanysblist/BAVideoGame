@@ -8,6 +8,7 @@ const int MAX_HEALTH = 100;
 const int SCREEN_WIDTH = 1170;
 const int SCREEN_HEIGHT = 750;
 const int BOTTOM_BAR_HEIGHT = 100;
+
 // Added by Daniel
 const int SCREEN_BPP = 32;
 
@@ -91,6 +92,668 @@ const int KEY_NUCLEAR = 10;
 
 // 30 - scene has crowbar
 const int CROWBAR = 30;
+
+// Layouts for scenes in map
+
+    // [0, 0]
+    int layout_0_0 [10][18]= 
+      { {ICBR, DFW, DFW, ICBL, PW, PW, ICBR, DFW, DFW, ICBL, PW, ICBR, DFW, DFW, ICBL, PW, PW, PW}, 
+        {RFW, KEY_POWER, 0, LFW, PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, OCBL, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, OCTL, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, PW, PW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, ICTR, UFW, UFW, ICTL, PW, PW, PW} 
+    };
+
+    // [0, 1]
+    int layout_0_1 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW},
+        {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}
+    };
+
+    // [0, 2]
+    int layout_0_2 [10][18]= 
+      { {PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, OCBL},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW}
+    };
+
+    // [0, 3]
+    int layout_0_3 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL}, 
+        {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [0, 4]
+    int layout_0_4 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, ICBL, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, OCTL, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, ICTL, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [0, 5]
+    int layout_0_5 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, ICTL}, 
+    };
+
+
+    // [1, 0]
+    int layout_1_0 [10][18]= 
+      { {ICBR, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL},
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, TSVW, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, OCTL},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    // [1, 1] - displays [0, 7] in-game
+        int layout_1_1 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [1, 2] - displays [0, 8] in-game
+    int layout_1_2 [10][18]= 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {UFW, OCTR, 0, 0, 0, 0, 0, 0, OCTL, OCTR, 0, 0, 0, 0, 0, OCTL, UFW, UFW},
+        {ICBR, OCBR, ROCK, ROCK, ROCK, ROCK, ROCK, ROCK, OCBL, OCBR, ROCK, ROCK, ROCK, ROCK, ROCK, LFW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {ICTR, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
+        {PW, PW, PW, PW, ICTR, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [1, 3]
+    int layout_1_3 [10][18]= 
+      { {DFW, DFW, DFW, ICBL, PW, PW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {OCTR, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [1, 4]
+    int layout_1_4 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
+        {ICTR, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}
+    };
+
+    // [1, 5]
+    int layout_1_5 [10][18]= 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, ICBL}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, ROCK, 0, 0, LFW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, ROCK, 0, 0, 0, LFW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, ROCK, LFW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, ROCK, LFW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, ICTR, OCTR, 0, 0, 0, 0, 0, LFW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, OCTL, ICTL}, 
+    };
+
+    // [2, 0]
+    int layout_2_0 [10][18]= 
+      { {PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW}, 
+        {PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {ICBR, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW, ICTL, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, OCTL, UFW, OCTR, 0, 0, 0, LFW, PW, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, OCBL, DFW, OCBR, 0, 0, 0, LFW, PW, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW} 
+    };
+
+    // [2, 1]
+    int layout_2_1 [10][18]= 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {OCTR, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, OCBL, ICBL, PW, PW, PW, RFW, 0, 0, 0, 0, 0, OCBL},
+        {ICTR, OCTR, 0, 0, 0, 0, 0, LFW, PW, ICBR, DFW, OCBR, 0, 0, 0, 0, 0, 0},
+        {PW, ICTR, OCTR, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {PW, PW, ICTR, OCTR, 0, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, OCTL},
+        {PW, PW, PW, ICTR, OCTR, 0, 0, LFW, PW, RFW, 0, 0, OCTL, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    // [2, 2]
+    int layout_2_2 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, ICBR, OCBR, 0, 0, 0, OCBL, ICBL, ICBR, DFW, DFW, ICBL, PW}, 
+        {PW, PW, PW, PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0, LFW, RFW, 0, 0, LFW, PW},
+        {PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW, RFW, 0, 0, LFW, PW},
+        {PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW, RFW, 0, 0, LFW, PW},
+        {PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW, RFW, 0, 0, LFW, PW},
+        {DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, OCBL, OCBR, 0, 0, LFW, PW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW},
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}
+    };
+
+    // [2, 3]
+    int layout_2_3 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, TSVW, 0, 0, OCBL, DFW, DFW, DFW, DFW, OCBR, 0, 0, TSVW, 0, 0, OCBL}, 
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
+        {RFW, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
+        {RFW, 0, 0, ROCK, TSHW, TSHW, TSHW, TSHW, TSHW, ROCK, 0, 0, 0, 0, ROCK, ROCK, ROCK, OCTL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [2, 4]
+    int layout_2_4 [10][18]= 
+      { {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
+        {DFW, DFW, OCBR, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW}, 
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {0, 0, 0, 0, 0, LFW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {UFW, UFW, OCTR, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, ICTR, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, ICTL}, 
+    };
+
+    // [2, 5]
+        int layout_2_5 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW}, 
+        {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, LFW, PW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+    };
+
+    // [3, 0]
+    int layout_3_0 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, OCBL, DFW, ICBL, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, ICBR, DFW, DFW, OCBR, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, OCTL, UFW, ICTL}, 
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW, PW, PW} 
+    };
+
+    // [3, 1]
+    int layout_3_1 [10][18]= 
+      { {PW, ICBR, DFW, DFW, OCBR, 0, 0, LFW, PW, RFW, 0, 0, LFW, PW, ICBR, DFW, DFW, ICBL}, 
+        {ICBR, OCBR, 0, 0, 0, 0, 0, OCBL, DFW, OCBR, 0, 0, LFW, PW, RFW, 0, 0, OCBL},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, OCTL, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, ICTL, PW, RFW, 0, 0, OCTL},
+        {RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, LFW},
+        {RFW, 0, 0, OCBL, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, OCBR, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    // [3, 2]
+    int layout_3_2 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, LFW},
+        {OCTR, 0, 0, 0, 0, OCBL, ICBL, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, OCTL, UFW, UFW, ICTL},
+        {RFW, 0, 0, 0, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, 0, 0, LFW, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, ICTL, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, OCTL, UFW, ICTL, PW, PW, PW, PW}
+    };
+
+    // [3, 3]
+    int layout_3_3 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, ICTL}
+    };
+
+    // [3, 4]
+    int layout_3_4 [10][18]= 
+      { {PW, PW, RFW, 0, 0, LFW, PW, ICBR, DFW, DFW, OCBR, 0, 0, OCBL, DFW, DFW, DFW, ICBL}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, ICTR, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, ICTL}, 
+    };
+
+    // [3, 5]
+    int layout_3_5 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {OCBR, 0, 0, ROCK, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, ROCK, 0, 0, LFW}, 
+        {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, LFW}, 
+        {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, LFW}, 
+        {OCTR, ROCK, ROCK, ROCK, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, ROCK, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+    };
+
+    // [4, 0]
+    int layout_4_0 [10][18]= 
+      { {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, ROCK, ROCK, ROCK, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, ROCK, ROCK, 0, 0, 0, LFW, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW},
+        {RFW, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    // [4, 1]
+    int layout_4_1 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, LFW, PW, PW, PW, ICBR, OCBR, 0, 0, OCTL, UFW, OCTR, 0, 0, OCBL},
+        {0, 0, 0, 0, LFW, PW, PW, ICBR, OCBR, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
+        {OCTR, 0, 0, 0, LFW, PW, ICBR, OCBR, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
+        {RFW, 0, 0, 0, OCBL, DFW, OCBR, 0, 0, 0, 0, 0, LFW, PW, ICTR, UFW, UFW, UFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
+    };
+
+    // [4, 2]
+    // [4, 3]
+    int layout_4_3 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, ICBL}, 
+        {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {DFW, DFW, DFW, ICBL, PW, PW, RFW, 0, 0, OCTL, UFW, UFW, UFW, UFW, OCTR, 0, 0, LFW}, 
+        {0, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, LFW}, 
+        {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, OCBR, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [4, 4]
+    int layout_4_4 [10][18]= 
+      { {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, OCBL, DFW, DFW, DFW, DFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+        {PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, RFW, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, ICTR, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+    };
+
+    // [4, 5]
+    int layout_4_5 [10][18]= 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+        {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW}, 
+        {DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},  
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+    };
+
+    // [5, 0]
+    int layout_5_0 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, RFW, 0, 0, OCBL, ICBL, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, ICBR, DFW, DFW, OCBR, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW},
+        {PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW},
+        {PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {ICBR, OCBR, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW},
+        {RFW, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, LFW, PW, PW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
+        {RFW, POWER, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW} 
+    };
+
+    // [5, 1]
+    int layout_5_1 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, METAL, 0, LFW},
+        {PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {PW, PW, PW, PW, PW, PW, PW, ICTR, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    // [5, 2]
+    int layout_5_2 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, ICBR, DFW, DFW, OCBR, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, ROCK, ROCK, OCBL, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {PW, PW, PW, RFW, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {PW, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}
+    };
+
+    // [5, 3]
+    int layout_5_3 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, ROCK, ROCK, 0, 0, OCTL, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, ROCK, LFW}, 
+        {RFW, 0, 0, ROCK, 0, 0, 0, LFW, PW, PW, PW, RFW, ROCK, ROCK, 0, 0, ROCK, LFW}, 
+        {OCBR, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, LFW}, 
+        {0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, LFW}, 
+        {OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
+    };
+
+    // [5, 4]
+    int layout_5_4 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, LFW, 0, 0, 0, 0, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, LFW, 0, 0, 0, 0, RFW, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, OCBL, DFW, 0, 0, DFW, OCBR, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+    };
+
+    // [5, 5]
+    int layout_5_5 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},  
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+    };
+
+    // [6, 0]
+    int layout_6_0 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, ICDL},
+        {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, CROWBAR, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICDT, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+    };
+
+    // [6, 1]
+    int layout_6_1 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW}, 
+        {DFW, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {UFW, OCTR, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
+        {PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
+    };
+
+    // [6, 2]
+    int layout_6_2 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, LFW}, 
+        {RFW, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, ROCK, LFW}, 
+        {RFW, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, 0, TSHW, TSHW, TSHW, ROCK, 0, 0, OCBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, ROCK, 0, 0, ROCK, OCTR, UFW, UFW}
+    };
+
+    // [6, 3]
+    int layout_6_3 [10][18]= 
+      { {RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {RFW, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {OCBR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+        {0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}
+    };
+
+    // [6, 4]
+    int layout_6_4 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {RFW, ROCK, ROCK, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, OCTL, UFW, OCTR, 0, 0}, 
+        {RFW, 0, 0, ROCK, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, LFW, PW, RFW, 0, 0}, 
+        {RFW, ROCK, ROCK, ROCK, ROCK, 0, 0, 0, 0, ROCK, 0, 0, ROCK, OCBL, DFW, OCBR, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+    };
+
+    // [6, 5]
+    int layout_6_5 [10][18]= 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, ROCK, ROCK, ROCK, OCTL, UFW, UFW, UFW, OCTR, 0, 0, 0, ROCK, ROCK, 0, 0, LFW}, 
+        {0, 0, ROCK, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, 0, ROCK, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, LFW, PW, PW, PW, RFW, ROCK, ROCK, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, ROCK, ROCK, LFW}, 
+        {0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},  
+        {0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, OCTL, OCTR, 0, 0, 0, 0, LFW},  
+    };
+
+    // [7, 0]
+    int layout_7_0 [10][18]= 
+      { {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW},
+        {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}
+    };
+
+    // [7, 1]
+    int layout_7_1 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {RFW, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, OCTL, UFW, UFW},
+        {0, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, LFW, PW, PW},
+        {0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, LFW, PW, PW},
+        {OCTR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW},
+        {RFW, ROCK, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {RFW, ROCK, ROCK, ROCK, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW} 
+    };
+
+    // [7, 2]
+    int layout_7_2 [10][18]= 
+      { {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, OCBR, ROCK, 0, 0, ROCK, OCBL, DFW, ICBL}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL},
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
+        {DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}
+    };
+
+    // [7, 3]
+    int layout_7_3 [10][18]= 
+      { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, ROCK, ROCK, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, TSHW, TSHW, TSHW, TSHW, 0, 0, 0, ROCK, TSVW, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {OCBR, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, ROCK, 0, 0, 0}, 
+        {0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0}, 
+        {UFW, UFW, UFW, ICDT, UFW, UFW, UFW, UFW, ICDT, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}
+    };
+
+    // [7, 4]
+    int layout_7_4 [10][18]= 
+      { {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, OCTR, 0, 0, 0, ROCK, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, 0, OCTL, ICTL, PW, ICTR, OCTR, 0, 0, 0, ROCK, ROCK, 0}, 
+        {0, 0, OCTL, OCTR, 0, 0, OCTL, ICTL, PW, PW, PW, ICTR, OCTR, 0, 0, ROCK, 0, 0}, 
+        {0, 0, OCBL, OCBR, 0, 0, LFW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, OCBL, ICBL, PW, PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+        {0, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, ROCK, 0, 0}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW}, 
+    };
+
+    // [7, 5]
+    int layout_7_5 [10][18]= 
+      { {0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, OCBL, OCBR, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, ROCK, ROCK, 0, 0, ROCK, ROCK, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, ROCK, 0, 0, 0, 0, LFW}, 
+        {0, 0, 0, ROCK, 0, 0, ROCK, ROCK, ROCK, 0, 0, ROCK, ROCK, 0, 0, ROCK, ROCK, LFW}, 
+        {UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
+    };
 
 
 #endif
