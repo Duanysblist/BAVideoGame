@@ -34,6 +34,9 @@ int main(int argc, char *argv[]) {
     bool help = false;
     SDL_Event e;
 
+    int eCount = 0;
+    bool finalCutsceneTrigger = false;
+
     CollisionDetector collisionDetector;
     
     Renderer renderer;
@@ -186,6 +189,22 @@ int main(int argc, char *argv[]) {
 
     std::vector<int> screenIndex{0, 7};
     player.setPlayerMapPosition(screenIndex);
+
+    while (eCount < 4) {
+            while (SDL_PollEvent(&e) != 0)
+            {
+                // User presses a key
+                if (e.type == SDL_KEYDOWN)
+                {
+                    if (e.key.keysym.sym == SDLK_e) {
+                        eCount += 1;
+                        SDL_Delay(100);
+                    }
+                }
+            }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+        }
       
 	while (running) {
 
@@ -198,6 +217,11 @@ int main(int argc, char *argv[]) {
         int x = currentVec.at(0);
         int y = currentVec.at(1);
         Scene currentScene = map[x][y];
+
+        if (player.getKeyResource(0) == 1 && player.getKeyResource(1) == 1 && player.getKeyResource(2) == 1) {
+            running = false;
+            finalCutsceneTrigger = true;
+        }
 
         //check if gamestate is in world
         if(worldState) { 
@@ -444,6 +468,22 @@ int main(int argc, char *argv[]) {
 
         renderer.renderer_present();
 	}
+
+    while (finalCutsceneTrigger && eCount < 9) {
+            while (SDL_PollEvent(&e) != 0)
+            {
+                // User presses a key
+                if (e.type == SDL_KEYDOWN)
+                {
+                    if (e.key.keysym.sym == SDLK_e) {
+                        eCount += 1;
+                        SDL_Delay(100);
+                    }
+                }
+            }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+        }
 
     return 0;
 }

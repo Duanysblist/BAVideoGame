@@ -23,6 +23,7 @@ class Renderer {
         SDL_Renderer* renderer;
         SDL_Surface* image;
         SDL_Rect player_rect; 
+        SDL_Rect cutscene_rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         SDL_Rect enemy_rect = { 0, 0, ENEMY_WIDTH, ENEMY_HEIGHT };
         TTF_Font* font;
         SDL_Texture* texture;
@@ -54,6 +55,8 @@ class Renderer {
         void window_startup();
         void window_clear();
         void window_update(const Player &player, const bool &world, Scene &scene);
+
+        void cutscene(const int num);
 
         void drawPlayer(const Player &player, const bool &world);
         void drawEnemy(const int &posX, const int &posY);

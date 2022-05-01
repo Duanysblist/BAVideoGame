@@ -50,6 +50,20 @@ void Renderer::window_clear() {
     SDL_RenderClear(renderer);
 }
 
+void Renderer::cutscene(const int num) {
+    std::string fileLoc = "../resource/"+std::to_string(num)+".png";
+    const char *c = fileLoc.c_str();
+    image = IMG_Load(c);
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* cutscene_texture = SDL_CreateTextureFromSurface(renderer, image);
+    if (cutscene_texture == NULL) csci437_error("Could not create texture from surface!");
+
+    SDL_RenderCopyEx(renderer, cutscene_texture, NULL, &cutscene_rect, 0, NULL, SDL_FLIP_NONE);
+
+    SDL_DestroyTexture(cutscene_texture);
+    SDL_FreeSurface(image);
+}
+
 void Renderer::drawPlayer(const Player &player, const bool &world) {
     SDL_Surface* image = IMG_Load("../resource/Player.png");
     if (image == NULL) csci437_img_error("Could not create image!");
