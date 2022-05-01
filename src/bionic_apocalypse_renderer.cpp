@@ -1,15 +1,15 @@
 #include "bionic_apocalypse_renderer.h"
 
+
+// error messages for texture and text things
 void Renderer::csci437_error(const std::string& msg) const {
     std::cerr << msg << " (" << SDL_GetError() << ")" << std::endl;
     exit(0);
 }
-
 void Renderer::csci437_img_error(const std::string& msg) const {
     std::cerr << msg << " (" << IMG_GetError() << ")" << std::endl;
     exit(0);
 }
-
 void Renderer::csci437_ttf_error(const std::string& msg) const {
     std::cerr << msg << " (" << TTF_GetError() << ")" << std::endl;
     exit(0);
@@ -45,11 +45,13 @@ void Renderer::window_startup() {
 
 }
 
+// clear the renderer
 void Renderer::window_clear() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 }
 
+// display cutscene
 void Renderer::cutscene(const int num) {
     std::string fileLoc = "../resource/"+std::to_string(num)+".png";
     const char *c = fileLoc.c_str();
@@ -64,80 +66,109 @@ void Renderer::cutscene(const int num) {
     SDL_FreeSurface(image);
 }
 
+// draw player
 void Renderer::drawPlayer(const Player &player, const bool &world) {
+    // load and create player texture
     SDL_Surface* image = IMG_Load("../resource/Player.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* player_texture = SDL_CreateTextureFromSurface(renderer, image);
     if (player_texture == NULL) csci437_error("Could not create texture from surface!");
 
+    // if not in a battle, display the player in its screen position
     if (world) {
         player_rect = { player.getPlayerScreenPositionX(), player.getPlayerScreenPositionY(), PLAYER_WIDTH, PLAYER_HEIGHT };
+        // set direction that player is facing based on the direction it is moving in
         if (player.getDirections()[1] == false) {
             SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
         }
         else {
             SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_HORIZONTAL);
         }
-        
     }
+    // if in battle, display the player in the bottom left of the screen
     else {
         player_rect = {0, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT+PLAYER_HEIGHT), PLAYER_WIDTH, PLAYER_HEIGHT};
         SDL_RenderCopyEx(renderer, player_texture, NULL, &player_rect, 0, NULL, SDL_FLIP_NONE);
     }
 
+    // destroy the player texture
     SDL_DestroyTexture(player_texture);
     // delete image
     SDL_FreeSurface( image );
     image = NULL;
 }
 
+// draw an enemy given its position
 void Renderer::drawEnemy(const int &posX, const int &posY) {
+    // load and create enemy texture
     image = IMG_Load("../resource/enemy_texture.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
     if (enemy_texture == NULL) csci437_error("Could not create texture from surface!");
 
+    // set the enemy position to the passed in parameter position
     enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
+
+    // add the enemy to the renderer
     SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 
+    // destroy the texture and free the image
     SDL_DestroyTexture(enemy_texture);
     SDL_FreeSurface(image);
+    image = NULL;
 }
 
+// helper method to draw text
+// pass in the text (words), the position (dst_x and dst_y), and the desired color (r,g,b)
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
+    // create a surface and texture from the passed in text
     SDL_Surface* text = TTF_RenderText_Solid( font, words, color );
     if ( text == NULL ) csci437_ttf_error("Unable to render text!");
     texture = SDL_CreateTextureFromSurface( renderer, text );
     if(texture == NULL) csci437_error("Could not create texture from surface!");
+    
+    // set the position
     SDL_Rect dst = { dst_x, dst_y, text->w, text->h};
     SDL_Point rot = {text->w/2, text->h/2};
+    // change the color
     SDL_SetTextureColorMod( texture, r, g, b );
+    
+    // add text to the renderer
     SDL_RenderCopyEx( renderer, texture, NULL, &dst, 0, &rot, SDL_FLIP_NONE );
+    
+    // destroy texture and free surface
     SDL_DestroyTexture(texture);
-    // free surface
     SDL_FreeSurface( text );
     text = NULL;
 }
 
+// draw the player health bar
 void Renderer::drawHealthBar(const Player &player) {
+    // obtain player health and calculate what fraction of the bar should be filled
     double player_health = player.getPlayerHealth();
     double health_length = (player_health/MAX_HEALTH)*BAR_LENGTH;
+
     // outline of bar
     rectangleRGBA(renderer, BAR_START, SCREEN_HEIGHT - (2*BOTTOM_BAR_HEIGHT/3), BAR_START + BAR_LENGTH, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
     // interior bar representing health
     boxRGBA(renderer, BAR_START, SCREEN_HEIGHT - (2*BOTTOM_BAR_HEIGHT/3), BAR_START + health_length, SCREEN_HEIGHT - (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
-    // write health under bar
+    
+    // write health value under bar
     drawText("Health: ", BAR_START + 50, SCREEN_HEIGHT - 30, 255, 255, 255);
+    // change health to an int instead of double
     int health = trunc(player_health);
     drawText((std::to_string(health)).c_str(), BAR_START + 120, SCREEN_HEIGHT - 30, 255, 255, 255);
 }
 
+// draw the player's inventory at the bottom of the screen
 void Renderer::drawInventory(const Player &player) {
+    // adjustable parameters for display (eg. where the inventory is located, image size, etc.)
     int RESOURCE_WIDTH = 40;
     int RESOURCE_HEIGHT = 40;
     int RELATIVE_X0 = BAR_START + BAR_LENGTH + 50;
     int RELATIVE_Y0 = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT + ((BOTTOM_BAR_HEIGHT-RESOURCE_HEIGHT)/2);
     int GAP_BTW_IMAGES = 120;
+
     // draw resource pics
     // scrap metal
     SDL_Surface* image = IMG_Load("../resource/metal.png");
@@ -205,7 +236,8 @@ void Renderer::drawInventory(const Player &player) {
     // free surface
     SDL_FreeSurface( image );
     image = NULL;
-    // write quantity
+
+    // write quantity of each resource
     // scrap metal
     drawText(":", RELATIVE_X0 + RESOURCE_WIDTH + 10, RELATIVE_Y0 + 10, 255, 255, 255);
     int quantity = player.getResource(0);
@@ -234,7 +266,9 @@ void Renderer::drawInventory(const Player &player) {
 
 void Renderer::drawKeyInventory(const Player &player) {
     // image of resource will appear if owned by the player. otherwise, will be empty box
+    
     // draw outlines of three boxes
+    // adjustable parameters for what the inventory looks like
     int END_X = SCREEN_WIDTH - 50;
     int BOX_HEIGHT = 50;
     int BOX_WIDTH = BOX_HEIGHT;
@@ -242,15 +276,18 @@ void Renderer::drawKeyInventory(const Player &player) {
     rectangleRGBA(renderer, END_X - 3*BOX_WIDTH, RELATIVE_Y0, END_X - 2*BOX_WIDTH, RELATIVE_Y0 + BOX_HEIGHT, 255, 255, 255, 255);
     rectangleRGBA(renderer, END_X - 2*BOX_WIDTH, RELATIVE_Y0, END_X - BOX_WIDTH, RELATIVE_Y0 + BOX_HEIGHT, 255, 255, 255, 255);
     rectangleRGBA(renderer, END_X - BOX_WIDTH, RELATIVE_Y0, END_X, RELATIVE_Y0 + BOX_HEIGHT, 255, 255, 255, 255);
+
     // write header text
     drawText("KEY RESOURCES", END_X - 150, RELATIVE_Y0 - 25, 255, 255, 255);
-    // create background texture
+
+    // create background texture (plain wall / dark grey)
     SDL_Surface* image = IMG_Load("../resource/plain_wall.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* background = SDL_CreateTextureFromSurface(renderer, image);
     if (background == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
+
     // draw resources if owned by player
     if (player.getKeyResource(0) == 1) {
         SDL_Surface* image = IMG_Load("../resource/key_power.png");
@@ -291,12 +328,17 @@ void Renderer::drawKeyInventory(const Player &player) {
         SDL_FreeSurface( image );
         image = NULL;
     }
+    // destroy background texture
     SDL_DestroyTexture(background);
 }
 
+
+// draw battle UI
 void Renderer::drawBattleUI(const Player &player) {
+    // figure out which moves are possible
     std::array<bool, 12> moves = player.getPossibleBattleMoves();
     
+    // adjustable parameters for what the UI looks like
     int RELATIVE_X0 = 100;
     int RELATIVE_Y0 = 100;
     int ACTION_BOX_WIDTH = 250;
@@ -307,7 +349,6 @@ void Renderer::drawBattleUI(const Player &player) {
     int BACKGROUND_WIDTH = 3*LEFT_BORDER + 2*ACTION_BOX_WIDTH;
     int BACKGROUND_HEIGHT = VERTICAL_SPACING + 6*PREV_BOX_HEIGHT;
 
-    // CURRENT COLORS ARE JUST PLACEHOLDERS -- CAN BE CHANGED
     // background rectangle
     boxRGBA(renderer, RELATIVE_X0, RELATIVE_Y0, RELATIVE_X0 + BACKGROUND_WIDTH, RELATIVE_Y0 + BACKGROUND_HEIGHT, 56, 0, 59, 255);
     // action backgrounds
@@ -324,7 +365,7 @@ void Renderer::drawBattleUI(const Player &player) {
     boxRGBA(renderer, RELATIVE_X0 + 2*LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 4*PREV_BOX_HEIGHT, RELATIVE_X0 + 2*LEFT_BORDER + 2*ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 4*PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 203, 179, 204, 255);
     boxRGBA(renderer, RELATIVE_X0 + 2*LEFT_BORDER + ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 5*PREV_BOX_HEIGHT, RELATIVE_X0 + 2*LEFT_BORDER + 2*ACTION_BOX_WIDTH, RELATIVE_Y0 + VERTICAL_SPACING + 5*PREV_BOX_HEIGHT + ACTION_BOX_HEIGHT, 203, 179, 204, 255);
 
-    
+    // if the player can do the move, write the text in black. otherwise, write the text in grey.
     if (moves[0]) {
         drawText("0", RELATIVE_X0 + LEFT_BORDER + 10, RELATIVE_Y0 + VERTICAL_SPACING + 5, 0, 0, 0);
         drawText("Crowbar Strike", RELATIVE_X0 + LEFT_BORDER + 30, RELATIVE_Y0 + VERTICAL_SPACING + 5, 0, 0, 0);
@@ -435,17 +476,22 @@ void Renderer::drawBattleUI(const Player &player) {
 
 }
 
+// draw scene background
 void Renderer::drawScene(const Scene &scene) {
+    // get the info of the scene layout
     int** layout = scene.getSceneLayout();
     const int numRows = scene.getSceneRows();
     const int numColumns = scene.getSceneColumns();
 
+    // calculate how wide/tall each scene tile should be
     const int screenBlockWidth = SCREEN_WIDTH/numColumns;
     const int screenBlockHeight = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/numRows;
 
+    // make resources slightly smaller than the tile they are in
     const int RESOURCE_HEIGHT = screenBlockHeight - 5;
     const int RESOURCE_WIDTH = RESOURCE_HEIGHT;
 
+    // based on the resource size relative to the tile size, set where the upper left corner of the resource image should be
     const int LEFT_BORDER = (screenBlockWidth - RESOURCE_WIDTH)/2;
     const int VERTICAL_BORDER = (screenBlockHeight - RESOURCE_HEIGHT)/2;
 
@@ -500,7 +546,7 @@ void Renderer::drawScene(const Scene &scene) {
     if (rock == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
-    // scene backgrounds
+    // ground backgrounds
     image = IMG_Load("../resource/scene_background.png");
     if (image == NULL) csci437_img_error("Could not create image!");
     SDL_Texture* scene_background = SDL_CreateTextureFromSurface(renderer, image);
@@ -724,7 +770,7 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_Rect key_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, key_nuclear, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
-            } else {
+            } else { // just ground -- use one of the three ground backgrounds and rotate to create variety
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
                 if (i%3 == 0 && i%2 == 0 && j%2 == 0 && j%7 == 0 && scene.getSceneID()%2 == 0 && scene.getsceneCategoryID()%2 == 0) {
                     SDL_RenderCopyEx(renderer, scene_background, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);   
@@ -745,7 +791,7 @@ void Renderer::drawScene(const Scene &scene) {
         }
     }
 
-    // destroy textures
+    // destroy all textures
     SDL_DestroyTexture(scrap_metal);
     SDL_DestroyTexture(rags);
     SDL_DestroyTexture(oil);
@@ -768,6 +814,7 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(key_nuclear);
 }
 
+// draw the bottom bar space and its contents
 void Renderer::drawBottomBar(const Player &player) {
     // Draw line for bottom bar
     thickLineRGBA(renderer, 0, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT, 4, 255, 255, 255, 255);
@@ -777,6 +824,7 @@ void Renderer::drawBottomBar(const Player &player) {
     drawKeyInventory(player);
 }
 
+// draw the help screen
 void Renderer::drawHelpScreen() {
     SDL_Surface* image = IMG_Load("../resource/help_screen.png");
     if (image == NULL) csci437_img_error("Could not create image!");
@@ -784,24 +832,28 @@ void Renderer::drawHelpScreen() {
     if (help_screen == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL;
+    // HELP_SCREEN_WIDTH and HELP_SCREEN_HEIGHT are constants from the constants.h file
     SDL_Rect help_screen_rect = { (SCREEN_WIDTH-HELP_SCREEN_WIDTH)/2, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT-HELP_SCREEN_HEIGHT)/2, HELP_SCREEN_WIDTH, HELP_SCREEN_HEIGHT };
     SDL_RenderCopyEx(renderer, help_screen, NULL, &help_screen_rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(help_screen);
 }
 
+// draw the basic aspects of each scene
 void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
+    // if not in battle, need bottom bar, scene background, and player
     if (world) {
         drawBottomBar(player);
         drawScene(scene);
         drawPlayer(player, world);
     }
-    else {
+    else { // in battle; need bottom bar, battle UI, and player
         drawBottomBar(player);
         drawBattleUI(player);
         drawPlayer(player, world);
     }
 }
 
+// present the renderer
 void Renderer::renderer_present() {
     SDL_RenderPresent(renderer);
 }
