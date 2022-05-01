@@ -18,12 +18,13 @@ class Enemy {
 	private:
 		bool alive = true;
 		int enemyHealth = 100;
-		int enemyAttacks [3] = { -4,-8,-12 };
+		int enemyAttacks[3] = { -5, -10, -15};
 		int enemyPosX;
 		int enemyPosY;
 		int startLocation [2] = {500,500};
 		int endLocation [2] = {900,250};
 		bool goingToStart = false;
+		int enemyType = 0; //0 is normal, -1, is tank, and 1 is glass cannon
 
 	public: 
 		int getHealth() const;
@@ -40,6 +41,7 @@ class Enemy {
 		void setEndLocation(const int X, const int Y);
 		bool playerCollisionCheck(const Player player) const;
 		void update(const int dt);
+		void setType(const int type);
 };
 
 #endif

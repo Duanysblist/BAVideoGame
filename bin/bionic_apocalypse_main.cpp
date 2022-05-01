@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 
     // enemy being used during development of the game
     Enemy badGuy;
-    badGuy.setHealth(50);
+    badGuy.setType(0);
     badGuy.setPosX(500);
     badGuy.setPosY(500);
 
