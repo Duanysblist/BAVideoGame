@@ -163,6 +163,13 @@ void Player::changePlayerHealth(const int healthAddition) {
 	playerHealth += healthAddition;
 }
 
+void Player::setWalkingAnim(bool walk) {
+	walkingAnim = walk;
+}
+
+bool Player::getWalkingAnim() const {
+	return walkingAnim;
+}
 
 int Player::getPlayerScreenPositionX() const {
 	return positionX;

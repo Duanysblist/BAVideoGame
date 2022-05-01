@@ -69,8 +69,16 @@ void Renderer::cutscene(const int num) {
 // draw player
 void Renderer::drawPlayer(const Player &player, const bool &world) {
     // load and create player texture
-    SDL_Surface* image = IMG_Load("../resource/Player.png");
-    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Surface* image;
+    if (player.getWalkingAnim()) {
+        image = IMG_Load("../resource/PlayerWalk.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+    }
+    else {
+        image = IMG_Load("../resource/Player.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+    }
+
     SDL_Texture* player_texture = SDL_CreateTextureFromSurface(renderer, image);
     if (player_texture == NULL) csci437_error("Could not create texture from surface!");
 

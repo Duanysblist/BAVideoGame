@@ -34,6 +34,8 @@ int main(int argc, char *argv[]) {
     int eCount = 0;
     bool finalCutsceneTrigger = false;
 
+    int playerWalkCycle = 0;
+
     CollisionDetector collisionDetector;
     
     Renderer renderer;
@@ -273,6 +275,7 @@ int main(int argc, char *argv[]) {
             int prevPlayerXPos = player.getPlayerScreenPositionX();
             int prevPlayerYPos = player.getPlayerScreenPositionY();
 
+            
             if (moveUp) {
                 player.playerMoveUp(dt); 
             }
@@ -284,6 +287,16 @@ int main(int argc, char *argv[]) {
             }
             if (moveRight) {
                 player.playerMoveRight(dt);
+            }
+            if (moveUp || moveDown || moveLeft || moveRight) {
+                playerWalkCycle++;
+                if (playerWalkCycle >= 5) {
+                    player.setWalkingAnim(!player.getWalkingAnim());
+                }
+            }
+            else {
+                player.setWalkingAnim(false);
+                playerWalkCycle = 0;
             }
 
             // check if player is hitting a wall or obstacle and limit movement if necessary

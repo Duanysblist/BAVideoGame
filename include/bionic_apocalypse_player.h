@@ -21,6 +21,8 @@ class Player {
         int screenLocation;
         int playerHealth = MAX_HEALTH;
 
+        bool walkingAnim = false;
+
         // For map position - starts with 2 values, both of which are zero
         std::vector<int> playerMapPosition = std::vector<int>(2, 0);
 
@@ -52,6 +54,9 @@ class Player {
         int getPlayerHealth() const;
         void setPlayerHealth(int newHealth);
         void changePlayerHealth(int healthAddition);
+
+        void setWalkingAnim(bool walk);
+        bool getWalkingAnim() const;
 
         int getPlayerScreenPositionX() const;
         int getPlayerScreenPositionY() const;
