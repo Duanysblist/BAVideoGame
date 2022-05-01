@@ -13,8 +13,6 @@
 #include <stdio.h>
 #include <string>
 #include <stdlib.h>
-
-
 #include <fstream>
 using std::ifstream;
 using std::ofstream;
@@ -28,7 +26,6 @@ int main(int argc, char *argv[]) {
     bool moveRight = false;
     bool moveLeft = false;
     bool interacting = false;
-
 	bool running = true;
     bool battling = false;
     bool help = false;
@@ -43,11 +40,13 @@ int main(int argc, char *argv[]) {
 
     renderer.window_startup();
 
+    // enemy being used during development of the game
     Enemy badGuy;
     badGuy.setHealth(50);
     badGuy.setPosX(500);
     badGuy.setPosY(500);
 
+    // initalize player, set initial position of player on the screen (bottom left)
     Player player;
     player.setPlayerScreenPosition(100, 450);
 
@@ -114,6 +113,7 @@ int main(int argc, char *argv[]) {
     map[7][4].setSceneZone(3);
     map[7][5].setSceneZone(3);
 
+    // set info for each scene
     for(int i = 0; i < MAP_ROWS; i++){
         for(int j = 0; j < MAP_COLUMNS; j++){
             map[i][j].setSceneID(counter);
@@ -123,6 +123,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    // set scene layouts to hardcoded layouts
     map[0][0].setSceneLayout(layout_0_0);
     map[1][0].setSceneLayout(layout_1_0);
     map[2][0].setSceneLayout(layout_2_0);
@@ -171,39 +172,44 @@ int main(int argc, char *argv[]) {
     map[6][5].setSceneLayout(layout_6_5); 
     map[7][5].setSceneLayout(layout_7_5); 
 
+    // start keeping track of time for use in player and enemy movement
     int cur_time = SDL_GetTicks();
 
+    // set which scene the player starts in (first tutorial scene)
     std::vector<int> screenIndex{5, 0};
     player.setPlayerMapPosition(screenIndex);
 
+    // cut scenes for player -- press e to move through them
     while (eCount < 4) {
-            while (SDL_PollEvent(&e) != 0)
+        while (SDL_PollEvent(&e) != 0)
+        {
+            // User presses a key
+            if (e.type == SDL_KEYDOWN)
             {
-                // User presses a key
-                if (e.type == SDL_KEYDOWN)
-                {
-                    if (e.key.keysym.sym == SDLK_e) {
-                        eCount += 1;
-                        SDL_Delay(100);
-                    }
+                if (e.key.keysym.sym == SDLK_e) {
+                    eCount += 1;
+                    SDL_Delay(100);
                 }
             }
-            renderer.cutscene(eCount);
-            renderer.renderer_present();
         }
+        renderer.cutscene(eCount);
+        renderer.renderer_present();
+    }
       
+    // game loop
 	while (running) {
 
         // get delta t
         unsigned int dt = SDL_GetTicks() - cur_time;
         cur_time = SDL_GetTicks();
 
-        // get player world position
+        // get player map location
         std::vector<int> currentVec = player.getPlayerMapPosition();
         int x = currentVec.at(0);
         int y = currentVec.at(1);
         Scene currentScene = map[x][y];
 
+        // if the player has all of the key resources, stop running the game loop and play the final scene
         if (player.getKeyResource(0) == 1 && player.getKeyResource(1) == 1 && player.getKeyResource(2) == 1) {
             running = false;
             finalCutsceneTrigger = true;
@@ -218,15 +224,10 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYDOWN)
                 {
                     if (e.key.keysym.sym == SDLK_q) {
+                        // quit game
                         running = false;
-                    }
-                    if (e.key.keysym.sym == SDLK_1) {
-                        // std::cout << "battle is pressed" << std::endl;; 
-                        //removed  
-                    }
-                    if (e.key.keysym.sym == SDLK_2) {
-                        //removed
-                    }           
+                        break;
+                    }          
                     if (e.key.keysym.sym == SDLK_w) {
                         moveUp = true;
                     }
@@ -243,6 +244,7 @@ int main(int argc, char *argv[]) {
                         interacting = true;
                     }
                     if (e.key.keysym.sym == SDLK_h) {
+                        // show/hide help screen
                         help = !help;
                     }
                 }
@@ -251,23 +253,15 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYUP) {
                     if (e.key.keysym.sym == SDLK_w) {
                         moveUp = false;
-                        //std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_s) {
                         moveDown = false;
-                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_d) {
                         moveRight = false;
-                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_a) {
                         moveLeft = false;
-                        // std::cout << player.getPlayerScreenPositionX() << ", " << player.getPlayerScreenPositionY() << "\n";
-                        // std::cout << "Hitting Player: " << badGuy.playerCollisionCheck(player) << "\n";
                     }
                     if (e.key.keysym.sym == SDLK_e) {
                         interacting = false;
@@ -275,6 +269,7 @@ int main(int argc, char *argv[]) {
                 }
             }
 
+            // store screen positions
             int prevPlayerXPos = player.getPlayerScreenPositionX();
             int prevPlayerYPos = player.getPlayerScreenPositionY();
 
@@ -291,6 +286,7 @@ int main(int argc, char *argv[]) {
                 player.playerMoveRight(dt);
             }
 
+            // check if player is hitting a wall or obstacle and limit movement if necessary
             switch(collisionDetector.playerWallCollision(player, currentScene)) {
                 case 0:
                     // Player is not colliding with a wall or rock
@@ -317,6 +313,7 @@ int main(int argc, char *argv[]) {
                     break;
             }
 
+            // check if player is moving between scenes
             switch(player.checkIfPlayerIsAtScreenBoundary()) {
                 case 0:
                     // The player is not at the edge of the screen or there is no screen to move to in that direction
@@ -365,28 +362,32 @@ int main(int argc, char *argv[]) {
             
             
         }
-        else {
+        else { // in battle mode
+            // stop movement
             moveUp = moveDown = moveLeft = moveRight = false;
+            // start a new battle if necessary
             if(battling == false) {
                 curBattle.startNewBattle(badGuy);
                 battling = true;
             }
-            //renderer.drawEnemy(badGuy);
             while (SDL_PollEvent(&e) != 0)
             {
                 // User presses a key
                 if (e.type == SDL_KEYDOWN)
                 {
                     if (e.key.keysym.sym == SDLK_q) {
+                        // quit game
                         running = false;
                         break;
                     }
                     if (e.key.keysym.sym == SDLK_h) {
+                        // show/hide help screen
                         help = !help;
                     }
                 }
                 // User releases a key
                 if (e.type == SDL_KEYUP) {
+                    // battle actions
                     if (e.key.keysym.sym == SDLK_1) {
                         curBattle.setAttackingTrue(player, 1);
                     }
@@ -422,27 +423,34 @@ int main(int argc, char *argv[]) {
                     }
                 }
             }
-            if(curBattle.getStatus() == false) {
+            if(curBattle.getStatus() == false) { // leave battle
                 worldState = true;
                 battling = false;
             }
         }
 
-        renderer.window_clear();
 
+
+        // check if player is touching a resource
         collisionDetector.playerResourceCollision(player, currentScene);
 
+        // update enemy info
         badGuy.update(dt);
         
+        // check if player hit enemy, switch into battle if yes
         if(collisionDetector.playerEnemyCollision(player, badGuy)) {
             worldState = false;
         }
+
+        // render everything
+        renderer.window_clear();
         renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy.getX(), badGuy.getY());
         if (help) {
             renderer.drawHelpScreen();
         }
 
+        // display map location -- DELETE BEFORE SUBMITTING GAME - FOR DEVELOPMENT USE ONLY
         std::vector<int> a = player.getPlayerMapPosition();
         int int_positionx = a.at(0);
         int int_positiony = a.at(1);
@@ -455,6 +463,7 @@ int main(int argc, char *argv[]) {
         renderer.renderer_present();
 	}
 
+    // display final cutscenes!
     while (finalCutsceneTrigger && eCount < 9) {
             while (SDL_PollEvent(&e) != 0)
             {
