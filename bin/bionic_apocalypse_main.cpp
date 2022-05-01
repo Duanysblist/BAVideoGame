@@ -401,6 +401,9 @@ int main(int argc, char *argv[]) {
                 // User releases a key
                 if (e.type == SDL_KEYUP) {
                     // battle actions
+                    if (e.key.keysym.sym == SDLK_0) {
+                        curBattle.setAttackingTrue(player, 0);
+                    }
                     if (e.key.keysym.sym == SDLK_1) {
                         curBattle.setAttackingTrue(player, 1);
                     }

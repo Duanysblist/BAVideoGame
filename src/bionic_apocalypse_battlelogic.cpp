@@ -93,6 +93,16 @@ void Battle::setAttackingTrue(Player &player, int move) {
 		// std::cout << "Attacking" << "\n";
 	}
 	else {
+		if (player.getPlayerHealth() > 0) {
+			int itemDrop = (rand() % 2) + 2;
+			for(int i = 0; i < itemDrop; i++){
+				int resourceDrop = (rand() % 4);
+				player.setResource(resourceDrop, 1);
+			}
+		}
+		else {
+			//reset character to beginning
+		}
 		active = false;
 	}
 }
