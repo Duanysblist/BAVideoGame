@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
     badGuy.setPosY(500);
 
     Player player;
-    player.setPlayerScreenPosition(100, 300);
+    player.setPlayerScreenPosition(100, 450);
 
     bool worldState = true; //true is world, false is battle
     Battle curBattle;
@@ -159,20 +159,6 @@ int main(int argc, char *argv[]) {
     map[2][4].setSceneLayout(layout_2_4);    
     map[3][4].setSceneLayout(layout_3_4);    
     map[4][4].setSceneLayout(layout_4_4);    
-
-    // int layout_5_4 [10][18]= 
-    //   { {ICBR, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
-    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, 0, 0, LFW, 0, 0, 0, 0, RFW, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, 0, 0, LFW, 0, 0, 0, 0, RFW, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, 0, 0, OCBL, DFW, 0, 0, DFW, OCBR, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    //     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    //     {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
-    // };
-
     map[5][4].setSceneLayout(layout_5_4);    
     map[6][4].setSceneLayout(layout_6_4);    
     map[7][4].setSceneLayout(layout_7_4);    
@@ -187,7 +173,7 @@ int main(int argc, char *argv[]) {
 
     int cur_time = SDL_GetTicks();
 
-    std::vector<int> screenIndex{0, 7};
+    std::vector<int> screenIndex{5, 0};
     player.setPlayerMapPosition(screenIndex);
 
     while (eCount < 4) {
