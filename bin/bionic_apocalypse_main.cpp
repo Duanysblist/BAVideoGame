@@ -465,7 +465,6 @@ int main(int argc, char *argv[]) {
         renderer.window_clear();
         renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy.getX(), badGuy.getY(), badGuy.getAlive(), worldState, badGuy.getHealth(), badGuy.getMaxHealth());
-        std::cout << badGuy.getMaxHealth() << "\n";
         if (help) {
             renderer.drawHelpScreen();
         }

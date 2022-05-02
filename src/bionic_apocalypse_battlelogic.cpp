@@ -109,7 +109,6 @@ void Battle::setAttackingTrue(Player &player, int move) {
 			win = false;
 		}
 		active = false;
-		std::cout << "done with battle" << "\n";
 	}
 }
 
