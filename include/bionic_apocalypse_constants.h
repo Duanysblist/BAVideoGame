@@ -27,6 +27,14 @@ const int ENEMY_WIDTH = 35;
 const int ENEMY_HEIGHT = 60;
 const double ENEMY_SPEED = 0.15;
 
+//Cutscene constants
+const int CUTSCENE_INTRO = 4;
+const int CUTSCENE_LAB = 10;
+const int CUTSCENE_POWER = 12;
+const int CUTSCENE_FUSE = 14;
+const int CUTSCENE_NUCLEAR = 15;
+const int CUTSCENE_END = 20;
+
 // Screen Directions
 const int UP = 1;
 const int RIGHT = 2;
@@ -410,7 +418,7 @@ static int layout_3_5 [10][18]=
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {OCBR, 0, 0, ROCK, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, ROCK, 0, 0, LFW}, 
-    {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, LFW}, 
+    {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_WIRE, TSVW, 0, 0, LFW}, 
     {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, LFW}, 
     {OCTR, ROCK, ROCK, ROCK, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, ROCK, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
@@ -447,6 +455,19 @@ static int layout_4_1 [10][18]=
 };
 
 // [4, 2]
+static int layout_4_2 [10][18]= 
+  { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LAB_OCTL, LAB_ICTL, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICTR, LAB_OCTR, 0, 0, 0, 0, OCBL},
+    {0, 0, 0, 0, 0, ROCK, LAB_LIGHTS, LAB_PW, LAB_PW, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_RFW, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, ROCK, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_RFW, 0, 0, 0, 0, 0},
+    {OCTR, 0, 0, 0, 0, LAB_OCBL, LAB_ICBL, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICBR, LAB_OCBR, 0, 0, 0, 0, OCTL},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCBL, LAB_DFW, LAB_DFW, LAB_DFW, LAB_DFW, LAB_OCBR, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL} 
+};
+
 // [4, 3]
 static int layout_4_3 [10][18]= 
   { {PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, ICBL}, 
@@ -565,7 +586,7 @@ static int layout_5_5 [10][18]=
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
-    {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
+    {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, KEY_NUCLEAR, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 

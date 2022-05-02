@@ -33,6 +33,10 @@ int main(int argc, char *argv[]) {
 
     int eCount = 0;
     bool finalCutsceneTrigger = false;
+    bool hasBeenToLab = false;
+    bool hasObtainedPower = false;
+    bool hasObtainedFuse = false;
+    bool hasObtainedWaste = false;
 
     int playerWalkCycle = 0;
 
@@ -217,10 +221,86 @@ int main(int argc, char *argv[]) {
         int y = currentVec.at(1);
         Scene currentScene = map[x][y];
 
-        // if the player has all of the key resources, stop running the game loop and play the final scene
-        if (player.getKeyResource(0) == 1 && player.getKeyResource(1) == 1 && player.getKeyResource(2) == 1) {
+        // if the player has all of the key resources and is at the lab, stop running the game loop and play the final scene
+        if (hasObtainedPower && hasObtainedFuse && hasObtainedWaste && x == 4 && y == 2) {
             running = false;
             finalCutsceneTrigger = true;
+        }
+
+        //Catalyst cutscene check
+        if (!hasObtainedPower && player.getKeyResource(0) == 1) {
+            hasObtainedPower = true;
+            while (eCount < CUTSCENE_POWER) {
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
+        }
+
+        //Fuse cutscene check
+        if (!hasObtainedFuse && player.getKeyResource(1) == 1) {
+            hasObtainedFuse = true;
+            while (eCount < CUTSCENE_FUSE) {
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
+        }
+
+        //Waste cutscene check
+        if (!hasObtainedWaste && player.getKeyResource(2) == 1) {
+            hasObtainedWaste = true;
+            while (eCount < CUTSCENE_NUCLEAR) {
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
+        }
+
+        //Lab cutscene check
+        if (hasBeenToLab==false && x == 4 && y == 2) {
+            hasBeenToLab = true;
+            while (eCount < CUTSCENE_LAB) {
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
         }
 
         //check if gamestate is in world
@@ -497,7 +577,7 @@ int main(int argc, char *argv[]) {
 	}
 
     // display final cutscenes!
-    while (finalCutsceneTrigger && eCount < 9) {
+    while (finalCutsceneTrigger && eCount < CUTSCENE_END) {
             while (SDL_PollEvent(&e) != 0)
             {
                 // User presses a key
