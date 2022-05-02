@@ -229,8 +229,10 @@ void Scene::distributeResources() {
                         layout[i][j] = 5; // power source
                     } else if (random == 39) {
                         layout[i][j] = 6; // wire
+                    } else if (random == 40) {
+                        layout[i][j] = 7; // nuclear waste
                     }
-                    else {layout[i][j] = 7;} // nuclear waste
+                    
                 }
             }
         }
