@@ -211,3 +211,66 @@ void Scene::setSceneLayout(int a[][18]) {
         }
     }
 }
+
+void Scene::distributeResources() {
+    if (sceneZone == 3) {
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < columns; j++) {
+                if (layout[i][j] == 0) {
+                    // randomly add resources
+                    int random = rand() % 60 + 1;
+                    if (random == 35) {
+                        layout[i][j] = 2; // scrap metal
+                    } else if (random == 36) {
+                        layout[i][j] = 3; // rags
+                    } else if (random == 37) {
+                        layout[i][j] = 4; // oil
+                    } else if (random == 38) {
+                        layout[i][j] = 5; // power source
+                    } else if (random == 39) {
+                        layout[i][j] = 6; // wire
+                    }
+                    else {layout[i][j] = 7;} // nuclear waste
+                }
+            }
+        }
+    }
+    else if (sceneZone == 2) {
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < columns; j++) {
+                if (layout[i][j] == 0) {
+                    int random = rand() % 60 + 1;
+                    if (random == 35) {
+                        layout[i][j] = 2; // scrap metal
+                    } else if (random == 36) {
+                        layout[i][j] = 3; // rags
+                    } else if (random == 37) {
+                        layout[i][j] = 4; // oil
+                    } else if (random == 38) {
+                        layout[i][j] = 5; // power source
+                    } else if (random == 39) {
+                        layout[i][j] = 6; // wire
+                    }
+                }
+            }
+        }
+    }
+    else if (sceneZone == 1) {
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < columns; j++) {
+                if (layout[i][j] == 0) { 
+                    int random = rand() % 60 + 1;
+                    if (random == 35) {
+                        layout[i][j] = 2; // scrap metal
+                    } else if (random == 36) {
+                        layout[i][j] = 3; // rags
+                    } else if (random == 37) {
+                        layout[i][j] = 4; // oil
+                    } else if (random == 38) {
+                        layout[i][j] = 5; // power source
+                    }
+                }
+            }
+        }
+    }
+}

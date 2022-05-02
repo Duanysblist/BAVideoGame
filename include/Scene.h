@@ -60,6 +60,8 @@ class Scene {
             rows = r;
             columns = c;
         }
+
+        void distributeResources(); 
 };
 
 #endif

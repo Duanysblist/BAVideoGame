@@ -174,6 +174,12 @@ int main(int argc, char *argv[]) {
     map[6][5].setSceneLayout(layout_6_5); 
     map[7][5].setSceneLayout(layout_7_5); 
 
+    for(int i = 0; i < MAP_ROWS; i++){
+        for(int j = 0; j < MAP_COLUMNS; j++){
+            map[i][j].distributeResources();
+        }
+    }
+
     // start keeping track of time for use in player and enemy movement
     int cur_time = SDL_GetTicks();
 
