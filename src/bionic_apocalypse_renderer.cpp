@@ -677,112 +677,103 @@ void Renderer::drawScene(const Scene &scene) {
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
-        // 2 - space in scene has scrap metal
-        // 3 - space in scene has rags
-        // 4 - space in scene has oil
-        // 5 - space in scene has power source
-        // 6 - space in scene has wire
-        // 7 - space in scene has nuclear waste
-            if (layout[i][j] == 2) {
+            if (layout[i][j] == METAL) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect scrap_metal_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, scrap_metal, NULL, &scrap_metal_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 3) {
+            } else if (layout[i][j] == RAGS) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect rags_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, rags, NULL, &rags_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 4) {
+            } else if (layout[i][j] == OIL) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect oil_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, oil, NULL, &oil_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 5) {
+            } else if (layout[i][j] == POWER) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect power_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, power, NULL, &power_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 6) {
+            } else if (layout[i][j] == WIRE) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect wire_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, wire, NULL, &wire_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 7) {
+            } else if (layout[i][j] == NUCLEAR) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect nuclear_rect = { j*screenBlockWidth + LEFT_BORDER, i*screenBlockHeight + VERTICAL_BORDER, RESOURCE_WIDTH, RESOURCE_HEIGHT };
                 SDL_RenderCopyEx(renderer, nuclear, NULL, &nuclear_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 1) {
+            } else if (layout[i][j] == ROCK) {
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &scene_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_Rect rock_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, rock, NULL, &rock_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 11) {
+            } else if (layout[i][j] == LFW) {
                 SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 270, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 12) {
+            } else if (layout[i][j] == RFW) {
                 SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 90, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 13) {
+            } else if (layout[i][j] == UFW) {
                 SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 14) {
+            } else if (layout[i][j] == DFW) {
                 SDL_Rect wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, wall, NULL, &wall_rect, 180, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 15) {
+            } else if (layout[i][j] == TSVW) {
                 SDL_Rect dsw_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, dsw, NULL, &dsw_rect, 90, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 16) {
+            } else if (layout[i][j] == TSHW) {
                 SDL_Rect dsw_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, dsw, NULL, &dsw_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 17) {
+            } else if (layout[i][j] == PW) {
                 SDL_Rect plain_wall_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, plain_wall, NULL, &plain_wall_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 18) {
+            } else if (layout[i][j] == ICTR) {
                 SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 19) {
+            } else if (layout[i][j] == ICTL) {
                 SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 270, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 20) {
+            } else if (layout[i][j] == ICBL) {
                 SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
-            } else if (layout[i][j] == 21) {
+            } else if (layout[i][j] == ICBR) {
                 SDL_Rect inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, inner_corner, NULL, &inner_corner_rect, 90, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 22) {
+            } else if (layout[i][j] == OCTR) {
                 SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 23) {
+            } else if (layout[i][j] == OCTL) {
                 SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 180, NULL, SDL_FLIP_VERTICAL);
-            } else if (layout[i][j] == 24) {
+            } else if (layout[i][j] == OCBL) {
                 SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 180, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 25) {
+            } else if (layout[i][j] == OCBR) {
                 SDL_Rect outer_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background, NULL, &outer_corner_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, outer_corner, NULL, &outer_corner_rect, 90, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 26) {
+            } else if (layout[i][j] == ICDB) {
                 SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 0, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 27) {
+            } else if (layout[i][j] == ICDT) {
                 SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 180, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 28) {
+            } else if (layout[i][j] == ICDL) {
                 SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_NONE);
-            } else if (layout[i][j] == 28) {
+            } else if (layout[i][j] == ICDR) {
                 SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
-            } else if (layout[i][j] == 29) {
-                SDL_Rect double_inner_corner_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
-                SDL_RenderCopyEx(renderer, double_inner_corner, NULL, &double_inner_corner_rect, 90, NULL, SDL_FLIP_VERTICAL);
-            } else if (layout[i][j] == 30) {
+            } else if (layout[i][j] == CROWBAR) {
                 SDL_Rect crowbar_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, crowbar, NULL, &crowbar_rect, 0, NULL, SDL_FLIP_NONE);

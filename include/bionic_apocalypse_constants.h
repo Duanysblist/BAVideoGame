@@ -4,7 +4,7 @@
 // Maximum player health
 const int MAX_HEALTH = 100;
 
-//Screen dimension constants
+//Screen dimension constants -- DO NOT CHANGE UNLESS YOU'RE SURE THAT THE SCENE TILES WILL STAY AS SQUARES
 const int SCREEN_WIDTH = 1170;
 const int SCREEN_HEIGHT = 750;
 const int BOTTOM_BAR_HEIGHT = 100;
