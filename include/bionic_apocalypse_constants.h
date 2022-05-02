@@ -336,7 +336,7 @@ static int layout_2_4 [10][18]=
     {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
     {DFW, DFW, OCBR, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW}, 
     {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
-    {0, 0, 0, 0, 0, LFW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+    {0, 0, 0, 0, 0, LFW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
     {UFW, UFW, OCTR, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
     {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
     {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
@@ -388,7 +388,7 @@ static int layout_3_1 [10][18]=
 // [3, 2]
 static int layout_3_2 [10][18]= 
   { {ICBR, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
-    {RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
     {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
     {0, 0, 0, 0, 0, LFW, PW, PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, LFW},
     {OCTR, 0, 0, 0, 0, OCBL, ICBL, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW},
@@ -483,10 +483,6 @@ static int layout_4_2 [10][18]=
     {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL} 
 };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b36dfb01359597396a4bf47e98e4ce21dc11f53a
 // [4, 3]
 static int layout_4_3 [10][18]= 
   { {PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, ICBL}, 
@@ -522,7 +518,7 @@ static int layout_4_5 [10][18]=
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
     {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW}, 
-    {DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+    {DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},  
@@ -605,13 +601,8 @@ static int layout_5_5 [10][18]=
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
-<<<<<<< HEAD
-    {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, KEY_NUCLEAR, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
-    {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
-=======
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, KEY_NUCLEAR, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
->>>>>>> b36dfb01359597396a4bf47e98e4ce21dc11f53a
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},  
@@ -657,7 +648,7 @@ static int layout_6_2 [10][18]=
     {RFW, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, 0, TSHW, TSHW, TSHW, ROCK, 0, 0, OCBL}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
-    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, ROCK, 0, 0, ROCK, OCTR, UFW, UFW}
+    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, ROCK, 0, 0, ROCK, OCTL, UFW, UFW}
 };
 
 // [6, 3]
