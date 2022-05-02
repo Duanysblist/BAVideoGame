@@ -3,7 +3,6 @@
 #define BIONIC_APOCALYPSE_ENEMY_H
 
 #include "bionic_apocalypse_player.h"
-#include "bionic_apocalypse_renderer.h"
 #include "bionic_apocalypse_constants.h"
 #include <SDL.h>
 #include <SDL_image.h>

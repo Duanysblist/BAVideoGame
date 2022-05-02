@@ -5,6 +5,7 @@
 #include <string>
 #include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
+#include "bionic_apocalypse_enemy.h"
 #include "Scene.h"
 #include <SDL.h>
 #include <SDL_image.h>
@@ -61,7 +62,7 @@ class Renderer {
         void cutscene(const int num);
 
         void drawPlayer(const Player &player, const bool &world);
-        void drawEnemy(const int &posX, const int &posY, const bool &alive, const bool &gameState, const int &health, const int &maxH);
+        void drawEnemy(const Enemy &enemy, const bool &gameState);
 
         void drawBattleUI(const Player &player);
 

@@ -471,7 +471,7 @@ int main(int argc, char *argv[]) {
         // render everything
         renderer.window_clear();
         renderer.window_update(player, worldState, currentScene);
-        renderer.drawEnemy(badGuy.getX(), badGuy.getY(), badGuy.getAlive(), worldState, badGuy.getHealth(), badGuy.getMaxHealth());
+        renderer.drawEnemy(badGuy, worldState);
         if (help) {
             renderer.drawHelpScreen();
         }

@@ -107,16 +107,16 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
 }
 
 // draw an enemy given its position
-void Renderer::drawEnemy(const int &posX, const int &posY, const bool &alive, const bool &gameState, const int &health, const int &maxH) {
+void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
     // load and create enemy texture
-    if (alive) {
+    if (enemy.getAlive()) {
         image = IMG_Load("../resource/enemy_texture.png");
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
         if (enemy_texture == NULL) csci437_error("Could not create texture from surface!");
 
         // set the enemy position to the passed in parameter position
-        enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
+        enemy_rect = { enemy.getX(), enemy.getY(), ENEMY_WIDTH, ENEMY_HEIGHT };
 
         // add the enemy to the renderer
         SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
@@ -127,20 +127,21 @@ void Renderer::drawEnemy(const int &posX, const int &posY, const bool &alive, co
         image = NULL;
         if (gameState == false) {
             // obtain enemy health and calculate what fraction of the bar should be filled
-            int barL = 100;
-            int barS = 900;
-            double enemy_health = health;
-            double health_length = (enemy_health/maxH)*barL;
+            int BAR_L = 100;
+            int BAR_S = 900;
+            double enemy_health = enemy.getHealth();
+            double health_length = (enemy_health/enemy.getMaxHealth())*BAR_L;
 
             // outline of bar
-            rectangleRGBA(renderer, barS, (2*BOTTOM_BAR_HEIGHT/3), barS + barL, (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
+            rectangleRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + BAR_L, (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
             // interior bar representing health
-            boxRGBA(renderer, barS, (2*BOTTOM_BAR_HEIGHT/3), barS + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
+            boxRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
             
             // write health value under bar
-            drawText("Enemy Health: ", barS - 20, (2*BOTTOM_BAR_HEIGHT/3), 255, 255, 255);
+            drawText("Enemy Health: ", BAR_S - 20, (2*BOTTOM_BAR_HEIGHT/3), 255, 255, 255);
             // change health to an int instead of double
-            drawText((std::to_string(health)).c_str(), barS + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 255, 255, 255);
+            int health = trunc(enemy_health);
+            drawText((std::to_string(health)).c_str(), BAR_S + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 255, 255, 255);
         }
     }
 }
