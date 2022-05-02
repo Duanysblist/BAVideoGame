@@ -150,7 +150,7 @@ int main(int argc, char *argv[]) {
     map[1][2].setSceneLayout(layout_1_2);    
     map[2][2].setSceneLayout(layout_2_2);    
     map[3][2].setSceneLayout(layout_3_2);    
-    map[4][2].setSceneLayout(layout_4_2);    
+    map[4][2].setSceneLayout(north_unlocked);    
     map[5][2].setSceneLayout(layout_5_2);    
     map[6][2].setSceneLayout(layout_6_2);    
     map[7][2].setSceneLayout(layout_7_2);    
@@ -228,9 +228,11 @@ int main(int argc, char *argv[]) {
             finalCutsceneTrigger = true;
         }
 
-        //Catalyst cutscene check
+        //Catalyst cutscene check (big battery)
         if (!hasObtainedPower && player.getKeyResource(0) == 1) {
             hasObtainedPower = true;
+            // change lab layout to unlock wire zone
+            map[4][2].setSceneLayout(east_unlocked);
             while (eCount < CUTSCENE_POWER) {
                 moveDown = false;
                 moveUp = false;
@@ -254,6 +256,8 @@ int main(int argc, char *argv[]) {
         //Fuse cutscene check
         if (!hasObtainedFuse && player.getKeyResource(1) == 1) {
             hasObtainedFuse = true;
+            // change lab layout to unlock nuclear zone
+            map[4][2].setSceneLayout(layout_4_2);
             while (eCount < CUTSCENE_FUSE) {
                 moveDown = false;
                 moveLeft = false;

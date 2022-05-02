@@ -469,8 +469,8 @@ static int layout_4_1 [10][18]=
     {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
 };
 
-// [4, 2]
-static int layout_4_2 [10][18]= 
+// [4, 2] LAB SCENE -- different versions for when zones are unlocked
+static int layout_4_2 [10][18]=  // all unlocked
   { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
     {RFW, 0, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, LFW},
@@ -482,6 +482,33 @@ static int layout_4_2 [10][18]=
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
     {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL} 
 };
+static int north_unlocked [10][18]= 
+  { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LAB_OCTL, LAB_ICTL, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICTR, LAB_OCTR, 0, 0, 0, 0, LFW},
+    {0, 0, 0, 0, 0, ROCK, LAB_LIGHTS, LAB_PW, LAB_PW, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_RFW, 0, 0, 0, 0, LFW},
+    {0, 0, 0, 0, 0, ROCK, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_RFW, 0, 0, 0, 0, LFW},
+    {OCTR, 0, 0, 0, 0, LAB_OCBL, LAB_ICBL, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICBR, LAB_OCBR, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCBL, LAB_DFW, LAB_DFW, LAB_DFW, LAB_DFW, LAB_OCBR, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+};
+static int east_unlocked [10][18]= 
+  { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LAB_OCTL, LAB_ICTL, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICTR, LAB_OCTR, 0, 0, 0, 0, OCBL},
+    {0, 0, 0, 0, 0, ROCK, LAB_LIGHTS, LAB_PW, LAB_PW, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_RFW, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, ROCK, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_RFW, 0, 0, 0, 0, 0},
+    {OCTR, 0, 0, 0, 0, LAB_OCBL, LAB_ICBL, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICBR, LAB_OCBR, 0, 0, 0, 0, OCTL},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCBL, LAB_DFW, LAB_DFW, LAB_DFW, LAB_DFW, LAB_OCBR, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+};
+
+
+
 
 // [4, 3]
 static int layout_4_3 [10][18]= 
