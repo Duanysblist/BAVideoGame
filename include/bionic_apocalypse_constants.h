@@ -23,7 +23,7 @@ const int PLAYER_HEIGHT = 60;
 const double PLAYER_SPEED = 0.35;
 
 //Enemy constants
-const int ENEMY_WIDTH = 60;
+const int ENEMY_WIDTH = 35;
 const int ENEMY_HEIGHT = 60;
 const double ENEMY_SPEED = 0.15;
 

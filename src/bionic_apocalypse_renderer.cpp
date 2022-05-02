@@ -110,7 +110,7 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
 void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
     // load and create enemy texture
     if (enemy.getAlive()) {
-        image = IMG_Load("../resource/enemy_texture.png");
+        image = IMG_Load("../resource/Basic_Enemy.png");
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
         if (enemy_texture == NULL) csci437_error("Could not create texture from surface!");
