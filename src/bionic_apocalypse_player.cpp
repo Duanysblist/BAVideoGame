@@ -1,86 +1,219 @@
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <iostream>
-#include <stdio.h>
-#include <string>
-#include <vector>
-#include <stdlib.h>
-#include "bionic_apocalypse_constants.h"
 #include "bionic_apocalypse_player.h"
+#include <random>
+#include <time.h>
 
-int positionX = 0;
-int positionY = 0;
-int screenLocation;
-int playerHealth = MAX_HEALTH - 20;
-int playerMovementSpeed = 10;
-
-// For map position
-std::vector<int> playerMapPosition(2, 0);
-
-// inventories
-// regular inventory: { sheet metal, rags, oil, power source, wire, nuclear waste }
-int inventory [6] = { 0,0,0,0,0,0 };
-// key inventory: { large power source, long wire, large nuclear waste }
-int key_inventory [3] = { 0,0,0 };
-
-int Player::getResource(int resourceType) {
+int Player::getResource(const int resourceType) const {
 	return inventory[resourceType];
 }
 
-void Player::setResource(int resourceType, int amountToAdd) {
+void Player::setResource(const int resourceType, const int amountToAdd) {
 	inventory[resourceType] += amountToAdd;
 }
 
-int Player::getKeyResource(int resourceType) {
+int Player::getKeyResource(const int resourceType) const {
 	return key_inventory[resourceType];
 }
 
-void Player::setKeyResource(int resourceType) {
+void Player::setKeyResource(const int resourceType) {
 	key_inventory[resourceType] = 1;
 }
 
-int Player::getPlayerHealth() {
+void Player::resetResources() {
+	inventory[0] = 0;
+	inventory[1] = 0;
+	inventory[2] = 0;
+	inventory[3] = 0;
+	inventory[4] = 0;
+	inventory[5] = 0;
+	key_inventory[0] = 0;
+	key_inventory[1] = 0;
+	key_inventory[2] = 0;
+}
+
+
+bool Player::getCrowbar() const {
+	return crowbar;
+}
+
+void Player::setCrowbar(const bool crowbarPossessed) {
+	crowbar = crowbarPossessed;
+}
+
+int Player::useMove(const int move){
+	std::array<bool, 12> moves = getPossibleBattleMoves();
+	if (moves[move]) {
+		switch (move) {
+			case 1: {
+				setResource(1, -1);
+				int heal = (rand() % 6 + 10);
+				changePlayerHealth(heal);
+			}break;
+			case 2: {
+				setResource(0, -1);
+			}break;
+			case 3: {
+				setResource(0, -1);
+			}break;
+			case 4: {
+				setResource(1, -1);
+				setResource(2, -1);
+			}break;
+			case 5: {
+				setResource(3, -1);
+				int chance = (rand() % 20);
+				if (chance == 1) {
+					changePlayerHealth(-10);
+				}
+			}break;
+			case 6: {
+				setResource(0, -1);
+				setResource(3, -1);
+				setResource(4, -1);
+			}break;
+			case 7: {
+				setResource(1, -1);
+				setResource(3, -1);
+				setResource(4, -1);
+			}break;
+			case 8: {
+				setResource(1, -1);
+				setResource(4, -1);
+				int heal = (rand() % 6 + 20);
+				changePlayerHealth(heal);
+			}break;
+			case 9: {
+				setResource(5, -1);
+				setResource(3, -1);
+				setResource(4, -1);
+				changePlayerHealth(-25);
+			}break;
+			case 10: {
+				setResource(5, -3);
+				setResource(3, -1);
+				setResource(4, -1);
+				changePlayerHealth(-50);
+			}break;
+			case 11: {
+				setResource(2, -1);
+				setResource(1, -1);
+				setResource(5, -1);
+				changePlayerHealth(-10);
+			}break;
+		}
+		return move;
+	}
+	return -1;
+}
+
+std::array<bool, 12> Player::getPossibleBattleMoves() const {
+	/**
+		0 (crowbar) crowbar strike - does a varying amount of damage to the enemy 
+		1 (Rags) Bandages - Heal Player 
+		2 (Scrap Metal) Throwing Knives - Player throws 3 knives; deals large damage but each has a 20% chance of missing
+		3 (scrap metal) - defends player against half of the damage from the enemy's next attack, small chance of enemy's attack rebounding onto the enemy
+		4 (Oil, Rags) Molotov - Does no damage to enemy but inflicts fire effect, which does recurring damage
+		5 (power source, crowbar) electric crowbar strike - deals damage to enemy, small chance of player getting electrocuted and damaged as well
+		6 (Power Source, Wire, Scrap Metal) Time Bomb - Takes 2 turns to activate but deals massive damage to enemy and some damage to player. consecutive bombs will blow on the earliest fuse timer.
+		7 (Wire, Power Source, Rags) Electric net - Deals small damage to enemy, chance to shock them and have them miss their next turn
+		8 (wire, rags) some sort of whip or trips enemy or something - deals minor damage to enemy and heals player
+		9 (nuclear waste, wires, power source) small nuclear bomb - deals damage to enemy but also to player
+		10 (3x nuclear waste, wires, power source) large nuclear bomb - kills enemy but deals large amount of damage to player 
+		11 (oil, nuclear waste, rags) Nuclear projectile - deals small amount of damage to enemy, chance of recurring damage to enemy
+	**/
+	std::array<bool, 12> moves = {false,false,false,false,false,false,false,false,false,false,false,false};
+
+	// check if each battle move is possible
+	// regular inventory: { scrap metal, rags, oil, power source, wire, nuclear waste }
+
+	if (crowbar) {
+		moves[0] = true;
+	}
+	if (inventory[1] >= 1) {
+		moves[1] = true;
+	}
+	if (inventory[0] >= 1) {
+		moves[2] = true;
+	}
+	if (inventory[0] >= 1) {
+		moves[3] = true;
+	}
+	if (inventory[1] >= 1 && inventory[2] >= 1) {
+		moves[4] = true;
+	}
+	if (inventory[3] >= 1 && crowbar) {
+		moves[5] = true;
+	}
+	if (inventory[3] >= 1 && inventory[4] >= 1 && inventory[0] >= 1) {
+		moves[6] = true;
+	}
+	if (inventory[4] >= 1 && inventory[3] >= 1 && inventory[1] >= 1) {
+		moves[7] = true;
+	}
+	if (inventory[4] >= 1 && inventory[1] >= 1) {
+		moves[8] = true;
+	}
+	if (inventory[5] >= 1 && inventory[4] >= 1 && inventory[3] >= 1) {
+		moves[9] = true;
+	}
+	if (inventory[5] >= 3 && inventory[4] >= 1 && inventory[3] >= 1) {
+		moves[10] = true;
+	}
+	if (inventory[2] >= 1 && inventory[5] >= 1 && inventory[1] >= 1) {
+		moves[11] = true;
+	}
+
+	return moves;
+}
+
+int Player::getPlayerHealth() const {
 	return playerHealth;
 }
 
-void Player::setPlayerHealth(int newHealth) {
+void Player::setPlayerHealth(const int newHealth) {
 	playerHealth = newHealth;
+	if (playerHealth < 0) playerHealth = 0;
 }
 
-void Player::changePlayerHealth(int healthAddition) {
+void Player::changePlayerHealth(const int healthAddition) {
 	playerHealth += healthAddition;
+	if (playerHealth < 0) playerHealth = 0;
 }
 
+void Player::setWalkingAnim(bool walk) {
+	walkingAnim = walk;
+}
 
-int Player::getPlayerScreenPositionX() {
+bool Player::getWalkingAnim() const {
+	return walkingAnim;
+}
+
+int Player::getPlayerScreenPositionX() const {
 	return positionX;
 }
 
-int Player::getPlayerScreenPositionY() {
+int Player::getPlayerScreenPositionY() const {
 	return positionY;
 }
 
-// This needs to either be changed or gotten rid of for screen to screen movement
 void Player::limitPlayerScreenPosition() {
 	if (positionX < 0) {
 		positionX = 0;
 	}
-	if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)) {
+	else if (positionX > (SCREEN_WIDTH - PLAYER_WIDTH)) {
 		positionX = SCREEN_WIDTH - PLAYER_WIDTH;
 	}
-	if (positionY < 0) {
+	else if (positionY < 0) {
 		positionY = 0;
 	}
-	if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
+	else if (positionY > (SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT)) {
 		positionY = SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT;
 	}
 }
 
-// Need a method that can check if the player is at the edges of the screen
-// If they are at the edge, need to check if there is a screen in that direction
+// check if the player is at the edges of the screen
+// If they are at the edge, check if there is a screen in that direction
 // If there is, render that screen, if not do nothing
-int Player::checkIfPlayerIsAtScreenBoundary() {
+int Player::checkIfPlayerIsAtScreenBoundary() const {
 	// if their x position is at 0
 	if (positionX <= 0) {
 		// Check if there is screen to the left
@@ -98,7 +231,7 @@ int Player::checkIfPlayerIsAtScreenBoundary() {
 		// Check if there is a right screen
 			// Get current player map position
 				// If the player is all the way to the right of the screen ([0][3], [1][3], [2][3], [3][3])
-				if(playerMapPosition.at(1) == 3) {
+				if(playerMapPosition.at(1) == MAP_COLUMNS - 1) {
 					// Can't move right
 					return 0;
 				}
@@ -120,7 +253,7 @@ int Player::checkIfPlayerIsAtScreenBoundary() {
 		// Check if there is a screen below
 			// Get current player map position
 				// If the player is at the bottom level of the matrix ([3][0] [3][1] [3][2] [3][3])
-				if(playerMapPosition.at(0) == 3){
+				if(playerMapPosition.at(0) == MAP_ROWS - 1){
 					// Can't move down
 					return 0;
 				}
@@ -132,7 +265,7 @@ int Player::checkIfPlayerIsAtScreenBoundary() {
 	
 }
 
-void Player::changePlayerScreenPosition(int changeX, int changeY) {
+void Player::changePlayerScreenPosition(const int changeX, const int changeY) {
 	positionX += changeX;
 	positionY += changeY;
 	limitPlayerScreenPosition();
@@ -168,49 +301,45 @@ If the user is at these points, need to determine possible directions they can g
 	If user is at map[x][max], the user cannot go right
 */
 
-std::vector<int> Player::getPlayerMapPosition() {
+std::vector<int> Player::getPlayerMapPosition() const {
 	return playerMapPosition;
 }
 
-void Player::setPlayerMapPosition(std::vector<int> pos) {
+void Player::setPlayerMapPosition(const std::vector<int> pos) {
 	playerMapPosition = pos;
 }
 
-void Player::setPlayerScreenPosition(int newX, int newY) {
+void Player::setPlayerScreenPosition(const int newX, const int newY) {
 	positionX = newX;
 	positionY = newY;
 	limitPlayerScreenPosition();
 }
 
-void Player::playerMoveUp() {
-	changePlayerScreenPosition(0, -playerMovementSpeed);
+void Player::playerMoveUp(const int dt) {
+	int change = -PLAYER_SPEED * dt; 
+	upDir = true;
+	changePlayerScreenPosition(0, change);
 }
 
-void Player::playerMoveDown() {
-	changePlayerScreenPosition(0, playerMovementSpeed);
+void Player::playerMoveDown(const int dt) {
+	int change = PLAYER_SPEED * dt; 
+	upDir = false;
+	changePlayerScreenPosition(0, change);
 }
 
-void Player::playerMoveLeft() {
-	changePlayerScreenPosition(-playerMovementSpeed, 0);
+void Player::playerMoveLeft(const int dt) {
+	int change = -PLAYER_SPEED * dt; 
+	leftDir = true;
+	changePlayerScreenPosition(change, 0);
 }
 
-void Player::playerMoveRight() {
-	changePlayerScreenPosition(playerMovementSpeed, 0);
+void Player::playerMoveRight(const int dt) {
+	int change = PLAYER_SPEED * dt; 
+	leftDir = false;
+	changePlayerScreenPosition(change, 0);
 }
 
-
-void Player::setRelationalPositionY(int newRelationalPositionY) {
-
-}
-
-void Player::setRelationalPositionX(int newRelationalPositionY) {
-
-}
-
-void Player::changeRelationalPositionX(int relPosAddition) {
-
-}
-
-void Player::changeRelationalPositionY(int relPosAddition) {
-
+std::array<bool, 2> Player::getDirections() const {
+	std::array<bool, 2> directions = {upDir, leftDir};
+	return directions;
 }
