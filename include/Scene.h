@@ -21,6 +21,7 @@ class Scene {
         int** layout;
         int rows;
         int columns;
+        int resourceProbability = 60;
         
         // scene zone information
         // 0 - in the tutorial zone
@@ -61,7 +62,9 @@ class Scene {
             columns = c;
         }
 
+        void setResourceProbability(const int &prob);
         void distributeResources(); 
+
 };
 
 #endif
