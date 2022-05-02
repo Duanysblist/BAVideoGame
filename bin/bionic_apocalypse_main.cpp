@@ -146,6 +146,7 @@ int main(int argc, char *argv[]) {
     map[1][2].setSceneLayout(layout_1_2);    
     map[2][2].setSceneLayout(layout_2_2);    
     map[3][2].setSceneLayout(layout_3_2);    
+    map[4][2].setSceneLayout(layout_4_2);    
     map[5][2].setSceneLayout(layout_5_2);    
     map[6][2].setSceneLayout(layout_6_2);    
     map[7][2].setSceneLayout(layout_7_2);    
@@ -471,9 +472,9 @@ int main(int argc, char *argv[]) {
         // update enemy info
         badGuy.update(dt);
         // check if player hit enemy, switch into battle if yes
-        if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
-            worldState = false;
-        }
+        // if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
+        //     worldState = false;
+        // }
 
         // render everything
         renderer.window_clear();

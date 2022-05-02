@@ -79,6 +79,21 @@ const int KEY_NUCLEAR = 10;
 // 30 - scene has crowbar
 const int CROWBAR = 30;
 
+const int LAB_LFW = 31; // left facing wall
+const int LAB_RFW = 32; // right facing wall
+const int LAB_UFW = 33; // up facing wall
+const int LAB_DFW = 34; // down facing wall
+const int LAB_PW = 35; // inner lab with no lights
+const int LAB_ICTR = 36; // inner corner top right
+const int LAB_ICTL = 37; // inner corner top left
+const int LAB_ICBL = 38; // inner corner bottom left
+const int LAB_ICBR = 39; // inner corner bottom right
+const int LAB_OCTR = 40; // outer corner top right
+const int LAB_OCTL = 41; // outer corner top left
+const int LAB_OCBL = 42; // outer corner bottom left
+const int LAB_OCBR = 43; // outer corner bottom right
+const int LAB_LIGHTS = 44; // inner lab with lights
+
 // Layouts for scenes in map
 
 // [0, 0]
@@ -447,6 +462,20 @@ static int layout_4_1 [10][18]=
 };
 
 // [4, 2]
+static int layout_4_2 [10][18]= 
+  { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, LAB_OCTL, LAB_ICTL, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICTR, LAB_OCTR, 0, 0, 0, 0, 0, OCBL},
+    {0, 0, 0, 0, ROCK, LAB_LIGHTS, LAB_PW, LAB_PW, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_RFW, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, ROCK, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_RFW, 0, 0, 0, 0, 0, 0},
+    {OCTR, 0, 0, 0, LAB_OCBL, LAB_ICBL, LAB_DFW, LAB_DFW, LAB_DFW, LAB_DFW, LAB_OCBR, 0, 0, 0, 0, 0, 0, OCTL},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL} 
+};
+
+
 // [4, 3]
 static int layout_4_3 [10][18]= 
   { {PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, ICBL}, 
