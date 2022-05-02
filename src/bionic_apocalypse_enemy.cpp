@@ -7,11 +7,13 @@ int Enemy::getHealth() const {
 
 void Enemy::setHealth(const int newHealth) {
 	enemyHealth = newHealth;
+	if (enemyHealth < 0) {enemyHealth = 0;}
 }
 
 //Adds or Subtracts from the health of the enemy
 void Enemy::changeHealth(const int healthChange) {
 	enemyHealth += healthChange;
+	if (enemyHealth < 0) {enemyHealth = 0;}
 }
 
 //Chooses a random attack from the enemy's arsenal
