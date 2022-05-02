@@ -674,6 +674,33 @@ void Renderer::drawScene(const Scene &scene) {
     if (key_nuclear == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL; 
+    // lab tiles
+    image = IMG_Load("../resource/Lab_Inner_Corner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_inner_corner = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_inner_corner == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Inner_No_Lights.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_pw = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_pw == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Inner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_lights = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_lights == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Outer_Corner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_outer_corner = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_outer_corner == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Side.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_side = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_side == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL; 
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
@@ -789,6 +816,48 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_Rect key_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, key_nuclear, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_LFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_RFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+            } else if (layout[i][j] == LAB_UFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_DFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_PW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_pw, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_ICTR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+            } else if (layout[i][j] == LAB_ICTL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_ICBR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 180, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_ICBL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCTR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 180, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCTL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCBL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCBR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_LIGHTS) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_lights, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
             } else { // just ground -- use one of the three ground backgrounds and rotate to create variety
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
                 if (i%3 == 0 && i%2 == 0 && j%2 == 0 && j%7 == 0 && scene.getSceneID()%2 == 0 && scene.getsceneCategoryID()%2 == 0) {
@@ -831,6 +900,11 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(key_power);
     SDL_DestroyTexture(key_wire);
     SDL_DestroyTexture(key_nuclear);
+    SDL_DestroyTexture(lab_inner_corner);
+    SDL_DestroyTexture(lab_pw);
+    SDL_DestroyTexture(lab_lights);
+    SDL_DestroyTexture(lab_outer_corner);
+    SDL_DestroyTexture(lab_side);
 }
 
 // draw the bottom bar space and its contents

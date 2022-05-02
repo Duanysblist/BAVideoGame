@@ -472,9 +472,9 @@ int main(int argc, char *argv[]) {
         // update enemy info
         badGuy.update(dt);
         // check if player hit enemy, switch into battle if yes
-        // if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
-        //     worldState = false;
-        // }
+        if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
+            worldState = false;
+        }
 
         // render everything
         renderer.window_clear();
