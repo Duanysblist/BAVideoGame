@@ -61,7 +61,7 @@ class Renderer {
         void cutscene(const int num);
 
         void drawPlayer(const Player &player, const bool &world);
-        void drawEnemy(const int &posX, const int &posY, const bool &alive);
+        void drawEnemy(const int &posX, const int &posY, const bool &alive, const bool &gameState, const int &health, const int &maxH);
 
         void drawBattleUI(const Player &player);
 

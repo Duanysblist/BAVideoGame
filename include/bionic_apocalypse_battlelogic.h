@@ -27,6 +27,7 @@ class Battle {
         bool getStatus() const;
         int bombHandler();
         bool getWin() const;
+        int getEnemyHP() const;
 };
 
 #endif

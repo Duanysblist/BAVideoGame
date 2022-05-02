@@ -18,6 +18,7 @@ class Enemy {
 	private:
 		bool alive = true;
 		int enemyHealth = 100;
+		int maxHealth = 100;
 		int enemyAttacks[3] = { -5, -10, -15};
 		int enemyPosX;
 		int enemyPosY;
@@ -44,6 +45,7 @@ class Enemy {
 		void setType(const int type);
 		void setAlive(const bool stat);
 		bool getAlive() const;
+		int getMaxHealth() const;
 };
 
 #endif

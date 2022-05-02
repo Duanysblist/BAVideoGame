@@ -133,6 +133,10 @@ int Battle::bombHandler() {
 	}
 }
 
-bool Battle::getWin() const{
+bool Battle::getWin() const {
 	return win;
+}
+
+int Battle::getEnemyHP() const {
+	return myEnemy.getHealth();
 }

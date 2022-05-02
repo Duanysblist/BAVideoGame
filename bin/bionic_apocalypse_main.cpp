@@ -439,8 +439,8 @@ int main(int argc, char *argv[]) {
                     }
                 }
             }
+            badGuy.setHealth(curBattle.getEnemyHP());
             if(curBattle.getStatus() == false) { // leave battle
-                std::cout << "left battle" << "\n";
                 worldState = true;
                 battling = false;
                 if (curBattle.getWin()){
@@ -456,7 +456,6 @@ int main(int argc, char *argv[]) {
 
         // update enemy info
         badGuy.update(dt);
-        
         // check if player hit enemy, switch into battle if yes
         if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
             worldState = false;
@@ -465,7 +464,8 @@ int main(int argc, char *argv[]) {
         // render everything
         renderer.window_clear();
         renderer.window_update(player, worldState, currentScene);
-        renderer.drawEnemy(badGuy.getX(), badGuy.getY(), badGuy.getAlive());
+        renderer.drawEnemy(badGuy.getX(), badGuy.getY(), badGuy.getAlive(), worldState, badGuy.getHealth(), badGuy.getMaxHealth());
+        std::cout << badGuy.getMaxHealth() << "\n";
         if (help) {
             renderer.drawHelpScreen();
         }

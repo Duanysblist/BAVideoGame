@@ -107,7 +107,7 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
 }
 
 // draw an enemy given its position
-void Renderer::drawEnemy(const int &posX, const int &posY, const bool &alive) {
+void Renderer::drawEnemy(const int &posX, const int &posY, const bool &alive, const bool &gameState, const int &health, const int &maxH) {
     // load and create enemy texture
     if (alive) {
         image = IMG_Load("../resource/enemy_texture.png");
@@ -125,6 +125,23 @@ void Renderer::drawEnemy(const int &posX, const int &posY, const bool &alive) {
         SDL_DestroyTexture(enemy_texture);
         SDL_FreeSurface(image);
         image = NULL;
+        if (gameState == false) {
+            // obtain enemy health and calculate what fraction of the bar should be filled
+            int barL = 100;
+            int barS = 900;
+            double enemy_health = health;
+            double health_length = (enemy_health/maxH)*barL;
+
+            // outline of bar
+            rectangleRGBA(renderer, barS, (2*BOTTOM_BAR_HEIGHT/3), barS + barL, (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
+            // interior bar representing health
+            boxRGBA(renderer, barS, (2*BOTTOM_BAR_HEIGHT/3), barS + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
+            
+            // write health value under bar
+            drawText("Enemy Health: ", barS - 20, (2*BOTTOM_BAR_HEIGHT/3), 255, 255, 255);
+            // change health to an int instead of double
+            drawText((std::to_string(health)).c_str(), barS + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 255, 255, 255);
+        }
     }
 }
 

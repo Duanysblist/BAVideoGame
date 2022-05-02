@@ -102,16 +102,19 @@ void Enemy::setType(const int type) {
 	{
 		case -1: {
 			enemyHealth = 100;
+			maxHealth = 100;
 			int newAttacks[3] = {-4, -5, -6};
 			memcpy(enemyAttacks, newAttacks, sizeof(enemyAttacks));
 		}break;
 		case 1: {
 			enemyHealth = 30;
+			maxHealth = 30;
 			int newAttacks[3] = {-15, -20, -25};
 			memcpy(enemyAttacks, newAttacks, sizeof(enemyAttacks));
 		}break;
 		case 0: {
 			enemyHealth = 50;
+			maxHealth = 50;
 			int newAttacks[3] = {-5, -10, -15};
 			memcpy(enemyAttacks, newAttacks, sizeof(enemyAttacks));
 		}
@@ -124,4 +127,8 @@ void Enemy::setAlive(const bool stat) {
 
 bool Enemy::getAlive() const{
 	return alive;
+}
+
+int Enemy::getMaxHealth() const{
+	return maxHealth;
 }
