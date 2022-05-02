@@ -846,18 +846,25 @@ void Renderer::drawHelpScreen() {
     SDL_DestroyTexture(help_screen);
 }
 
+void Renderer::drawHelpMessage() {
+    boxRGBA(renderer, SCREEN_WIDTH - 155, 30, SCREEN_WIDTH, 0, 100, 100, 100, 255);
+    drawText("Press h for help", SCREEN_WIDTH - 140, 4, 255, 255, 255);
+}
+
 // draw the basic aspects of each scene
 void Renderer::window_update(const Player &player, const bool &world, Scene &scene) {
     // if not in battle, need bottom bar, scene background, and player
     if (world) {
         drawBottomBar(player);
         drawScene(scene);
+        drawHelpMessage();
         drawPlayer(player, world);
     }
     else { // in battle; need bottom bar, battle UI, and player
         drawBottomBar(player);
         drawBattleUI(player);
         drawPlayer(player, world);
+        drawHelpMessage();
     }
 }
 

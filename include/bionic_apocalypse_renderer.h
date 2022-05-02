@@ -44,7 +44,9 @@ class Renderer {
         void drawKeyInventory(const Player &player); 
 
         // draw resources and obstacles
-        void drawScene(const Scene &scene);   
+        void drawScene(const Scene &scene);  
+
+        void drawHelpMessage(); 
 
     public:
         void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
