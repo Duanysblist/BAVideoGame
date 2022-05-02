@@ -71,7 +71,11 @@ void Battle::setAttackingTrue(Player &player, int move) {
 			if (enemyDOT) {
 				myEnemy.changeHealth(-5);
 			}
-			myEnemy.changeHealth(bombHandler());
+			int bombValue = bombHandler();
+			if (bombValue != 0) {
+				myEnemy.changeHealth(bombValue);
+				player.changePlayerHealth(-5);
+			}
 			int enemyDamage = myEnemy.randomAttack();
 			if (armored) {
 				if (enemyDamage % 2) {
