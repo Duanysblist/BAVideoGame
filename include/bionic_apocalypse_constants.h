@@ -576,10 +576,10 @@ static int layout_5_5 [10][18]=
 // [6, 0]
 static int layout_6_0 [10][18]= 
   { {ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICDB, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
-    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, OCBL},
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0},
-    {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL},
     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, ICDL},
     {RFW, 0, 0, 0, TSVW, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, LFW},
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0, 0, 0, CROWBAR, 0, LFW}, 
