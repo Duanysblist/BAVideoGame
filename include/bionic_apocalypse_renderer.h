@@ -39,6 +39,7 @@ class Renderer {
         void csci437_img_error(const std::string& msg) const;
         void csci437_ttf_error(const std::string& msg) const;  
 
+        // bottom bar methods
         void drawBottomBar(const Player &player);
         void drawHealthBar(const Player &player);
         void drawInventory(const Player &player);
@@ -47,6 +48,7 @@ class Renderer {
         // draw resources and obstacles
         void drawScene(const Scene &scene);  
 
+        // write out "Press h for help" in the top right of the screen
         void drawHelpMessage(); 
 
     public:
@@ -59,6 +61,7 @@ class Renderer {
         void window_clear();
         void window_update(const Player &player, const bool &world, Scene &scene);
 
+        // display a cutscene
         void cutscene(const int num);
 
         void drawPlayer(const Player &player, const bool &world);

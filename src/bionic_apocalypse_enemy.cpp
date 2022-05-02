@@ -49,16 +49,6 @@ void Enemy::setEndLocation(const int X, const int Y) {
 	endLocation[1] = Y;
 }
 
-bool Enemy::playerCollisionCheck(const Player player) const {
-	int playerX = player.getPlayerScreenPositionX();
-	int playerY = player.getPlayerScreenPositionY();
-	if ((playerX <= enemyPosX && playerX+PLAYER_WIDTH >= enemyPosX)||(playerX <= enemyPosX+ENEMY_WIDTH && playerX+PLAYER_WIDTH >= enemyPosX+ENEMY_WIDTH)&&
-		(playerY <= enemyPosY && playerY+PLAYER_HEIGHT >= enemyPosY)||(playerY <= enemyPosY+ENEMY_HEIGHT && playerY+PLAYER_HEIGHT >= enemyPosY+ENEMY_HEIGHT)) {
-			return true;
-	}
-	return false;
-}
-
 void Enemy::update(const int dt) {
 	//Update Location
 	// std::cout << "Update";
