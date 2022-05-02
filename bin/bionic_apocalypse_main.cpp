@@ -446,6 +446,12 @@ int main(int argc, char *argv[]) {
                 if (curBattle.getWin()){
                     badGuy.setAlive(false);
                 }
+                else {
+                    std::vector<int> screenIndex{6, 0};
+                    player.setPlayerMapPosition(screenIndex);
+                    player.setPlayerScreenPosition(100, 450);
+                    player.setPlayerHealth(MAX_HEALTH);
+                }
             }
         }
 
