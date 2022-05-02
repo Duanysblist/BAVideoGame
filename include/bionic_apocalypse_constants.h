@@ -420,8 +420,8 @@ static int layout_3_5 [10][18]=
 
 // [4, 0]
 static int layout_4_0 [10][18]= 
-  { {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0}, 
-    {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
+  { {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW, PW, PW}, 
+    {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, OCBL, DFW, DFW},
     {RFW, 0, 0, ROCK, ROCK, ROCK, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
     {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
     {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},

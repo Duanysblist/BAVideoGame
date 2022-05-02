@@ -178,7 +178,7 @@ int main(int argc, char *argv[]) {
     int cur_time = SDL_GetTicks();
 
     // set which scene the player starts in (first tutorial scene)
-    std::vector<int> screenIndex{5, 0};
+    std::vector<int> screenIndex{6, 0};
     player.setPlayerMapPosition(screenIndex);
 
     // cut scenes for player -- press e to move through them
