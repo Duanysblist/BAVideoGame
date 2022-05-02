@@ -232,6 +232,10 @@ int main(int argc, char *argv[]) {
         if (!hasObtainedPower && player.getKeyResource(0) == 1) {
             hasObtainedPower = true;
             while (eCount < CUTSCENE_POWER) {
+                moveDown = false;
+                moveUp = false;
+                moveRight = false;
+                moveLeft = false;
                 while (SDL_PollEvent(&e) != 0)
                 {
                     if (e.type == SDL_KEYDOWN)
@@ -251,6 +255,10 @@ int main(int argc, char *argv[]) {
         if (!hasObtainedFuse && player.getKeyResource(1) == 1) {
             hasObtainedFuse = true;
             while (eCount < CUTSCENE_FUSE) {
+                moveDown = false;
+                moveLeft = false;
+                moveRight = false;
+                moveUp = false;
                 while (SDL_PollEvent(&e) != 0)
                 {
                     if (e.type == SDL_KEYDOWN)
@@ -270,6 +278,10 @@ int main(int argc, char *argv[]) {
         if (!hasObtainedWaste && player.getKeyResource(2) == 1) {
             hasObtainedWaste = true;
             while (eCount < CUTSCENE_NUCLEAR) {
+                moveDown = false;
+                moveUp = false;
+                moveLeft = false;
+                moveRight = false;
                 while (SDL_PollEvent(&e) != 0)
                 {
                     if (e.type == SDL_KEYDOWN)
@@ -289,6 +301,10 @@ int main(int argc, char *argv[]) {
         if (hasBeenToLab==false && x == 4 && y == 2) {
             hasBeenToLab = true;
             while (eCount < CUTSCENE_LAB) {
+                moveDown = false;
+                moveUp = false;
+                moveLeft = false;
+                moveRight = false;
                 while (SDL_PollEvent(&e) != 0)
                 {
                     if (e.type == SDL_KEYDOWN)
