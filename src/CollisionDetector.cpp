@@ -434,7 +434,6 @@ bool CollisionDetector::playerEnemyCollision(Player &player, Enemy &enemy) const
     {
         return false;
     }
-
     //If none of the sides from A are outside B
     return true;
 }

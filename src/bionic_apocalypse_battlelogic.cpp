@@ -103,15 +103,17 @@ void Battle::setAttackingTrue(Player &player, int move) {
 				int resourceDrop = (rand() % 4);
 				player.setResource(resourceDrop, 1);
 			}
+			win = true;
 		}
 		else {
-			//reset character to beginning
+			win = false;
 		}
 		active = false;
+		std::cout << "done with battle" << "\n";
 	}
 }
 
-bool Battle::getStatus() {
+bool Battle::getStatus() const{
 	return active;
 }
 
@@ -129,4 +131,8 @@ int Battle::bombHandler() {
 		bombSet -= 1;
 		return 0;
 	}
+}
+
+bool Battle::getWin() const{
+	return win;
 }

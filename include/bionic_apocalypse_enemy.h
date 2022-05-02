@@ -42,6 +42,8 @@ class Enemy {
 		bool playerCollisionCheck(const Player player) const;
 		void update(const int dt);
 		void setType(const int type);
+		void setAlive(const bool stat);
+		bool getAlive() const;
 };
 
 #endif

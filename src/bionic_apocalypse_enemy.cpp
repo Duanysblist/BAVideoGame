@@ -117,3 +117,11 @@ void Enemy::setType(const int type) {
 		}
 	}
 }
+
+void Enemy::setAlive(const bool stat) {
+	alive = stat;
+}
+
+bool Enemy::getAlive() const{
+	return alive;
+}

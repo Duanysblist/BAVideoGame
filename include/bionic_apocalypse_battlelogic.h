@@ -20,11 +20,13 @@ class Battle {
         int bombSet = 0;
         int numBombs = 0;
         bool enemyDebuff = false;
+        bool win;
     public:
         void startNewBattle(Enemy &enemy);
         void setAttackingTrue(Player &player, int move);
-        bool getStatus();
+        bool getStatus() const;
         int bombHandler();
+        bool getWin() const;
 };
 
 #endif

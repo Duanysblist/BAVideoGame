@@ -107,23 +107,25 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
 }
 
 // draw an enemy given its position
-void Renderer::drawEnemy(const int &posX, const int &posY) {
+void Renderer::drawEnemy(const int &posX, const int &posY, const bool &alive) {
     // load and create enemy texture
-    image = IMG_Load("../resource/enemy_texture.png");
-    if (image == NULL) csci437_img_error("Could not create image!");
-    SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
-    if (enemy_texture == NULL) csci437_error("Could not create texture from surface!");
+    if (alive) {
+        image = IMG_Load("../resource/enemy_texture.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+        SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
+        if (enemy_texture == NULL) csci437_error("Could not create texture from surface!");
 
-    // set the enemy position to the passed in parameter position
-    enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
+        // set the enemy position to the passed in parameter position
+        enemy_rect = { posX, posY, ENEMY_WIDTH, ENEMY_HEIGHT };
 
-    // add the enemy to the renderer
-    SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
+        // add the enemy to the renderer
+        SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
 
-    // destroy the texture and free the image
-    SDL_DestroyTexture(enemy_texture);
-    SDL_FreeSurface(image);
-    image = NULL;
+        // destroy the texture and free the image
+        SDL_DestroyTexture(enemy_texture);
+        SDL_FreeSurface(image);
+        image = NULL;
+    }
 }
 
 // helper method to draw text
