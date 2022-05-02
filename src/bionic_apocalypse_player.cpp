@@ -18,6 +18,19 @@ void Player::setKeyResource(const int resourceType) {
 	key_inventory[resourceType] = 1;
 }
 
+void Player::resetResources() {
+	inventory[0] = 0;
+	inventory[1] = 0;
+	inventory[2] = 0;
+	inventory[3] = 0;
+	inventory[4] = 0;
+	inventory[5] = 0;
+	key_inventory[0] = 0;
+	key_inventory[1] = 0;
+	key_inventory[2] = 0;
+}
+
+
 bool Player::getCrowbar() const {
 	return crowbar;
 }

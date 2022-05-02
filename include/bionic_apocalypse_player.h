@@ -46,6 +46,9 @@ class Player {
         void setResource(const int resourceType, const int amountToAdd);
         int getKeyResource(const int resourceType) const;
         void setKeyResource(const int resourceType);
+
+        void resetResources();
+
         bool getCrowbar() const;
         void setCrowbar(const bool crowbarPossessed);
         int useMove(const int move);
@@ -73,7 +76,7 @@ class Player {
         std::array<bool, 2> getDirections() const;
 
         std::vector<int> getPlayerMapPosition() const;
-        void setPlayerMapPosition(std::vector<int> position);
+        void setPlayerMapPosition(const std::vector<int> position);
 };
 
 #endif

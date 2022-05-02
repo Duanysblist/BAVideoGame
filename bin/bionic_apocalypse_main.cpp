@@ -443,14 +443,15 @@ int main(int argc, char *argv[]) {
             if(curBattle.getStatus() == false) { // leave battle
                 worldState = true;
                 battling = false;
-                if (curBattle.getWin()){
+                if (curBattle.getWin()){ // player won battle -- kill enemy
                     badGuy.setAlive(false);
                 }
-                else {
+                else { // player lost battle -- reset game
                     std::vector<int> screenIndex{6, 0};
                     player.setPlayerMapPosition(screenIndex);
                     player.setPlayerScreenPosition(100, 450);
                     player.setPlayerHealth(MAX_HEALTH);
+                    player.resetResources();
                 }
             }
         }
