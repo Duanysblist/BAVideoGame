@@ -296,8 +296,9 @@ int main(int argc, char *argv[]) {
             }
             if (moveUp || moveDown || moveLeft || moveRight) {
                 playerWalkCycle++;
-                if (playerWalkCycle >= 5) {
+                if (playerWalkCycle >= 20) {
                     player.setWalkingAnim(!player.getWalkingAnim());
+                    playerWalkCycle = 0;
                 }
             }
             else {
