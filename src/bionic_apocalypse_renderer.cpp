@@ -156,6 +156,27 @@ void Renderer::drawBattleMessages(const std::string &message, const int &damage)
     strcpy(toCharArr, finalMes.c_str());
     drawText(toCharArr, 700, 500, 0, 0, 0);
 }
+
+void Renderer::drawMap(const std::vector<int> pos) {
+    SDL_Surface* image = IMG_Load("../resource/map.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* map = SDL_CreateTextureFromSurface(renderer, image);
+    if (map == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL;
+    // MAP_WIDTH and MAP_HEIGHT are constants from the constants.h file
+    int x1 = (SCREEN_WIDTH-MAP_WIDTH)/2;
+    int y1 = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT-MAP_HEIGHT)/2;
+    SDL_Rect rect = { x1, y1, MAP_WIDTH, MAP_HEIGHT };
+    SDL_RenderCopyEx(renderer, map, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+    SDL_DestroyTexture(map);
+    int pos_x = pos.at(1);
+    int pos_y = pos.at(0);
+    int scene_height = MAP_HEIGHT/8;
+    int scene_width = MAP_WIDTH/6;
+    boxRGBA(renderer, x1 + scene_width*pos_x + scene_width/2 - 3, y1 + scene_height*pos_y + scene_height/2 - 3, x1 + scene_width*pos_x + scene_width/2 + 3, y1 + scene_height*pos_y + scene_height/2 + 3, 255, 255, 255, 255);
+}
+
 // helper method to draw text
 // pass in the text (words), the position (dst_x and dst_y), and the desired color (r,g,b)
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {

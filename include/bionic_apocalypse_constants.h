@@ -13,6 +13,10 @@ const int BOTTOM_BAR_HEIGHT = 100;
 const int HELP_SCREEN_WIDTH = 960;
 const int HELP_SCREEN_HEIGHT = 540;
 
+// map diagram constants
+const int MAP_WIDTH = 500;
+const int MAP_HEIGHT = 400;
+
 // constants for map grid of scenes (i.e. how many scenes are in the map)
 const int MAP_COLUMNS = 6;
 const int MAP_ROWS = 8;

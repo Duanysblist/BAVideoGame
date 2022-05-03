@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
 	bool running = true;
     bool battling = false;
     bool help = false;
+    bool map_display = false;
     SDL_Event e;
 
     int eCount = 0;
@@ -374,6 +375,10 @@ int main(int argc, char *argv[]) {
                         // show/hide help screen
                         help = !help;
                     }
+                    if (e.key.keysym.sym == SDLK_m) {
+                        // show/hide map
+                        map_display = !map_display;
+                    }
                 }
 
                 // User releases a key
@@ -618,6 +623,9 @@ int main(int argc, char *argv[]) {
         }
         if (help) {
             renderer.drawHelpScreen();
+        }
+        if (map_display) {
+            renderer.drawMap(player.getPlayerMapPosition());
         }
 
         // display map location -- DELETE BEFORE SUBMITTING GAME - FOR DEVELOPMENT USE ONLY

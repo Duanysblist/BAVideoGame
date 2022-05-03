@@ -55,6 +55,7 @@ class Renderer {
         void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
 
         void drawHelpScreen();
+        void drawMap(const std::vector<int> pos);
 
         // window methods
         void window_startup();
