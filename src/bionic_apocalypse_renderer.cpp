@@ -132,16 +132,16 @@ void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
             double enemy_health = enemy.getHealth();
             double health_length = (enemy_health/enemy.getMaxHealth())*BAR_L;
 
-            // outline of bar
-            rectangleRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + BAR_L, (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
             // interior bar representing health
-            boxRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
+            boxRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 255);
+            // outline of bar
+            rectangleRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + BAR_L, (BOTTOM_BAR_HEIGHT/3), 0, 0, 0, 255);
             
             // write health value under bar
-            drawText("Enemy Health: ", BAR_S - 20, (2*BOTTOM_BAR_HEIGHT/3), 255, 255, 255);
+            drawText("Enemy Health: ", BAR_S - 20, (2*BOTTOM_BAR_HEIGHT/3), 0, 0, 0);
             // change health to an int instead of double
             int health = trunc(enemy_health);
-            drawText((std::to_string(health)).c_str(), BAR_S + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 255, 255, 255);
+            drawText((std::to_string(health)).c_str(), BAR_S + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 0, 0, 0);
         }
     }
 }
@@ -154,7 +154,7 @@ void Renderer::drawBattleMessages(const std::string &message, const int &damage)
     int n = finalMes.length();
     char toCharArr[n + 1];
     strcpy(toCharArr, finalMes.c_str());
-    drawText(toCharArr, 700, 500, 255, 255, 255);
+    drawText(toCharArr, 700, 500, 0, 0, 0);
 }
 // helper method to draw text
 // pass in the text (words), the position (dst_x and dst_y), and the desired color (r,g,b)
@@ -955,7 +955,18 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawHelpMessage();
         drawPlayer(player, world);
     }
-    else { // in battle; need bottom bar, battle UI, and player
+    else { // in battle; need background, bottom bar, battle UI, and player
+        // draw background
+        SDL_Surface* image = IMG_Load("../resource/Background_Grass.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+        SDL_Texture* background = SDL_CreateTextureFromSurface(renderer, image);
+        if (background == NULL) csci437_error("Could not create texture from surface!");
+        SDL_FreeSurface( image );
+        image = NULL;
+        SDL_Rect rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT };
+        SDL_RenderCopyEx(renderer, background, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+        SDL_DestroyTexture(background);
+        // draw other elements
         drawBottomBar(player);
         drawBattleUI(player);
         drawPlayer(player, world);
