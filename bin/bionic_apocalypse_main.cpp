@@ -48,6 +48,8 @@ int main(int argc, char *argv[]) {
     badGuy.setPosX(500);
     badGuy.setPosY(500);
 
+    Enemy *currentBattleEnemy;
+
     // initalize player, set initial position of player on the screen (bottom left)
     Player player;
     player.setPlayerScreenPosition(100, 450);
@@ -204,6 +206,11 @@ int main(int argc, char *argv[]) {
         renderer.renderer_present();
     }
       
+        // Making an array of possible enemies in the scene
+        // Will never be more than 6 enemies in a single scene
+        Enemy enemiesInScene [6];
+        int enemyCounter = 0;
+        bool ranOnce = false;
     // game loop
 	while (running) {
 
@@ -216,6 +223,31 @@ int main(int argc, char *argv[]) {
         int x = currentVec.at(0);
         int y = currentVec.at(1);
         Scene currentScene = map[x][y];
+
+        
+        // Go through the layout of the current scene
+        for(int i = 0; i < currentScene.getSceneRows(); i++){
+          for(int j = 0; j < currentScene.getSceneColumns(); j++){
+            
+            int** theScene = currentScene.getSceneLayout();
+            // Check if the ENEMY_START constant is in the scene
+            if(theScene[i][j] == ENEMY_START) {
+              // If so, give the pixel position it is supposed to be in
+              int* pixPos = currentScene.covertScenePosToPixels(i, j);
+              // Create an enemy object
+              Enemy newEnemy; // -> This may be causeing a problem by having a new enemy in the same position each time it runs
+              // Set the position of the enemy in the scene
+              newEnemy.setPosX(pixPos[1]);
+              newEnemy.setPosY(pixPos[0]);
+              newEnemy.setType(0);
+              // Add enemy to our array of enemies in the scene
+              enemiesInScene[enemyCounter] = newEnemy;
+              // increment the number of enemies
+              enemyCounter++;
+              // std::cout << "Enemy Position :" + std::to_string(i) + ", " + std::to_string(j);
+            }
+          }
+        }
 
         // if the player has all of the key resources, stop running the game loop and play the final scene
         if (player.getKeyResource(0) == 1 && player.getKeyResource(1) == 1 && player.getKeyResource(2) == 1) {
@@ -386,7 +418,7 @@ int main(int argc, char *argv[]) {
             moveUp = moveDown = moveLeft = moveRight = false;
             // start a new battle if necessary
             if(battling == false) {
-                curBattle.startNewBattle(badGuy);
+                curBattle.startNewBattle(*currentBattleEnemy);
                 battling = true;
             }
             while (SDL_PollEvent(&e) != 0)
@@ -445,12 +477,12 @@ int main(int argc, char *argv[]) {
                     }
                 }
             }
-            badGuy.setHealth(curBattle.getEnemyHP());
+            currentBattleEnemy->setHealth(curBattle.getEnemyHP());
             if(curBattle.getStatus() == false) { // leave battle
                 worldState = true;
                 battling = false;
                 if (curBattle.getWin()){ // player won battle -- kill enemy
-                    badGuy.setAlive(false);
+                    currentBattleEnemy->setAlive(false);
                 }
                 else { // player lost battle -- reset game
                     std::vector<int> screenIndex{6, 0};
@@ -468,16 +500,41 @@ int main(int argc, char *argv[]) {
         collisionDetector.playerResourceCollision(player, currentScene);
 
         // update enemy info
-        badGuy.update(dt);
+        // badGuy.update(dt);
+
         // check if player hit enemy, switch into battle if yes
-        if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
+        for(int a = 0; a < enemyCounter; a++) {
+          if(collisionDetector.playerEnemyCollision(player, enemiesInScene[a]) && enemiesInScene[a].getAlive()){
             worldState = false;
+            currentBattleEnemy = &enemiesInScene[a];
+            break;
+          }
         }
+        // if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
+        //     worldState = false;
+        // }
 
         // render everything
         renderer.window_clear();
         renderer.window_update(player, worldState, currentScene);
-        renderer.drawEnemy(badGuy, worldState);
+        // Draw all enemies in the scene
+        if(worldState) {
+          for(int i = 0; i < enemyCounter; i++){
+            if(enemiesInScene[i].getAlive()) {
+              renderer.drawEnemy(enemiesInScene[i], worldState); 
+            }
+            
+          }
+          enemyCounter = 0;
+        } else {
+          if(currentBattleEnemy->getAlive()) {
+            renderer.drawEnemy(*currentBattleEnemy, worldState);
+            std::cout << std::to_string(enemyCounter);
+            enemyCounter = 0;
+          }
+        }
+
+        // renderer.drawEnemy(badGuy, worldState);
         if (help) {
             renderer.drawHelpScreen();
         }

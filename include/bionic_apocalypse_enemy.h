@@ -27,6 +27,15 @@ class Enemy {
 		int enemyType = 0; //0 is normal, -1, is tank, and 1 is glass cannon
 
 	public: 
+		Enemy(){
+			alive = true;
+			enemyHealth = 100;
+			maxHealth = 100;
+			goingToStart = false;
+			enemyType = -2;
+			enemyPosX = 500;
+			enemyPosY = 500;
+		}
 		int getHealth() const;
 		void setHealth(const int newHealth);
 		//Adds or Subtracts from the health of the enemy
@@ -47,6 +56,7 @@ class Enemy {
 		// updates enemy location
 		void update(const int dt);
 
+		int getType();
 		void setType(const int type);
 
 		void setAlive(const bool stat);

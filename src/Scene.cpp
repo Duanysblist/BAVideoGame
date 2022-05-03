@@ -274,3 +274,10 @@ void Scene::distributeResources() {
         }
     }
 }
+
+int* Scene::covertScenePosToPixels(int x, int y) {
+    static int toReturn[2];
+    toReturn[0] = (x) * 65;
+    toReturn[1] = (y) * 65;
+    return toReturn;
+}

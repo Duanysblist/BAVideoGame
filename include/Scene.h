@@ -62,6 +62,7 @@ class Scene {
         }
 
         void distributeResources(); 
+        int* covertScenePosToPixels(int x, int y);
 };
 
 #endif

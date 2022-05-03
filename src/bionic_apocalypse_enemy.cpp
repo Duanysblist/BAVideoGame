@@ -111,6 +111,10 @@ void Enemy::setType(const int type) {
 	}
 }
 
+int Enemy::getType(){
+	return enemyType;
+}
+
 void Enemy::setAlive(const bool stat) {
 	alive = stat;
 }
