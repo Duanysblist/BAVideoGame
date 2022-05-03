@@ -181,6 +181,17 @@ int main(int argc, char *argv[]) {
     map[6][5].setSceneLayout(layout_6_5); 
     map[7][5].setSceneLayout(layout_7_5); 
 
+    // increase probability of resource generation for some specific scenes
+    map[0][0].setResourceProbability(30);
+    map[0][1].setResourceProbability(40);
+    map[0][4].setResourceProbability(40);
+    map[0][5].setResourceProbability(30);
+    map[1][0].setResourceProbability(90);
+    map[5][3].setResourceProbability(40);
+    map[5][4].setResourceProbability(40);
+    map[7][0].setResourceProbability(20);
+    map[7][3].setResourceProbability(50);
+
     for(int i = 0; i < MAP_ROWS; i++){
         for(int j = 0; j < MAP_COLUMNS; j++){
             map[i][j].distributeResources();

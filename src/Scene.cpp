@@ -219,17 +219,17 @@ void Scene::distributeResources() {
                 if (layout[i][j] == 0) {
                     // randomly add resources
                     int random = rand() % resourceProbability;
-                    if (random == 35) {
+                    if (random == 1) {
                         layout[i][j] = 2; // scrap metal
-                    } else if (random == 36) {
+                    } else if (random == 2) {
                         layout[i][j] = 3; // rags
-                    } else if (random == 37) {
+                    } else if (random == 3) {
                         layout[i][j] = 4; // oil
-                    } else if (random == 38) {
+                    } else if (random == 4) {
                         layout[i][j] = 5; // power source
-                    } else if (random == 39) {
+                    } else if (random == 5) {
                         layout[i][j] = 6; // wire
-                    } else if (random == 40) {
+                    } else if (random == 6) {
                         layout[i][j] = 7; // nuclear waste
                     }
                     
@@ -242,15 +242,15 @@ void Scene::distributeResources() {
             for(int j = 0; j < columns; j++) {
                 if (layout[i][j] == 0) {
                     int random = rand() % resourceProbability;
-                    if (random == 35) {
+                    if (random == 1) {
                         layout[i][j] = 2; // scrap metal
-                    } else if (random == 36) {
+                    } else if (random == 2) {
                         layout[i][j] = 3; // rags
-                    } else if (random == 37) {
+                    } else if (random == 3) {
                         layout[i][j] = 4; // oil
-                    } else if (random == 38) {
+                    } else if (random == 4) {
                         layout[i][j] = 5; // power source
-                    } else if (random == 39) {
+                    } else if (random == 5) {
                         layout[i][j] = 6; // wire
                     }
                 }
@@ -262,13 +262,13 @@ void Scene::distributeResources() {
             for(int j = 0; j < columns; j++) {
                 if (layout[i][j] == 0) { 
                     int random = rand() % resourceProbability;
-                    if (random == 35) {
+                    if (random == 1) {
                         layout[i][j] = 2; // scrap metal
-                    } else if (random == 36) {
+                    } else if (random == 2) {
                         layout[i][j] = 3; // rags
-                    } else if (random == 37) {
+                    } else if (random == 3) {
                         layout[i][j] = 4; // oil
-                    } else if (random == 38) {
+                    } else if (random == 4) {
                         layout[i][j] = 5; // power source
                     }
                 }
