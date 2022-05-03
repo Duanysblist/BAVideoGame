@@ -68,6 +68,7 @@ class Renderer {
         void drawEnemy(const Enemy &enemy, const bool &gameState);
 
         void drawBattleUI(const Player &player);
+        void drawBattleMessages(const std::string &message, const int &damage);
 
         void renderer_present();
 };

@@ -21,6 +21,8 @@ class Battle {
         int numBombs = 0;
         bool enemyDebuff = false;
         bool win;
+        int enemyDamage;
+        std::string curPlayerMove = "";
     public:
         void startNewBattle(Enemy &enemy);
         void setAttackingTrue(Player &player, int move);
@@ -28,6 +30,8 @@ class Battle {
         int bombHandler();
         bool getWin() const;
         int getEnemyHP() const;
+        std::string getCurMove() const;
+        int getEnemyDamage() const;
 };
 
 #endif

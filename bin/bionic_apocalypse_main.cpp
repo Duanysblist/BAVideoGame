@@ -58,7 +58,9 @@ int main(int argc, char *argv[]) {
 
     bool worldState = true; //true is world, false is battle
     Battle curBattle;
-
+    std::string curMove = "";
+    int enemyDam = 0;
+    bool firstMove = false;
 
     // Setting up a MAP_ROWSxMAP_COLUMNS matrix for the map system
     int counter = 0;
@@ -511,46 +513,61 @@ int main(int argc, char *argv[]) {
                     // battle actions
                     if (e.key.keysym.sym == SDLK_0) {
                         curBattle.setAttackingTrue(player, 0);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_1) {
                         curBattle.setAttackingTrue(player, 1);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_2) {
                         curBattle.setAttackingTrue(player, 2);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_3) {
                         curBattle.setAttackingTrue(player, 3);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_4) {
                         curBattle.setAttackingTrue(player, 4);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_5) {
                         curBattle.setAttackingTrue(player, 5);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_6) {
                         curBattle.setAttackingTrue(player, 6);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_7) {
                         curBattle.setAttackingTrue(player, 7);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_8) {
                         curBattle.setAttackingTrue(player, 8);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_9) {
                         curBattle.setAttackingTrue(player, 9);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_MINUS) {
                         curBattle.setAttackingTrue(player, 10);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_PLUS) {
                         curBattle.setAttackingTrue(player, 11);
+                        firstMove = true;
                     }
                 }
             }
             badGuy.setHealth(curBattle.getEnemyHP());
+            curMove = curBattle.getCurMove();
+            enemyDam = curBattle.getEnemyDamage();
             if(curBattle.getStatus() == false) { // leave battle
                 worldState = true;
                 battling = false;
+                firstMove = false;
                 if (curBattle.getWin()){ // player won battle -- kill enemy
                     badGuy.setAlive(false);
                 }
@@ -580,6 +597,9 @@ int main(int argc, char *argv[]) {
         renderer.window_clear();
         renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy, worldState);
+        if(firstMove) {
+            renderer.drawBattleMessages(curMove, enemyDam);
+        }
         if (help) {
             renderer.drawHelpScreen();
         }

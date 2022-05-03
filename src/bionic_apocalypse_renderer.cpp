@@ -146,6 +146,16 @@ void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
     }
 }
 
+void Renderer::drawBattleMessages(const std::string &message, const int &damage) {
+    std::string mes = "You used ";
+    std::string midMes = " and took ";
+    std::string endMes = " damage!";
+    std::string finalMes = mes + message + midMes + std::to_string(damage) + endMes;
+    int n = finalMes.length();
+    char toCharArr[n + 1];
+    strcpy(toCharArr, finalMes.c_str());
+    drawText(toCharArr, 700, 500, 255, 255, 255);
+}
 // helper method to draw text
 // pass in the text (words), the position (dst_x and dst_y), and the desired color (r,g,b)
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
