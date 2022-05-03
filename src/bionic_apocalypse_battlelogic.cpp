@@ -108,26 +108,25 @@ void Battle::setAttackingTrue(Player &player, int move) {
 				}
 			}
 			player.changePlayerHealth(enemyDamage);
-			if (player.getPlayerHealth() < 0) {
-				player.setPlayerHealth(0);
+			if (myEnemy.getHealth() <= 0) {
+				if (player.getPlayerHealth() > 0) {
+					int itemDrop = (rand() % 2) + 2;
+					for(int i = 0; i < itemDrop; i++){
+						int resourceDrop = (rand() % 4);
+						player.setResource(resourceDrop, 1);
+					}
+					win = true;
+				}
+				else {
+					win = false;
+				}
+				active = false;
 			}
+			else if (player.getPlayerHealth() <= 0) {
+				win = false;
+				active = false;
+			}	
 		}
-		//std::cout << "Player HP: " << player.getPlayerHealth() << ", Enemy HP: " << mainEnemy.getHealth() << std::endl;
-		// std::cout << "Attacking" << "\n";
-	}
-	else {
-		if (player.getPlayerHealth() > 0) {
-			int itemDrop = (rand() % 2) + 2;
-			for(int i = 0; i < itemDrop; i++){
-				int resourceDrop = (rand() % 4);
-				player.setResource(resourceDrop, 1);
-			}
-			win = true;
-		}
-		else {
-			win = false;
-		}
-		active = false;
 	}
 }
 
