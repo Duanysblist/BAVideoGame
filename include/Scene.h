@@ -21,7 +21,7 @@ class Scene {
         int** layout;
         int rows;
         int columns;
-        int resourceProbability = 60;
+        int resourceProbability = 260;
         
         // scene zone information
         // 0 - in the tutorial zone
