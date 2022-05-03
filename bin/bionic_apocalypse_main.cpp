@@ -253,6 +253,8 @@ int main(int argc, char *argv[]) {
             renderer.cutscene(eCount);
             renderer.renderer_present();
             }
+            player.setPlayerMapPosition({4, 2});
+            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
         }
 
         //Fuse cutscene check
@@ -278,6 +280,8 @@ int main(int argc, char *argv[]) {
             renderer.cutscene(eCount);
             renderer.renderer_present();
             }
+            player.setPlayerMapPosition({4, 2});
+            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
         }
 
         //Waste cutscene check
@@ -301,6 +305,8 @@ int main(int argc, char *argv[]) {
             renderer.cutscene(eCount);
             renderer.renderer_present();
             }
+            player.setPlayerMapPosition({4, 2});
+            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
         }
 
         //Lab cutscene check
@@ -324,6 +330,7 @@ int main(int argc, char *argv[]) {
             renderer.cutscene(eCount);
             renderer.renderer_present();
             }
+            player.setPlayerScreenPosition(10, player.getPlayerScreenPositionY());
         }
 
         //check if gamestate is in world
