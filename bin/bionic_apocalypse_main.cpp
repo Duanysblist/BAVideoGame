@@ -316,8 +316,6 @@ int main(int argc, char *argv[]) {
             renderer.cutscene(eCount);
             renderer.renderer_present();
             }
-            player.setPlayerMapPosition({4, 2});
-            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
         }
 
         //Lab cutscene check
