@@ -25,6 +25,9 @@ void Renderer::window_startup() {
     window = SDL_CreateWindow("Bionic Apocalypse", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     if (window == NULL) csci437_error("Window could not be created!");
 
+    // make non-resizable
+    SDL_SetWindowResizable(window, SDL_FALSE);
+
     // Init Bitmap loading
     if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) < 0) csci437_img_error("SDL could not initialize bitmap loaders!");
 
