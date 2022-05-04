@@ -126,7 +126,7 @@ std::array<bool, 12> Player::getPossibleBattleMoves() const {
 		5 (power source, crowbar) electric crowbar strike - deals damage to enemy, small chance of player getting electrocuted and damaged as well
 		6 (Power Source, Wire, Scrap Metal) Time Bomb - Takes 2 turns to activate but deals massive damage to enemy and some damage to player. consecutive bombs will blow on the earliest fuse timer.
 		7 (Wire, Power Source, Rags) Electric net - Deals small damage to enemy, chance to shock them and have them miss their next turn
-		8 (wire, rags) some sort of whip or trips enemy or something - deals minor damage to enemy and heals player
+		8 (wire, rags) make a tourniquet - heals player
 		9 (nuclear waste, wires, power source) small nuclear bomb - deals damage to enemy but also to player
 		10 (3x nuclear waste, wires, power source) large nuclear bomb - kills enemy but deals large amount of damage to player 
 		11 (oil, nuclear waste, rags) Nuclear projectile - deals small amount of damage to enemy, chance of recurring damage to enemy

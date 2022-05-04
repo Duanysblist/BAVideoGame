@@ -735,6 +735,13 @@ int main(int argc, char *argv[]) {
                             map[i][j].distributeResources();
                         }
                     }
+                    // reset enemies
+                    for (int i = 0; i < allEnemies.size(); i++) {
+                        for (int j = 0; j < allEnemies.at(i).size(); i++) {
+                            allEnemies.at(i).at(j)->setAlive(true);
+                        }
+                    }
+
                 }
             }
         }
