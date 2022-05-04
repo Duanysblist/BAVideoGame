@@ -55,11 +55,7 @@ int main(int argc, char *argv[]) {
 
     renderer.window_startup();
 
-    // enemy being used during development of the game
-    Enemy badGuy;
-    badGuy.setType(0);
-    badGuy.setPosX(500);
-    badGuy.setPosY(500);
+
     // ***********************************************************************
     Enemy *currentBattleEnemy;
     // ***********************************************************************
@@ -712,13 +708,8 @@ int main(int argc, char *argv[]) {
             // std::cout << std::to_string(currentBattleEnemy->getID());
             // ***********************************************************************
 
-            // HENRY
-            badGuy.setHealth(curBattle.getEnemyHP());
-            curMove = curBattle.getCurMove();
-            enemyDam = curBattle.getEnemyDamage();
 
             curBattle.checkAvailableMoves(player);
-            badGuy.setHealth(curBattle.getEnemyHP());
             curMove = curBattle.getCurMove();
             enemyDam = curBattle.getEnemyDamage();
             playerDam = curBattle.getPlayerDamage();
@@ -737,6 +728,30 @@ int main(int argc, char *argv[]) {
                     player.setPlayerScreenPosition(100, 450);
                     player.setPlayerHealth(MAX_HEALTH);
                     player.resetResources();
+                    // lock up zones from lab again
+                    map[4][2].setSceneLayout(north_unlocked); 
+                    // add crowbar to the map again
+                    map[6][0].setSceneLayout(layout_6_0);
+                    // add key resources back to the map
+                    map[0][0].setSceneLayout(layout_0_0);
+                    map[3][5].setSceneLayout(layout_3_5);
+                    map[5][5].setSceneLayout(layout_5_5);
+                    // distribute resources in the map again
+                    for(int i = 0; i < MAP_ROWS; i++){
+                        for(int j = 0; j < MAP_COLUMNS; j++){
+                            map[i][j].distributeResources();
+                        }
+                    }
+                    // reset enemies
+                    for (int i = 0; i < allEnemies.size(); i++) {
+                        for (int j = 0; j < allEnemies.at(i).size(); i++) {
+                            // make alive again
+                            allEnemies.at(i).at(j)->setAlive(true);
+                            // set health back to max
+                            allEnemies.at(i).at(j)->setHealth(allEnemies.at(i).at(j)->getMaxHealth());
+                        }
+                    }
+
                 }
             }
         }
@@ -746,8 +761,6 @@ int main(int argc, char *argv[]) {
         // check if player is touching a resource
         collisionDetector.playerResourceCollision(player, currentScene);
 
-        // update enemy info
-        // badGuy.update(dt);
 
         // check if player hit enemy, switch into battle if yes
         // ***********************************************************************
@@ -759,9 +772,6 @@ int main(int argc, char *argv[]) {
           }
         }
         // ***********************************************************************
-        // if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
-        //     worldState = false;
-        // }
 
         // render everything
         renderer.window_clear();
@@ -783,8 +793,6 @@ int main(int argc, char *argv[]) {
         }
         // ***********************************************************************
 
-        // renderer.drawEnemy(badGuy, worldState);
-        // renderer.drawEnemy(badGuy, worldState);
         if(firstMove) {
             renderer.drawBattleMessages(curMove, enemyDam, playerDam);
         }
