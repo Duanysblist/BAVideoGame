@@ -627,8 +627,6 @@ int main(int argc, char *argv[]) {
             moveUp = moveDown = moveLeft = moveRight = false;
             // start a new battle if necessary
             if(battling == false) {
-                //THIS WAS FROM A MERGE CONFLICT, PICK ONE
-                curBattle.startNewBattle(*currentBattleEnemy);
                 curBattle.startNewBattle(player, badGuy);
                 battling = true;
             }
