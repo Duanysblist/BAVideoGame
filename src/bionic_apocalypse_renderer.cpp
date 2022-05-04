@@ -146,15 +146,28 @@ void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
     }
 }
 
-void Renderer::drawBattleMessages(const std::string &message, const int &damage) {
+void Renderer::drawBattleMessages(const std::string &message, const int &damage, const int &playerDam) {
     std::string mes = "You used ";
-    std::string midMes = " and took ";
+    std::string earlyMes = " and dealt ";
+    std::string midMes = " damage!";
+    std::string enemyEarlyMes = "Enemy dealt ";
     std::string endMes = " damage!";
-    std::string finalMes = mes + message + midMes + std::to_string(damage) + endMes;
-    int n = finalMes.length();
+    std::string playerMes = "";
+    if (playerDam > 0) {
+        playerMes = mes + message + earlyMes + std::to_string(playerDam) + midMes;
+    }
+    else {
+        playerMes = mes + message;
+    }
+    std::string enemMes = enemyEarlyMes + std::to_string(-1 * damage) + endMes;
+    int n = playerMes.length();
     char toCharArr[n + 1];
-    strcpy(toCharArr, finalMes.c_str());
-    drawText(toCharArr, 700, 500, 0, 0, 0);
+    strcpy(toCharArr, playerMes.c_str());
+    drawText(toCharArr, 200, 500, 0, 0, 0);
+    int t = enemMes.length();
+    char toChar[t + 1];
+    strcpy(toChar, enemMes.c_str());
+    drawText(toChar, 750, 300, 0, 0, 0);
 }
 
 void Renderer::drawMap(const std::vector<int> pos) {

@@ -23,6 +23,7 @@ class Battle {
         bool win;
         int enemyDamage;
         std::string curPlayerMove = "";
+        int playerDamage = 0;
     public:
         void startNewBattle(Player &player, Enemy &enemy);
         void setAttackingTrue(Player &player, int move);
@@ -32,6 +33,7 @@ class Battle {
         int getEnemyHP() const;
         std::string getCurMove() const;
         int getEnemyDamage() const;
+        int getPlayerDamage() const;
         void checkAvailableMoves(Player &player);
 };
 

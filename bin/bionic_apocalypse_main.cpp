@@ -61,6 +61,7 @@ int main(int argc, char *argv[]) {
     Battle curBattle;
     std::string curMove = "";
     int enemyDam = 0;
+    int playerDam = 0;
     bool firstMove = false;
 
     // Setting up a MAP_ROWSxMAP_COLUMNS matrix for the map system
@@ -586,6 +587,7 @@ int main(int argc, char *argv[]) {
             badGuy.setHealth(curBattle.getEnemyHP());
             curMove = curBattle.getCurMove();
             enemyDam = curBattle.getEnemyDamage();
+            playerDam = curBattle.getPlayerDamage();
             if(curBattle.getStatus() == false) { // leave battle
                 worldState = true;
                 battling = false;
@@ -620,7 +622,7 @@ int main(int argc, char *argv[]) {
         renderer.window_update(player, worldState, currentScene);
         renderer.drawEnemy(badGuy, worldState);
         if(firstMove) {
-            renderer.drawBattleMessages(curMove, enemyDam);
+            renderer.drawBattleMessages(curMove, enemyDam, playerDam);
         }
         if (help) {
             renderer.drawHelpScreen();
