@@ -146,6 +146,7 @@ void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
     }
 }
 
+// write out messages of what happened in battle
 void Renderer::drawBattleMessages(const std::string &message, const int &damage, const int &playerDam) {
     std::string mes = "You used ";
     std::string earlyMes = " and dealt ";
@@ -178,11 +179,13 @@ void Renderer::drawMap(const std::vector<int> pos) {
     SDL_FreeSurface( image );
     image = NULL;
     // MAP_WIDTH and MAP_HEIGHT are constants from the constants.h file
+    // center map on the screen
     int x1 = (SCREEN_WIDTH-MAP_WIDTH)/2;
     int y1 = (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT-MAP_HEIGHT)/2;
     SDL_Rect rect = { x1, y1, MAP_WIDTH, MAP_HEIGHT };
     SDL_RenderCopyEx(renderer, map, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
     SDL_DestroyTexture(map);
+    // draw dot to represent player -- center it in the scene on the map
     int pos_x = pos.at(1);
     int pos_y = pos.at(0);
     int scene_height = MAP_HEIGHT/8;
