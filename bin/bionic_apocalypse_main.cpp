@@ -730,6 +730,18 @@ int main(int argc, char *argv[]) {
                     player.setPlayerScreenPosition(100, 450);
                     player.setPlayerHealth(MAX_HEALTH);
                     player.resetResources();
+                    // lock up zones from lab again
+                    map[4][2].setSceneLayout(north_unlocked); 
+                    // add key resources back to the map
+                    map[0][0].setSceneLayout(layout_0_0);
+                    map[3][5].setSceneLayout(layout_3_5);
+                    map[5][5].setSceneLayout(layout_5_5);
+                    // distribute resources in the map again
+                    for(int i = 0; i < MAP_ROWS; i++){
+                        for(int j = 0; j < MAP_COLUMNS; j++){
+                            map[i][j].distributeResources();
+                        }
+                    }
                 }
             }
         }
