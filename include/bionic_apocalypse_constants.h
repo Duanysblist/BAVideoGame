@@ -550,7 +550,7 @@ static int layout_4_5 [10][18]=
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
-    {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW}, 
+    {PW, PW, PW, PW, PW, PW, RFW, 0, ENEMY_START, 0, LFW, PW, PW, PW, PW, PW, PW, PW}, 
     {DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 

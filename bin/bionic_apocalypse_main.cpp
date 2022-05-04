@@ -216,9 +216,13 @@ int main(int argc, char *argv[]) {
     std::vector<int> screenIndex{6, 0};
     player.setPlayerMapPosition(screenIndex);
 
+    int sceneNumber = 0;
+
     std::vector<std::vector<Enemy *>> allEnemies;
     for(int a = 0; a < MAP_ROWS; a++) {
         for(int b = 0; b < MAP_COLUMNS; b++) {
+            std::cout<<"Scene number: " + std::to_string(sceneNumber) << endl;
+            sceneNumber++;
             std::vector<Enemy *> enemiesScene;
             for(int i = 0; i < map[a][b].getSceneRows(); i++){
                 for(int j = 0; j < map[a][b].getSceneColumns(); j++){
@@ -235,18 +239,139 @@ int main(int argc, char *argv[]) {
                     // Set the position of the enemy in the scene
                     newEnemy->setPosX(pixPos[1]);
                     newEnemy->setPosY(pixPos[0]);
+                    newEnemy->setStartLocation(pixPos[1], pixPos[0]);
                     newEnemy->setType(0);
-                    enemiesScene.push_back(newEnemy);
+                    std::cout<<"EnemyID: " + std::to_string(runningEnemyIDcount) << endl;
                     newEnemy->setID(runningEnemyIDcount);
-                    runningEnemyIDcount++;
+                    std::cout<<"Enemy default ending location x: " + std::to_string(newEnemy->getEndLocationX());
+                    int* enemyEnd;
+                    switch(runningEnemyIDcount){
+                        case 6:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 3);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 7:
+                            enemyEnd = map[a][b].covertScenePosToPixels(4, 8);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 8:
+                            enemyEnd = map[a][b].covertScenePosToPixels(5, 12);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 9:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 9);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 10:
+                            enemyEnd = map[a][b].covertScenePosToPixels(2, 16);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 17:
+                            enemyEnd = map[a][b].covertScenePosToPixels(4, 11);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 20:
+                            enemyEnd = map[a][b].covertScenePosToPixels(2, 8);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 22:
+                            enemyEnd = map[a][b].covertScenePosToPixels(4, 16);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 23:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 9);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 24:
+                            enemyEnd = map[a][b].covertScenePosToPixels(7, 1);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 27:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 5);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 31:
+                            enemyEnd = map[a][b].covertScenePosToPixels(5, 16);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 32:
+                            enemyEnd = map[a][b].covertScenePosToPixels(7, 14);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 33:
+                            enemyEnd = map[a][b].covertScenePosToPixels(1, 1);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 34:
+                            enemyEnd = map[a][b].covertScenePosToPixels(1, 11);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 35:
+                            enemyEnd = map[a][b].covertScenePosToPixels(5, 5);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 36:
+                            enemyEnd = map[a][b].covertScenePosToPixels(5, 16);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 37:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 16);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 40:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 10);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 41:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 1);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 42:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 5);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 44:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 15);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 45:
+                            enemyEnd = map[a][b].covertScenePosToPixels(2, 8);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 47:
+                            enemyEnd = map[a][b].covertScenePosToPixels(8, 12);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                        case 48:
+                            enemyEnd = map[a][b].covertScenePosToPixels(4, 2);
+                            newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                            break;
+                    }
                     // CAN HARDCODE THE DIFFERENT PATHS THAT ENEMIES NEED TO TAKE BASED UPON THEIR IDS
                         // IS THERE A SIMPLER WAY TO DO THIS?
-                        // if(newEnemy->getID() == 17) {
+                        // int* enemyEnd;
+                        // These are the scene numbers and enemy IDs that will be moving and need to patrol
+                        // Scene #7 -> [1, 1]: Enemy IDs: 6, 7, 8, 9, 10
+                            // enemyEnd = map[a][b].convertScenePosToPixels(8, 3);
+                            // newEnemy->setEndLocation(enemyEnd[1], enemyEnd[0]);
+                        // Scene #14: Enemy IDs: 17
+                        // Scene #22: Enemy IDs: 20, 22, 23
+                        // Scene #23: Enemy IDs: 24
+                        // Scene #30: Enemy IDs: 27
+                        // Scene #33: Enemy Ids: 30, 31
+                        // Scene #34: Enemy IDs: 32, 33, 34, 35, 36
+                        // Scene #38: Enemy IDs: 39, 40
+                        // Scene #43: Enemy IDs: 41, 43
+                        // Scene #44: Enemy IDs: 44
+                        // Scene #45: Enemy IDs: 46, 47
+                         //if(newEnemy->getID() == 17) {
                             //newEnemy->setEndLocation(500, 600);
 
                             // THEN CALL UPDATE ONE ENEMIES BELOW (Line ~750)
                         //}
 
+                    enemiesScene.push_back(newEnemy);
+                    runningEnemyIDcount++;
                     // Add enemy to our array of enemies in the scene
                     
                     // increment the number of enemies
@@ -765,6 +890,11 @@ int main(int argc, char *argv[]) {
         // check if player hit enemy, switch into battle if yes
         // ***********************************************************************
         for(int a = 0; a < enemiesInScene.size(); a++) {
+            if(enemiesInScene.at(a)->getEndLocationX() != 900) {
+                if(worldState) {
+                    enemiesInScene.at(a)->update(dt);
+                }
+            }
           if(collisionDetector.playerEnemyCollision(player, *enemiesInScene.at(a)) && enemiesInScene.at(a)->getAlive()){
             worldState = false;
             currentBattleEnemy = enemiesInScene.at(a);

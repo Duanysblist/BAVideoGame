@@ -48,6 +48,10 @@ void Enemy::setStartLocation(const int X, const int Y) {
 	startLocation[1] = Y;
 }
 
+int Enemy::getEndLocationX() const{
+	return endLocation[0];
+}
+
 void Enemy::setEndLocation(const int X, const int Y) {
 	endLocation[0] = X;
 	endLocation[1] = Y;

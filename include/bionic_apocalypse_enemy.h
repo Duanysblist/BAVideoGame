@@ -54,6 +54,7 @@ class Enemy {
 		int getY() const;
 
 		void setStartLocation(const int X, const int Y);
+		int getEndLocationX() const;
 		void setEndLocation(const int X, const int Y);
 
 		// updates enemy location
