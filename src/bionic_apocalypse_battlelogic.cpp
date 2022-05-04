@@ -1,6 +1,6 @@
 #include "bionic_apocalypse_battlelogic.h"
 
-void Battle::startNewBattle(Enemy &enemy) {
+void Battle::startNewBattle(Player &player, Enemy &enemy) {
 	// std::cout << "battle and bad guy initiated" << std::endl; 
 	myEnemy = enemy;
 	active = true;
@@ -9,6 +9,7 @@ void Battle::startNewBattle(Enemy &enemy) {
 	bombSet = 0;
 	numBombs = 0;
 	enemyDebuff = false;
+	checkAvailableMoves(player);
 }
 
 void Battle::setAttackingTrue(Player &player, int move) {
@@ -22,37 +23,46 @@ void Battle::setAttackingTrue(Player &player, int move) {
 			{
 				case 0: {
 					curPlayerMove = "Crowbar";
+					playerDamage = 10;
 					myEnemy.changeHealth(-10);
 				}break;
 				case 1: {
 					curPlayerMove = "Bandages";
+					playerDamage = 0;
 				}break;
 				case 2: {
 					curPlayerMove = "Throwing Knives";
 					int chance = (rand() % 50);
 					if (chance >= 20) {
 						myEnemy.changeHealth(-24);
+						playerDamage = 24;
 					}
 					else if (chance >= 15) {
 						myEnemy.changeHealth(-16);
+						playerDamage = 16;
 					}
 					else if (chance >= 10) {
 						myEnemy.changeHealth(-8);
+						playerDamage = 8;
 					}
 				}break;
 				case 3: {
 					curPlayerMove = "Block";
+					playerDamage = 0;
 					armored = true;
 				}break;
 				case 4: {
 					curPlayerMove = "Molotov";
+					playerDamage = 0;
 					enemyDOT = true;
 				}break;
 				case 5: {
 					curPlayerMove = "Electric Crowbar Strike";
 					myEnemy.changeHealth(-25);
+					playerDamage = 25;
 				}break;
 				case 6: {
+					playerDamage = 0;
 					curPlayerMove = "Time Bomb";
 					if (bombSet == 0) {
 						bombSet = 3;
@@ -65,34 +75,41 @@ void Battle::setAttackingTrue(Player &player, int move) {
 				case 7: {
 					curPlayerMove = "Electric Net";
 					myEnemy.changeHealth(-5);
+					playerDamage = 5;
 					enemyDebuff = true;
 				}break;
 				case 8: {
+					playerDamage = 0;
 					curPlayerMove = "Tourniquet";
 				}break;
 				case 9: {
 					curPlayerMove = "Tactical Nuke";
 					myEnemy.changeHealth(-50);
+					playerDamage = 50;
 				}break;
 				case 10: {
 					curPlayerMove = "Large Nuke";
 					myEnemy.setHealth(0);
+					playerDamage = myEnemy.getMaxHealth();
 				}break;
 				case 11: {
 					curPlayerMove = "Nuclear Projectile";
 					myEnemy.changeHealth(-20);
+					playerDamage = 20;
 					enemyDOT = true;
 				}break;
 			}
 			if (enemyDOT) {
 				myEnemy.changeHealth(-5);
+				playerDamage = playerDamage + 5;
 			}
+			enemyDamage = myEnemy.randomAttack();
 			int bombValue = bombHandler();
 			if (bombValue != 0) {
 				myEnemy.changeHealth(bombValue);
+				playerDamage = playerDamage + (-1 * bombValue);
 				player.changePlayerHealth(-5);
 			}
-			enemyDamage = myEnemy.randomAttack();
 			if (armored) {
 				if (enemyDamage % 2) {
 					enemyDamage = (enemyDamage + 1) / 2;
@@ -164,4 +181,15 @@ std::string Battle::getCurMove() const{
 
 int Battle::getEnemyDamage() const{
 	return enemyDamage;
+}
+
+int Battle::getPlayerDamage() const{
+	return playerDamage;
+}
+
+void Battle::checkAvailableMoves(Player &player) {
+	if (player.hasAvailableMoves() == false){
+		win = false;
+		active = false;
+	}
 }

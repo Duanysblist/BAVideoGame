@@ -13,6 +13,10 @@ const int BOTTOM_BAR_HEIGHT = 100;
 const int HELP_SCREEN_WIDTH = 960;
 const int HELP_SCREEN_HEIGHT = 540;
 
+// map diagram constants
+const int MAP_WIDTH = 500;
+const int MAP_HEIGHT = 400;
+
 // constants for map grid of scenes (i.e. how many scenes are in the map)
 const int MAP_COLUMNS = 6;
 const int MAP_ROWS = 8;
@@ -705,7 +709,7 @@ static int layout_6_4 [10][18]=
     {RFW, ROCK, ROCK, ROCK, ROCK, 0, 0, 0, 0, ROCK, 0, 0, ROCK, OCBL, DFW, OCBR, 0, 0}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, 0}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
-    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0}, 
 };
 
 // [6, 5]

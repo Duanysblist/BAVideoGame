@@ -77,6 +77,7 @@ class Player {
 
         std::vector<int> getPlayerMapPosition() const;
         void setPlayerMapPosition(const std::vector<int> position);
+        bool hasAvailableMoves() const;
 };
 
 #endif

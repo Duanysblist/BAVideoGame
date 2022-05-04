@@ -55,6 +55,7 @@ class Renderer {
         void drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b);
 
         void drawHelpScreen();
+        void drawMap(const std::vector<int> pos);
 
         // window methods
         void window_startup();
@@ -68,7 +69,7 @@ class Renderer {
         void drawEnemy(const Enemy &enemy, const bool &gameState);
 
         void drawBattleUI(const Player &player);
-        void drawBattleMessages(const std::string &message, const int &damage);
+        void drawBattleMessages(const std::string &message, const int &damage, const int &playerDam);
 
         void renderer_present();
 };

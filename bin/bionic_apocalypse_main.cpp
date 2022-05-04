@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
 	bool running = true;
     bool battling = false;
     bool help = false;
+    bool map_display = false;
     SDL_Event e;
 
     int eCount = 0;
@@ -71,6 +72,7 @@ int main(int argc, char *argv[]) {
     Battle curBattle;
     std::string curMove = "";
     int enemyDam = 0;
+    int playerDam = 0;
     bool firstMove = false;
 
     // Setting up a MAP_ROWSxMAP_COLUMNS matrix for the map system
@@ -403,8 +405,6 @@ int main(int argc, char *argv[]) {
             renderer.cutscene(eCount);
             renderer.renderer_present();
             }
-            player.setPlayerMapPosition({4, 2});
-            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
         }
 
         //Lab cutscene check
@@ -462,6 +462,10 @@ int main(int argc, char *argv[]) {
                     if (e.key.keysym.sym == SDLK_h) {
                         // show/hide help screen
                         help = !help;
+                    }
+                    if (e.key.keysym.sym == SDLK_m) {
+                        // show/hide map
+                        map_display = !map_display;
                     }
                 }
 
@@ -623,7 +627,9 @@ int main(int argc, char *argv[]) {
             moveUp = moveDown = moveLeft = moveRight = false;
             // start a new battle if necessary
             if(battling == false) {
+                //THIS WAS FROM A MERGE CONFLICT, PICK ONE
                 curBattle.startNewBattle(*currentBattleEnemy);
+                curBattle.startNewBattle(player, badGuy);
                 battling = true;
             }
             while (SDL_PollEvent(&e) != 0)
@@ -707,6 +713,11 @@ int main(int argc, char *argv[]) {
             curMove = curBattle.getCurMove();
             enemyDam = curBattle.getEnemyDamage();
 
+            curBattle.checkAvailableMoves(player);
+            badGuy.setHealth(curBattle.getEnemyHP());
+            curMove = curBattle.getCurMove();
+            enemyDam = curBattle.getEnemyDamage();
+            playerDam = curBattle.getPlayerDamage();
             if(curBattle.getStatus() == false) { // leave battle
                 worldState = true;
                 battling = false;
@@ -770,10 +781,13 @@ int main(int argc, char *argv[]) {
         // renderer.drawEnemy(badGuy, worldState);
         // renderer.drawEnemy(badGuy, worldState);
         if(firstMove) {
-            renderer.drawBattleMessages(curMove, enemyDam);
+            renderer.drawBattleMessages(curMove, enemyDam, playerDam);
         }
         if (help) {
             renderer.drawHelpScreen();
+        }
+        if (map_display) {
+            renderer.drawMap(player.getPlayerMapPosition());
         }
 
         // display map location -- DELETE BEFORE SUBMITTING GAME - FOR DEVELOPMENT USE ONLY
