@@ -132,20 +132,30 @@ void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
             double enemy_health = enemy.getHealth();
             double health_length = (enemy_health/enemy.getMaxHealth())*BAR_L;
 
-            // outline of bar
-            rectangleRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + BAR_L, (BOTTOM_BAR_HEIGHT/3), 255, 255, 255, 255);
             // interior bar representing health
-            boxRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 128);
+            boxRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 255);
+            // outline of bar
+            rectangleRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + BAR_L, (BOTTOM_BAR_HEIGHT/3), 0, 0, 0, 255);
             
             // write health value under bar
-            drawText("Enemy Health: ", BAR_S - 20, (2*BOTTOM_BAR_HEIGHT/3), 255, 255, 255);
+            drawText("Enemy Health: ", BAR_S - 20, (2*BOTTOM_BAR_HEIGHT/3), 0, 0, 0);
             // change health to an int instead of double
             int health = trunc(enemy_health);
-            drawText((std::to_string(health)).c_str(), BAR_S + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 255, 255, 255);
+            drawText((std::to_string(health)).c_str(), BAR_S + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 0, 0, 0);
         }
     }
 }
 
+void Renderer::drawBattleMessages(const std::string &message, const int &damage) {
+    std::string mes = "You used ";
+    std::string midMes = " and took ";
+    std::string endMes = " damage!";
+    std::string finalMes = mes + message + midMes + std::to_string(damage) + endMes;
+    int n = finalMes.length();
+    char toCharArr[n + 1];
+    strcpy(toCharArr, finalMes.c_str());
+    drawText(toCharArr, 700, 500, 0, 0, 0);
+}
 // helper method to draw text
 // pass in the text (words), the position (dst_x and dst_y), and the desired color (r,g,b)
 void Renderer::drawText(const char* words, const int dst_x, const int dst_y, const int r, const int g, const int b) {
@@ -674,6 +684,33 @@ void Renderer::drawScene(const Scene &scene) {
     if (key_nuclear == NULL) csci437_error("Could not create texture from surface!");
     SDL_FreeSurface( image );
     image = NULL; 
+    // lab tiles
+    image = IMG_Load("../resource/Lab_Inner_Corner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_inner_corner = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_inner_corner == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Inner_No_Lights.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_pw = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_pw == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Inner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_lights = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_lights == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Outer_Corner.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_outer_corner = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_outer_corner == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = IMG_Load("../resource/Lab_Side.png");
+    if (image == NULL) csci437_img_error("Could not create image!");
+    SDL_Texture* lab_side = SDL_CreateTextureFromSurface(renderer, image);
+    if (lab_side == NULL) csci437_error("Could not create texture from surface!");
+    SDL_FreeSurface( image );
+    image = NULL; 
 
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
@@ -789,6 +826,48 @@ void Renderer::drawScene(const Scene &scene) {
                 SDL_Rect key_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
                 SDL_RenderCopyEx(renderer, scene_background_2, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
                 SDL_RenderCopyEx(renderer, key_nuclear, NULL, &key_rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_LFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_RFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+            } else if (layout[i][j] == LAB_UFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_DFW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_side, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_PW) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_pw, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_ICTR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+            } else if (layout[i][j] == LAB_ICTL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_ICBR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 180, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_ICBL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_inner_corner, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCTR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 180, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCTL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 90, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCBL) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_OCBR) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_outer_corner, NULL, &rect, 270, NULL, SDL_FLIP_NONE);
+            } else if (layout[i][j] == LAB_LIGHTS) {
+                SDL_Rect rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight };
+                SDL_RenderCopyEx(renderer, lab_lights, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
             } else { // just ground -- use one of the three ground backgrounds and rotate to create variety
                 SDL_Rect scene_rect = { j*screenBlockWidth, i*screenBlockHeight, screenBlockWidth, screenBlockHeight};
                 if (i%3 == 0 && i%2 == 0 && j%2 == 0 && j%7 == 0 && scene.getSceneID()%2 == 0 && scene.getsceneCategoryID()%2 == 0) {
@@ -831,6 +910,11 @@ void Renderer::drawScene(const Scene &scene) {
     SDL_DestroyTexture(key_power);
     SDL_DestroyTexture(key_wire);
     SDL_DestroyTexture(key_nuclear);
+    SDL_DestroyTexture(lab_inner_corner);
+    SDL_DestroyTexture(lab_pw);
+    SDL_DestroyTexture(lab_lights);
+    SDL_DestroyTexture(lab_outer_corner);
+    SDL_DestroyTexture(lab_side);
 }
 
 // draw the bottom bar space and its contents
@@ -871,7 +955,18 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawHelpMessage();
         drawPlayer(player, world);
     }
-    else { // in battle; need bottom bar, battle UI, and player
+    else { // in battle; need background, bottom bar, battle UI, and player
+        // draw background
+        SDL_Surface* image = IMG_Load("../resource/Background_Grass.png");
+        if (image == NULL) csci437_img_error("Could not create image!");
+        SDL_Texture* background = SDL_CreateTextureFromSurface(renderer, image);
+        if (background == NULL) csci437_error("Could not create texture from surface!");
+        SDL_FreeSurface( image );
+        image = NULL;
+        SDL_Rect rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT };
+        SDL_RenderCopyEx(renderer, background, NULL, &rect, 0, NULL, SDL_FLIP_NONE);
+        SDL_DestroyTexture(background);
+        // draw other elements
         drawBottomBar(player);
         drawBattleUI(player);
         drawPlayer(player, world);

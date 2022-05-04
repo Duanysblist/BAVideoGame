@@ -21,6 +21,7 @@ class Scene {
         int** layout;
         int rows;
         int columns;
+        int resourceProbability = 260;
         
         // scene zone information
         // 0 - in the tutorial zone
@@ -28,6 +29,7 @@ class Scene {
         // 2 - in the wires zone
         // 3 - in the nuclear waste zone
         int sceneZone;
+        bool hasBeenVisited;
 
     public:
         int getSceneZone() const;
@@ -52,6 +54,7 @@ class Scene {
             sceneZone = 0;
             rows = 10;
             columns = 18;
+            hasBeenVisited = false;
         }
         Scene(const int id, const int catID, const int zone, const int r, const int c) {
             sceneID = id;
@@ -59,10 +62,14 @@ class Scene {
             sceneZone = zone;
             rows = r;
             columns = c;
+            hasBeenVisited = false;
         }
 
+        void setResourceProbability(const int &prob);
         void distributeResources(); 
         int* covertScenePosToPixels(int x, int y);
+        bool previouslyVisited();
+        void setVisitedStatus();
 };
 
 #endif

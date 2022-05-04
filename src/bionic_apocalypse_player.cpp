@@ -172,11 +172,13 @@ int Player::getPlayerHealth() const {
 void Player::setPlayerHealth(const int newHealth) {
 	playerHealth = newHealth;
 	if (playerHealth < 0) playerHealth = 0;
+	if (playerHealth > MAX_HEALTH) playerHealth = MAX_HEALTH;
 }
 
 void Player::changePlayerHealth(const int healthAddition) {
 	playerHealth += healthAddition;
 	if (playerHealth < 0) playerHealth = 0;
+	if (playerHealth > MAX_HEALTH) playerHealth = MAX_HEALTH;
 }
 
 void Player::setWalkingAnim(bool walk) {

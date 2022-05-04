@@ -18,7 +18,15 @@ using std::ifstream;
 using std::ofstream;
 using std::endl;
 
+// Creating all enemies at the beginning, toring them in a vector, and then render (isAlive)
+// If an enemy is killed
+
 int main(int argc, char *argv[]) {
+
+// ***********************************************************************
+    int runningEnemyIDcount = 0;
+    bool ranOnce = false;
+    // ***********************************************************************
 
     //Initialize helpful variables to use
     bool moveUp = false;
@@ -33,6 +41,10 @@ int main(int argc, char *argv[]) {
 
     int eCount = 0;
     bool finalCutsceneTrigger = false;
+    bool hasBeenToLab = false;
+    bool hasObtainedPower = false;
+    bool hasObtainedFuse = false;
+    bool hasObtainedWaste = false;
 
     int playerWalkCycle = 0;
 
@@ -47,8 +59,9 @@ int main(int argc, char *argv[]) {
     badGuy.setType(0);
     badGuy.setPosX(500);
     badGuy.setPosY(500);
-
+    // ***********************************************************************
     Enemy *currentBattleEnemy;
+    // ***********************************************************************
 
     // initalize player, set initial position of player on the screen (bottom left)
     Player player;
@@ -56,10 +69,12 @@ int main(int argc, char *argv[]) {
 
     bool worldState = true; //true is world, false is battle
     Battle curBattle;
-
+    std::string curMove = "";
+    int enemyDam = 0;
+    bool firstMove = false;
 
     // Setting up a MAP_ROWSxMAP_COLUMNS matrix for the map system
-    int counter = 0;
+    int sceneIDCounter = 0;
     Scene map[MAP_ROWS][MAP_COLUMNS];
 
     // set scene zone information
@@ -117,13 +132,16 @@ int main(int argc, char *argv[]) {
     map[7][4].setSceneZone(3);
     map[7][5].setSceneZone(3);
 
+    std::vector<Scene> collectionOfScenes;
+
     // set info for each scene
     for(int i = 0; i < MAP_ROWS; i++){
         for(int j = 0; j < MAP_COLUMNS; j++){
-            map[i][j].setSceneID(counter);
+            map[i][j].setSceneID(sceneIDCounter);
             map[i][j].setSceneCategoryID(j);
             map[i][j].createSceneLayout(10, 18);
-            counter++;
+            // collectionOfScenes.push_back(map[i][j]);
+            sceneIDCounter++;
         }
     }
 
@@ -148,6 +166,7 @@ int main(int argc, char *argv[]) {
     map[1][2].setSceneLayout(layout_1_2);    
     map[2][2].setSceneLayout(layout_2_2);    
     map[3][2].setSceneLayout(layout_3_2);    
+    map[4][2].setSceneLayout(north_unlocked);    
     map[5][2].setSceneLayout(layout_5_2);    
     map[6][2].setSceneLayout(layout_6_2);    
     map[7][2].setSceneLayout(layout_7_2);    
@@ -176,6 +195,17 @@ int main(int argc, char *argv[]) {
     map[6][5].setSceneLayout(layout_6_5); 
     map[7][5].setSceneLayout(layout_7_5); 
 
+    // increase probability of resource generation for some specific scenes
+    map[0][0].setResourceProbability(30);
+    map[0][1].setResourceProbability(40);
+    map[0][4].setResourceProbability(40);
+    map[0][5].setResourceProbability(30);
+    map[1][0].setResourceProbability(90);
+    map[5][3].setResourceProbability(40);
+    map[5][4].setResourceProbability(40);
+    map[7][0].setResourceProbability(20);
+    map[7][3].setResourceProbability(50);
+
     for(int i = 0; i < MAP_ROWS; i++){
         for(int j = 0; j < MAP_COLUMNS; j++){
             map[i][j].distributeResources();
@@ -188,6 +218,45 @@ int main(int argc, char *argv[]) {
     // set which scene the player starts in (first tutorial scene)
     std::vector<int> screenIndex{6, 0};
     player.setPlayerMapPosition(screenIndex);
+
+    std::vector<std::vector<Enemy>> allEnemies;
+    for(int a = 0; a < MAP_ROWS; a++) {
+        for(int b = 0; b < MAP_COLUMNS; b++) {
+            std::vector<Enemy> enemiesInScene;
+            for(int i = 0; i < map[a][b].getSceneRows(); i++){
+                for(int j = 0; j < map[a][b].getSceneColumns(); j++){
+                    // Need to make sure that if the current scene has already been visited
+                        // Check the enemies belonging to that scene and only create the ones that are alive
+                     
+                    int** theScene = map[a][b].getSceneLayout();
+                    // Check if the ENEMY_START constant is in the scene
+                    if(theScene[i][j] == ENEMY_START) {
+                    // If so, give the pixel position it is supposed to be in
+                    int* pixPos = map[a][b].covertScenePosToPixels(i, j);
+                    // Create an enemy object
+                    Enemy newEnemy;
+                    // Set the position of the enemy in the scene
+                    newEnemy.setPosX(pixPos[1]);
+                    newEnemy.setPosY(pixPos[0]);
+                    newEnemy.setType(0);
+                    enemiesInScene.push_back(newEnemy);
+                    // newEnemy.setID(runningEnemyIDcount);
+                    // runningEnemyIDcount++;
+
+                    // Add enemy to our array of enemies in the scene
+                    
+                    // increment the number of enemies
+                    // enemyCounter++;
+                    // std::cout << "Enemy Position :" + std::to_string(i) + ", " + std::to_string(j);
+                    }
+                }
+            }
+            allEnemies.push_back(enemiesInScene);
+        }
+    }
+
+
+
 
     // cut scenes for player -- press e to move through them
     while (eCount < 4) {
@@ -206,11 +275,14 @@ int main(int argc, char *argv[]) {
         renderer.renderer_present();
     }
       
-        // Making an array of possible enemies in the scene
-        // Will never be more than 6 enemies in a single scene
-        Enemy enemiesInScene [6];
-        int enemyCounter = 0;
-        bool ranOnce = false;
+    std::vector<std::vector<Enemy>> sceneEnemyLayouts;
+    // Making an array of possible enemies in the scene
+    // Will never be more than 6 enemies in a single scene
+    std::vector<Enemy> enemiesInScene;
+    int enemyCounter = 0;
+    
+    
+
     // game loop
 	while (running) {
 
@@ -222,37 +294,141 @@ int main(int argc, char *argv[]) {
         std::vector<int> currentVec = player.getPlayerMapPosition();
         int x = currentVec.at(0);
         int y = currentVec.at(1);
+        // Scenes are being newly created every time this is run
+         // Need to have a collection of scenes that have already been created in order to go back to the previous state of a scene
         Scene currentScene = map[x][y];
-
+        // std::cout << std::to_string(currentScene.getSceneID());
+        enemiesInScene = allEnemies.at(currentScene.getSceneID());
         
-        // Go through the layout of the current scene
-        for(int i = 0; i < currentScene.getSceneRows(); i++){
-          for(int j = 0; j < currentScene.getSceneColumns(); j++){
-            
-            int** theScene = currentScene.getSceneLayout();
-            // Check if the ENEMY_START constant is in the scene
-            if(theScene[i][j] == ENEMY_START) {
-              // If so, give the pixel position it is supposed to be in
-              int* pixPos = currentScene.covertScenePosToPixels(i, j);
-              // Create an enemy object
-              Enemy newEnemy; // -> This may be causeing a problem by having a new enemy in the same position each time it runs
-              // Set the position of the enemy in the scene
-              newEnemy.setPosX(pixPos[1]);
-              newEnemy.setPosY(pixPos[0]);
-              newEnemy.setType(0);
-              // Add enemy to our array of enemies in the scene
-              enemiesInScene[enemyCounter] = newEnemy;
-              // increment the number of enemies
-              enemyCounter++;
-              // std::cout << "Enemy Position :" + std::to_string(i) + ", " + std::to_string(j);
-            }
-          }
-        }
+        
+        // ***********************************************************************
+        // if(ranOnce == false) {
+        //     // If we have not arrived at this scene before, load in enemeies
+        //     if(currentScene.previouslyVisited() == false){
+        //         // currentScene.setSceneID(sceneIDCounter);
+        //         // sceneIDCounter++;
+        //         // Go through the layout of the current scene
+                
+        //         // std::cout<<"New Scene";
+        //     } else {
+        //         // Otherwise, load in the state of enemies saved in sceneEnemyLayouts
+        //         enemiesInScene = sceneEnemyLayouts.at(currentScene.getSceneID());
+        //         std::cout<<"Made it to an already seen scene";
+        //     }
 
-        // if the player has all of the key resources, stop running the game loop and play the final scene
-        if (player.getKeyResource(0) == 1 && player.getKeyResource(1) == 1 && player.getKeyResource(2) == 1) {
+        //     ranOnce = true;
+        // }
+        // ***********************************************************************
+
+        // // if the player has all of the key resources, stop running the game loop and play the final scene
+        // if (player.getKeyResource(0) == 1 && player.getKeyResource(1) == 1 && player.getKeyResource(2) == 1) {
+        // if the player has all of the key resources and is at the lab, stop running the game loop and play the final scene
+        if (hasObtainedPower && hasObtainedFuse && hasObtainedWaste && x == 4 && y == 2) {
             running = false;
             finalCutsceneTrigger = true;
+        }
+
+        //Catalyst cutscene check (big battery)
+        if (!hasObtainedPower && player.getKeyResource(0) == 1) {
+            hasObtainedPower = true;
+            // change lab layout to unlock wire zone
+            map[4][2].setSceneLayout(east_unlocked);
+            while (eCount < CUTSCENE_POWER) {
+                moveDown = false;
+                moveUp = false;
+                moveRight = false;
+                moveLeft = false;
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
+            player.setPlayerMapPosition({4, 2});
+            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
+        }
+
+        //Fuse cutscene check
+        if (!hasObtainedFuse && player.getKeyResource(1) == 1) {
+            hasObtainedFuse = true;
+            // change lab layout to unlock nuclear zone
+            map[4][2].setSceneLayout(layout_4_2);
+            while (eCount < CUTSCENE_FUSE) {
+                moveDown = false;
+                moveLeft = false;
+                moveRight = false;
+                moveUp = false;
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
+            player.setPlayerMapPosition({4, 2});
+            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
+        }
+
+        //Waste cutscene check
+        if (!hasObtainedWaste && player.getKeyResource(2) == 1) {
+            hasObtainedWaste = true;
+            while (eCount < CUTSCENE_NUCLEAR) {
+                moveDown = false;
+                moveUp = false;
+                moveLeft = false;
+                moveRight = false;
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
+            player.setPlayerMapPosition({4, 2});
+            player.setPlayerScreenPosition(10, (SCREEN_HEIGHT-BOTTOM_BAR_HEIGHT)/2);
+        }
+
+        //Lab cutscene check
+        if (hasBeenToLab==false && x == 4 && y == 2) {
+            hasBeenToLab = true;
+            while (eCount < CUTSCENE_LAB) {
+                moveDown = false;
+                moveUp = false;
+                moveLeft = false;
+                moveRight = false;
+                while (SDL_PollEvent(&e) != 0)
+                {
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        if (e.key.keysym.sym == SDLK_e) {
+                            eCount += 1;
+                            SDL_Delay(100);
+                        }
+                    }
+                }
+            renderer.cutscene(eCount);
+            renderer.renderer_present();
+            }
+            player.setPlayerScreenPosition(10, player.getPlayerScreenPositionY());
         }
 
         //check if gamestate is in world
@@ -328,8 +504,9 @@ int main(int argc, char *argv[]) {
             }
             if (moveUp || moveDown || moveLeft || moveRight) {
                 playerWalkCycle++;
-                if (playerWalkCycle >= 5) {
+                if (playerWalkCycle >= 20) {
                     player.setWalkingAnim(!player.getWalkingAnim());
+                    playerWalkCycle = 0;
                 }
             }
             else {
@@ -378,6 +555,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(0) = x - 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(player.getPlayerScreenPositionX(), SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT);
+                    if(currentScene.previouslyVisited() == false){
+                        // std::cout << "Made it to scene push back";
+                        sceneEnemyLayouts.push_back(enemiesInScene);
+                    }
+                    enemiesInScene.clear();
+                    ranOnce = false;
+                    currentScene.setVisitedStatus();
                     break;
                 case 2:
                     // Move to right screen
@@ -388,6 +572,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(1) = y + 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(0, player.getPlayerScreenPositionY());
+                    if(currentScene.previouslyVisited() == false){
+                        // std::cout << "Made it to scene push back";
+                        sceneEnemyLayouts.push_back(enemiesInScene);
+                    }
+                    enemiesInScene.clear();
+                    ranOnce = false;
+                    currentScene.setVisitedStatus();
                     break;
                 case 3:
                     // Move to below screen
@@ -398,6 +589,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(0) = x + 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(player.getPlayerScreenPositionX(), 0);
+                    if(currentScene.previouslyVisited() == false){
+                        // std::cout << "Made it to scene push back";
+                        sceneEnemyLayouts.push_back(enemiesInScene);
+                    }
+                    enemiesInScene.clear();
+                    ranOnce = false;
+                    currentScene.setVisitedStatus();
                     break;
                 case 4:
                     // Move to left screen
@@ -408,6 +606,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(1) = y - 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(SCREEN_WIDTH - PLAYER_WIDTH, player.getPlayerScreenPositionY());
+                    if(currentScene.previouslyVisited() == false){
+                        // std::cout << "Made it to scene push back";
+                        sceneEnemyLayouts.push_back(enemiesInScene);
+                    }
+                    enemiesInScene.clear();
+                    ranOnce = false;
+                    currentScene.setVisitedStatus();  
                     break;
             }
             
@@ -441,48 +646,75 @@ int main(int argc, char *argv[]) {
                     // battle actions
                     if (e.key.keysym.sym == SDLK_0) {
                         curBattle.setAttackingTrue(player, 0);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_1) {
                         curBattle.setAttackingTrue(player, 1);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_2) {
                         curBattle.setAttackingTrue(player, 2);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_3) {
                         curBattle.setAttackingTrue(player, 3);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_4) {
                         curBattle.setAttackingTrue(player, 4);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_5) {
                         curBattle.setAttackingTrue(player, 5);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_6) {
                         curBattle.setAttackingTrue(player, 6);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_7) {
                         curBattle.setAttackingTrue(player, 7);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_8) {
                         curBattle.setAttackingTrue(player, 8);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_9) {
                         curBattle.setAttackingTrue(player, 9);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_MINUS) {
                         curBattle.setAttackingTrue(player, 10);
+                        firstMove = true;
                     }
                     if (e.key.keysym.sym == SDLK_PLUS) {
                         curBattle.setAttackingTrue(player, 11);
+                        firstMove = true;
                     }
                 }
+                // ***********************************************************************
+                // std::cout << std::to_string(currentBattleEnemy->getID());
+                // ***********************************************************************
             }
+            // ***********************************************************************
+            // MINE
             currentBattleEnemy->setHealth(curBattle.getEnemyHP());
+            // ***********************************************************************
+
+            // HENRY
+            badGuy.setHealth(curBattle.getEnemyHP());
+            curMove = curBattle.getCurMove();
+            enemyDam = curBattle.getEnemyDamage();
+
             if(curBattle.getStatus() == false) { // leave battle
                 worldState = true;
                 battling = false;
+                firstMove = false;
                 if (curBattle.getWin()){ // player won battle -- kill enemy
+                // ***********************************************************************
                     currentBattleEnemy->setAlive(false);
+                // ***********************************************************************
                 }
                 else { // player lost battle -- reset game
                     std::vector<int> screenIndex{6, 0};
@@ -503,13 +735,15 @@ int main(int argc, char *argv[]) {
         // badGuy.update(dt);
 
         // check if player hit enemy, switch into battle if yes
-        for(int a = 0; a < enemyCounter; a++) {
-          if(collisionDetector.playerEnemyCollision(player, enemiesInScene[a]) && enemiesInScene[a].getAlive()){
+        // ***********************************************************************
+        for(int a = 0; a < enemiesInScene.size(); a++) {
+          if(collisionDetector.playerEnemyCollision(player, enemiesInScene.at(a)) && enemiesInScene.at(a).getAlive()){
             worldState = false;
-            currentBattleEnemy = &enemiesInScene[a];
+            currentBattleEnemy = &enemiesInScene.at(a);
             break;
           }
         }
+        // ***********************************************************************
         // if(collisionDetector.playerEnemyCollision(player, badGuy) && badGuy.getAlive()) {
         //     worldState = false;
         // }
@@ -518,23 +752,26 @@ int main(int argc, char *argv[]) {
         renderer.window_clear();
         renderer.window_update(player, worldState, currentScene);
         // Draw all enemies in the scene
+        // ***********************************************************************
+
         if(worldState) {
-          for(int i = 0; i < enemyCounter; i++){
-            if(enemiesInScene[i].getAlive()) {
-              renderer.drawEnemy(enemiesInScene[i], worldState); 
+          for(int i = 0; i < enemiesInScene.size(); i++){
+            if(enemiesInScene.at(i).getAlive()) {
+              renderer.drawEnemy(enemiesInScene.at(i), worldState); 
             }
-            
           }
-          enemyCounter = 0;
         } else {
           if(currentBattleEnemy->getAlive()) {
             renderer.drawEnemy(*currentBattleEnemy, worldState);
-            std::cout << std::to_string(enemyCounter);
-            enemyCounter = 0;
           }
         }
+        // ***********************************************************************
 
         // renderer.drawEnemy(badGuy, worldState);
+        // renderer.drawEnemy(badGuy, worldState);
+        if(firstMove) {
+            renderer.drawBattleMessages(curMove, enemyDam);
+        }
         if (help) {
             renderer.drawHelpScreen();
         }
@@ -553,7 +790,7 @@ int main(int argc, char *argv[]) {
 	}
 
     // display final cutscenes!
-    while (finalCutsceneTrigger && eCount < 9) {
+    while (finalCutsceneTrigger && eCount < CUTSCENE_END) {
             while (SDL_PollEvent(&e) != 0)
             {
                 // User presses a key

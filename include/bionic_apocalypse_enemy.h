@@ -26,6 +26,8 @@ class Enemy {
 		bool goingToStart = false;
 		int enemyType = 0; //0 is normal, -1, is tank, and 1 is glass cannon
 
+		int id;
+
 	public: 
 		Enemy(){
 			alive = true;
@@ -35,6 +37,7 @@ class Enemy {
 			enemyType = -2;
 			enemyPosX = 500;
 			enemyPosY = 500;
+			id = -1;
 		}
 		int getHealth() const;
 		void setHealth(const int newHealth);
@@ -63,6 +66,9 @@ class Enemy {
 		bool getAlive() const;
 
 		int getMaxHealth() const;
+
+		int getID();
+		void setID(const int id);
 };
 
 #endif

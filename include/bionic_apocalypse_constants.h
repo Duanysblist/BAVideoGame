@@ -27,6 +27,14 @@ const int ENEMY_WIDTH = 35;
 const int ENEMY_HEIGHT = 60;
 const double ENEMY_SPEED = 0.15;
 
+//Cutscene constants
+const int CUTSCENE_INTRO = 4;
+const int CUTSCENE_LAB = 10;
+const int CUTSCENE_POWER = 12;
+const int CUTSCENE_FUSE = 14;
+const int CUTSCENE_NUCLEAR = 15;
+const int CUTSCENE_END = 20;
+
 // Screen Directions
 const int UP = 1;
 const int RIGHT = 2;
@@ -81,6 +89,20 @@ const int CROWBAR = 30;
 
 // 31 - enemy starting location
 const int ENEMY_START = -1;
+const int LAB_LFW = 31; // left facing wall
+const int LAB_RFW = 32; // right facing wall
+const int LAB_UFW = 33; // up facing wall
+const int LAB_DFW = 34; // down facing wall
+const int LAB_PW = 35; // inner lab with no lights
+const int LAB_ICTR = 36; // inner corner top right
+const int LAB_ICTL = 37; // inner corner top left
+const int LAB_ICBL = 38; // inner corner bottom left
+const int LAB_ICBR = 39; // inner corner bottom right
+const int LAB_OCTR = 40; // outer corner top right
+const int LAB_OCTL = 41; // outer corner top left
+const int LAB_OCBL = 42; // outer corner bottom left
+const int LAB_OCBR = 43; // outer corner bottom right
+const int LAB_LIGHTS = 44; // inner lab with lights
 
 // Layouts for scenes in map
 
@@ -316,7 +338,7 @@ static int layout_2_4 [10][18]=
     {PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW}, 
     {DFW, DFW, OCBR, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW}, 
     {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW, PW}, 
-    {0, 0, 0, 0, 0, LFW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+    {0, 0, 0, 0, 0, LFW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
     {UFW, UFW, OCTR, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
     {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
     {PW, PW, RFW, 0, 0, LFW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL}, 
@@ -368,7 +390,7 @@ static int layout_3_1 [10][18]=
 // [3, 2]
 static int layout_3_2 [10][18]= 
   { {ICBR, DFW, DFW, DFW, DFW, ICBL, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
-    {RFW, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
     {0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, LFW},
     {0, 0, 0, 0, 0, LFW, PW, PW, PW, ICBR, OCBR, 0, 0, 0, 0, 0, 0, LFW},
     {OCTR, 0, 0, 0, 0, OCBL, ICBL, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW},
@@ -413,7 +435,7 @@ static int layout_3_5 [10][18]=
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {OCBR, 0, 0, ROCK, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, ROCK, 0, 0, LFW}, 
-    {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, LFW}, 
+    {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_WIRE, TSVW, 0, 0, LFW}, 
     {0, 0, 0, TSVW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, LFW}, 
     {OCTR, ROCK, ROCK, ROCK, 0, 0, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, TSHW, ROCK, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ENEMY_START, 0, 0, 0, 0, LFW}, 
@@ -449,7 +471,47 @@ static int layout_4_1 [10][18]=
     {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW, PW, PW, PW} 
 };
 
-// [4, 2]
+// [4, 2] LAB SCENE -- different versions for when zones are unlocked
+static int layout_4_2 [10][18]=  // all unlocked
+  { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LAB_OCTL, LAB_ICTL, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICTR, LAB_OCTR, 0, 0, 0, 0, OCBL},
+    {0, 0, 0, 0, 0, ROCK, LAB_LIGHTS, LAB_PW, LAB_PW, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_RFW, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, ROCK, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_RFW, 0, 0, 0, 0, 0},
+    {OCTR, 0, 0, 0, 0, LAB_OCBL, LAB_ICBL, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICBR, LAB_OCBR, 0, 0, 0, 0, OCTL},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCBL, LAB_DFW, LAB_DFW, LAB_DFW, LAB_DFW, LAB_OCBR, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, ICTL} 
+};
+static int north_unlocked [10][18]= 
+  { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LAB_OCTL, LAB_ICTL, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICTR, LAB_OCTR, 0, 0, 0, 0, LFW},
+    {0, 0, 0, 0, 0, ROCK, LAB_LIGHTS, LAB_PW, LAB_PW, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_RFW, 0, 0, 0, 0, LFW},
+    {0, 0, 0, 0, 0, ROCK, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_RFW, 0, 0, 0, 0, LFW},
+    {OCTR, 0, 0, 0, 0, LAB_OCBL, LAB_ICBL, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICBR, LAB_OCBR, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCBL, LAB_DFW, LAB_DFW, LAB_DFW, LAB_DFW, LAB_OCBR, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+};
+static int east_unlocked [10][18]= 
+  { {ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, ICBL}, 
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCTL, LAB_UFW, LAB_UFW, LAB_UFW, LAB_UFW, LAB_OCTR, 0, 0, 0, 0, 0, LFW},
+    {OCBR, 0, 0, 0, 0, LAB_OCTL, LAB_ICTL, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICTR, LAB_OCTR, 0, 0, 0, 0, OCBL},
+    {0, 0, 0, 0, 0, ROCK, LAB_LIGHTS, LAB_PW, LAB_PW, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_RFW, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, ROCK, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_RFW, 0, 0, 0, 0, 0},
+    {OCTR, 0, 0, 0, 0, LAB_OCBL, LAB_ICBL, LAB_PW, LAB_PW, LAB_LIGHTS, LAB_PW, LAB_ICBR, LAB_OCBR, 0, 0, 0, 0, OCTL},
+    {RFW, 0, 0, 0, 0, 0, LAB_OCBL, LAB_DFW, LAB_DFW, LAB_DFW, LAB_DFW, LAB_OCBR, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
+};
+
+
+
+
 // [4, 3]
 static int layout_4_3 [10][18]= 
   { {PW, PW, PW, PW, PW, PW, ICBR, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, ICBL}, 
@@ -484,8 +546,8 @@ static int layout_4_5 [10][18]=
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}, 
-    {PW, PW, PW, PW, PW, PW, RFW, 0, ENEMY_START, 0, LFW, PW, PW, PW, PW, PW, PW, PW}, 
-    {DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW}, 
+    {PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW}, 
+    {DFW, DFW, DFW, DFW, DFW, DFW, OCBR, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, ICBL}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},  
@@ -569,7 +631,7 @@ static int layout_5_5 [10][18]=
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
-    {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
+    {RFW, 0, 0, 0, 0, 0, 0, ROCK, 0, KEY_NUCLEAR, 0, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, ROCK, ROCK, ROCK, ROCK, ROCK, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},  
@@ -615,7 +677,7 @@ static int layout_6_2 [10][18]=
     {RFW, 0, 0, 0, 0, ROCK, ROCK, 0, 0, 0, 0, TSHW, TSHW, TSHW, ROCK, 0, 0, OCBL}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, ENEMY_START, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TSVW, 0, 0, 0}, 
-    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, ROCK, 0, 0, ROCK, OCTR, UFW, UFW}
+    {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, ROCK, 0, 0, ROCK, OCTL, UFW, UFW}
 };
 
 // [6, 3]

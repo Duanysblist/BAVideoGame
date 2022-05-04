@@ -7,11 +7,15 @@ int Enemy::getHealth() const {
 
 void Enemy::setHealth(const int newHealth) {
 	enemyHealth = newHealth;
+	if (enemyHealth < 0) {enemyHealth = 0;}
+	if (enemyHealth > maxHealth) {enemyHealth = maxHealth;}
 }
 
 //Adds or Subtracts from the health of the enemy
 void Enemy::changeHealth(const int healthChange) {
 	enemyHealth += healthChange;
+	if (enemyHealth < 0) {enemyHealth = 0;}
+	if (enemyHealth > maxHealth) {enemyHealth = maxHealth;}
 }
 
 //Chooses a random attack from the enemy's arsenal
@@ -125,4 +129,12 @@ bool Enemy::getAlive() const{
 
 int Enemy::getMaxHealth() const{
 	return maxHealth;
+}
+
+int Enemy::getID(){
+	return id;
+}
+
+void Enemy::setID(const int eID){
+	this->id = eID;
 }

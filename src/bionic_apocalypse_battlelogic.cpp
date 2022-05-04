@@ -21,9 +21,14 @@ void Battle::setAttackingTrue(Player &player, int move) {
 			switch (playerMove)
 			{
 				case 0: {
+					curPlayerMove = "Crowbar";
 					myEnemy.changeHealth(-10);
 				}break;
+				case 1: {
+					curPlayerMove = "Bandages";
+				}break;
 				case 2: {
+					curPlayerMove = "Throwing Knives";
 					int chance = (rand() % 50);
 					if (chance >= 20) {
 						myEnemy.changeHealth(-24);
@@ -36,15 +41,19 @@ void Battle::setAttackingTrue(Player &player, int move) {
 					}
 				}break;
 				case 3: {
+					curPlayerMove = "Block";
 					armored = true;
 				}break;
 				case 4: {
+					curPlayerMove = "Molotov";
 					enemyDOT = true;
 				}break;
 				case 5: {
+					curPlayerMove = "Electric Crowbar Strike";
 					myEnemy.changeHealth(-25);
 				}break;
 				case 6: {
+					curPlayerMove = "Time Bomb";
 					if (bombSet == 0) {
 						bombSet = 3;
 						numBombs = 1;
@@ -54,16 +63,23 @@ void Battle::setAttackingTrue(Player &player, int move) {
 					}
 				}break;
 				case 7: {
+					curPlayerMove = "Electric Net";
 					myEnemy.changeHealth(-5);
 					enemyDebuff = true;
 				}break;
+				case 8: {
+					curPlayerMove = "Tourniquet";
+				}break;
 				case 9: {
+					curPlayerMove = "Tactical Nuke";
 					myEnemy.changeHealth(-50);
 				}break;
 				case 10: {
+					curPlayerMove = "Large Nuke";
 					myEnemy.setHealth(0);
 				}break;
 				case 11: {
+					curPlayerMove = "Nuclear Projectile";
 					myEnemy.changeHealth(-20);
 					enemyDOT = true;
 				}break;
@@ -76,7 +92,7 @@ void Battle::setAttackingTrue(Player &player, int move) {
 				myEnemy.changeHealth(bombValue);
 				player.changePlayerHealth(-5);
 			}
-			int enemyDamage = myEnemy.randomAttack();
+			enemyDamage = myEnemy.randomAttack();
 			if (armored) {
 				if (enemyDamage % 2) {
 					enemyDamage = (enemyDamage + 1) / 2;
@@ -92,23 +108,25 @@ void Battle::setAttackingTrue(Player &player, int move) {
 				}
 			}
 			player.changePlayerHealth(enemyDamage);
-		}
-		//std::cout << "Player HP: " << player.getPlayerHealth() << ", Enemy HP: " << mainEnemy.getHealth() << std::endl;
-		// std::cout << "Attacking" << "\n";
-	}
-	else {
-		if (player.getPlayerHealth() > 0) {
-			int itemDrop = (rand() % 2) + 2;
-			for(int i = 0; i < itemDrop; i++){
-				int resourceDrop = (rand() % 4);
-				player.setResource(resourceDrop, 1);
+			if (myEnemy.getHealth() <= 0) {
+				if (player.getPlayerHealth() > 0) {
+					int itemDrop = (rand() % 2) + 2;
+					for(int i = 0; i < itemDrop; i++){
+						int resourceDrop = (rand() % 4);
+						player.setResource(resourceDrop, 1);
+					}
+					win = true;
+				}
+				else {
+					win = false;
+				}
+				active = false;
 			}
-			win = true;
+			else if (player.getPlayerHealth() <= 0) {
+				win = false;
+				active = false;
+			}	
 		}
-		else {
-			win = false;
-		}
-		active = false;
 	}
 }
 
@@ -138,4 +156,12 @@ bool Battle::getWin() const {
 
 int Battle::getEnemyHP() const {
 	return myEnemy.getHealth();
+}
+
+std::string Battle::getCurMove() const{
+	return curPlayerMove;
+}
+
+int Battle::getEnemyDamage() const{
+	return enemyDamage;
 }
