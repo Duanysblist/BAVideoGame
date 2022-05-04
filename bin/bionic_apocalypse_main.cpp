@@ -243,6 +243,13 @@ int main(int argc, char *argv[]) {
                     enemiesScene.push_back(newEnemy);
                     newEnemy->setID(runningEnemyIDcount);
                     runningEnemyIDcount++;
+                    // CAN HARDCODE THE DIFFERENT PATHS THAT ENEMIES NEED TO TAKE BASED UPON THEIR IDS
+                        // IS THERE A SIMPLER WAY TO DO THIS?
+                        // if(newEnemy->getID() == 17) {
+                            //newEnemy->setEndLocation(500, 600);
+
+                            // THEN CALL UPDATE ONE ENEMIES BELOW (Line ~750)
+                        //}
 
                     // Add enemy to our array of enemies in the scene
                     
@@ -702,7 +709,7 @@ int main(int argc, char *argv[]) {
             // ***********************************************************************
             // MINE
             currentBattleEnemy->setHealth(curBattle.getEnemyHP());
-            std::cout << std::to_string(currentBattleEnemy->getID());
+            // std::cout << std::to_string(currentBattleEnemy->getID());
             // ***********************************************************************
 
             // HENRY
@@ -765,6 +772,7 @@ int main(int argc, char *argv[]) {
         if(worldState) {
           for(int i = 0; i < enemiesInScene.size(); i++){
             if(enemiesInScene.at(i)->getAlive()) {
+                // std::cout << std::to_string(enemiesInScene.at(i)->getID());
               renderer.drawEnemy(*enemiesInScene.at(i), worldState); 
             }
           }
