@@ -28,6 +28,7 @@ void Player::resetResources() {
 	key_inventory[0] = 0;
 	key_inventory[1] = 0;
 	key_inventory[2] = 0;
+	crowbar = false;
 }
 
 
