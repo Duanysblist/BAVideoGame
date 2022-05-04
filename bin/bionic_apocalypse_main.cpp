@@ -738,7 +738,10 @@ int main(int argc, char *argv[]) {
                     // reset enemies
                     for (int i = 0; i < allEnemies.size(); i++) {
                         for (int j = 0; j < allEnemies.at(i).size(); i++) {
+                            // make alive again
                             allEnemies.at(i).at(j)->setAlive(true);
+                            // set health back to max
+                            allEnemies.at(i).at(j)->setHealth(allEnemies.at(i).at(j)->getMaxHealth());
                         }
                     }
 
