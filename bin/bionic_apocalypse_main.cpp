@@ -639,7 +639,7 @@ int main(int argc, char *argv[]) {
                         curBattle.setAttackingTrue(player, 10);
                         firstMove = true;
                     }
-                    if (e.key.keysym.sym == SDLK_PLUS) {
+                    if (e.key.keysym.sym == SDLK_EQUALS) {
                         curBattle.setAttackingTrue(player, 11);
                         firstMove = true;
                     }
