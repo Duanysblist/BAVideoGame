@@ -511,7 +511,7 @@ int main(int argc, char *argv[]) {
             moveUp = moveDown = moveLeft = moveRight = false;
             // start a new battle if necessary
             if(battling == false) {
-                curBattle.startNewBattle(badGuy);
+                curBattle.startNewBattle(player, badGuy);
                 battling = true;
             }
             while (SDL_PollEvent(&e) != 0)
@@ -582,6 +582,7 @@ int main(int argc, char *argv[]) {
                     }
                 }
             }
+            curBattle.checkAvailableMoves(player);
             badGuy.setHealth(curBattle.getEnemyHP());
             curMove = curBattle.getCurMove();
             enemyDam = curBattle.getEnemyDamage();

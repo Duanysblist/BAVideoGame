@@ -105,6 +105,16 @@ int Player::useMove(const int move){
 	return -1;
 }
 
+bool Player::hasAvailableMoves() const{
+	std::array<bool, 12> moves = getPossibleBattleMoves();
+	for (int i = 0; i < 12; i++) {
+		if (moves[i]) {
+			return true;
+		}
+	}
+	return false;
+}
+
 std::array<bool, 12> Player::getPossibleBattleMoves() const {
 	/**
 		0 (crowbar) crowbar strike - does a varying amount of damage to the enemy 

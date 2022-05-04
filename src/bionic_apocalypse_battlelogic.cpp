@@ -1,6 +1,6 @@
 #include "bionic_apocalypse_battlelogic.h"
 
-void Battle::startNewBattle(Enemy &enemy) {
+void Battle::startNewBattle(Player &player, Enemy &enemy) {
 	// std::cout << "battle and bad guy initiated" << std::endl; 
 	myEnemy = enemy;
 	active = true;
@@ -9,6 +9,7 @@ void Battle::startNewBattle(Enemy &enemy) {
 	bombSet = 0;
 	numBombs = 0;
 	enemyDebuff = false;
+	checkAvailableMoves(player);
 }
 
 void Battle::setAttackingTrue(Player &player, int move) {
@@ -164,4 +165,11 @@ std::string Battle::getCurMove() const{
 
 int Battle::getEnemyDamage() const{
 	return enemyDamage;
+}
+
+void Battle::checkAvailableMoves(Player &player) {
+	if (player.hasAvailableMoves() == false){
+		win = false;
+		active = false;
+	}
 }
