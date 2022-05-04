@@ -371,7 +371,7 @@ static int layout_3_0 [10][18]=
     {RFW, 0, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, 0, 0, LFW},
     {RFW, 0, 0, 0, LFW, PW, PW, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW},
     {RFW, 0, 0, 0, OCBL, DFW, ICBL, PW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, LFW},
-    {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, ICBR, DFW, DFW, OCBR, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, RAGS, LFW, PW, PW, ICBR, DFW, DFW, OCBR, 0, 0, 0, 0, LFW},
     {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, OCTL, UFW, ICTL}, 
     {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, LFW, PW, PW} 
@@ -456,7 +456,7 @@ static int layout_4_0 [10][18]=
     {RFW, 0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0},
     {RFW, ROCK, ROCK, 0, 0, 0, LFW, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW},
     {RFW, 0, 0, 0, 0, 0, OCBL, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, DFW, ICBL},
-    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
+    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, OIL, LFW},
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW},
     {ICTR, UFW, UFW, UFW, UFW, UFW, OCTR, 0, 0, OCTL, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL} 
 };
@@ -468,7 +468,7 @@ static int layout_4_1 [10][18]=
     {0, 0, 0, 0, LFW, PW, PW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, LFW},
     {0, 0, 0, 0, LFW, PW, PW, PW, ICBR, OCBR, 0, 0, OCTL, UFW, OCTR, 0, 0, OCBL},
     {0, 0, 0, 0, LFW, PW, PW, ICBR, OCBR, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
-    {OCTR, 0, 0, 0, LFW, PW, ICBR, OCBR, 0, 0, 0, 0, LFW, PW, RFW, 0, 0, 0},
+    {OCTR, 0, 0, 0, LFW, PW, ICBR, OCBR, 0, RAGS, 0, 0, LFW, PW, RFW, 0, 0, 0},
     {RFW, 0, 0, 0, OCBL, DFW, OCBR, 0, 0, 0, 0, 0, LFW, PW, ICTR, UFW, UFW, UFW},
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW, PW, PW, PW},
@@ -568,7 +568,7 @@ static int layout_5_0 [10][18]=
     {RFW, 0, 0, ENEMY_START, 0, ROCK, 0, 0, 0, 0, 0, 0, 0, 0, 0, OCTL, UFW, UFW},
     {RFW, 0, 0, 0, 0, ROCK, 0, 0, 0, ROCK, ROCK, ROCK, 0, 0, 0, LFW, PW, PW},
     {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
-    {RFW, POWER, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
+    {RFW, OIL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW, PW, PW},
     {ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL, PW, PW} 
 };
 
