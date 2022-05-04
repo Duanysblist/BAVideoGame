@@ -134,7 +134,6 @@ int main(int argc, char *argv[]) {
     map[7][4].setSceneZone(3);
     map[7][5].setSceneZone(3);
 
-    std::vector<Scene> collectionOfScenes;
 
     // set info for each scene
     for(int i = 0; i < MAP_ROWS; i++){
@@ -221,10 +220,10 @@ int main(int argc, char *argv[]) {
     std::vector<int> screenIndex{6, 0};
     player.setPlayerMapPosition(screenIndex);
 
-    std::vector<std::vector<Enemy>> allEnemies;
+    std::vector<std::vector<Enemy *>> allEnemies;
     for(int a = 0; a < MAP_ROWS; a++) {
         for(int b = 0; b < MAP_COLUMNS; b++) {
-            std::vector<Enemy> enemiesInScene;
+            std::vector<Enemy *> enemiesScene;
             for(int i = 0; i < map[a][b].getSceneRows(); i++){
                 for(int j = 0; j < map[a][b].getSceneColumns(); j++){
                     // Need to make sure that if the current scene has already been visited
@@ -236,14 +235,14 @@ int main(int argc, char *argv[]) {
                     // If so, give the pixel position it is supposed to be in
                     int* pixPos = map[a][b].covertScenePosToPixels(i, j);
                     // Create an enemy object
-                    Enemy newEnemy;
+                    Enemy* newEnemy = new Enemy();
                     // Set the position of the enemy in the scene
-                    newEnemy.setPosX(pixPos[1]);
-                    newEnemy.setPosY(pixPos[0]);
-                    newEnemy.setType(0);
-                    enemiesInScene.push_back(newEnemy);
-                    // newEnemy.setID(runningEnemyIDcount);
-                    // runningEnemyIDcount++;
+                    newEnemy->setPosX(pixPos[1]);
+                    newEnemy->setPosY(pixPos[0]);
+                    newEnemy->setType(0);
+                    enemiesScene.push_back(newEnemy);
+                    newEnemy->setID(runningEnemyIDcount);
+                    runningEnemyIDcount++;
 
                     // Add enemy to our array of enemies in the scene
                     
@@ -253,7 +252,7 @@ int main(int argc, char *argv[]) {
                     }
                 }
             }
-            allEnemies.push_back(enemiesInScene);
+            allEnemies.push_back(enemiesScene);
         }
     }
 
@@ -276,11 +275,10 @@ int main(int argc, char *argv[]) {
         renderer.cutscene(eCount);
         renderer.renderer_present();
     }
-      
-    std::vector<std::vector<Enemy>> sceneEnemyLayouts;
+
     // Making an array of possible enemies in the scene
     // Will never be more than 6 enemies in a single scene
-    std::vector<Enemy> enemiesInScene;
+    std::vector<Enemy *> enemiesInScene;
     int enemyCounter = 0;
     
     
@@ -559,13 +557,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(0) = x - 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(player.getPlayerScreenPositionX(), SCREEN_HEIGHT - BOTTOM_BAR_HEIGHT - PLAYER_HEIGHT);
-                    if(currentScene.previouslyVisited() == false){
-                        // std::cout << "Made it to scene push back";
-                        sceneEnemyLayouts.push_back(enemiesInScene);
-                    }
-                    enemiesInScene.clear();
-                    ranOnce = false;
-                    currentScene.setVisitedStatus();
+                    // if(currentScene.previouslyVisited() == false){
+                    //     // std::cout << "Made it to scene push back";
+                    //     sceneEnemyLayouts.push_back(enemiesInScene);
+                    // }
+                    // enemiesInScene.clear();
+                    // ranOnce = false;
+                    // currentScene.setVisitedStatus();
                     break;
                 case 2:
                     // Move to right screen
@@ -576,13 +574,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(1) = y + 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(0, player.getPlayerScreenPositionY());
-                    if(currentScene.previouslyVisited() == false){
-                        // std::cout << "Made it to scene push back";
-                        sceneEnemyLayouts.push_back(enemiesInScene);
-                    }
-                    enemiesInScene.clear();
-                    ranOnce = false;
-                    currentScene.setVisitedStatus();
+                    // if(currentScene.previouslyVisited() == false){
+                    //     // std::cout << "Made it to scene push back";
+                    //     sceneEnemyLayouts.push_back(enemiesInScene);
+                    // }
+                    // enemiesInScene.clear();
+                    // ranOnce = false;
+                    // currentScene.setVisitedStatus();
                     break;
                 case 3:
                     // Move to below screen
@@ -593,13 +591,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(0) = x + 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(player.getPlayerScreenPositionX(), 0);
-                    if(currentScene.previouslyVisited() == false){
-                        // std::cout << "Made it to scene push back";
-                        sceneEnemyLayouts.push_back(enemiesInScene);
-                    }
-                    enemiesInScene.clear();
-                    ranOnce = false;
-                    currentScene.setVisitedStatus();
+                    // if(currentScene.previouslyVisited() == false){
+                    //     // std::cout << "Made it to scene push back";
+                    //     sceneEnemyLayouts.push_back(enemiesInScene);
+                    // }
+                    // enemiesInScene.clear();
+                    // ranOnce = false;
+                    // currentScene.setVisitedStatus();
                     break;
                 case 4:
                     // Move to left screen
@@ -610,13 +608,13 @@ int main(int argc, char *argv[]) {
                     currentVec.at(1) = y - 1;
                     player.setPlayerMapPosition(currentVec);
                     player.setPlayerScreenPosition(SCREEN_WIDTH - PLAYER_WIDTH, player.getPlayerScreenPositionY());
-                    if(currentScene.previouslyVisited() == false){
-                        // std::cout << "Made it to scene push back";
-                        sceneEnemyLayouts.push_back(enemiesInScene);
-                    }
-                    enemiesInScene.clear();
-                    ranOnce = false;
-                    currentScene.setVisitedStatus();  
+                    // if(currentScene.previouslyVisited() == false){
+                    //     // std::cout << "Made it to scene push back";
+                    //     sceneEnemyLayouts.push_back(enemiesInScene);
+                    // }
+                    // enemiesInScene.clear();
+                    // ranOnce = false;
+                    // currentScene.setVisitedStatus();  
                     break;
             }
             
@@ -627,7 +625,7 @@ int main(int argc, char *argv[]) {
             moveUp = moveDown = moveLeft = moveRight = false;
             // start a new battle if necessary
             if(battling == false) {
-                curBattle.startNewBattle(player, badGuy);
+                curBattle.startNewBattle(player, *currentBattleEnemy);
                 battling = true;
             }
             while (SDL_PollEvent(&e) != 0)
@@ -704,6 +702,7 @@ int main(int argc, char *argv[]) {
             // ***********************************************************************
             // MINE
             currentBattleEnemy->setHealth(curBattle.getEnemyHP());
+            std::cout << std::to_string(currentBattleEnemy->getID());
             // ***********************************************************************
 
             // HENRY
@@ -746,9 +745,9 @@ int main(int argc, char *argv[]) {
         // check if player hit enemy, switch into battle if yes
         // ***********************************************************************
         for(int a = 0; a < enemiesInScene.size(); a++) {
-          if(collisionDetector.playerEnemyCollision(player, enemiesInScene.at(a)) && enemiesInScene.at(a).getAlive()){
+          if(collisionDetector.playerEnemyCollision(player, *enemiesInScene.at(a)) && enemiesInScene.at(a)->getAlive()){
             worldState = false;
-            currentBattleEnemy = &enemiesInScene.at(a);
+            currentBattleEnemy = enemiesInScene.at(a);
             break;
           }
         }
@@ -765,8 +764,8 @@ int main(int argc, char *argv[]) {
 
         if(worldState) {
           for(int i = 0; i < enemiesInScene.size(); i++){
-            if(enemiesInScene.at(i).getAlive()) {
-              renderer.drawEnemy(enemiesInScene.at(i), worldState); 
+            if(enemiesInScene.at(i)->getAlive()) {
+              renderer.drawEnemy(*enemiesInScene.at(i), worldState); 
             }
           }
         } else {
