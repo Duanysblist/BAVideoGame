@@ -127,21 +127,23 @@ void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
         image = NULL;
         if (gameState == false) {
             // obtain enemy health and calculate what fraction of the bar should be filled
-            int BAR_L = 100;
+            // bar length
+            int BAR_L = 150;
+            // bar start
             int BAR_S = 900;
             double enemy_health = enemy.getHealth();
             double health_length = (enemy_health/enemy.getMaxHealth())*BAR_L;
 
             // interior bar representing health
-            boxRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + health_length, (BOTTOM_BAR_HEIGHT/3), 255, 0, 0, 255);
+            boxRGBA(renderer, BAR_S, 400, BAR_S + health_length, 425, 255, 0, 0, 255);
             // outline of bar
-            rectangleRGBA(renderer, BAR_S, (2*BOTTOM_BAR_HEIGHT/3), BAR_S + BAR_L, (BOTTOM_BAR_HEIGHT/3), 0, 0, 0, 255);
+            rectangleRGBA(renderer, BAR_S, 400, BAR_S + BAR_L + 1, 426, 0, 0, 0, 255);
             
             // write health value under bar
-            drawText("Enemy Health: ", BAR_S - 20, (2*BOTTOM_BAR_HEIGHT/3), 0, 0, 0);
+            drawText("Enemy Health: ", BAR_S, 425, 0, 0, 0);
             // change health to an int instead of double
             int health = trunc(enemy_health);
-            drawText((std::to_string(health)).c_str(), BAR_S + 80, (2*BOTTOM_BAR_HEIGHT/3) + 50, 0, 0, 0);
+            drawText((std::to_string(health)).c_str(), BAR_S + 130, 425, 0, 0, 0);
         }
     }
 }
@@ -168,7 +170,7 @@ void Renderer::drawBattleMessages(const std::string &message, const int &damage,
     int t = enemMes.length();
     char toChar[t + 1];
     strcpy(toChar, enemMes.c_str());
-    drawText(toChar, 750, 300, 0, 0, 0);
+    drawText(toChar, 900, 300, 0, 0, 0);
 }
 
 void Renderer::drawMap(const std::vector<int> pos) {
