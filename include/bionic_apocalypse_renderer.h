@@ -70,6 +70,7 @@ class Renderer {
 
         void drawBattleUI(const Player &player);
         void drawBattleMessages(const std::string &message, const int &damage, const int &playerDam);
+        void drawCantUseMove();
 
         void renderer_present();
 };

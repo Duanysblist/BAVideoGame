@@ -16,14 +16,14 @@ void Battle::startNewBattle(Player &player, Enemy &enemy) {
 	checkAvailableMoves(player);
 }
 
-void Battle::setAttackingTrue(Player &player, int move) {
+bool Battle::setAttackingTrue(Player &player, int move) {
 	// if both are still alive
 	if (player.getPlayerHealth() > 0 && myEnemy.getHealth() > 0) {
 		// decrease player resources and impact player health 
 		int playerMove = player.useMove(move);
 		// if player does not have the resources for the chosen move
 		if (playerMove == -1) {
-			//display something about not having the right materials for using that ability
+			return false;
 		}
 		else { // player has the resources for the chosen move
 			switch (playerMove)
@@ -165,6 +165,7 @@ void Battle::setAttackingTrue(Player &player, int move) {
 			}	
 		}
 	}
+	return true;
 }
 
 // check if battle is active

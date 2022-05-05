@@ -64,6 +64,7 @@ int main(int argc, char *argv[]) {
     std::string curMove = ""; // empty string to use for battle messages
     int enemyDam = 0;
     int playerDam = 0;
+    bool canMakeMove = true;
     bool firstMove = false;
 
     // Setting up a MAP_ROWSxMAP_COLUMNS matrix of scenes for the map system
@@ -207,6 +208,8 @@ int main(int argc, char *argv[]) {
 
     // start keeping track of time for use in player and enemy movement
     int cur_time = SDL_GetTicks();
+    // keeping track of time for temporary messages
+    int mes_time = SDL_GetTicks();
 
     // set which scene the player starts in (first tutorial scene)
     std::vector<int> screenIndex{6, 0};
@@ -586,6 +589,20 @@ int main(int argc, char *argv[]) {
                     if (e.key.keysym.sym == SDLK_a) {
                         moveLeft = false;
                     }
+                    if (e.key.keysym.sym == SDLK_1) {
+                        bool can = player.useBandage();
+                        if (can == false) {
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                    }
+                    if (e.key.keysym.sym == SDLK_8) {
+                        bool can = player.useTour();
+                        if (can == false) {
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                    }
                 }
             }
 
@@ -722,52 +739,136 @@ int main(int argc, char *argv[]) {
                 if (e.type == SDL_KEYUP) {
                     // battle actions
                     if (e.key.keysym.sym == SDLK_0) {
-                        curBattle.setAttackingTrue(player, 0);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 0);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_1) {
-                        curBattle.setAttackingTrue(player, 1);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 1);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_2) {
-                        curBattle.setAttackingTrue(player, 2);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 2);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_3) {
-                        curBattle.setAttackingTrue(player, 3);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 3);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_4) {
-                        curBattle.setAttackingTrue(player, 4);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 4);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_5) {
-                        curBattle.setAttackingTrue(player, 5);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 5);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_6) {
-                        curBattle.setAttackingTrue(player, 6);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 6);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_7) {
-                        curBattle.setAttackingTrue(player, 7);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 7);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_8) {
-                        curBattle.setAttackingTrue(player, 8);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 8); 
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            canMakeMove = true;
+                            firstMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_9) {
-                        curBattle.setAttackingTrue(player, 9);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 9);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            firstMove = true;
+                            canMakeMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_MINUS) {
-                        curBattle.setAttackingTrue(player, 10);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 10);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            firstMove = true;
+                            canMakeMove = true;
+                        }
                     }
                     if (e.key.keysym.sym == SDLK_EQUALS) {
-                        curBattle.setAttackingTrue(player, 11);
-                        firstMove = true;
+                        bool can = curBattle.setAttackingTrue(player, 11);
+                        if (can == false){
+                            canMakeMove = false;
+                            mes_time = SDL_GetTicks();
+                        }
+                        else{
+                            firstMove = true;
+                            canMakeMove = true;
+                        }
                     }
                 }
             }
@@ -865,8 +966,16 @@ int main(int argc, char *argv[]) {
         }
         // ***********************************************************************
 
-        if(firstMove) { // if a battle is going on and a mvoe has been taken
+        if(firstMove && canMakeMove) { // if a battle is going on and a move has been taken
             renderer.drawBattleMessages(curMove, enemyDam, playerDam);
+        }
+
+        if(cur_time >= (mes_time + 3000)) { //stop displaying cant make move message after 3 seconds
+            canMakeMove = true;
+        }
+
+        if(canMakeMove == false){ //if move has been made that cannot be done we display message
+            renderer.drawCantUseMove();
         }
 
         // display help screen if player pressed h
