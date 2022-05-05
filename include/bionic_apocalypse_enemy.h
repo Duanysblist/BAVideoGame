@@ -60,7 +60,7 @@ class Enemy {
 		// updates enemy location
 		void update(const int dt);
 
-		int getType();
+		int getType() const;
 		void setType(const int type);
 
 		void setAlive(const bool stat);

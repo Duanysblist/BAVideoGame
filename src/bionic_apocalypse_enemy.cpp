@@ -121,7 +121,7 @@ void Enemy::setType(const int type) {
 	}
 }
 
-int Enemy::getType(){
+int Enemy::getType() const {
 	return enemyType;
 }
 

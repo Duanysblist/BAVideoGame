@@ -113,7 +113,16 @@ void Renderer::drawPlayer(const Player &player, const bool &world) {
 void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
     // load and create enemy texture
     if (enemy.getAlive()) {
-        image = IMG_Load("../resource/Basic_Enemy.png");
+        // choose enemy image based on type
+        if (enemy.getType() == 0) {
+            image = IMG_Load("../resource/Basic_Enemy.png");
+        }
+        else if (enemy.getType() == -1) {
+            image = IMG_Load("../resource/Tank_Enemy.png");
+        }
+        else {
+            image = IMG_Load("../resource/Glass_Cannon_Enemy.png");
+        }
         if (image == NULL) csci437_img_error("Could not create image!");
         SDL_Texture* enemy_texture = SDL_CreateTextureFromSurface(renderer, image);
         if (enemy_texture == NULL) csci437_error("Could not create texture from surface!");
