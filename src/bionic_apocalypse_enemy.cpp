@@ -75,9 +75,11 @@ void Enemy::update(const int dt) {
 	
 	if (distanceX > 0) {
 		setPosX(enemyPosX+(ENEMY_SPEED*dt));
+		direction = true;
 	}
 	else if (distanceX < 0) {
 		setPosX(enemyPosX-(ENEMY_SPEED*dt));
+		direction = false;
 	} 
 	if (distanceY > 0) {
 		setPosY(enemyPosY+(ENEMY_SPEED*dt));
@@ -141,4 +143,8 @@ int Enemy::getID(){
 
 void Enemy::setID(const int eID){
 	this->id = eID;
+}
+
+bool Enemy::getDirection() const{
+	return direction;
 }

@@ -122,8 +122,12 @@ void Renderer::drawEnemy(const Enemy &enemy, const bool &gameState) {
         enemy_rect = { enemy.getX(), enemy.getY(), ENEMY_WIDTH, ENEMY_HEIGHT };
 
         // add the enemy to the renderer
-        SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
-
+        if (enemy.getDirection()){
+            SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_NONE);
+        }
+        else {
+            SDL_RenderCopyEx(renderer, enemy_texture, NULL, &enemy_rect, 0, NULL, SDL_FLIP_HORIZONTAL);
+        }
         // destroy the texture and free the image
         SDL_DestroyTexture(enemy_texture);
         SDL_FreeSurface(image);
