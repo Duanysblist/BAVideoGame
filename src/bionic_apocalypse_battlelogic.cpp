@@ -1,5 +1,6 @@
 #include "bionic_apocalypse_battlelogic.h"
 
+// resets all battle information and makes sure player is able to battle
 void Battle::startNewBattle(Player &player, Enemy &enemy) {
 	myEnemy = enemy;
 	active = true;
