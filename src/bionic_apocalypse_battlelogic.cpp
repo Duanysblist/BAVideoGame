@@ -95,7 +95,7 @@ bool Battle::setAttackingTrue(Player &player, int move) {
 			}break;
 			case 9: {
 				curPlayerMove = "Tactical Nuke";
-				playerDamage = 50;
+				playerDamage = myEnemy.getHealth()/2;
 				myEnemy.changeHealth(-playerDamage);
 			}break;
 			case 10: {
