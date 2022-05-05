@@ -1008,6 +1008,14 @@ void Renderer::window_update(const Player &player, const bool &world, Scene &sce
         drawScene(scene);
         drawHelpMessage();
         drawPlayer(player, world);
+        if (!player.getCrowbar()) {
+            drawText("Start by picking up the crowbar.", 80, 70, 0, 0, 0);
+            drawText("If you collide with an enemy, you start a battle with it. Be careful!", 80, 90, 0, 0, 0);
+            drawText("Along your journey you'll find resources that look like the inventory below.", 80, 110, 0, 0, 0);
+            drawText("They will help you to defeat enemies. Press h for more info.", 80, 130, 0, 0, 0);
+            drawText("If you run out of health at any point, the game will reset and you will end up back here.", 80, 150, 0, 0, 0);
+
+        }
     }
     else { // in battle; need background, bottom bar, battle UI, and player
         // draw background
