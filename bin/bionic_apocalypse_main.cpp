@@ -580,7 +580,7 @@ int main(int argc, char *argv[]) {
                             player.changePlayerHealth(5);
                         }
                     }
-                    if (e.key.keysym.sym == SDLK_b) {
+                    if (e.key.keysym.sym == SDLK_t) {
                         // use tourniquet to heal
                         if (player.getResource(1) > 0 && player.getResource(1) > 4) {
                             player.setResource(1, -1);
@@ -923,12 +923,12 @@ int main(int argc, char *argv[]) {
                     map[5][5].setSceneLayout(layout_5_5);
                     // add resources from the tutorial zone back to the map
                     map[3][0].setSceneLayout(layout_3_0);
-                    map[4][0].setSceneLayout(layout_3_0);
-                    map[5][0].setSceneLayout(layout_3_0);
-                    map[6][0].setSceneLayout(layout_3_0);
-                    map[4][1].setSceneLayout(layout_3_0);
-                    map[5][1].setSceneLayout(layout_3_0);
-                    map[6][1].setSceneLayout(layout_3_0);
+                    map[4][0].setSceneLayout(layout_4_0);
+                    map[5][0].setSceneLayout(layout_5_0);
+                    map[6][0].setSceneLayout(layout_6_0);
+                    map[4][1].setSceneLayout(layout_4_1);
+                    map[5][1].setSceneLayout(layout_5_1);
+                    map[6][1].setSceneLayout(layout_6_1);
                     // distribute resources in the map again
                     for(int i = 0; i < MAP_ROWS; i++){
                         for(int j = 0; j < MAP_COLUMNS; j++){
