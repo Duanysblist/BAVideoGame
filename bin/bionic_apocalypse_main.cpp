@@ -913,6 +913,14 @@ int main(int argc, char *argv[]) {
                     map[0][0].setSceneLayout(layout_0_0);
                     map[3][5].setSceneLayout(layout_3_5);
                     map[5][5].setSceneLayout(layout_5_5);
+                    // add resources from the tutorial zone back to the map
+                    map[3][0].setSceneLayout(layout_3_0);
+                    map[4][0].setSceneLayout(layout_3_0);
+                    map[5][0].setSceneLayout(layout_3_0);
+                    map[6][0].setSceneLayout(layout_3_0);
+                    map[4][1].setSceneLayout(layout_3_0);
+                    map[5][1].setSceneLayout(layout_3_0);
+                    map[6][1].setSceneLayout(layout_3_0);
                     // distribute resources in the map again
                     for(int i = 0; i < MAP_ROWS; i++){
                         for(int j = 0; j < MAP_COLUMNS; j++){
