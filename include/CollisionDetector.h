@@ -33,7 +33,6 @@ private:
     void playerUpperRightResourceCollision(Player &player, Scene &scene) const;
     void playerBottomLeftResourceCollision(Player &player, Scene &scene) const;
     void playerBottomRightResourceCollision(Player &player, Scene &scene) const;
-    void playerCenterResourceCollision(Player &player, Scene &scene) const;
     bool playerUpperLeftWallCollision(Player &player, Scene &scene);
     bool playerUpperRightWallCollision(Player &player, Scene &scene);
     bool playerBottomLeftWallCollision(Player &player, Scene &scene);
