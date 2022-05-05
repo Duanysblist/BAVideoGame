@@ -27,12 +27,10 @@ int Enemy::randomAttack() const {
 
 void Enemy::setPosX(const int newX) {
 	enemyPosX = newX;
-	// std::cout << "Getting called X" << newX << "\n";
 }
 
 void Enemy::setPosY(const int newY) {
 	enemyPosY = newY;
-	// std::cout << "Getting called Y" << newY << "\n";
 }
 
 int Enemy::getX() const {
@@ -59,7 +57,6 @@ void Enemy::setEndLocation(const int X, const int Y) {
 
 void Enemy::update(const int dt) {
 	//Update Location
-	// std::cout << "Update";
 	int distanceX;
 	int distanceY;
 	if (goingToStart) {
@@ -70,8 +67,6 @@ void Enemy::update(const int dt) {
 		distanceX = endLocation[0] - enemyPosX;
 		distanceY = endLocation[1] - enemyPosY;
 	}
-
-	// std::cout << ", X Distance: " << distanceX << ", Y Distance: " << distanceY;
 	
 	if (distanceX > 0) {
 		setPosX(enemyPosX+(ENEMY_SPEED*dt));

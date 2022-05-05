@@ -222,7 +222,6 @@ int main(int argc, char *argv[]) {
     std::vector<std::vector<Enemy *>> allEnemies;
     for(int a = 0; a < MAP_ROWS; a++) {
         for(int b = 0; b < MAP_COLUMNS; b++) {
-            std::cout<<"Scene number: " + std::to_string(sceneNumber) << endl;
             sceneNumber++;
             std::vector<Enemy *> enemiesScene;
             for(int i = 0; i < map[a][b].getSceneRows(); i++){
@@ -239,11 +238,9 @@ int main(int argc, char *argv[]) {
                     newEnemy->setPosY(pixPos[0]);
                     newEnemy->setStartLocation(pixPos[1], pixPos[0]);
                     newEnemy->setType((rand() % 3) - 1);
-                    std::cout<<"EnemyID: " + std::to_string(runningEnemyIDcount) << endl;
                     // add enemy to the list
                     enemiesScene.push_back(newEnemy);
                     newEnemy->setID(runningEnemyIDcount);
-                    std::cout<<"Enemy default ending location x: " + std::to_string(newEnemy->getEndLocationX());
                     int* enemyEnd;
                     switch(runningEnemyIDcount){
                         case 6:
@@ -374,9 +371,6 @@ int main(int argc, char *argv[]) {
                     runningEnemyIDcount++;
                     // Add enemy to our array of enemies in the scene
                     
-                    // increment the number of enemies
-                    // enemyCounter++;
-                    // std::cout << "Enemy Position :" + std::to_string(i) + ", " + std::to_string(j);
                     }
                 }
             }
@@ -979,7 +973,6 @@ int main(int argc, char *argv[]) {
         if(worldState) {
           for(int i = 0; i < enemiesInScene.size(); i++){
             if(enemiesInScene.at(i)->getAlive()) {
-                // std::cout << std::to_string(enemiesInScene.at(i)->getID());
               renderer.drawEnemy(*enemiesInScene.at(i), worldState); 
             }
           }
