@@ -180,6 +180,14 @@ void Renderer::drawBattleMessages(const std::string &message, const int &damage,
     drawText(toChar, 900, 300, 0, 0, 0);
 }
 
+void Renderer::drawCantUseMove() {
+    std::string mes = "You cannot use this move!";
+    int n = mes.length();
+    char toCharArr[n + 1];
+    strcpy(toCharArr, mes.c_str());
+    drawText(toCharArr, 700, 500, 0, 0, 0);
+}
+
 void Renderer::drawMap(const std::vector<int> pos) {
     SDL_Surface* image = IMG_Load("../resource/map.png");
     if (image == NULL) csci437_img_error("Could not create image!");

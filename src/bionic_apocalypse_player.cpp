@@ -106,6 +106,26 @@ int Player::useMove(const int move){
 	return -1;
 }
 
+bool Player::useBandage(){
+	int possible = useMove(1);
+	if (possible < 0) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+bool Player::useTour() {
+	int possible = useMove(8);
+	if (possible < 0) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
 bool Player::hasAvailableMoves() const{
 	std::array<bool, 12> moves = getPossibleBattleMoves();
 	for (int i = 0; i < 12; i++) {

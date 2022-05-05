@@ -26,7 +26,7 @@ class Battle {
         int playerDamage = 0;
     public:
         void startNewBattle(Player &player, Enemy &enemy);
-        void setAttackingTrue(Player &player, int move);
+        bool setAttackingTrue(Player &player, int move);
         bool getStatus() const;
         int bombHandler();
         bool getWin() const;
