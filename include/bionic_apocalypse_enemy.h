@@ -25,7 +25,7 @@ class Enemy {
 		int endLocation [2] = {900,250};
 		bool goingToStart = false;
 		int enemyType = 0; //0 is normal, -1, is tank, and 1 is glass cannon
-
+		bool direction = true; //true is facing right false is facing left
 		int id;
 
 	public: 
@@ -70,6 +70,8 @@ class Enemy {
 
 		int getID();
 		void setID(const int id);
+
+		bool getDirection() const;
 };
 
 #endif
