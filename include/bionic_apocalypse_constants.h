@@ -173,10 +173,10 @@ static int layout_0_4 [10][18]=
     {RFW, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, OCBL, DFW, DFW, OCBR, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {RFW, 0, 0, 0, 0, 0, ENEMY_START, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    {RFW, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+    {OCBR, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, OCTL, UFW, UFW, OCTR, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {0, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
-    {RFW, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
+    {OCTR, 0, 0, 0, 0, LFW, PW, PW, RFW, 0, 0, 0, 0, 0, 0, 0, 0, LFW}, 
     {ICTR, UFW, UFW, UFW, UFW, ICTL, PW, PW, ICTR, UFW, UFW, UFW, UFW, UFW, UFW, UFW, UFW, ICTL}
 };
 

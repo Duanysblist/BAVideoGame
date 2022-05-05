@@ -900,13 +900,6 @@ int main(int argc, char *argv[]) {
                     currentBattleEnemy->setAlive(false);
                 }
                 else { // player lost battle -- reset game
-                    // return the player to initial position
-                    std::vector<int> screenIndex{6, 0};
-                    player.setPlayerMapPosition(screenIndex);
-                    player.setPlayerScreenPosition(100, 450);
-                    // reset player stats
-                    player.setPlayerHealth(MAX_HEALTH);
-                    player.resetResources();
                     // lock up zones again
                     map[4][2].setSceneLayout(north_unlocked); 
                     // add crowbar to the map again
@@ -938,7 +931,19 @@ int main(int argc, char *argv[]) {
                             allEnemies.at(i).at(j)->setHealth(allEnemies.at(i).at(j)->getMaxHealth());
                         }
                     }
-
+                    // reset bools so cutscenes play
+                    eCount = 4;
+                    hasBeenToLab = false;
+                    hasObtainedPower = false;
+                    hasObtainedFuse = false;
+                    hasObtainedWaste = false;
+                    // return the player to initial position
+                    std::vector<int> screenIndex{6, 0};
+                    player.setPlayerMapPosition(screenIndex);
+                    player.setPlayerScreenPosition(100, 450);
+                    // reset player stats
+                    player.setPlayerHealth(MAX_HEALTH);
+                    player.resetResources();
                 }
             }
         }
