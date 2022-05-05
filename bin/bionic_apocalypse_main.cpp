@@ -580,6 +580,14 @@ int main(int argc, char *argv[]) {
                             player.changePlayerHealth(5);
                         }
                     }
+                    if (e.key.keysym.sym == SDLK_b) {
+                        // use tourniquet to heal
+                        if (player.getResource(1) > 0 && player.getResource(1) > 4) {
+                            player.setResource(1, -1);
+                            player.setResource(4, -1);
+                            player.changePlayerHealth(15);
+                        }
+                    }
                 }
 
                 // User releases a key
@@ -596,20 +604,20 @@ int main(int argc, char *argv[]) {
                     if (e.key.keysym.sym == SDLK_a) {
                         moveLeft = false;
                     }
-                    if (e.key.keysym.sym == SDLK_1) {
-                        bool can = player.useBandage();
-                        if (can == false) {
-                            canMakeMove = false;
-                            mes_time = SDL_GetTicks();
-                        }
-                    }
-                    if (e.key.keysym.sym == SDLK_8) {
-                        bool can = player.useTour();
-                        if (can == false) {
-                            canMakeMove = false;
-                            mes_time = SDL_GetTicks();
-                        }
-                    }
+                    // if (e.key.keysym.sym == SDLK_1) {
+                    //     bool can = player.useBandage();
+                    //     if (can == false) {
+                    //         canMakeMove = false;
+                    //         mes_time = SDL_GetTicks();
+                    //     }
+                    // }
+                    // if (e.key.keysym.sym == SDLK_8) {
+                    //     bool can = player.useTour();
+                    //     if (can == false) {
+                    //         canMakeMove = false;
+                    //         mes_time = SDL_GetTicks();
+                    //     }
+                    // }
                 }
             }
 
