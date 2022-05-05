@@ -989,14 +989,14 @@ int main(int argc, char *argv[]) {
 
         // display map location -- DELETE BEFORE SUBMITTING GAME - FOR DEVELOPMENT USE ONLY
         // ****************************************************
-        std::vector<int> a = player.getPlayerMapPosition();
-        int int_positionx = a.at(0);
-        int int_positiony = a.at(1);
-        std::string positionx = std::to_string(int_positionx);
-        std::string positiony = std::to_string(int_positiony);
-        std::string position = positionx + positiony;
-        char const *p_char = position.c_str();
-        renderer.drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
+        // std::vector<int> a = player.getPlayerMapPosition();
+        // int int_positionx = a.at(0);
+        // int int_positiony = a.at(1);
+        // std::string positionx = std::to_string(int_positionx);
+        // std::string positiony = std::to_string(int_positiony);
+        // std::string position = positionx + positiony;
+        // char const *p_char = position.c_str();
+        // renderer.drawText(p_char, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 255, 255, 255);
         // *****************************************************
 
         renderer.renderer_present();
