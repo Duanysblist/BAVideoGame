@@ -235,7 +235,7 @@ int main(int argc, char *argv[]) {
                     newEnemy->setPosX(pixPos[1]);
                     newEnemy->setPosY(pixPos[0]);
                     newEnemy->setStartLocation(pixPos[1], pixPos[0]);
-                    newEnemy->setType(0);
+                    newEnemy->setType((rand() % 3) - 1);
                     std::cout<<"EnemyID: " + std::to_string(runningEnemyIDcount) << endl;
                     // add enemy to the list
                     enemiesScene.push_back(newEnemy);
@@ -832,6 +832,7 @@ int main(int argc, char *argv[]) {
         // check if player hit enemy, switch into battle if yes
         // ***********************************************************************
         for(int a = 0; a < enemiesInScene.size(); a++) {
+            // If the enemy has had it's end location changed, and you're in the world state, make the enemy path
             if(enemiesInScene.at(a)->getEndLocationX() != 900) {
                 if(worldState) {
                     enemiesInScene.at(a)->update(dt);
