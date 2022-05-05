@@ -573,6 +573,13 @@ int main(int argc, char *argv[]) {
                         // show/hide map
                         map_display = !map_display;
                     }
+                    if (e.key.keysym.sym == SDLK_b) {
+                        // use bandages to heal
+                        if (player.getResource(1) > 0) {
+                            player.setResource(1, -1);
+                            player.changePlayerHealth(5);
+                        }
+                    }
                 }
 
                 // User releases a key
