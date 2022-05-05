@@ -582,7 +582,7 @@ int main(int argc, char *argv[]) {
                     }
                     if (e.key.keysym.sym == SDLK_t) {
                         // use tourniquet to heal
-                        if (player.getResource(1) > 0 && player.getResource(1) > 4) {
+                        if (player.getResource(1) > 0 && player.getResource(4) > 0) {
                             player.setResource(1, -1);
                             player.setResource(4, -1);
                             player.changePlayerHealth(15);
