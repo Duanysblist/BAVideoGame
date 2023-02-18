@@ -1,5 +1,8 @@
-**PREREQUISITES**
+Welcome to Bionic Apocalypse!!! I made this game with three other students in my game design course at William & Mary. We had a great time making it, and I hope you have a fun time playing it. 
 
+
+
+**PREREQUISITES**
 - GCC
 - CMAKE (www.cmake.org)
 - SDL 2.0 (www.libsdl.org)
@@ -103,3 +106,24 @@ If the above worked without error, it should  produce a 'bionic_apocalypse_main'
 The above instructions will compile your executable with all debug information embedded and compiler optimizations minimized.  To compile a 'release' version, just create a subdirectory 'Release' instead of 'Debug' and follow the same instructions as above. Note: in release mode certain safety checks are disabled and 'assert' statement are ignored. Hence, it is recommended to test your code in 'Debug' mode, and only when everything works, compile it in the 'Release' mode.
 
 If you want to use additional external libraries, you will need to add them to 'CMakeLists.txt' (line 48). Please refer to the CMake documentation for more information on how to include libraries to your project with CMake.
+
+
+<img width="875" alt="Screenshot 2023-02-17 200945" src="https://user-images.githubusercontent.com/33470234/219825620-c702cbc9-0322-4d2d-b306-e7cc9c56c81b.png">
+
+<img width="876" alt="Screenshot 2023-02-17 201022" src="https://user-images.githubusercontent.com/33470234/219825629-d4d0cbcd-f308-4fc1-9332-94c761817ba0.png">
+
+<img width="874" alt="Screenshot 2023-02-17 201038" src="https://user-images.githubusercontent.com/33470234/219825636-3bc50ec5-675e-41ed-b91f-6bedfdaa7e76.png">
+
+<img width="873" alt="Screenshot 2023-02-17 201050" src="https://user-images.githubusercontent.com/33470234/219825640-cbfb8e07-111a-4766-929d-faaf9b74c974.png">
+
+<img width="875" alt="Screenshot 2023-02-17 201107" src="https://user-images.githubusercontent.com/33470234/219825644-329f393f-f7a6-4eb3-af5f-71bf7799e5be.png">
+
+https://user-images.githubusercontent.com/33470234/219825662-a5985528-f4e9-41b3-9160-34f839075897.mp4
+
+https://user-images.githubusercontent.com/33470234/219825714-ccceee55-85f9-4e79-ab46-f3701a1e880b.mp4
+
+https://user-images.githubusercontent.com/33470234/219825718-fac6614e-9665-4c0a-a48d-924cef908bc9.mp4
+
+https://user-images.githubusercontent.com/33470234/219825731-1e2aa28f-d443-4a1a-9ee2-559617d22e3b.mp4
+
+https://user-images.githubusercontent.com/33470234/219825734-d0027722-2094-442e-8df6-dfba4d19b50e.mp4
